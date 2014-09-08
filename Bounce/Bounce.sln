@@ -1,7 +1,7 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
-Project("{77C2F478-12FC-9CCC-CCEB-2B36C122B4FD}") = "2D_platform", "Assembly-CSharp.csproj", "{B0A19A98-D211-CF86-248B-4856E78B5725}"
+Project("{EB9A5642-8F85-BBDF-D384-6322BAAFFE6E}") = "Bounce", "Assembly-CSharp.csproj", "{ABE4CEBD-87BE-0A97-95FA-B9B3B101725D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,15 +9,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B0A19A98-D211-CF86-248B-4856E78B5725}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B0A19A98-D211-CF86-248B-4856E78B5725}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B0A19A98-D211-CF86-248B-4856E78B5725}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B0A19A98-D211-CF86-248B-4856E78B5725}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABE4CEBD-87BE-0A97-95FA-B9B3B101725D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABE4CEBD-87BE-0A97-95FA-B9B3B101725D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABE4CEBD-87BE-0A97-95FA-B9B3B101725D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABE4CEBD-87BE-0A97-95FA-B9B3B101725D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-							GlobalSection(MonoDevelopProperties) = preSolution
+			GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
