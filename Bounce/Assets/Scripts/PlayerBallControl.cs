@@ -3,8 +3,11 @@ using System.Collections;
 
 public class PlayerBallControl : MonoBehaviour {
 
-	public float moveForce = 365f;			// Amount of force added to move the player left and right
+	public float moveForce = 150f;			// Amount of force added to move the player left and right
+	public float moveTorque = 150f; 
+	public float stoppingForceMultiplier = 2.5f;
 	public float maxSpeed = 5f;
+	public float maxTorque = 100.0f;
 	public float bounceForce = 0.2f;
 	public float maxBounce = 0.8f;
 	public float minBounce = 0.1f;
@@ -89,7 +92,22 @@ public class PlayerBallControl : MonoBehaviour {
 		float v = Input.GetAxis ("Vertical");
 
 		if(h * this.rigidbody2D.velocity.x < maxSpeed)
+		{
 			this.rigidbody2D.AddForce(Vector2.right * h * moveForce);
+
+			//Allow faster stopping
+			if(Mathf.Sign(h) != Mathf.Sign (this.rigidbody2D.velocity.x))
+			{
+				this.rigidbody2D.AddForce(Vector2.right * h * Mathf.Abs(this.rigidbody2D.velocity.x)*stoppingForceMultiplier);
+			}
+
+			//Add torque based on direction
+			if(Mathf.Abs (this.rigidbody2D.angularVelocity) < maxTorque)
+			{
+				this.rigidbody2D.AddTorque(-h * moveForce);
+			}
+
+		}
 		
 		if(Mathf.Abs(this.rigidbody2D.velocity.x) > maxSpeed)
 			this.rigidbody2D.velocity = new Vector2(Mathf.Sign(this.rigidbody2D.velocity.x) * maxSpeed, this.rigidbody2D.velocity.y);
