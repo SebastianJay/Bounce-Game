@@ -160,11 +160,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 42d764c70d63e85499ca2bbbf1b79d67, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 4.72317457
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 42d764c70d63e85499ca2bbbf1b79d67, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 7.982831
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 42d764c70d63e85499ca2bbbf1b79d67, type: 2}
       propertyPath: m_LocalPosition.z
@@ -193,6 +193,22 @@ Prefab:
     - target: {fileID: 11400000, guid: 42d764c70d63e85499ca2bbbf1b79d67, type: 2}
       propertyPath: moveForce
       value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 42d764c70d63e85499ca2bbbf1b79d67, type: 2}
+      propertyPath: thresholdVelocity
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 42d764c70d63e85499ca2bbbf1b79d67, type: 2}
+      propertyPath: deformScaleChange
+      value: .400000006
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 42d764c70d63e85499ca2bbbf1b79d67, type: 2}
+      propertyPath: deformSpeed
+      value: .150000006
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 42d764c70d63e85499ca2bbbf1b79d67, type: 2}
+      propertyPath: bounciness
+      value: .224999994
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 42d764c70d63e85499ca2bbbf1b79d67, type: 2}
@@ -298,7 +314,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 326351912}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.39822149, y: 3.42314148, z: 0}
+  m_LocalPosition: {x: 14.6449986, y: 6.54974985, z: 0}
   m_LocalScale: {x: 2.6243875, y: 3.4761169, z: 1}
   m_Children: []
   m_Father: {fileID: 1572808644}
@@ -448,6 +464,11 @@ MonoBehaviour:
   maxBounce: 1
   minBounce: 0
   jumpForce: 1500
+  bounciness: .224999994
+  thresholdAngle: 60
+  thresholdVelocity: 12
+  deformScaleChange: .400000006
+  deformSpeed: .150000006
 --- !u!58 &566544024
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -506,7 +527,7 @@ Transform:
   m_PrefabInternal: {fileID: 244061632}
   m_GameObject: {fileID: 566544022}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 4.72317457, y: 7.982831, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 293861214}
