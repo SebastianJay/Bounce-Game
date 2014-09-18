@@ -7,7 +7,7 @@ public class PlayerBallControl : MonoBehaviour {
 	public float moveTorque = 150f; 
 	public float stoppingForceMultiplier = 2.5f;
 	public float maxSpeed = 5f;
-	public float maxTorque = 100.0f;
+	public float maxAngularSpeed = 100.0f;
 	public float bounceForce = 0.2f;
 	public float maxBounce = 0.8f;
 	public float minBounce = 0.1f;
@@ -91,14 +91,54 @@ public class PlayerBallControl : MonoBehaviour {
 		float h = Input.GetAxis ("Horizontal");
 		float v = Input.GetAxis ("Vertical");
 
+		if (h != 0) 
+		{
+			// Check if we want to move in direction opposite motion
+			// If so, we allow for faster stopping
+			if (Mathf.Sign (h) != Mathf.Sign (this.rigidbody2D.velocity.x)) 
+			{
+				this.rigidbody2D.AddForce (Vector2.right * h * moveForce * stoppingForceMultiplier);
+				this.rigidbody2D.AddTorque (-h * moveTorque * stoppingForceMultiplier);
+			} 
+			else
+			{
+				if (Mathf.Abs (this.rigidbody2D.velocity.x) < maxSpeed)
+				{
+					this.rigidbody2D.AddForce(Vector2.right * h * moveForce);
+				}
+				if (Mathf.Abs (this.rigidbody2D.angularVelocity) < maxAngularSpeed)
+				{
+					this.rigidbody2D.AddTorque(-h * moveTorque);
+				}
+			}
+			Debug.Log("" + rigidbody2D.angularVelocity + " " + rigidbody2D.velocity.magnitude);
+		}
+
+		// cap translational speed and angular speed
+		/*
+		if (Mathf.Abs (this.rigidbody2D.velocity.x) > maxSpeed)
+		{
+			this.rigidbody2D.velocity = new Vector2(
+				Mathf.Sign(this.rigidbody2D.velocity.x) * maxSpeed, this.rigidbody2D.velocity.y);
+		}
+		if (Mathf.Abs (this.rigidbody2D.angularVelocity) > maxAngularSpeed)
+		{
+			this.rigidbody2D.angularVelocity = Mathf.Sign(
+				this.rigidbody2D.angularVelocity) * maxAngularSpeed;
+		}
+		*/
+
+		/*
 		if(h * this.rigidbody2D.velocity.x < maxSpeed)
 		{
+			// translational movement
 			this.rigidbody2D.AddForce(Vector2.right * h * moveForce);
 
 			//Allow faster stopping
 			if(Mathf.Sign(h) != Mathf.Sign (this.rigidbody2D.velocity.x))
 			{
-				this.rigidbody2D.AddForce(Vector2.right * h * Mathf.Abs(this.rigidbody2D.velocity.x)*stoppingForceMultiplier);
+				this.rigidbody2D.AddForce(Vector2.right * h * Mathf.Abs(this.rigidbody2D.velocity.x)* moveForce * stoppingForceMultiplier);
+				this.rigidbody2D.AddTorque(Vector2.right * h * Mathf.Abs(this.rigidbody2D.velocity.x)* moveTorque * stoppingForceMultiplier);
 			}
 
 			//Add torque based on direction
@@ -108,32 +148,15 @@ public class PlayerBallControl : MonoBehaviour {
 			}
 
 		}
-		
+		*/
+
+		/*
 		if(Mathf.Abs(this.rigidbody2D.velocity.x) > maxSpeed)
 			this.rigidbody2D.velocity = new Vector2(Mathf.Sign(this.rigidbody2D.velocity.x) * maxSpeed, this.rigidbody2D.velocity.y);
-
+		*/
 		if (v > 0 && grounded) {
 			this.rigidbody2D.AddForce (Vector2.up * jumpForce);
 		}
-		grounded = false;
-	
-		//float v = Input.GetAxis ("Vertical");
-
-		/*
-		this.collider2D.sharedMaterial.bounciness += v * bounceForce;
-		if (this.collider2D.sharedMaterial.bounciness > maxBounce)
-			this.collider2D.sharedMaterial.bounciness = maxBounce;
-		if (this.collider2D.sharedMaterial.bounciness < minBounce)
-			this.collider2D.sharedMaterial.bounciness = minBounce;
-		this.collider2D.enabled = false;
-		this.collider2D.enabled = true;
-		//print(this.collider2D.sharedMaterial.bounciness);
-		*/
-		/*
-		if (v * this.rigidbody2D.velocity.y < maxSpeed)
-			this.rigidbody2D.AddForce(Vector2.up * v * moveForce);
-		if(Mathf.Abs(this.rigidbody2D.velocity.y) > maxSpeed)
-			this.rigidbody2D.velocity = new Vector2(this.rigidbody2D.velocity.x, Mathf.Sign(this.rigidbody2D.velocity.y) * maxSpeed);
-		*/
+		grounded = false;	
 	}
 }
