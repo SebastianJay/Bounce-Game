@@ -3,28 +3,43 @@ using System.Collections;
 
 public class PlayerBallControl : MonoBehaviour {
 
-	public float moveForce = 150f;			// Amount of force added to move the player left and right
-	public float moveTorque = 150f; 
-	public float stoppingForceMultiplier = 3f;
-	public float maxSpeed = 10f;
-	public float maxPlayerGeneratedSpeed = 5f;
-	public float maxTorque = 100.0f;
-	public float bounceForce = 0.2f;
-	public float maxBounce = 0.8f;
-	public float minBounce = 0.1f;
-	public float jumpForce = 100f;
+	// Physics for lateral movement
+	public float moveForce = 75f;			// Amount of force for translational movement
+	public float moveTorque = 100f; 		// Amount of force for rotation
+	public float stoppingForceMultiplier = 4f;	// Multiplier for translational movement opposite velocity
+	//public float maxSpeed = 10f;			
+	public float maxPlayerGeneratedSpeed = 10f;
+	public float maxAngularVelocity = 100.0f;
+	public float jumpForce = 2800f;
+	public float jumpDelay = 0.4f;	//time (in s) delay between jumps
+	private float jumpTimer = 0.4f;
 
-	public float bounciness = 0.5f;
+	// bouncy vars
+	public float bounciness = 0.225f;
+	public float thresholdAngle = 360f;
+	public float groundedThresholdAngle = 45f;
+	public float thresholdVelocity = 6f;
+	public float groundedThresholdBonus = 4f;
 
-	public float thresholdAngle = 60f;
-	public float thresholdVelocity = 5f;
-	public float groundedThresholdBonus = 5f;
-
+	//Deformation variables
 	private float deformScaleChange = 0.4f;
-	public float deformSpeed = 0.15f;
-	public float deformScaleFactor = 0.01f;
-	//private Transform groundCheck;			// A position marking where to check if the player is grounded.
+	public float deformScaleFactor = 0.015f;	//multiplier that determines how deformed ball will get
+	public float deformTimeFactor = 0.001f;	//multiplier that determines how quick deformation will be
+	[HideInInspector]
+	public float deformTime = 0.15f;
+	private float deformTimer = 0.0f;
+	private float baseScale = 0.0f;	//temp
 	private bool grounded = false;			// Whether or not the player is grounded.
+
+	private enum DeformationState{Deforming, Reforming,Reformed, Normal};
+	private DeformationState dState = DeformationState.Normal;
+	
+	private Vector2 prevVelocity;
+	private float prevAngularVelocity;
+	private Vector2 outVelocity;
+	private float outAngularVelocity;
+	private GameObject scaleObject;
+	private bool wasGrounded;
 
 	// Use this for initialization
 	void Awake () {
@@ -32,34 +47,15 @@ public class PlayerBallControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update() {
-		//Sprite sprite = GetComponent<SpriteRenderer>();
-		//do line cast to ground
-		//Transform groundVec = new Transform(transform.position.x,
-		 //                               transform.position.y - transform.localScale.y * sprite.bounds.size.y,
-		  //                              transform.position.z);
-
-		//grounded = Physics2D.Linecast(transform.position, groundVec.position, 1 << LayerMask.NameToLayer("Ground"));  
-
 	}
-	
-	
-	private enum DeformationState{Deforming, Reforming,Reformed, Normal};
-
-	private DeformationState dState = DeformationState.Normal;
-
-	private Vector2 prevVelocity;
-	private float prevAngularVelocity;
-	private Vector2 outVelocity;
-	private float outAngularVelocity;
-	private GameObject scaleObject;
-	bool wasGrounded;
 
 	void OnCollisionEnter2D(Collision2D collision) {
 		foreach (ContactPoint2D contact in collision.contacts)
 			Debug.DrawRay (contact.point, contact.normal, Color.white);
 		foreach (ContactPoint2D contact in collision.contacts)
 		{
-			if (contact.normal.y > 0)
+
+			if (Vector2.Angle(Vector2.up, contact.normal) < thresholdAngle)
 				grounded = true;
 
 			float velocityToCheck = thresholdVelocity;
@@ -82,7 +78,7 @@ public class PlayerBallControl : MonoBehaviour {
 
 				scaleObject.transform.position = contact.point;//Center the scaleObject at the contact point so that the ball scales from one end
 				this.transform.parent.parent = scaleObject.transform; //Parent the ball to the scaleObject
-				scaleChanged = 0;
+				deformTimer = 0.0f;
 
 				//Calculate the reflection of originalVelocity about the collision normal to get the ball's new velocity vector
 				Vector2 reflection = (2 * Vector2.Dot(originalVelocity,collisionNormal) * collisionNormal - originalVelocity);
@@ -97,13 +93,11 @@ public class PlayerBallControl : MonoBehaviour {
 
 				outAngularVelocity = originalAngularVelocity*angleMod;
 				//Set the scaleChange based on collision force
-				deformScaleChange = Mathf.Clamp(Mathf.Abs (Vector2.Dot (collision.relativeVelocity,contact.normal))*deformScaleFactor,0.2f,1);
-				jumpBoosted = false;
+				deformScaleChange = Mathf.Clamp(Mathf.Abs (Vector2.Dot (collision.relativeVelocity,contact.normal))*deformScaleFactor,0.2f, 0.8f);
+				deformTime = Mathf.Clamp(Mathf.Abs (Vector2.Dot (collision.relativeVelocity, contact.normal)) * deformTimeFactor, 0.02f, 0.08f);
 				return;
 			}
 		}
-		//Deform (collision);
-		//ListenForJump (collision);
 	}
 
 	void OnCollisionStay2D(Collision2D collision) {
@@ -111,47 +105,41 @@ public class PlayerBallControl : MonoBehaviour {
 			Debug.DrawRay (contact.point, contact.normal, Color.yellow);
 		foreach (ContactPoint2D contact in collision.contacts)
 		{
-			if (contact.normal.y > 0)
+			if (Vector2.Angle(Vector2.up, contact.normal) < thresholdAngle)
 				grounded = true;
 		}
-		//Reform ();
 		ListenForJump (collision);
-		//Deform (collision);
 	}
 
 	void OnCollisionExit2D(Collision2D collision) {
-		//Reform ();
-		//print ("exited");
 	}
 
 	private void ListenForJump(Collision2D collision) {
 		float v = Input.GetAxis ("Vertical");
 		foreach (ContactPoint2D contact in collision.contacts)
 		{
-			if (v > 0 && contact.normal.y > 0)
+			if (v > 0 && grounded && jumpTimer >= jumpDelay)
 			{
 				this.rigidbody2D.AddForce(Vector2.up * jumpForce);
+				jumpTimer = 0.0f;
 				break;
 			}
 		}
 	}
-	
-	private float scaleChanged = 0;
-	private bool jumpBoosted = false;
 
 	private bool checkJumpBoosted()
 	{
-		if(Input.GetButtonDown("Jump") && outVelocity.y != 0)
+		bool jumpBoosted = false;
+		if(Input.GetButton("Jump") && outVelocity.y != 0)
 		{
 			jumpBoosted = true;
-		}else if(Input.GetButtonDown("Left") && outVelocity.x < 0)
+		}else if(Input.GetButton("Left") && outVelocity.x < 0)
 		{
 			jumpBoosted = true;
-		}else if(Input.GetButtonDown("Right") && outVelocity.x > 0)
+		}else if(Input.GetButton("Right") && outVelocity.x > 0)
 		{
 			jumpBoosted = true;
 		}
-
 		return jumpBoosted;
 	}
 
@@ -165,26 +153,26 @@ public class PlayerBallControl : MonoBehaviour {
 
 		if(dState == DeformationState.Normal)
 		{
-			if(h * this.rigidbody2D.velocity.x < maxPlayerGeneratedSpeed)
+			if(h != 0 && Mathf.Abs(this.rigidbody2D.velocity.x) < maxPlayerGeneratedSpeed)
 			{
-				this.rigidbody2D.AddForce(Vector2.right * h * moveForce);
-
 				//Allow faster stopping
 				if(Mathf.Sign(h) != Mathf.Sign (this.rigidbody2D.velocity.x))
 				{
-					this.rigidbody2D.AddForce(Vector2.right * h * Mathf.Abs(this.rigidbody2D.velocity.x)*stoppingForceMultiplier);
+					this.rigidbody2D.AddForce(Vector2.right * h * moveForce * stoppingForceMultiplier);
 				}
-
+				else
+					this.rigidbody2D.AddForce(Vector2.right * h * moveForce);
+				
 				//Add torque based on direction
-				if(Mathf.Abs (this.rigidbody2D.angularVelocity) < maxTorque)
+				if(Mathf.Abs (this.rigidbody2D.angularVelocity) < maxAngularVelocity)
 				{
-					this.rigidbody2D.AddTorque(-h * moveForce);
+					this.rigidbody2D.AddTorque(-h * moveTorque);
 				}
 
 			}
 		
-			if(Mathf.Abs(this.rigidbody2D.velocity.x) > maxSpeed)
-				this.rigidbody2D.velocity = new Vector2(Mathf.Sign(this.rigidbody2D.velocity.x) * maxSpeed, this.rigidbody2D.velocity.y);
+			//if(Mathf.Abs(this.rigidbody2D.velocity.x) > maxSpeed)
+			//	this.rigidbody2D.velocity = new Vector2(Mathf.Sign(this.rigidbody2D.velocity.x) * maxSpeed, this.rigidbody2D.velocity.y);
 
 			/*if (v > 0 && grounded) {
 				this.rigidbody2D.AddForce (Vector2.up * jumpForce);
@@ -192,27 +180,29 @@ public class PlayerBallControl : MonoBehaviour {
 
 		}else if(dState == DeformationState.Deforming)
 		{// Scale ball down along z axis of scale object at deformSpeed until it's scale has changed more than the intended change
-			checkJumpBoosted();
+			bool jumpBoosted = checkJumpBoosted();
 
-			if(scaleChanged < deformScaleChange)
+			if(deformTimer < deformTime)
 			{
-				scaleObject.transform.localScale = new Vector3(scaleObject.transform.localScale.x,scaleObject.transform.localScale.y,scaleObject.transform.localScale.z-deformSpeed);
-				scaleChanged += deformSpeed;
+				deformTimer += Time.deltaTime;
+				float compressScale = deformScaleChange * Mathf.Clamp (deformTimer / deformTime, 0.0f, 1.0f);
+				scaleObject.transform.localScale = new Vector3(scaleObject.transform.localScale.x,scaleObject.transform.localScale.y,1.0f - compressScale);
 			}else{
 				dState = DeformationState.Reforming;
-				scaleChanged = 0;
+				deformTimer = 0.0f;
+				baseScale = scaleObject.transform.localScale.z;
 			}
 
 
 		}else if(dState == DeformationState.Reforming)
 		{//Scale ball up along z axis of scale object at deformSpeed until it's scale has changed more than the intended change
-			checkJumpBoosted();
+			bool jumpBoosted = checkJumpBoosted();
 
-			if(scaleChanged < deformScaleChange)
+			if(deformTimer < deformTime)
 			{
-				scaleObject.transform.localScale = new Vector3(scaleObject.transform.localScale.x,scaleObject.transform.localScale.y,scaleObject.transform.localScale.z+deformSpeed);
-				scaleChanged += deformSpeed;
-
+				deformTimer += Time.deltaTime;
+				float compressScale = deformScaleChange * Mathf.Clamp (deformTimer / deformTime, 0.0f, 1.0f);
+				scaleObject.transform.localScale = new Vector3(scaleObject.transform.localScale.x,scaleObject.transform.localScale.y,baseScale + compressScale);
 			}else{
 				//Unparent from scaleObject and destroy scaleObject
 				this.transform.parent.parent = null;
@@ -222,12 +212,13 @@ public class PlayerBallControl : MonoBehaviour {
 				if(jumpBoosted)
 				{
 					outVelocity = outVelocity+outVelocity*bounciness;
-
+					/*
 					if(outVelocity.magnitude < (jumpForce*2.5f/this.rigidbody2D.mass)*Time.fixedDeltaTime)
 					{
 						outVelocity.Normalize();
 						outVelocity*=(jumpForce*2.5f/this.rigidbody2D.mass)*Time.fixedDeltaTime;
 					}
+					*/
 				}
 
 				this.rigidbody2D.angularVelocity = outAngularVelocity;
@@ -241,26 +232,8 @@ public class PlayerBallControl : MonoBehaviour {
 
 
 		grounded = false;
+		jumpTimer += Time.deltaTime;
 		prevVelocity = this.rigidbody2D.velocity;
 		prevAngularVelocity = this.rigidbody2D.angularVelocity;
-	
-		//float v = Input.GetAxis ("Vertical");
-
-		/*
-		this.collider2D.sharedMaterial.bounciness += v * bounceForce;
-		if (this.collider2D.sharedMaterial.bounciness > maxBounce)
-			this.collider2D.sharedMaterial.bounciness = maxBounce;
-		if (this.collider2D.sharedMaterial.bounciness < minBounce)
-			this.collider2D.sharedMaterial.bounciness = minBounce;
-		this.collider2D.enabled = false;
-		this.collider2D.enabled = true;
-		//print(this.collider2D.sharedMaterial.bounciness);
-		*/
-		/*
-		if (v * this.rigidbody2D.velocity.y < maxSpeed)
-			this.rigidbody2D.AddForce(Vector2.up * v * moveForce);
-		if(Mathf.Abs(this.rigidbody2D.velocity.y) > maxSpeed)
-			this.rigidbody2D.velocity = new Vector2(this.rigidbody2D.velocity.x, Mathf.Sign(this.rigidbody2D.velocity.y) * maxSpeed);
-		*/
 	}
 }
