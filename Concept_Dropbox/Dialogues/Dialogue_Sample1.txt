@@ -1,0 +1,32 @@
+Example One: Dialogue for a Quest
+===
+In this example, the player steps through the right interactions to accept a quest. After accepting, the NPC will repeat the bottom line until "HasMed" is set (which would occur when the player gets the right item). After the quest, the NPC will keep repeating the "if DeliveredMed" line.
+
+
+NPCName.txt
+---
+
+[Oh, I don't feel well.{}] [What's wrong?{Line 2}] [You're clearly sick, stay away!{Line 3}]
+
+[My stomach is upset. Could you get me some medicine?{}] [Sure{Line 4}] [Nope{Line 5}]
+
+[OK, I'll keep my distance...{End}]
+
+[Thank you! I'll be waiting!{End, Set GettingMed}]
+
+[Um... OK, then{End}]
+
+if DeliveredMed
+
+[I'm feeling much better now. Yayyy!{End}]
+
+if HasMed
+
+[Thanks, you're a lifesaver!{End, Set DeliveredMed}]
+
+if GettingMed
+
+[Have you gotten the medicine yet? Please hurry!{End}]
+
+---
+end of file
