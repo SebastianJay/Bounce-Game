@@ -60,7 +60,7 @@ public class PlayerBallControl : MonoBehaviour {
 		foreach (ContactPoint2D contact in collision.contacts)
 		{
 
-			if (Vector2.Angle(Vector2.up, contact.normal) < thresholdAngle)
+			if (Mathf.Abs(Vector2.Angle(Vector2.up, contact.normal)) < groundedThresholdAngle)
 				grounded = true;
 
 			float velocityToCheck = thresholdVelocity;
@@ -111,7 +111,7 @@ public class PlayerBallControl : MonoBehaviour {
 			Debug.DrawRay (contact.point, contact.normal, Color.yellow);
 		foreach (ContactPoint2D contact in collision.contacts)
 		{
-			if (Vector2.Angle(Vector2.up, contact.normal) < thresholdAngle)
+			if (Mathf.Abs(Vector2.Angle(Vector2.up, contact.normal)) < groundedThresholdAngle)
 				grounded = true;
 		}
 		ListenForJump (collision);
