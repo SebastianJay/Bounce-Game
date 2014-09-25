@@ -55,6 +55,11 @@ public class PlayerBallControl : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D collision) {
+		//check to see if collision is with a teleporter
+		if (collision.gameObject.name == "teleporter") 
+		{
+			Application.LoadLevel ("testScene");
+		}
 		foreach (ContactPoint2D contact in collision.contacts)
 			Debug.DrawRay (contact.point, contact.normal, Color.white);
 		foreach (ContactPoint2D contact in collision.contacts)
