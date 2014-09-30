@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<PlayerData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" lastCheckpoint="0" lastLevel="0">
+  <previousCheckpoints>
+    <List_x003C_Entry_x003E_>
+      <key>0</key>
+      <value>
+        <int>0</int>
+      </value>
+    </List_x003C_Entry_x003E_>
+  </previousCheckpoints>
+  <Inventory />
+</PlayerData>

@@ -9,7 +9,6 @@ using System.Collections;
 // @NOTE Vertical only, you can easily expand this to horizontal with a little tweaking
 public class RepeatSpriteBoundary : MonoBehaviour {
 	SpriteRenderer sprite;
-	
 	void Awake () {
 		// Get the current sprite with an unscaled size
 		sprite = GetComponent<SpriteRenderer>();
@@ -22,12 +21,14 @@ public class RepeatSpriteBoundary : MonoBehaviour {
 		childPrefab.transform.position = new Vector3(startX, transform.position.y, transform.position.z);
 		childPrefab.transform.localScale = new Vector3(1, transform.localScale.y, 1);
 		childSprite.sprite = sprite.sprite;
+		childSprite.sortingLayerName = sprite.sortingLayerName;
 		
 		// Loop through and spit out repeated tiles
 		GameObject child;
 		//print (sprite.bounds.size.x);
 		//print (spriteSize.x + " " + spriteSize.y);
-		for (int i = 1, l = (int)Mathf.Round(transform.localScale.x); i < l; i++) {
+		for (int i = 1, l = (int)Mathf.Round(transform.localScale.x); i < l; i++) 
+		{
 			child = Instantiate(childPrefab) as GameObject;
 			child.transform.position = new Vector3(startX +  spriteSize.x * i, transform.position.y, transform.position.z);
 			child.transform.parent = transform;
