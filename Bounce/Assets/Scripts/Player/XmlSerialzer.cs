@@ -44,7 +44,7 @@ public class playerData
 	public int lastLevel;
 
 	[XmlArray("previousCheckpoints")]
-	[XmlArrayItem("List<Entry>")]
+	[XmlArrayItem("Entry")]
 	public List<Entry> previousCheckpoints = new List<Entry>();
 	//Each element of the list corresponds to a level which has a list of checkpoints visited
 
@@ -52,10 +52,14 @@ public class playerData
 	[XmlArrayItem("int")]
 	public List<int> Inventory = new List<int>();
 }
-
+[XmlRoot("Entry")]
 public class Entry
 {
+	[XmlAttribute("key")]
 	public int key;
+
+	[XmlArray("value")]
+	[XmlArrayItem("int")]
 	public List<int> value;
 
 	public Entry(int k, List<int> v)

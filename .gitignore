@@ -58,3 +58,4 @@ monodroid*.msi
 
 #Unix temporary files
 *~
+Bounce/BounceSaveData0
