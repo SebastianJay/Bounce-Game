@@ -1,0 +1,28 @@
+Example One: Fancier Options
+===
+This example just demonstrates some of the features I didn't show off in the 
+other files. First, you can combine values in an if-statement in Python-esque
+fashion (i.e. using "and", "or", "not" and parentheses). Second, the "Event"
+indicator next to a line shows that something in the game environment can be
+triggered (in this case, opening a gate).
+
+
+Gate Guard.txt
+---
+
+[Halt! Who goes there?{}] [A friend{Line 2}] [An enemy{Line 3}]
+[Good to know! However...{Line 4}]
+[Wise guy, huh? Unfortunately...{Line 4}]
+[You need the boss's permission to get through. Sorry.{End, Set TalkedToGuard}]
+
+if GateIsOpen
+[What's up, dude?{End}]
+
+if (TalkedToGuard and HasGatePermission) and not GateIsOpen
+[You may pass through! Have a nice day!{End, Event OpenGate}]
+
+if TalkedToGuard and not HasGatePermission
+[Sorry, but you need permission to pass.{End}]
+
+---
+end of file

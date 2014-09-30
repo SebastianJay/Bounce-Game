@@ -32,6 +32,8 @@ obj/
 [Dd]ebug*/
 [Rr]elease*/
 Ankh.NoLoad
+*.sln
+*.csproj
 
 #Unity temp/local files
 Temp/
