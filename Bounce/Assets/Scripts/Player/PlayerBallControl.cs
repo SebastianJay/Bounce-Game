@@ -6,7 +6,8 @@ public class PlayerBallControl : MonoBehaviour {
 	// Physics for lateral movement
 	public float moveForce = 75f;			// Amount of force for translational movement
 	public float moveTorque = 100f; 		// Amount of force for rotation
-	public float stoppingForceMultiplier = 4f;	// Multiplier for translational movement opposite velocity
+	public float translationStoppingMultiplier = 4f;	// Multiplier for translational movement opposite velocity
+	public float rotationStoppingMultiplier = 3f;
 	//public float maxSpeed = 10f;			
 	public float maxPlayerGeneratedSpeed = 10f;
 	public float maxAngularVelocity = 100.0f;
@@ -20,9 +21,9 @@ public class PlayerBallControl : MonoBehaviour {
 	// bouncy vars
 	public float bounciness = 0.225f;
 	public float boostedBounciness = 0.9f;
-	public float thresholdAngle = 360f;
+	public float boostThresholdVelocity = 6f;
+	public float boostThresholdAngle = 360f;
 	public float groundedThresholdAngle = 45f;
-	public float thresholdVelocity = 6f;
 	public float groundedThresholdBonus = 4f;
 
 	//Deformation variables
@@ -65,12 +66,12 @@ public class PlayerBallControl : MonoBehaviour {
 			if (Mathf.Abs(Vector2.Angle(Vector2.up, contact.normal)) < groundedThresholdAngle)
 				grounded = true;
 
-			float velocityToCheck = thresholdVelocity;
+			float velocityToCheck = boostThresholdVelocity;
 			//Determine if ball should deform
 			if(wasGrounded)
 				velocityToCheck += groundedThresholdBonus;
 
-			if(Mathf.Abs(Vector2.Angle(contact.normal,Vector2.up)) <= thresholdAngle
+			if(Mathf.Abs(Vector2.Angle(contact.normal,Vector2.up)) <= boostThresholdAngle
 			   && Mathf.Abs (Vector2.Dot (collision.relativeVelocity,contact.normal)) > velocityToCheck
 			   && dState == DeformationState.Normal)
 			{
@@ -116,22 +117,18 @@ public class PlayerBallControl : MonoBehaviour {
 			if (Mathf.Abs(Vector2.Angle(Vector2.up, contact.normal)) < groundedThresholdAngle)
 				grounded = true;
 		}
-		ListenForJump (collision);
+		ListenForJump ();
 	}
 
 	void OnCollisionExit2D(Collision2D collision) {
 	}
 
-	private void ListenForJump(Collision2D collision) {
+	private void ListenForJump() {
 		float v = Input.GetAxis ("Vertical");
-		foreach (ContactPoint2D contact in collision.contacts)
+		if (v > 0 && grounded && jumpTimer >= jumpDelay)
 		{
-			if (v > 0 && grounded && jumpTimer >= jumpDelay)
-			{
-				this.rigidbody2D.AddForce(Vector2.up * jumpForce);
-				jumpTimer = 0.0f;
-				break;
-			}
+			this.rigidbody2D.AddForce(Vector2.up * jumpForce);
+			jumpTimer = 0.0f;
 		}
 	}
 
@@ -175,31 +172,29 @@ public class PlayerBallControl : MonoBehaviour {
 
 		if(dState == DeformationState.Normal)
 		{
-			if(h != 0 && Mathf.Abs(this.rigidbody2D.velocity.x) < maxPlayerGeneratedSpeed)
+			if(h != 0)
 			{
-				//Allow faster stopping
+				recordButtonDelay();
+				//translational movement
 				if(Mathf.Sign(h) != Mathf.Sign (this.rigidbody2D.velocity.x))
 				{
-					this.rigidbody2D.AddForce(Vector2.right * h * moveForce * stoppingForceMultiplier);
+					this.rigidbody2D.AddForce(Vector2.right * h * moveForce * translationStoppingMultiplier);
 				}
-				else
+				else if (Mathf.Abs(this.rigidbody2D.velocity.x) < maxPlayerGeneratedSpeed)
+				{
 					this.rigidbody2D.AddForce(Vector2.right * h * moveForce);
-				
-				//Add torque based on direction
-				if(Mathf.Abs (this.rigidbody2D.angularVelocity) < maxAngularVelocity)
+				}
+
+				//rotational movement
+				if (Mathf.Sign (h) == Mathf.Sign (rigidbody2D.angularVelocity))
+				{
+					this.rigidbody2D.AddTorque(-h * moveTorque * rotationStoppingMultiplier);
+				}
+				else if(Mathf.Abs (this.rigidbody2D.angularVelocity) < maxAngularVelocity)
 				{
 					this.rigidbody2D.AddTorque(-h * moveTorque);
 				}
-
-			}
-		
-			//if(Mathf.Abs(this.rigidbody2D.velocity.x) > maxSpeed)
-			//	this.rigidbody2D.velocity = new Vector2(Mathf.Sign(this.rigidbody2D.velocity.x) * maxSpeed, this.rigidbody2D.velocity.y);
-
-			/*if (v > 0 && grounded) {
-				this.rigidbody2D.AddForce (Vector2.up * jumpForce);
-			}*/
-			recordButtonDelay();
+			}		
 		}else if(dState == DeformationState.Deforming)
 		{// Scale ball down along z axis of scale object at deformSpeed until it's scale has changed more than the intended change
 			recordButtonDelay();
