@@ -751,7 +751,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveForce: 75
   moveTorque: 100
-  stoppingForceMultiplier: 4
+  translationStoppingMultiplier: 4
+  rotationStoppingMultiplier: 2
   maxPlayerGeneratedSpeed: 10
   maxAngularVelocity: 100
   jumpForce: 2800
@@ -759,13 +760,15 @@ MonoBehaviour:
   boostForgiveness: .5
   bounciness: .224999994
   boostedBounciness: .899999976
-  thresholdAngle: 360
-  groundedThresholdAngle: 45
-  thresholdVelocity: 6
+  boostThresholdVelocity: 6
+  boostThresholdAngle: 360
+  groundedThresholdAngle: 60
   groundedThresholdBonus: 4
   deformScaleFactor: .0149999997
   deformTimeFactor: .00100000005
   deformTime: .150000006
+  isTalking: 0
+  npcTalker: {fileID: 0}
 --- !u!58 &566544024
 CircleCollider2D:
   m_ObjectHideFlags: 0

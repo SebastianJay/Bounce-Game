@@ -8,6 +8,7 @@ public class PlayerDataManager : MonoBehaviour {
 	public int lastLevel = 0;
 	public Dictionary<int,List<int>> previousCheckpoints = new Dictionary<int,List<int>>();
 	public List<int> Inventory = new List<int> ();
+	public HashSet<string> gameConstants = new HashSet<string>();
 
 	public static bool loadedLevel = false;
 	public static int initialLevel = 0;
