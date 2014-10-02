@@ -51,6 +51,10 @@ public class PlayerBallControl : MonoBehaviour {
 	private bool wasGrounded;
 	private float originalMagnitude;
 
+	public int infoOne = 3;
+	public int infoTwo = 4;
+	public char infoThree = 'b';
+
 	// Use this for initialization
 	void Awake () {
 	}
