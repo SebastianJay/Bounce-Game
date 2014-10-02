@@ -1,9 +1,9 @@
-Example Two: The one-liner NPC
-===
-In this example, the NPC gives you random banter, some of which you can respond to.
+#Example Two: The one-liner NPC
+#===
+#In this example, the NPC gives you random banter, some (OK, one line) of which you can respond to.
 
-Average Guy.txt
----
+#Average Guy.txt
+#---
 
 choose 1,5
 [What's up?{End}]
@@ -16,5 +16,5 @@ choose 1,5
 [I'm having a bad day too.{Line 8}]
 [Actually, I lied; I'm feeling great!{End}]
 
----
-end of file
+#---
+#end of file

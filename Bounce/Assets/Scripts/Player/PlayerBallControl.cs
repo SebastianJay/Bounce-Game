@@ -8,9 +8,9 @@ public class PlayerBallControl : MonoBehaviour {
 	public float moveTorque = 100f; 		// Amount of force for rotation
 	public float translationStoppingMultiplier = 4f;	// Multiplier for translational movement opposite velocity
 	public float rotationStoppingMultiplier = 3f;
-	//public float maxSpeed = 10f;			
 	public float maxPlayerGeneratedSpeed = 10f;
 	public float maxAngularVelocity = 100.0f;
+	// Jumping, Boosting
 	public float jumpForce = 2800f;
 	public float jumpDelay = 0.4f;	//time (in s) delay between jumps
 	private float jumpTimer = 0.4f;
@@ -23,9 +23,10 @@ public class PlayerBallControl : MonoBehaviour {
 	public float boostedBounciness = 0.9f;
 	public float boostThresholdVelocity = 6f;
 	public float boostThresholdAngle = 360f;
+	// Grounded vars
+	private bool grounded = false;			// Whether or not the player is grounded.
 	public float groundedThresholdAngle = 45f;
 	public float groundedThresholdBonus = 4f;
-
 	//Deformation variables
 	private float deformScaleChange = 0.4f;
 	public float deformScaleFactor = 0.015f;	//multiplier that determines how deformed ball will get
@@ -34,11 +35,14 @@ public class PlayerBallControl : MonoBehaviour {
 	public float deformTime = 0.15f;
 	private float deformTimer = 0.0f;
 	private float baseScale = 0.0f;	//temp
-	private bool grounded = false;			// Whether or not the player is grounded.
-
 	private enum DeformationState{Deforming, Reforming,Reformed, Normal};
 	private DeformationState dState = DeformationState.Normal;
-	
+	//Talking, speech vars
+	[HideInInspector]
+	public bool isTalking = false;
+	[HideInInspector]
+	public Interactable npcTalker;
+	// Temp Storage Vars
 	private Vector2 prevVelocity;
 	private float prevAngularVelocity;
 	private Vector2 outVelocity;
@@ -46,6 +50,7 @@ public class PlayerBallControl : MonoBehaviour {
 	private GameObject scaleObject;
 	private bool wasGrounded;
 	private float originalMagnitude;
+
 	// Use this for initialization
 	void Awake () {
 	}

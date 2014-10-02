@@ -32,6 +32,10 @@ NPC Name
 ---
 The name of the text file (before the first period (.)) will specify the name of the NPC. Don't use any fancy names with symbols.
 
+Commenting
+---
+If you want to document something about the dialogue in-file, then you may make comments (which will be ignored when the file is read by the game) by starting a line with the pound sign (#). You may *not* begin a comment mid-line. Blank lines for formatting purposes are acceptable.
+
 Samples
 ---
 Refer to separate .txt files in the same directory.

@@ -1,15 +1,15 @@
-Example One: Dialogue for a Quest
-===
-In this example, the player steps through the right interactions to accept a quest. 
-After accepting, the NPC will repeat the bottom line until "HasMed" is set (which 
-would occur when the player gets the right item). After the quest, the NPC will 
-keep repeating the "if DeliveredMed" line. Note that the if-statements will be 
-evaluated first to determine the starting line; if none are true, then the dialogue
-opens with the first line in the file.
+#Example One: Dialogue for a Quest
+#===
+#In this example, the player steps through the right interactions to accept a quest. 
+#After accepting, the NPC will repeat the bottom line until "HasMed" is set (which 
+#would occur when the player gets the right item). After the quest, the NPC will 
+#keep repeating the "if DeliveredMed" line. Note that the if-statements will be 
+#evaluated first to determine the starting line; if none are true, then the dialogue
+#opens with the first line in the file.
 
 
-Sick Man.txt
----
+#Sick Man.txt
+#---
 
 [Oh, I don't feel well.{}] [What's wrong?{Line 2}] [Stay away!{Line 3}]
 [My stomach is upset. Could you get me some medicine?{}] [Sure{Line 4}] [Nope{Line 5}]
@@ -26,5 +26,5 @@ if HasMed
 if GettingMed
 [Have you gotten the medicine yet? Please hurry!{End}]
 
----
-end of file
+#---
+#end of file

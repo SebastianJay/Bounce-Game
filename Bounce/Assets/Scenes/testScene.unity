@@ -725,6 +725,8 @@ MonoBehaviour:
   deformScaleFactor: .0149999997
   deformTimeFactor: .00100000005
   deformTime: .150000006
+  isTalking: 0
+  npcTalker: {fileID: 0}
 --- !u!58 &1242754059
 CircleCollider2D:
   m_ObjectHideFlags: 0
