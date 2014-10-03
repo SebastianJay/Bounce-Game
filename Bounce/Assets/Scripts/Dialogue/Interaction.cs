@@ -125,7 +125,7 @@ public class Interaction
 				{
 					while(true)
 					{
-						if (lineIndex > line.Length || line.IndexOf('[', lineIndex+1) == -1)
+						if (lineIndex >= line.Length || line.IndexOf('[', lineIndex+1) == -1)
 							break;
 						InteractionTreeNode node = new InteractionTreeNode();
 						ParseDialogueLine(line, ref node, ref lineIndex);
@@ -160,8 +160,9 @@ public class Interaction
 	/// response, if applicable. If the list is empty dialogue has ended.
 	/// </summary>
 	/// <param name="responseIndex">Index (starting from 0) of the player-
-	/// selected response, if applicable. If not, any number. </param>
-	public List<string> Step(int responseIndex)
+	/// selected response, if applicable. If there are no responses no
+	/// parameter is needed. </param>
+	public List<string> Step(int responseIndex = 0)
 	{
 		List<string> lines = new List<string>();
 		if (!steppingThrough)	//if we haven't started yet
@@ -181,9 +182,9 @@ public class Interaction
 				respEv = dialogueList[currentLine].responses[responseIndex].eventType;
 
 			if ((npcEv & InteractionEvents.NextLine) > 0)
-				nextLine = dialogueList[currentLine].nextLine;
+				nextLine = dialogueList[currentLine].nextLine - 1;
 			if ((respEv & InteractionEvents.NextLine) > 0)
-				nextLine = dialogueList[currentLine].responses[responseIndex].nextLine;
+				nextLine = dialogueList[currentLine].responses[responseIndex].nextLine - 1;
 
 			if ((npcEv & InteractionEvents.End) > 0)
 				willEnd = true;
@@ -218,7 +219,7 @@ public class Interaction
 	{
 		if (chooseStatement != null)
 		{
-			return rand.Next(chooseStatement.randomStart, chooseStatement.randomEnd + 1);
+			return rand.Next(chooseStatement.randomStart, chooseStatement.randomEnd + 1) - 1;
 		}
 	    foreach (InteractionControlPath cond in this.controlList)
 	    {
@@ -237,13 +238,12 @@ public class Interaction
 			node = null;
 			return;
 		}
-
-		string lineText = fullLine.Substring(lineStartInd+1, (lineEndInd-lineStartInd)-1);
-		node.line = lineText;
-
+		
 		int eventStartInd = fullLine.IndexOf('{', lineStartInd+1);
 		if (!(eventStartInd == -1 || eventStartInd > lineEndInd)) 
 		{
+			node.line = fullLine.Substring(lineStartInd+1, (eventStartInd-lineStartInd)-1);
+
 			int eventEndInd = fullLine.IndexOf ('}', eventStartInd+1);
 			string eventText = fullLine.Substring(eventStartInd+1, (eventEndInd-eventStartInd)-1);
 			string[] eventParams = eventText.Split(new char[]{','}, StringSplitOptions.RemoveEmptyEntries);
@@ -270,7 +270,9 @@ public class Interaction
 				}
 			}
 		}
-
+		else
+			node.line = fullLine.Substring(lineStartInd+1, (lineEndInd-lineStartInd)-1);
+		
 		index = lineEndInd + 1;
 	}
 }

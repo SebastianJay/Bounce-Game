@@ -280,7 +280,7 @@ InputManager:
     m_Name: Action
     descriptiveName: Talk/Action/Confirm
     descriptiveNegativeName: 
-    negativeButton: 
+    negativeButton: z
     positiveButton: z
     altNegativeButton: 
     altPositiveButton: 

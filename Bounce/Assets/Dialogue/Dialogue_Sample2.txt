@@ -1,0 +1,20 @@
+#Example Two: The one-liner NPC
+#===
+#In this example, the NPC gives you random banter, some (OK, one line) of which you can respond to.
+
+#Average Guy.txt
+#---
+
+choose 1,5
+[What's up?{End}]
+[Nice weather today.{End}]
+[I'm feeling sleepy.{End}]
+[Hmm.. what's for dinner today?{End}]
+[How's it going?{}] [Good{Line 6}] [Terrible{Line 7}]
+
+[I'm doing pretty swell myself.{End}]
+[I'm having a bad day too.{Line 8}]
+[Actually, I lied; I'm feeling great!{End}]
+
+#---
+#end of file

@@ -37,6 +37,6 @@ public static class DialogueConstantParser
 
 	public static void SetConstant(string constant)
 	{
-		constantSet.Add (constant);
+		constantSet.Add(constant);
 	}
 }

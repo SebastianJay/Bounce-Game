@@ -26,7 +26,7 @@ public static class ConditionalParser
 				return false;
 			}
 			string substate = statement.Substring(parenStart + 1, (parenEnd-parenStart)-1);
-			statement = statement.Replace(substate, Convert.ToString(EvaluateStatement(substate)));
+			statement = statement.Replace("("+substate+")", Convert.ToString(EvaluateStatement(substate)));
 		}
 
 		string[] args = statement.Split(new char[]{' '}, StringSplitOptions.RemoveEmptyEntries);
