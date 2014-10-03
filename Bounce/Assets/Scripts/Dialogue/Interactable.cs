@@ -34,22 +34,6 @@ public class Interactable : MonoBehaviour {
 			//animation appears to show you can talk
 
 			inTrigger = true;
-			/*
-			PlayerBallControl pbc = other.GetComponent<PlayerBallControl>();
-			if (Input.GetButtonDown("Action"))
-			{
-				//do we handle input key here or in PlayerBallControl?
-				pbc.isTalking = true;
-				pbc.npcTalker = this;
-				List<string> lines = dialogue.Step();
-				if(lines.Count > 0)
-				{
-					gText.text = lines[0];
-				}
-				else
-					gText.text = "";
-			}
-			*/
 		}
 	}
 	

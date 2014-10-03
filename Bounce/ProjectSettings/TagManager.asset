@@ -18,7 +18,7 @@ TagManager:
   Builtin Layer 2: Ignore Raycast
   Builtin Layer 3: 
   Builtin Layer 4: Water
-  Builtin Layer 5: 
+  Builtin Layer 5: UI
   Builtin Layer 6: 
   Builtin Layer 7: 
   User Layer 8: Bombs
@@ -57,6 +57,10 @@ TagManager:
   - name: Background
     userID: 2
     uniqueID: 1535931219
+    locked: 0
+  - name: NPC
+    userID: 6
+    uniqueID: 1167940005
     locked: 0
   - name: Character
     userID: 4
