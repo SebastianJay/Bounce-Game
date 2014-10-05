@@ -58,4 +58,6 @@ monodroid*.msi
 
 #Unix temporary files
 *~
-Bounce/BounceSaveData0
+
+#Game Files
+Bounce/BounceSaveData*
