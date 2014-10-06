@@ -50,7 +50,7 @@ public class playerData
 
 	[XmlArray("Inventory")]
 	[XmlArrayItem("int")]
-	public List<int> Inventory = new List<int>();
+	public List<int> inventory = new List<int>();
 }
 [XmlRoot("Entry")]
 public class Entry

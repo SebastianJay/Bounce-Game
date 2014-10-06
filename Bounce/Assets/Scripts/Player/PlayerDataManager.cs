@@ -7,7 +7,7 @@ public class PlayerDataManager : MonoBehaviour {
 	public int lastCheckpoint = 0;
 	public int lastLevel = 0;
 	public Dictionary<int,List<int>> previousCheckpoints = new Dictionary<int,List<int>>();
-	public List<int> Inventory = new List<int> ();
+	public Inventory inventory = new Inventory();
 	public HashSet<string> gameConstants = new HashSet<string>();
 
 	public static bool loadedLevel = false;
@@ -49,16 +49,14 @@ public class PlayerDataManager : MonoBehaviour {
 				previousCheckpoints[e.key] = e.value;
 			}
 			
-			Inventory = myData.Inventory;
+			inventory.Load(myData.inventory);
 		}
 
 
 		if (LevelTeleporter.teleported) {
 			LevelTeleporter.teleported = false;
 			transform.position = LevelTeleporter.teleporterTargetTable[LevelTeleporter.teleportTarget];
-				}
+		}
 	}
-
-
 
 }
