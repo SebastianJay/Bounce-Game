@@ -9,10 +9,9 @@ public class Checkpoint : MonoBehaviour {
 	
 
 	void Awake (){
-
 		if (!checkpointTable.ContainsKey (checkPointID)) {
-						checkpointTable.Add (checkPointID, transform.position);
-				}
+			checkpointTable.Add (checkPointID, transform.position);
+		}
 	}
 	
 	void OnTriggerEnter2D(Collider2D other) {
@@ -36,7 +35,7 @@ public class Checkpoint : MonoBehaviour {
 				entries.Add (new Entry(key,m.previousCheckpoints[key]));
 			}
 			dataToSave.previousCheckpoints = entries;
-			dataToSave.Inventory = m.Inventory;
+			dataToSave.inventory = m.inventory.ToList();
 			dataToSave.lastCheckpoint = m.lastCheckpoint;
 			dataToSave.lastLevel = m.lastLevel;
 

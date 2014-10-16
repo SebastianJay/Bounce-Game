@@ -42,6 +42,10 @@ public class PlayerBallControl : MonoBehaviour {
 	public bool isTalking = false;
 	[HideInInspector]
 	public Interactable npcTalker;
+	//Powerups!
+	public PowerupType powerupState = PowerupType.Normal;
+	public float powerupTime = 1.0f;
+	private float powerupTimer = 0.0f;
 	// Temp Storage Vars
 	private Vector2 prevVelocity;
 	private float prevAngularVelocity;
@@ -50,10 +54,6 @@ public class PlayerBallControl : MonoBehaviour {
 	private GameObject scaleObject;
 	private bool wasGrounded;
 	private float originalMagnitude;
-
-	public int infoOne = 3;
-	public int infoTwo = 4;
-	public char infoThree = 'b';
 
 	// Use this for initialization
 	void Awake () {
