@@ -7,6 +7,7 @@ public class followScript : MonoBehaviour {
 	public float minRange;
 	public float maxRange;
 	public GameObject player;
+	public float maxSpeed;
 
 
 
@@ -16,12 +17,16 @@ public class followScript : MonoBehaviour {
 		target = player.transform;
 		minRange = 3;
 		maxRange = 15;
-		speed = 3;
+		speed = 1.0f;
+		maxSpeed = 5.0f;
 	}
 	
 	void FixedUpdate() {
 		Debug.DrawLine (target.position, transform.position, Color.yellow);
 		if (Mathf.Abs (transform.position.x - player.transform.position.x) < maxRange && Mathf.Abs (transform.position.x - player.transform.position.x) > minRange) {
+						if (speed < maxSpeed) {
+				speed += 0.1f;
+						}		
 						if (player.transform.position.x < transform.position.x) {
 								transform.position -= transform.right * speed * Time.deltaTime;
 						}
