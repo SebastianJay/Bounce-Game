@@ -1,0 +1,10 @@
+#Picnic Kid
+#---
+#For use in the river hub of the city world
+
+choose 1, 5
+[Whee! {End}]
+[What a fun picnic! {End}]
+[My mom says I have to be home by dinner. {End}]
+[That lady looks worried. I wonder what's wrong? {End}]
+[Hey, do you wanna play kickball? You could be the ball! {End}]

@@ -1,0 +1,12 @@
+#Bookcase Guy
+#---
+#For use in the first frame of the city world
+
+[Where did you come from? {}] [The chimney {Line 2}] [None of your business! {Line 3}]
+[Oh, okay then. {Line 4}]
+[How rude! {Line 4}]
+[Well, you can't get out this way. It's blocked.{Line 5}]
+[You could check upstairs? {End, set TalkedToGuy}]
+
+if TalkedToGuy
+[What? I told you to go upstairs. {End}]

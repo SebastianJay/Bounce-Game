@@ -1,0 +1,21 @@
+#River Guard
+#---
+#For use in the river hub of the city world
+
+[Hey, just where do you think you're going? {Line 2}]
+[The city is off limits right now. {Line 3}]
+[There's a big construction project, and we don't want people getting hurt. {Line 4}]
+[Come back in 25 years or so. {End, set TalkedToGuard}]
+
+if TalkedToGuard and not MotherIsFollowing
+[What did I tell you before??? {Line 2}]
+[Geez, for a head, you don't have many brains. {End}]
+
+if MotherIsFollowing
+[Sorry, bub, you really can't go through. {}][We have to. {Line 2}][But her kid is missing! {Line 3}]
+[Hm. Well, that's just vague enough to comvince me. {Line 4}]
+[A missing child??? How terrible! {Line 4}]
+[Go on through! Try not to get crushed and stuff.{End, Event RemoveObstacle}]
+
+if not Obstacle
+[Go through before I change my mind! {End}]

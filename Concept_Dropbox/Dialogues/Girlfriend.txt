@@ -1,0 +1,9 @@
+#Girlfriend
+#---
+#For use in the river hub of the city world
+
+[What is it? {End}]
+
+if TalkedToBoyfriend
+[Was Robbie rude to you? Ugh. {Line 2}]
+[I almost wish that Rob guy would get him. {End}]

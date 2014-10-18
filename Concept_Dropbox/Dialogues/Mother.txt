@@ -1,0 +1,17 @@
+#Mother.txt
+#---
+#For use in the river hub of the city world. The player cannot progress without talking to her.
+
+[Oh no, what am I going to do?{}] [What's wrong?{Line 2}] [I dunno, lady.{Line 3}]
+[My darling little Bobby ran off to the city all by himself!{}] [I could help.{Line 4}] [That's rough, buddy.{Line 5}]
+[Oh! I know! Maybe you could help me. I have to find my little Bobby!{}] [Sure, why not.{Line 4}] [Not a chance!{Line 5}]
+[Oh, thank you, thank you so much!{Line 6}]
+[How rude!{line 7}]
+[I'll just follow along. Lead the way! {End, Event MotherFollows}]
+[I'm going to come with you anyway. {End, Event MotherFollows}]
+
+if MotherIsFollowing
+choose 1, 3
+[Oh my, would you look at that!{End}]
+[Hmm... I wonder how we'll get through here?{End}]
+[I hope little Bobby is alright...{End}]

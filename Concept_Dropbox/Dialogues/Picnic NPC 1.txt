@@ -1,0 +1,12 @@
+#Picnic NPC 1
+#---
+#For use in the river hub of the city world
+
+choose 1, 5
+[Ahh, what a beautiful day! {End}]
+[I'm glad I came to this picnic. {End}]
+[I wonder what I should eat first. {End}]
+[That's a cute couple over there. {End}]
+[Do you want something to eat? {}] [Yes {Line 6}] [No {Line 7}]
+[Oh, my bad. I wasn't actually asking you. {End}]
+[That's good, because I don't have any extra anyway. {End}]

@@ -1,0 +1,22 @@
+#Lemonade Kid
+#---
+#For use in frame 3 of the city world
+
+[Hey, mister head! Try my lemonade! {Line 2}]
+[It's so sour, it'll make your head spin! {Line 3}]
+[Well, you're JUST a head, so maybe you won't spin. {Line 4}]
+[You'll probably just bounce more or something. {End}]
+
+if TakenLemon
+[...Or you can just take the whole lemon. Sure. That works. {End, setTalkAfterLemon}]
+
+if TalkAfterLemon and PoweredUp
+[Pretty cool, huh? {Line 2}]
+[It's just like my trampoline back there! {End}]
+
+if TalkAfterLemon and not PoweredUp
+[Hey, mister head! Need a refill? {End, Event NewLemon}]
+
+if FallenInRiver
+[Wow... what happened to you? {Line 2}]
+[Oh well. Need a refill? {End, Event NewLemon}]
