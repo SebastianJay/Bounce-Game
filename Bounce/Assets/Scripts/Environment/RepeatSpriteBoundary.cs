@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-// @NOTE the attached sprite's position should be "top left" or the children will not align properly
 // Strech out the image as you need in the sprite render, the following script will auto-correct it when rendered in the game
 [RequireComponent (typeof (SpriteRenderer))]
 
 // Generates a nice set of repeated sprites inside a streched sprite renderer
-// @NOTE Vertical only, you can easily expand this to horizontal with a little tweaking
 public class RepeatSpriteBoundary : MonoBehaviour {
+	public int tileX = 1;
+	public int tileY = 1;
+	public float scaleX = 1f;
+	public float scaleY = 1f;
+
 	SpriteRenderer sprite;
 	void Awake () {
 		// Get the current sprite with an unscaled size
@@ -18,26 +21,31 @@ public class RepeatSpriteBoundary : MonoBehaviour {
 		GameObject childPrefab = new GameObject();
 		SpriteRenderer childSprite = childPrefab.AddComponent<SpriteRenderer>();
 		float startX = transform.position.x - (sprite.bounds.size.x / 2) + (spriteSize.x / 2);
-		childPrefab.transform.position = new Vector3(startX, transform.position.y, transform.position.z);
-		childPrefab.transform.localScale = new Vector3(1, transform.localScale.y, 1);
+		float startY = transform.position.y - (sprite.bounds.size.y / 2) + (spriteSize.y / 2);
+		childPrefab.transform.position = new Vector3(startX, startY, transform.position.z);
+		childPrefab.transform.localScale = new Vector3(scaleX, scaleY, 1);
 		childSprite.sprite = sprite.sprite;
 		childSprite.sortingLayerName = sprite.sortingLayerName;
 		
 		// Loop through and spit out repeated tiles
 		GameObject child;
-		//print (sprite.bounds.size.x);
-		//print (spriteSize.x + " " + spriteSize.y);
-		for (int i = 1, l = (int)Mathf.Round(transform.localScale.x); i < l; i++) 
+		for (int i = 0; i < tileX; i++) 
 		{
-			child = Instantiate(childPrefab) as GameObject;
-			child.transform.position = new Vector3(startX +  spriteSize.x * i, transform.position.y, transform.position.z);
-			child.transform.parent = transform;
+			for (int j = 0; j < tileY; j++)
+			{
+				//if (i == 0 && j == 0) continue;
+				child = Instantiate(childPrefab) as GameObject;
+				child.transform.position = new Vector3(startX + spriteSize.x * i, 
+				                                       startY + spriteSize.y * j, 
+				                                       transform.position.z);
+				child.transform.parent = transform;
+			}
 		}
 
 		// Set the parent last on the prefab to prevent transform displacement
 		childPrefab.transform.parent = transform;
 		
-		// Disable the currently existing sprite component since its now a repeated image
+		// Disable the currently existing sprite component since it's now a repeated image
 		sprite.enabled = false;
 	}
 }

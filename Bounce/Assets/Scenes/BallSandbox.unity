@@ -121,6 +121,14 @@ Prefab:
       propertyPath: m_SortingLayerID
       value: 1535931219
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 3f3d48437c247d34b990ab86fc7838fc, type: 2}
+      propertyPath: tileX
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 3f3d48437c247d34b990ab86fc7838fc, type: 2}
+      propertyPath: scaleY
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3f3d48437c247d34b990ab86fc7838fc, type: 2}
   m_RootGameObject: {fileID: 1552019983}
@@ -208,6 +216,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0212e8ea2c609f42b67f050ef788780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tileX: 9
+  tileY: 1
+  scaleX: 1
+  scaleY: 2
 --- !u!61 &184907445
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -559,6 +571,14 @@ Prefab:
       propertyPath: m_SortingLayerID
       value: 1535931219
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 3f3d48437c247d34b990ab86fc7838fc, type: 2}
+      propertyPath: tileX
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 3f3d48437c247d34b990ab86fc7838fc, type: 2}
+      propertyPath: scaleY
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3f3d48437c247d34b990ab86fc7838fc, type: 2}
   m_RootGameObject: {fileID: 1990997196}
@@ -622,6 +642,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0212e8ea2c609f42b67f050ef788780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tileX: 9
+  tileY: 1
+  scaleX: 1
+  scaleY: 2
 --- !u!61 &396920234
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -795,6 +819,14 @@ Prefab:
       propertyPath: m_SortingLayerID
       value: 1535931219
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 3f3d48437c247d34b990ab86fc7838fc, type: 2}
+      propertyPath: tileX
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 3f3d48437c247d34b990ab86fc7838fc, type: 2}
+      propertyPath: scaleY
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3f3d48437c247d34b990ab86fc7838fc, type: 2}
   m_RootGameObject: {fileID: 973135660}
@@ -915,6 +947,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0212e8ea2c609f42b67f050ef788780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tileX: 5
+  tileY: 1
+  scaleX: 1
+  scaleY: 1
 --- !u!212 &512021458
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1052,7 +1088,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 2511236001
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4be4d3b049cee12489df5d995d119baa, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4e1000ff3a2ca1f4ea25bd5bbb196ba9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &566544027
 Transform:
@@ -1080,7 +1116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lastCheckpoint: 0
   lastLevel: 0
-  debugNoLoad: 0
+  debugNoLoad: 1
 --- !u!1 &608043932
 GameObject:
   m_ObjectHideFlags: 0
@@ -1489,6 +1525,14 @@ Prefab:
       propertyPath: m_SortingLayerID
       value: 1535931219
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 3f3d48437c247d34b990ab86fc7838fc, type: 2}
+      propertyPath: tileX
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 3f3d48437c247d34b990ab86fc7838fc, type: 2}
+      propertyPath: scaleY
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3f3d48437c247d34b990ab86fc7838fc, type: 2}
   m_RootGameObject: {fileID: 184907443}
@@ -1536,6 +1580,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0212e8ea2c609f42b67f050ef788780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tileX: 5
+  tileY: 1
+  scaleX: 1
+  scaleY: 2
 --- !u!61 &973135663
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1673,6 +1721,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0212e8ea2c609f42b67f050ef788780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tileX: 5
+  tileY: 1
+  scaleX: 1
+  scaleY: 1
 --- !u!1001 &1088867887
 Prefab:
   m_ObjectHideFlags: 0
@@ -2201,6 +2253,14 @@ Prefab:
       propertyPath: m_SortingLayerID
       value: 1535931219
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 3f3d48437c247d34b990ab86fc7838fc, type: 2}
+      propertyPath: tileX
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 3f3d48437c247d34b990ab86fc7838fc, type: 2}
+      propertyPath: scaleY
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3f3d48437c247d34b990ab86fc7838fc, type: 2}
   m_RootGameObject: {fileID: 396920232}
@@ -2435,6 +2495,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0212e8ea2c609f42b67f050ef788780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tileX: 5
+  tileY: 1
+  scaleX: 1
+  scaleY: 2
 --- !u!61 &1552019986
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2611,6 +2675,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0212e8ea2c609f42b67f050ef788780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tileX: 5
+  tileY: 1
+  scaleX: 1
+  scaleY: 1
 --- !u!1 &1990997196
 GameObject:
   m_ObjectHideFlags: 0
@@ -2653,6 +2721,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0212e8ea2c609f42b67f050ef788780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tileX: 5
+  tileY: 1
+  scaleX: 1
+  scaleY: 2
 --- !u!61 &1990997199
 BoxCollider2D:
   m_ObjectHideFlags: 0

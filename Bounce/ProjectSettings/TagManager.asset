@@ -58,6 +58,10 @@ TagManager:
     userID: 2
     uniqueID: 1535931219
     locked: 0
+  - name: BackObstacles
+    userID: 7
+    uniqueID: 3477195907
+    locked: 0
   - name: NPC
     userID: 6
     uniqueID: 1167940005
@@ -65,6 +69,10 @@ TagManager:
   - name: Character
     userID: 4
     uniqueID: 2511236001
+    locked: 0
+  - name: FrontObstacles
+    userID: 8
+    uniqueID: 1714758929
     locked: 0
   - name: Foreground
     userID: 3

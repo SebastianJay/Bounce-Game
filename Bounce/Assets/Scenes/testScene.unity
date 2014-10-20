@@ -577,7 +577,7 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1535931219
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0e2c60ae6ee63824f8fb53af5da5a4a7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -604,6 +604,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0212e8ea2c609f42b67f050ef788780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tileX: 30
+  tileY: 1
+  scaleX: 1
+  scaleY: 1
 --- !u!1001 &882424170
 Prefab:
   m_ObjectHideFlags: 0
@@ -877,7 +881,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 2511236001
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4be4d3b049cee12489df5d995d119baa, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4e1000ff3a2ca1f4ea25bd5bbb196ba9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1242754062
 Transform:
@@ -905,7 +909,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lastCheckpoint: 0
   lastLevel: 0
-  debugNoLoad: 0
+  debugNoLoad: 1
 --- !u!1 &1330863149
 GameObject:
   m_ObjectHideFlags: 0
