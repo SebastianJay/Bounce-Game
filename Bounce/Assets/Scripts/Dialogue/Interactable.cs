@@ -6,26 +6,32 @@ public class Interactable : MonoBehaviour {
 	public TextAsset dialogueFile;
 	private Interaction dialogue;
 	public TextMesh gText;
+	public TextMesh hText;
 	private bool inTrigger = false;
 
 	// Use this for initialization
 	void Awake () {
 		dialogue = new Interaction (dialogueFile);
-		//gText = GetComponent<TextMesh>();
+		hText = GameObject.FindGameObjectWithTag ("HeroText").GetComponent<TextMesh> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetButtonDown("Action") && inTrigger)
 		{
-			Debug.Log("Stepping through dialogue");
 			List<string> lines = dialogue.Step();
 			if(lines.Count > 0)
 			{
 				gText.text = lines[0];
+				hText.text = "";
+				for (int i = 1; i < 2 && i < lines.Count; i++)	//this is temporary!!
+					hText.text += lines[i] + "\n";
 			}
 			else
+			{
 				gText.text = "";
+				hText.text = "";
+			}
 		}
 	}
 	

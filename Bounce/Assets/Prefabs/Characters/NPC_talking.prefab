@@ -55,7 +55,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.64024544, y: -1.24211478, z: 0}
+  m_LocalPosition: {x: -199.189194, y: 15.5400028, z: -3.375}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 400000}
@@ -99,7 +99,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Text: Checkpoint
+  m_Text: 
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 329d9c73fe5e20f428d1f09f3f7b5bfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sortingLayer: Background
+  sortingLayer: Foreground
   sortingOrder: 0
 --- !u!114 &11400002
 MonoBehaviour:
@@ -137,8 +137,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f10c9b8b3e90f74c8750a5228e6335c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueFile: {fileID: 4900000, guid: 59c20daa5465cb342a9a1ad280ae096c, type: 3}
+  dialogueFile: {fileID: 4900000, guid: 7846592bada6f6d4a8a4e18373470755, type: 3}
   gText: {fileID: 10200000}
+  hText: {fileID: 0}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

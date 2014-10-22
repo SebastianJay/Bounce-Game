@@ -10,6 +10,7 @@ public class RepeatSpriteBoundary : MonoBehaviour {
 	public int tileY = 1;
 	public float scaleX = 1f;
 	public float scaleY = 1f;
+	public bool useScaleAsTile = true;
 
 	SpriteRenderer sprite;
 	void Awake () {
@@ -23,7 +24,10 @@ public class RepeatSpriteBoundary : MonoBehaviour {
 		float startX = transform.position.x - (sprite.bounds.size.x / 2) + (spriteSize.x / 2);
 		float startY = transform.position.y - (sprite.bounds.size.y / 2) + (spriteSize.y / 2);
 		childPrefab.transform.position = new Vector3(startX, startY, transform.position.z);
-		childPrefab.transform.localScale = new Vector3(scaleX, scaleY, 1);
+		if (useScaleAsTile)
+			childPrefab.transform.localScale = new Vector3(1, 1, 1);
+		else
+			childPrefab.transform.localScale = new Vector3(scaleX, scaleY, 1);
 		childSprite.sprite = sprite.sprite;
 		childSprite.sortingLayerName = sprite.sortingLayerName;
 		

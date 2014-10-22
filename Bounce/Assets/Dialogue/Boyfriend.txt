@@ -1,0 +1,5 @@
+#Boyfriend
+#---
+#For use in the river hub of the city world
+
+[Don't talk to me. I'm busy with my girlfriend. {End, set TalkedToBoyfriend}]

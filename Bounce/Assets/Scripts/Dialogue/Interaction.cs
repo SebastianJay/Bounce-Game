@@ -224,7 +224,7 @@ public class Interaction
 	    foreach (InteractionControlPath cond in this.controlList)
 	    {
 	        if (ConditionalParser.EvaluateStatement(cond.statement))
-	        	return cond.lineNumber;
+	        	return cond.lineNumber - 1;
 	    }
 	    return 0;
 	}
@@ -253,17 +253,21 @@ public class Interaction
 				switch(eventArgs[0])
 				{
 				case "End":
+				case "end":
 					node.eventType |= InteractionEvents.End;
 					break;
 				case "Line":
+				case "line":
 					node.eventType |= InteractionEvents.NextLine;
 					node.nextLine = Int32.Parse(eventArgs[1]);
 					break;
 				case "Set":
+				case "set":
 					node.eventType |= InteractionEvents.SetConst;
 					node.gameConstant = eventArgs[1];
 					break;
 				case "Event":
+				case "event":
 					node.eventType |= InteractionEvents.Special;
 					node.gameEvent = eventArgs[1];
 					break;

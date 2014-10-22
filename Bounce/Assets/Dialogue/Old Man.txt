@@ -1,0 +1,13 @@
+#Old Man.txt
+#---
+#For use in the first scene of the City world
+
+choose 1, 5
+[Those dern whipperschnappers! {End}]
+[That baseball broke my window! {End}]
+[Kids these days, with their basepods and their iBall... {End}]
+[I oughta have those rascals clean this mess up! {End}]
+[Are you a baseball, too? {}] [Yes {Line 6}] [No {Line 7}]
+[Well don't you go breaking any windows, then! {End}]
+[What? Oh you're not a ball, you're a head. {Line 8}]
+[I must need my glasses checked. {End}]
