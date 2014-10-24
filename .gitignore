@@ -6,7 +6,6 @@
 *.pidb
 *.userprefs
 *.[Oo]bj
-*.exe
 *.pdb
 *.user
 *.aps
