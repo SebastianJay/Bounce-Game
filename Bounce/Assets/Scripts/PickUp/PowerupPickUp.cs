@@ -9,9 +9,21 @@ public class PowerupPickUp : MonoBehaviour {
 	{
 		if (col.tag == "Player")
 		{
-			Destroy (this.gameObject);
-			PlayerBallControl pbc = col.gameObject.GetComponent<PlayerBallControl>();
-			pbc.powerupState = type;
+			PowerupManager cpu = col.gameObject.GetComponent<PowerupManager>();
+			//mod this later so player is enabled to activate powerup through a keystroke
+			cpu.ActivatePowerup(type);
+			//Destroy(this.gameObject);	//temporary!
+			//Debug.Log ("Destroyed myself");
 		}
+	}
+
+	void OnDestroy()
+	{
+		//Debug.Log ("Within OnDestroy()");
+	}
+
+	IEnumerator Resurrect(float waitTime)
+	{
+		return null;
 	}
 }

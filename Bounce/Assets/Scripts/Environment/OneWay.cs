@@ -1,22 +1,29 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(BoxCollider2D))]
 public class OneWay : MonoBehaviour {
+
+	private GameObject player;
+	void Start()
+	{
+		player = GameObject.FindGameObjectWithTag ("Player");
+	}
 	void Update () 
 		//Has to check player velocity every update, else additional triggers would be necessary
 	{
-		if (GameObject.FindWithTag ("Player").rigidbody2D.velocity.y > 0) {
-			//checks if player is going up
-						this.gameObject.layer = 13;
-			/*since the player is, the platform the script is attached to turns into a layer that only
-			the player can go through*/
-			} 
-			else 
-			//checks to see if player is stationary or going down
-			{
+		//if the player is still or moving down, and his position is above this platform's position, then collide
+		//Note that player must have a circle collider and platform must have box collider
+		if (player.rigidbody2D.velocity.y <= 0 && 
+		    player.transform.position.y - player.GetComponent<CircleCollider2D>().radius >= 
+		    transform.position.y + GetComponent<BoxCollider2D>().size.y) {
 			this.gameObject.layer = 0;
-			/*ensures the platform is fully collidable once the player is not going up, setting the
-			platform back to the default layer*/
-			}
+			//switches to the default (collidable) layer
+		} 
+		//otherwise, don't collide
+		else {
+			this.gameObject.layer = 13;
+			//switches to a special layer the player can pass through
+		}
 	}
 }

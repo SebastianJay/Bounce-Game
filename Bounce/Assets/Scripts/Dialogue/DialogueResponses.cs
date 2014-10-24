@@ -3,6 +3,8 @@ using System.Collections;
 
 public class DialogueResponses : MonoBehaviour {
 
+	public Transform textPrefab;
+
 	// Use this for initialization
 	void Start () {
 	

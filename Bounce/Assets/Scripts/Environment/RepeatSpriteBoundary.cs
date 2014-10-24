@@ -17,6 +17,9 @@ public class RepeatSpriteBoundary : MonoBehaviour {
 		// Get the current sprite with an unscaled size
 		sprite = GetComponent<SpriteRenderer>();
 		Vector2 spriteSize = new Vector2(sprite.bounds.size.x / transform.localScale.x, sprite.bounds.size.y / transform.localScale.y);
+		Debug.Log (gameObject.name + " " + sprite.bounds.size.x + " " + sprite.bounds.size.y + " " + 
+		           transform.localScale.x + " " + transform.localScale.y + " " +
+		           spriteSize.x + " " + spriteSize.y);
 		
 		// Generate a child prefab of the sprite renderer
 		GameObject childPrefab = new GameObject();

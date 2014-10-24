@@ -42,10 +42,7 @@ public class PlayerBallControl : MonoBehaviour {
 	public bool isTalking = false;
 	[HideInInspector]
 	public Interactable npcTalker;
-	//Powerups!
-	public PowerupType powerupState = PowerupType.Normal;
-	public float powerupTime = 1.0f;
-	private float powerupTimer = 0.0f;
+
 	// Temp Storage Vars
 	private Vector2 prevVelocity;
 	private float prevAngularVelocity;
@@ -147,7 +144,6 @@ public class PlayerBallControl : MonoBehaviour {
 	private bool jumpBoosted = false;
 	private void checkJumpBoosted()
 	{
-
 		if((Input.GetButtonDown("Jump") || timeSinceJump < boostForgiveness) && outVelocity.y != 0)
 		{
 			jumpBoosted = true;
