@@ -15,6 +15,11 @@ public class PlayerDataManager : MonoBehaviour {
 	public static int initialLevel = 0;
 
 	void Start () {
+		LoadCurrentSave ();
+	}
+
+	public void LoadCurrentSave()
+	{
 		playerData myData = XmlSerialzer.Load ();
 		if(myData != null && !loadedLevel && !debugNoLoad)
 		{
@@ -22,11 +27,10 @@ public class PlayerDataManager : MonoBehaviour {
 			initialLevel = lastLevel;
 			Application.LoadLevel(myData.lastLevel);
 			loadedLevel = true;
-
-
+			
+			
 		}
 	}
-
 
 	void OnLevelWasLoaded(int level)
 	{
