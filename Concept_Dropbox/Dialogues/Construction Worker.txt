@@ -1,0 +1,11 @@
+#Construction Worker
+#---
+#For use in the first frame of the construction site, city world
+
+[How did you get in here? {Line 2}]
+[This is a very dangerous area to be in. {Line 3}]
+[So you definitely should NOT press any strange buttons you find. {Line 4}]
+[Seriously, DO NOT press any buttons. {End}]
+
+if buttonIsPressed
+[...You pressed a button, didn't you? {End}]

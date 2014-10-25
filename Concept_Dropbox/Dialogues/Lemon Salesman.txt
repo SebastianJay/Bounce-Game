@@ -1,0 +1,8 @@
+#Lemon Salesman
+#---
+#For use in the second frame of the construction site, city world
+
+[I'm the travelling lemon salesman! {Line 2}]
+[I seem to have lost my stock in the city. {Line 3}]
+[So if you find any lost, lonely lemons... {Line 4}]
+[You can eat them, I guess. I can't sell lonely lemons. {End}]
