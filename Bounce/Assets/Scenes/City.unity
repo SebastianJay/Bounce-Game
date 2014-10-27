@@ -2221,8 +2221,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileX: 45
   tileY: 5
-  scaleX: 2
-  scaleY: 2
+  scaleX: 1
+  scaleY: 1
   useScaleAsTile: 0
 --- !u!212 &760718678
 SpriteRenderer:
@@ -4222,10 +4222,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0212e8ea2c609f42b67f050ef788780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileX: 22
+  tileX: 45
   tileY: 1
-  scaleX: 2
-  scaleY: 2
+  scaleX: 1
+  scaleY: 1
   useScaleAsTile: 0
 --- !u!212 &1759314373
 SpriteRenderer:
@@ -4256,7 +4256,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1759314371}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 31.4349537, y: .678276598, z: -4.90229607}
+  m_LocalPosition: {x: 31.4349461, y: .74104923, z: -4.90229607}
   m_LocalScale: {x: 22.5, y: .5, z: 1}
   m_Children: []
   m_Father: {fileID: 397143852}
@@ -4818,7 +4818,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1971161981}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 129.98494, y: .76900506, z: -4.90229607}
+  m_LocalPosition: {x: 129.98494, y: .831777692, z: -4.90229607}
   m_LocalScale: {x: 10, y: .5, z: 1}
   m_Children: []
   m_Father: {fileID: 397143852}
@@ -4845,10 +4845,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0212e8ea2c609f42b67f050ef788780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileX: 10
+  tileX: 20
   tileY: 1
-  scaleX: 2
-  scaleY: 2
+  scaleX: 1
+  scaleY: 1
   useScaleAsTile: 0
 --- !u!212 &1971161985
 SpriteRenderer:
@@ -5123,8 +5123,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileX: 20
   tileY: 5
-  scaleX: 2
-  scaleY: 2
+  scaleX: 1
+  scaleY: 1
   useScaleAsTile: 0
 --- !u!212 &2097919066
 SpriteRenderer:

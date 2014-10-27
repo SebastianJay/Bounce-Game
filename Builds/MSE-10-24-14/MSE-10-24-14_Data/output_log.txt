@@ -11,7 +11,7 @@ Platform assembly: C:\Users\Student\Documents\GitHub\Bounce-Game\Builds\MSE-10-1
 Loading C:\Users\Student\Documents\GitHub\Bounce-Game\Builds\MSE-10-14-14\MSE-10-24-14_Data\Managed\UnityEngine.dll into Unity Child Domain
 Platform assembly: C:\Users\Student\Documents\GitHub\Bounce-Game\Builds\MSE-10-14-14\MSE-10-24-14_Data\Managed\Assembly-CSharp.dll (this message is harmless)
 Loading C:\Users\Student\Documents\GitHub\Bounce-Game\Builds\MSE-10-14-14\MSE-10-24-14_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-- Completed reload, in  0.047 seconds
+- Completed reload, in  0.230 seconds
 desktop: 1600x900 50Hz; virtual: 1600x900 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.

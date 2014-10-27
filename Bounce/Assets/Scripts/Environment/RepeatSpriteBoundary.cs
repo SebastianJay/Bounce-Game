@@ -13,12 +13,27 @@ public class RepeatSpriteBoundary : MonoBehaviour {
 	public bool useScaleAsTile = true;
 
 	SpriteRenderer sprite;
+
+	Vector2 GetAbsoluteScale()
+	{
+		Vector2 retVal = Vector2.one;
+		Transform trans = this.transform;
+		while (trans != null)
+		{
+			retVal.x *= trans.localScale.x;
+			retVal.y *= trans.localScale.y;
+			trans = trans.parent;
+		}
+		return retVal;
+	}
+
 	void Awake () {
 		// Get the current sprite with an unscaled size
 		sprite = GetComponent<SpriteRenderer>();
-		Vector2 spriteSize = new Vector2(sprite.bounds.size.x / transform.localScale.x, sprite.bounds.size.y / transform.localScale.y);
+		Vector2 absScale = GetAbsoluteScale();
+		Vector2 spriteSize = new Vector2(sprite.bounds.size.x / absScale.x, sprite.bounds.size.y / absScale.y);
 		Debug.Log (gameObject.name + " " + sprite.bounds.size.x + " " + sprite.bounds.size.y + " " + 
-		           transform.localScale.x + " " + transform.localScale.y + " " +
+		           absScale.x + " " + absScale.y + " " +
 		           spriteSize.x + " " + spriteSize.y);
 		
 		// Generate a child prefab of the sprite renderer
