@@ -123,7 +123,7 @@ Transform:
   m_LocalScale: {x: 3.9546783, y: 3.95467806, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
 --- !u!1001 &231717583
 Prefab:
   m_ObjectHideFlags: 0
@@ -320,7 +320,7 @@ Transform:
   m_LocalScale: {x: 9, y: 7, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 8
 --- !u!50 &378500681
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -608,6 +608,7 @@ MonoBehaviour:
   tileY: 1
   scaleX: 1
   scaleY: 1
+  useScaleAsTile: 1
 --- !u!1001 &882424170
 Prefab:
   m_ObjectHideFlags: 0
@@ -711,11 +712,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 34ae094e236abc944a196ccdc7189c57, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -13.5199594
+      value: -13.1585512
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 34ae094e236abc944a196ccdc7189c57, type: 2}
       propertyPath: m_LocalPosition.y
-      value: .748915315
+      value: 1.05008888
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 34ae094e236abc944a196ccdc7189c57, type: 2}
       propertyPath: m_LocalPosition.z
@@ -777,7 +778,7 @@ Transform:
   m_Children:
   - {fileID: 1242754062}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 5
 --- !u!1 &1242754057
 GameObject:
   m_ObjectHideFlags: 0
@@ -830,8 +831,6 @@ MonoBehaviour:
   deformTime: .150000006
   isTalking: 0
   npcTalker: {fileID: 0}
-  powerupState: 0
-  powerupTime: 1
 --- !u!58 &1242754059
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1122,7 +1121,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1389179823}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .257302284, y: 2.32870483, z: 5}
+  m_LocalPosition: {x: -.345044553, y: 2.69011283, z: 5}
   m_LocalScale: {x: 5.12213898, y: 5.12214613, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1185,56 +1184,6 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
---- !u!1 &1496982473
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1496982475}
-  - 212: {fileID: 1496982474}
-  m_Layer: 0
-  m_Name: triangle_rock
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!212 &1496982474
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1496982473}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e41bd7328ffc6a744aa136c20a2ed655, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
---- !u!4 &1496982475
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1496982473}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.1125793, y: 2.0676012, z: 0}
-  m_LocalScale: {x: 3.9546783, y: 3.95467806, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
 --- !u!1001 &1881237330
 Prefab:
   m_ObjectHideFlags: 0
@@ -1391,7 +1340,7 @@ Transform:
   m_PrefabInternal: {fileID: 1095958125}
   m_GameObject: {fileID: 1916360332}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.5199594, y: .748915315, z: 0}
+  m_LocalPosition: {x: -13.1585512, y: 1.05008888, z: 0}
   m_LocalScale: {x: .31249997, y: 2.08750057, z: 1}
   m_Children:
   - {fileID: 546153814}
@@ -1503,7 +1452,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 6
 --- !u!1001 &1947580510
 Prefab:
   m_ObjectHideFlags: 0
