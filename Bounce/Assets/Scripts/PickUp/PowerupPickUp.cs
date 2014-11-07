@@ -4,26 +4,22 @@ using System.Collections;
 public class PowerupPickUp : MonoBehaviour {
 	
 	public PowerupType type;
-	
+	public bool respawns = true;
+	public float respawnTime = 10.0f;
+
 	void OnTriggerEnter2D (Collider2D col)
 	{
 		if (col.tag == "Player")
 		{
 			PowerupManager cpu = col.gameObject.GetComponent<PowerupManager>();
-			//mod this later so player is enabled to activate powerup through a keystroke
 			cpu.ActivatePowerup(type);
-			//Destroy(this.gameObject);	//temporary!
-			//Debug.Log ("Destroyed myself");
+			if (respawns && transform.parent != null)
+			{
+				Spawner spawner = transform.parent.GetComponent<Spawner>();
+				if (spawner != null)
+					spawner.SpawnAfterTime(respawnTime);
+			}
+			Destroy(gameObject);
 		}
-	}
-
-	void OnDestroy()
-	{
-		//Debug.Log ("Within OnDestroy()");
-	}
-
-	IEnumerator Resurrect(float waitTime)
-	{
-		return null;
 	}
 }
