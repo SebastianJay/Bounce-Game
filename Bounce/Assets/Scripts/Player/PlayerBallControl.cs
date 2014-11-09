@@ -14,13 +14,14 @@ public class PlayerBallControl : MonoBehaviour {
 	public float jumpForce = 2800f;
 	public float jumpDelay = 0.4f;	//time (in s) delay between jumps
 	private float jumpTimer = 0.4f;
-	public float boostForgiveness = 0.75f; //Extra time in seconds the player has to get a boosted bounce
-	private float timeSinceLeft = 0.0f;
-	private float timeSinceRight = 0.0f;
-	private float timeSinceJump = 0.0f;
+	//public float boostForgiveness = 0.75f; //Extra time in seconds the player has to get a boosted bounce
+	//private float timeSinceLeft = 0.0f;
+	//private float timeSinceRight = 0.0f;
+	//private float timeSinceJump = 0.0f;
 	// bouncy vars
-	public float bounciness = 0.225f;
-	public float boostedBounciness = 0.9f;
+	public float bounciness = 0.6f;
+	public float boostedBounciness = 0.85f;
+	public float depressedBounciness = 0.4f;
 	public float boostThresholdVelocity = 6f;
 	public float boostThresholdAngle = 360f;
 	// Grounded vars
@@ -58,7 +59,7 @@ public class PlayerBallControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update() {
-		recordButtonDelay();
+		//recordButtonDelay();
 	}
 
 	void OnCollisionEnter2D(Collision2D collision) {
@@ -102,11 +103,13 @@ public class PlayerBallControl : MonoBehaviour {
 				//Calculate the reflection of originalVelocity about the collision normal to get the ball's new velocity vector
 				Vector2 reflection = (2 * Vector2.Dot(originalVelocity,collisionNormal) * collisionNormal - originalVelocity);
 				//Create a normalized vector representing the difference between the reflection and the original velocity
-				Vector2 bounceModifier = new Vector2(originalVelocity.x-reflection.x, -originalVelocity.y-reflection.y);
-				bounceModifier.Normalize();
+				//Vector2 bounceModifier = new Vector2(originalVelocity.x-reflection.x, -originalVelocity.y-reflection.y);
+				//bounceModifier.Normalize();
 				
 				//Set the rigidbody velocity to the reflection vector and modify it to make the collision inelastic
-				outVelocity = reflection + bounceModifier/bounciness;
+				//outVelocity = reflection + bounceModifier/bounciness;
+				outVelocity = reflection * bounciness;
+
 				//Decrease/Reverse the angular velocity based on whether the ball changed direction on the x axis
 				float angleMod = 0.5f*Mathf.Sign(-originalVelocity.x)*Mathf.Sign (outVelocity.x);
 
@@ -143,20 +146,24 @@ public class PlayerBallControl : MonoBehaviour {
 	}
 
 	private bool jumpBoosted = false;
+	private bool jumpDepressed = false;
 	private void checkJumpBoosted()
 	{
-		if((Input.GetButtonDown("Jump") || timeSinceJump < boostForgiveness) && outVelocity.y != 0)
-		{
-			jumpBoosted = true;
-		}else if((Input.GetButtonDown("Left") || timeSinceLeft < boostForgiveness) && outVelocity.x < 0)
-		{
-			jumpBoosted = true;
-		}else if((Input.GetButtonDown("Right") || timeSinceRight < boostForgiveness) && outVelocity.x > 0)
+		if(((Input.GetButton("Jump") /*|| timeSinceJump < boostForgiveness*/) && outVelocity.y > 0) ||
+		   ((Input.GetButtonDown("Left") /*|| timeSinceLeft < boostForgiveness*/) && outVelocity.x < 0) ||
+		   ((Input.GetButtonDown("Right") /*|| timeSinceRight < boostForgiveness*/) && outVelocity.x > 0))
 		{
 			jumpBoosted = true;
 		}
+		else if(((Input.GetButton("Floor") /*|| timeSinceJump < boostForgiveness*/) && outVelocity.y > 0) ||
+				((Input.GetButtonDown("Left") /*|| timeSinceLeft < boostForgiveness*/) && outVelocity.x > 0) ||
+				((Input.GetButtonDown("Right") /*|| timeSinceRight < boostForgiveness*/) && outVelocity.x < 0))
+		{
+			jumpDepressed = true;
+		}
 	}
 
+	/*
 	private void recordButtonDelay()
 	{
 		timeSinceJump += Time.fixedDeltaTime;
@@ -170,6 +177,7 @@ public class PlayerBallControl : MonoBehaviour {
 		if(Input.GetButtonDown("Right"))
 			timeSinceRight = 0;
 	}
+	*/
 
 	void FixedUpdate () {
 
@@ -183,7 +191,7 @@ public class PlayerBallControl : MonoBehaviour {
 		{
 			if(h != 0)
 			{
-				recordButtonDelay();
+				//recordButtonDelay();
 				//translational movement
 				if(Mathf.Sign(h) != Mathf.Sign (this.rigidbody2D.velocity.x))
 				{
@@ -206,7 +214,7 @@ public class PlayerBallControl : MonoBehaviour {
 			}		
 		}else if(dState == DeformationState.Deforming)
 		{// Scale ball down along z axis of scale object at deformSpeed until it's scale has changed more than the intended change
-			recordButtonDelay();
+			//recordButtonDelay();
 			checkJumpBoosted();
 
 			if(deformTimer < deformTime)
@@ -224,7 +232,7 @@ public class PlayerBallControl : MonoBehaviour {
 		}else if(dState == DeformationState.Reforming)
 		{//Scale ball up along z axis of scale object at deformSpeed until it's scale has changed more than the intended change
 
-			recordButtonDelay();
+			//recordButtonDelay();
 			checkJumpBoosted();
 
 			if(deformTimer < deformTime)
@@ -241,9 +249,9 @@ public class PlayerBallControl : MonoBehaviour {
 				if(jumpBoosted)
 				{
 					jumpBoosted = false;
-					timeSinceJump = boostForgiveness;
-					timeSinceLeft = boostForgiveness;
-					timeSinceRight = boostForgiveness;
+					//timeSinceJump = boostForgiveness;
+					//timeSinceLeft = boostForgiveness;
+					//timeSinceRight = boostForgiveness;
 
 					outVelocity = outVelocity.normalized*originalMagnitude*boostedBounciness;
 
@@ -252,7 +260,18 @@ public class PlayerBallControl : MonoBehaviour {
 						outVelocity.Normalize();
 						outVelocity*=(jumpForce/this.rigidbody2D.mass)*Time.fixedDeltaTime;
 					}
-
+				}
+				if(jumpDepressed)
+				{
+					jumpDepressed = false;
+					outVelocity = outVelocity.normalized*originalMagnitude*depressedBounciness;
+					/*
+					if(outVelocity.magnitude < (jumpForce/this.rigidbody2D.mass)*Time.fixedDeltaTime)
+					{
+						outVelocity.Normalize();
+						outVelocity*=(jumpForce/this.rigidbody2D.mass)*Time.fixedDeltaTime;
+					}
+					*/
 				}
 
 				this.rigidbody2D.angularVelocity = outAngularVelocity;
@@ -261,8 +280,8 @@ public class PlayerBallControl : MonoBehaviour {
 			}
 		}else if(dState == DeformationState.Reformed)
 		{//Allow an extra tick before the ball is allowed to deform again
-			recordButtonDelay();
-			checkJumpBoosted();
+			//recordButtonDelay();
+			//checkJumpBoosted();
 			dState = DeformationState.Normal;
 		}
 
