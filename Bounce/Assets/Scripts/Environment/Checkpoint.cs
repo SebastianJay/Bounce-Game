@@ -28,19 +28,8 @@ public class Checkpoint : MonoBehaviour {
 			m.lastCheckpoint = checkPointID;
 			m.lastLevel = Application.loadedLevel;
 
-			playerData dataToSave = new playerData();
-			List<Entry> entries = new List<Entry>();
-			foreach (int key in m.previousCheckpoints.Keys)
-			{
-				entries.Add (new Entry(key,m.previousCheckpoints[key]));
-			}
-			dataToSave.previousCheckpoints = entries;
-			dataToSave.inventory = m.inventory.ToList();
-			dataToSave.lastCheckpoint = m.lastCheckpoint;
-			dataToSave.lastLevel = m.lastLevel;
-
-			XmlSerialzer.Save(dataToSave);
-			Debug.Log ("Saving");
+			m.saveCurrent();
 		}
 	}
+	
 }

@@ -83,7 +83,9 @@ public class MainMenu : MonoBehaviour
 
 				if(GUI.Button (new Rect(10,10,100,50),"New File"))
 				{
-
+					XmlSerialzer.currentSaveFile = saveFileList.Count-1;
+					GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDataManager>().saveCurrent();
+					updateSaveFileList();
 				}
 
 				for(int i = 1; i < saveFileList.Count+1; i++)
@@ -92,9 +94,16 @@ public class MainMenu : MonoBehaviour
 					GUI.Label (new Rect (10, i*70+10, scrollViewWidth-10, 50),"File "+s.ElementAt(s.Length-1));
 					if(GUI.Button (new Rect(50,i*60+10,100,50),"Save"))
 					{
+						XmlSerialzer.currentSaveFile = int.Parse(s.ElementAt(s.Length-1).ToString());
+						GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDataManager>().saveCurrent();
+						updateSaveFileList();
 					}
 					if(GUI.Button (new Rect(160,i*60+10,100,50),"Load"))
 					{
+						XmlSerialzer.currentSaveFile = int.Parse(s.ElementAt(s.Length-1).ToString());
+						PlayerDataManager.loadedLevel = false;
+						GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDataManager>().LoadCurrentSave();
+						updateSaveFileList();
 					}
 
 				}
@@ -103,11 +112,12 @@ public class MainMenu : MonoBehaviour
 				}
 
 				if (currentTab == Tab.Inventory) {
-
-				int count = inventoryPlaceholder.Length;
+				Inventory inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDataManager>().inventory;
+				int count = inventory.items.Length;
 				float gridHeight = (float)count/inventoryGridX;
 				gridHeight = Mathf.Ceil(gridHeight*150);
-				selectedItem = GUI.SelectionGrid(new Rect (Screen.width / 2 - menuWidth / 2 + 10, Screen.height / 2 - menuHeight / 2 + 15 + tabButtonHeight, scrollViewWidth, gridHeight), selectedItem,inventoryPlaceholder, inventoryGridX);
+				string[] itemNames = {"1","2","3"};
+				selectedItem = GUI.SelectionGrid(new Rect (Screen.width / 2 - menuWidth / 2 + 10, Screen.height / 2 - menuHeight / 2 + 15 + tabButtonHeight, scrollViewWidth, gridHeight), selectedItem,itemNames, inventoryGridX);
 
 				}
 
@@ -146,7 +156,7 @@ public class MainMenu : MonoBehaviour
 	{
 		string root = Path.GetDirectoryName (Application.dataPath);
 		List<string> FullFileList = Directory.GetFiles (root, "*.*", SearchOption.AllDirectories).Select (file => file.Replace (root, "")).ToList ();
-
+		saveFileList.Clear ();
 		foreach (string s in FullFileList) 
 		{
 			if(s.Contains("BounceSaveData"))

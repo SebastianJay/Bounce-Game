@@ -16,6 +16,7 @@ public class LevelTeleporter : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other)
 	{
 		if (other.name.Equals ("ball")) {
+			other.GetComponent<PlayerDataManager>().saveCurrent();
 			StartCoroutine (TimedTeleport ());
 		}
 	}
@@ -23,7 +24,10 @@ public class LevelTeleporter : MonoBehaviour {
 	IEnumerator TimedTeleport() {
 		for (int i = 0; i < 20; i++) {
 			//if (GameObject.FindGameObjectWithTag("background").audio.volume > 0.0f) {
+			if(GameObject.FindGameObjectWithTag("background") != null)
+			{
 				GameObject.FindGameObjectWithTag("background").audio.volume -= 0.05f;
+			}
 				yield return new WaitForSeconds(0.05f);
 			//}
 		}
