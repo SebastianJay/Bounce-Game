@@ -10,6 +10,8 @@ public class PlayerBallControl : MonoBehaviour {
 	public float rotationStoppingMultiplier = 3f;
 	public float maxPlayerGeneratedSpeed = 10f;
 	public float maxAngularVelocity = 100.0f;
+	public float frictionCoefficient = 0.2f;		//percent magnitude of normal for friction force
+	public float frictionThresholdVelocity = 0.3f;	//threshold above which to apply friction
 	// Jumping, Boosting
 	public float jumpForce = 2800f;
 	public float jumpDelay = 0.4f;	//time (in s) delay between jumps
@@ -26,6 +28,7 @@ public class PlayerBallControl : MonoBehaviour {
 	public float boostThresholdAngle = 360f;
 	// Grounded vars
 	private bool grounded = false;			// Whether or not the player is grounded.
+	private bool hasContact = false;		// Whether the player is touching something
 	public float groundedThresholdAngle = 45f;
 	public float groundedThresholdBonus = 4f;
 	//Deformation variables
@@ -120,6 +123,7 @@ public class PlayerBallControl : MonoBehaviour {
 				return;
 			}
 		}
+		hasContact = true;
 	}
 
 	void OnCollisionStay2D(Collision2D collision) {
@@ -130,10 +134,30 @@ public class PlayerBallControl : MonoBehaviour {
 			if (Mathf.Abs(Vector2.Angle(Vector2.up, contact.normal)) < groundedThresholdAngle)
 				grounded = true;
 		}
+
+		foreach (ContactPoint2D contact in collision.contacts)
+		{
+			if (rigidbody2D.velocity.magnitude > frictionThresholdVelocity)
+			{
+				Vector2 frictionDir = -(rigidbody2D.velocity.normalized);
+				float frictionMag = contact.normal.magnitude * frictionCoefficient;
+				Vector2 frictionVec = frictionDir * frictionMag;
+				//maybe some safeguards against wall climbing using the normal here
+				rigidbody2D.AddForce(frictionVec);
+			}
+		}
+		if (Mathf.Abs(rigidbody2D.velocity.x) < frictionThresholdVelocity
+		    && Input.GetAxis("Horizontal") == 0)
+		{
+			rigidbody2D.velocity = new Vector2(0f, rigidbody2D.velocity.y);
+			//aimed to bring motion to a complete stop
+		}
+		hasContact = true;
 		ListenForJump ();
 	}
 
 	void OnCollisionExit2D(Collision2D collision) {
+		hasContact = false;
 	}
 
 	private void ListenForJump() {
@@ -185,7 +209,7 @@ public class PlayerBallControl : MonoBehaviour {
 			wasGrounded = true;
 
 		float h = Input.GetAxis ("Horizontal");
-		float v = Input.GetAxis ("Vertical");
+		//float v = Input.GetAxis ("Vertical");
 
 		if(dState == DeformationState.Normal)
 		{
@@ -203,11 +227,11 @@ public class PlayerBallControl : MonoBehaviour {
 				}
 
 				//rotational movement
-				if (Mathf.Sign (h) == Mathf.Sign (rigidbody2D.angularVelocity))
+				if (Mathf.Sign (h) == Mathf.Sign (rigidbody2D.angularVelocity) && !hasContact)
 				{
 					this.rigidbody2D.AddTorque(-h * moveTorque * rotationStoppingMultiplier);
 				}
-				else if(Mathf.Abs (this.rigidbody2D.angularVelocity) < maxAngularVelocity)
+				else if(Mathf.Abs (this.rigidbody2D.angularVelocity) < maxAngularVelocity && !hasContact)
 				{
 					this.rigidbody2D.AddTorque(-h * moveTorque);
 				}
