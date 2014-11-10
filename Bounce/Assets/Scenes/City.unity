@@ -1743,7 +1743,7 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayerID: 3477195907
+  m_SortingLayerID: 1714758929
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2b9f0086d98dfb44f9811fb3ea928329, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2289,7 +2289,8 @@ MonoBehaviour:
   tileY: 5
   scaleX: 1
   scaleY: 1
-  useScaleAsTile: 0
+  useScaleAsTile: 1
+  sprite: {fileID: 0}
 --- !u!212 &760718678
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3264,6 +3265,56 @@ PolygonCollider2D:
       - {x: -.119999997, y: -.25}
       - {x: .649999976, y: -.219999999}
       - {x: .649999976, y: .159999996}
+--- !u!1 &1273657990
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1273657991}
+  - 212: {fileID: 1273657992}
+  m_Layer: 0
+  m_Name: water
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1273657991
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1273657990}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 117.046501, y: -47.661541, z: -3.375}
+  m_LocalScale: {x: 6, y: 4, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1770895073}
+  m_RootOrder: 3
+--- !u!212 &1273657992
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1273657990}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 1714758929
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: e084baae026663a4f9a39f76782db434, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1318103743
 GameObject:
   m_ObjectHideFlags: 0
@@ -3273,6 +3324,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1318103744}
   - 212: {fileID: 1318103745}
+  - 114: {fileID: 1318103746}
   m_Layer: 0
   m_Name: water-surface
   m_TagString: Untagged
@@ -3287,8 +3339,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1318103743}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.2353287, y: -18.5821667, z: -6.30615234}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalPosition: {x: 26.2353287, y: -15.6999998, z: -6.30615234}
+  m_LocalScale: {x: 3, y: .5, z: 1}
   m_Children: []
   m_Father: {fileID: 328785922}
   m_RootOrder: 2
@@ -3314,6 +3366,23 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 86edd183a15329349bcc65eb79315dd9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &1318103746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1318103743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0212e8ea2c609f42b67f050ef788780, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileX: 6
+  tileY: 1
+  scaleX: 1
+  scaleY: 6
+  useScaleAsTile: 1
+  sprite: {fileID: 0}
 --- !u!1 &1320639073
 GameObject:
   m_ObjectHideFlags: 0
@@ -3548,7 +3617,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1417584658}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 414.047821, y: -53.3019104, z: 6.625}
+  m_LocalPosition: {x: 414.047821, y: -53.3327026, z: 6.625}
   m_LocalScale: {x: 2000, y: 400, z: 1}
   m_Children: []
   m_Father: {fileID: 1770895073}
@@ -4526,7 +4595,8 @@ MonoBehaviour:
   tileY: 1
   scaleX: 1
   scaleY: 1
-  useScaleAsTile: 0
+  useScaleAsTile: 1
+  sprite: {fileID: 0}
 --- !u!212 &1759314373
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4600,6 +4670,7 @@ Transform:
   - {fileID: 2097919067}
   - {fileID: 1417584659}
   - {fileID: 760718679}
+  - {fileID: 1273657991}
   m_Father: {fileID: 0}
   m_RootOrder: 3
 --- !u!1 &1810064086
@@ -4992,7 +5063,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1971161981}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 129.98494, y: .74000001, z: -4.90229607}
+  m_LocalPosition: {x: 130, y: .74000001, z: -4.90229607}
   m_LocalScale: {x: 10, y: .5, z: 1}
   m_Children: []
   m_Father: {fileID: 397143852}
@@ -5023,7 +5094,8 @@ MonoBehaviour:
   tileY: 1
   scaleX: 1
   scaleY: 1
-  useScaleAsTile: 0
+  useScaleAsTile: 1
+  sprite: {fileID: 0}
 --- !u!212 &1971161985
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5299,7 +5371,8 @@ MonoBehaviour:
   tileY: 5
   scaleX: 1
   scaleY: 1
-  useScaleAsTile: 0
+  useScaleAsTile: 1
+  sprite: {fileID: 0}
 --- !u!212 &2097919066
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5329,7 +5402,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2097919064}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 183.726227, y: -45.499424, z: -3.375}
+  m_LocalPosition: {x: 183.399994, y: -45.499424, z: -3.375}
   m_LocalScale: {x: 20, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 1770895073}

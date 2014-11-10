@@ -5,12 +5,13 @@ using System.Collections;
 [RequireComponent (typeof (SpriteRenderer))]
 
 // Generates a nice set of repeated sprites inside a streched sprite renderer
-public class RepeatSpriteBoundary : MonoBehaviour {
+public class TileSprite : MonoBehaviour {
 	public int tileX = 1;
 	public int tileY = 1;
 	public float scaleX = 1f;
 	public float scaleY = 1f;
-	public bool useScaleAsTile = true;
+	public bool useScaleAsTile = true;	//if true, scale will be (1, 1) and scale of object will be used as tile factor
+										//if false, the other fields in the script will be used
 
 	SpriteRenderer sprite;
 
@@ -39,13 +40,20 @@ public class RepeatSpriteBoundary : MonoBehaviour {
 		// Generate a child prefab of the sprite renderer
 		GameObject childPrefab = new GameObject();
 		SpriteRenderer childSprite = childPrefab.AddComponent<SpriteRenderer>();
-		float startX = transform.position.x - (sprite.bounds.size.x / 2) + (spriteSize.x / 2);
-		float startY = transform.position.y - (sprite.bounds.size.y / 2) + (spriteSize.y / 2);
-		childPrefab.transform.position = new Vector3(startX, startY, transform.position.z);
+		Vector3 desiredScale = Vector3.one;
 		if (useScaleAsTile)
-			childPrefab.transform.localScale = new Vector3(1, 1, 1);
+		{
+			tileX = Mathf.RoundToInt(absScale.x);
+			tileY = Mathf.RoundToInt(absScale.y);
+			desiredScale = new Vector3(1, 1, 1);
+		}
 		else
-			childPrefab.transform.localScale = new Vector3(scaleX, scaleY, 1);
+			desiredScale = new Vector3(scaleX, scaleY, 1);
+		float startX = transform.position.x - (sprite.bounds.size.x / 2) + (spriteSize.x * desiredScale.x) / 2;
+		float startY = transform.position.y - (sprite.bounds.size.y / 2) + (spriteSize.y * desiredScale.y) / 2;
+
+		childPrefab.transform.position = new Vector3(startX, startY, transform.position.z);
+		childPrefab.transform.localScale = desiredScale;
 		childSprite.sprite = sprite.sprite;
 		childSprite.sortingLayerName = sprite.sortingLayerName;
 		
@@ -55,10 +63,10 @@ public class RepeatSpriteBoundary : MonoBehaviour {
 		{
 			for (int j = 0; j < tileY; j++)
 			{
-				//if (i == 0 && j == 0) continue;
+				if (i == 0 && j == 0) continue;
 				child = Instantiate(childPrefab) as GameObject;
-				child.transform.position = new Vector3(startX + spriteSize.x * i, 
-				                                       startY + spriteSize.y * j, 
+				child.transform.position = new Vector3(startX + spriteSize.x * desiredScale.x * i, 
+				                                       startY + spriteSize.y * desiredScale.y * j, 
 				                                       transform.position.z);
 				child.transform.parent = transform;
 			}
