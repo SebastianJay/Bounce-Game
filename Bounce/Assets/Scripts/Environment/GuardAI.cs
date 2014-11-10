@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class guardScript : MonoBehaviour {
+public class GuardAI : MonoBehaviour {
 
 	public Transform target;
 	public float speed;
