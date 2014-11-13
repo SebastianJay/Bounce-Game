@@ -14,8 +14,10 @@ public class WaterBehavior : MonoBehaviour {
 	}
 
 	void onTriggerEnter2D(Collider2D c) {
-		initialPlayerVector = new Vector2 (c.rigidbody.velocity.x, c.rigidbody.velocity.y);
-		Debug.Log ("entering");
+		if (c.gameObject.tag == "ball") {
+						initialPlayerVector = new Vector2 (c.rigidbody.velocity.x, c.rigidbody.velocity.y);
+						Debug.Log ("entering");
+				}
 		}
 
 	void onTriggerStay2D(Collider2D c) {
@@ -23,4 +25,11 @@ public class WaterBehavior : MonoBehaviour {
 		c.rigidbody.AddForce (forceVector);
 		Debug.Log ("still inside");
 		}
+
+	void onCollisionEnter2D(Collision2D c) {
+		if (c.gameObject.tag == "ball") {
+			initialPlayerVector = new Vector2 (c.rigidbody.velocity.x, c.rigidbody.velocity.y);
+			Debug.Log ("entering");
+		}
+	}
 }
