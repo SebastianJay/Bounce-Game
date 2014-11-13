@@ -38,10 +38,10 @@ public class XmlSerialzer : MonoBehaviour {
 public class playerData
 {
 	[XmlAttribute("lastCheckpoint")]
-	public int lastCheckpoint;
+	public int lastCheckpoint = 0;
 
 	[XmlAttribute("lastLevel")]
-	public int lastLevel;
+	public int lastLevel = 0;
 
 	[XmlArray("previousCheckpoints")]
 	[XmlArrayItem("Entry")]

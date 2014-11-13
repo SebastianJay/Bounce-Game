@@ -9,10 +9,12 @@ public static class DialogueConstantParser
 
 	public static void ExecuteEvent(string eventName)
 	{
+		/*
 		switch(eventName)
 		{
 			//TODO: hard-code events
 		}
+		*/
 	}
 
 	/// <summary>
@@ -28,10 +30,12 @@ public static class DialogueConstantParser
 
 		// for string literals in the dialogue
 		// which cannot be found in the hashset
+		/*
 		switch(constant)
 		{
 			//TODO: hard-code checks
 		}
+		*/
 		return false;
 	}
 
