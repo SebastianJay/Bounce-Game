@@ -1,98 +1,129 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public struct CameraFollowConfig
+{
+	public Vector2 minXAndY;
+	public Vector2 maxXAndY;
+	public bool isLocked;
+	public Vector2 lockedPosition;
+	public float lockedOrthoSize;
+}
+
+[RequireComponent(typeof(Camera))]
 public class CameraFollow : MonoBehaviour 
 {
+	//Var for config when game was last saved
+	public static CameraFollowConfig camConfig;
 
+	//Vars for following the player
 	public float xMargin = 1f;		// Distance in the x axis the player can move before the camera follows.
 	public float yMargin = 1f;		// Distance in the y axis the player can move before the camera follows.
 	public float xSmooth = 8f;		// How smoothly the camera catches up with it's target movement in the x axis.
 	public float ySmooth = 8f;		// How smoothly the camera catches up with it's target movement in the y axis.
+	public float orthoSmooth = 8f;		
 	public Vector2 maxXAndY;		// The maximum x and y coordinates the camera can have.
 	public Vector2 minXAndY;		// The minimum x and y coordinates the camera can have.
 
+	//Vars for locking the camera in place
 	public bool isLocked = false;	// The camera's position will not change if true.
-	public Transform lockedPosition = null; // the camera's new position
+	public float lockMoveTime = 3.0f;	//Time it takes to move to a locked position when activated
+	public Vector2 lockedPosition = Vector2.zero; // the camera's new position
+	public float lockedOrthoSize = 11f;	// The camera's orthographic size, for zooming in and out
 
 	private Transform player;		// Reference to the player's transform.
-
+	private Camera cam;				// this object's camera component
 
 	void Awake ()
 	{
 		// Setting up the reference.
 		player = GameObject.FindGameObjectWithTag("Player").transform;
+		cam = GetComponent<Camera> ();
 	}
 
-
-	bool CheckXMargin()
+	public void LockCamera(Vector2 position, float orthoSize)
 	{
-		// Returns true if the distance between the camera and the player in the x axis is greater than the x margin.
-		return Mathf.Abs(transform.position.x - player.position.x) > xMargin;
+		isLocked = true;
+		lockedPosition = position;
+		lockedOrthoSize = orthoSize;
 	}
 
-
-	bool CheckYMargin()
+	public void UnlockCamera(Vector2 minVec, Vector2 maxVec, float orthoSize)
 	{
-		// Returns true if the distance between the camera and the player in the y axis is greater than the y margin.
-		return Mathf.Abs(transform.position.y - player.position.y) > yMargin;
+		isLocked = false;
+		if (minVec != Vector2.zero)
+			minXAndY = minVec;
+		if (maxVec != Vector2.zero)
+			maxXAndY = maxVec;
+		if (orthoSize != 0.0f)
+			lockedOrthoSize = orthoSize;
 	}
-
 
 	void LateUpdate ()
 	{
 		if (!isLocked) {
 			TrackPlayer ();
-		} else if (lockedPosition != null) {
-			MoveToPosition (lockedPosition);
+		} else {
+			UpdateLockedPosition ();
 		}
 	}
-	
-	
+
 	void TrackPlayer ()
 	{
 		// By default the target x and y coordinates of the camera are it's current x and y coordinates.
 		float targetX = transform.position.x;
 		float targetY = transform.position.y;
+		float targetSize = cam.orthographicSize;
 
 		// If the player has moved beyond the x margin...
-		if(CheckXMargin())
+		if(Mathf.Abs(transform.position.x - player.position.x) > xMargin)
 			// ... the target x coordinate should be a Lerp between the camera's current x position and the player's current x position.
 			targetX = Mathf.Lerp(transform.position.x, player.position.x, xSmooth * Time.deltaTime);
 
 		// If the player has moved beyond the y margin...
-		if(CheckYMargin())
+		if(Mathf.Abs(transform.position.y - player.position.y) > yMargin)
 			// ... the target y coordinate should be a Lerp between the camera's current y position and the player's current y position.
 			targetY = Mathf.Lerp(transform.position.y, player.position.y, ySmooth * Time.deltaTime);
 
+		targetSize = Mathf.Lerp(cam.orthographicSize, lockedOrthoSize, Time.deltaTime * orthoSmooth);
+
 		// The target x and y coordinates should not be larger than the maximum or smaller than the minimum.
 		targetX = Mathf.Clamp(targetX, minXAndY.x, maxXAndY.x);
 		targetY = Mathf.Clamp(targetY, minXAndY.y, maxXAndY.y);
 
 		// Set the camera's position to the target position with the same z component.
 		transform.position = new Vector3(targetX, targetY, transform.position.z);
+		cam.orthographicSize = targetSize;
 	}
 
-	void MoveToPosition (Transform newPosition) 
+	void UpdateLockedPosition () 
 	{
-		// By default the target x and y coordinates of the camera are it's current x and y coordinates.
-		float targetX = transform.position.x;
-		float targetY = transform.position.y;
-		
-		// If the player has moved beyond the x margin...
-		if(CheckXMargin())
-			// ... the target x coordinate should be a Lerp between the camera's current x position and the player's current x position.
-			targetX = Mathf.Lerp(transform.position.x, lockedPosition.position.x, xSmooth * Time.deltaTime);
-		
-		// If the player has moved beyond the y margin...
-		if(CheckYMargin())
-			// ... the target y coordinate should be a Lerp between the camera's current y position and the player's current y position.
-			targetY = Mathf.Lerp(transform.position.y, lockedPosition.position.y, ySmooth * Time.deltaTime);
-		
-		// The target x and y coordinates should not be larger than the maximum or smaller than the minimum.
-		targetX = Mathf.Clamp(targetX, minXAndY.x, maxXAndY.x);
-		targetY = Mathf.Clamp(targetY, minXAndY.y, maxXAndY.y);
-		
+		float targetX = Mathf.Lerp(transform.position.x, lockedPosition.x, Time.deltaTime * xSmooth);		
+		float targetY = Mathf.Lerp(transform.position.y, lockedPosition.y, Time.deltaTime * ySmooth);	
+		float targetSize = Mathf.Lerp(cam.orthographicSize, lockedOrthoSize, Time.deltaTime * orthoSmooth);
+				
 		// Set the camera's position to the target position with the same z component.
 		transform.position = new Vector3(targetX, targetY, transform.position.z);
+		cam.orthographicSize = targetSize;
+	}
+
+	public CameraFollowConfig getConfig()
+	{
+		CameraFollowConfig retVal;
+		retVal.minXAndY = minXAndY;
+		retVal.maxXAndY = maxXAndY;
+		retVal.isLocked = isLocked;
+		retVal.lockedPosition = lockedPosition;
+		retVal.lockedOrthoSize = lockedOrthoSize;
+		return retVal;
+	}
+	
+	public void loadConfig(CameraFollowConfig state)
+	{
+		minXAndY = state.minXAndY;
+		maxXAndY = state.maxXAndY;
+		isLocked = state.isLocked;
+		lockedPosition = state.lockedPosition;
+		lockedOrthoSize = state.lockedOrthoSize;
 	}
 }

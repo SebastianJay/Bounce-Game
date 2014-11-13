@@ -3,15 +3,21 @@ using System.Collections;
 
 public class CameraLock : MonoBehaviour
 {
-	public Transform cameraTarget;
+	public Vector2 cameraTarget;
+	public float cameraOrthoSize;
+
+	private GameObject camObj;
+
+	void Start()
+	{
+		camObj = GameObject.FindGameObjectWithTag ("MainCamera");
+	}
 
 	void OnTriggerEnter2D(Collider2D other) 
 	{
 		if (other.gameObject.tag == "Player") 
 		{
-			Debug.Log ("CameraLock triggered");
-			GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>().isLocked = true;
-			GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>().lockedPosition = cameraTarget;
+			camObj.GetComponent<CameraFollow>().LockCamera(cameraTarget, cameraOrthoSize);
 		}
 	}
 }

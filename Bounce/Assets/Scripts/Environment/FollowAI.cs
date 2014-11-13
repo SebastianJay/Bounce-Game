@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class FollowAI : MonoBehaviour {
+
 	public float speed = 1.0f;
 	public float minRange = 3;
 	public float maxRange = 15;

@@ -34,7 +34,6 @@ public class PowerupManager : MonoBehaviour {
 		case PowerupType.SuperJump:
 			pbc.jumpForce = superJumpBoost;
 			powerupTime = superJumpTime;
-			//StartCoroutine(EndOfPowerup(superJumpTime));
 			break;
 		}
 		powerupTimer = 0f;
