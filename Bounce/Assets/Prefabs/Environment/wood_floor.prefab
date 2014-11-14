@@ -11,7 +11,7 @@ GameObject:
   - 212: {fileID: 21200000}
   - 61: {fileID: 6100000}
   m_Layer: 0
-  m_Name: platform
+  m_Name: wood_floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24,8 +24,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.11039257, y: 12.1304855, z: 0}
-  m_LocalScale: {x: 5, y: 2.50308394, z: 1}
+  m_LocalPosition: {x: -3.55999994, y: -12.5642014, z: -3.8293457}
+  m_LocalScale: {x: 19, y: 2.50308394, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -38,7 +38,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: .959999979, y: .109999999}
+  m_Size: {x: 1.27999997, y: .159999996}
   m_Center: {x: 0, y: 0}
 --- !u!212 &21200000
 SpriteRenderer:
@@ -58,9 +58,9 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayerID: 1535931219
+  m_SortingLayerID: 3477195907
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: dd9a093a6bd5ce24aaa6cdd13f2464e1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 816079761caa3f9458db4f6fa65a4f19, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
