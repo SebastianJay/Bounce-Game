@@ -1,0 +1,9 @@
+#Bobbus
+#For use in the Jungle Village of the Jungle-Beach-Water world
+
+[Yo, wazzup playa?{}][The sky.{Line 2}][Player...what am I playing?{Line 3}]
+[Aha. AHAHA!...Get outta here.{End, set TalkedToBobbus}]
+[Bounce...the game! Ah drat, I lost the game.{End, set TalkedToBobbus}]
+
+
+

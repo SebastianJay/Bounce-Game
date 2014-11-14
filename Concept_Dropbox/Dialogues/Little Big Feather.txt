@@ -1,0 +1,20 @@
+#Little Big Feather
+#Ovular, tall head with headdress of feathers coming down on one side
+#For use in the Treetop Village of the Jungle-Beach-Water world
+
+[Ahoy, comrade Bob! Welcome to our treetop retreat!{Line 2}]
+[What can I do for ya today?{}] [...why is everyone up here?{Line 3}][Isn't your name a little...contradictory?{Line 9}]
+[When Rob raided the coast, he chased all of us good folk up here!{Line 4}]
+[He's still down there somewhere...but things are working out pretty nifty for us, so why go back?{}][Isn't anyone left down there?{Line 5}]
+[Only one crazy old fisherman and that thrice-danged parrot of his!{Line 6}]
+[It's real ballsy of 'em, I'm telling ya. You're not heading on down there, are ya?{}][I need my body back! Of course I am!{Line 7}]
+[Who said you could, huh? Huh? I'm still chief 'round here, aren't I?{}][King Robert said I could!{Line 8}]
+[Ah, well in that case, go right ahead.{End, set TalkedToLittleBigFeather}]
+[Excuuuuuuuse me?{}][Little Big...that doesn't make any sense. What are you, a famous warrior of some sort?{Line 10}]
+[You don't make any sense. And sense doesn't make any of you, either, ya hear?{Line 11}]
+[You sure got some balls, talking to me like that. Now bring me that feather, kid!{}][Make me, you warhead!{Line 12, Event CareensIntoBob}]
+[Pick!{Line 13, Event CareensIntoBob}]
+[It!{Line 14, Event CareensIntoBob}]
+[Up!{Event BobPicksUpFeather}][Here. Another for your headdress.{Line 15}]
+[Ah, she's a beauty!{Line 16}]
+[And a warhead's a bomb, little Bob, not a warrior with only a head.{End, set TalkedToLittleBigFeather}]
