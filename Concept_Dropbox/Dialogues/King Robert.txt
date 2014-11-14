@@ -1,23 +1,20 @@
-#King Robert
+﻿#King Robert
+#Curly, wig-like hair with crown on top; wrinkles; fat head
 #For use in the Jungle Village of the Jungle-Beach-Water world
 
-[Where...where am I?{Line 2}]
-[Feeling a bit discombobulated?  Welcome to the –{Line 3}]
-[Do you always have to make pun of me?{Line 4}]
-[Nice one!{Line 5}]
-[I meant fun...where's your son heading?{Line 6}]
-[Ho, ho! You're on a roll today!{Line 7}]
-[But as I was saying, welcome to the Jungle.{Line 8}]
-[We have fun and games.{Line 9}]
-[Many robbed Roberts are here - just try and learn their names!{Line 10}]
-[Hey...they're just like me!{Line 11}]
-[One and all became a ball when through the trees Rob came.{Line 12}]
-[This is a curse you must reverse or forever you'll be maimed!{Line 13}]
-[These other folk will have some treats if you do them a job.{Line 14}]
-[These items are pretty sweet. I call them thingamabobs!{Line 15}]
-[...why is everything named after me?{Line 16}]
-[Silence, little Bob - I don't need your flack - I'm the king!{Line 17}]
-[The branches will help you bounce and you can use the vines to swing.{Line 18}]
+
+[Feeling a bit discombobulated?  Welcome to the –{}] [Do you always have to make pun of me?{Line 2}]
+[Nice one!{}][I meant fun...where's your son heading?{Line 3}]
+[Ho, ho! You're on a roll today!{Line 4}]
+[But as I was saying, welcome to the Jungle.{Line 5}]
+[We have fun and games.{Line 6}]
+[Many robbed Roberts are here - just try and learn their names!{}][Hey...they're just like me!{Line 7}]
+[One and all became a ball when through the trees Rob came.{Line 8}]
+[This is a curse you must reverse or forever you'll be maimed!{Line 9}]
+[These other folk will have some treats if you do them a job.{Line 10}]
+[These items are pretty sweet. I call them thingamabobs!{}][...why is everything named after me?{Line 11}]
+[Silence, little Bob - I don't need your flack - I'm the king!{Line 12}]
+[The branches will help you bounce and you can use the vines to swing.{End}]
 
 
 
