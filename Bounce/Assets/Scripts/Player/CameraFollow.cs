@@ -30,6 +30,7 @@ public class CameraFollow : MonoBehaviour
 	public float lockMoveTime = 3.0f;	//Time it takes to move to a locked position when activated
 	public Vector2 lockedPosition = Vector2.zero; // the camera's new position
 	public float lockedOrthoSize = 11f;	// The camera's orthographic size, for zooming in and out
+	private float lockThreshold = 0.01f;
 
 	private Transform player;		// Reference to the player's transform.
 	private Camera cam;				// this object's camera component
@@ -101,10 +102,14 @@ public class CameraFollow : MonoBehaviour
 		float targetX = Mathf.Lerp(transform.position.x, lockedPosition.x, Time.deltaTime * xSmooth);		
 		float targetY = Mathf.Lerp(transform.position.y, lockedPosition.y, Time.deltaTime * ySmooth);	
 		float targetSize = Mathf.Lerp(cam.orthographicSize, lockedOrthoSize, Time.deltaTime * orthoSmooth);
-				
+		
 		// Set the camera's position to the target position with the same z component.
 		transform.position = new Vector3(targetX, targetY, transform.position.z);
 		cam.orthographicSize = targetSize;
+		if (Mathf.Abs (cam.orthographicSize - lockedOrthoSize) <= lockThreshold)
+			cam.orthographicSize = lockedOrthoSize;
+		if ((new Vector2(transform.position.x, transform.position.y) - lockedPosition).magnitude <= lockThreshold)
+			transform.position = new Vector3(lockedPosition.x, lockedPosition.y, transform.position.z);
 	}
 
 	public CameraFollowConfig getConfig()

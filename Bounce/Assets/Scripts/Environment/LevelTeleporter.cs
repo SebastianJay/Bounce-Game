@@ -11,30 +11,35 @@ public class LevelTeleporter : MonoBehaviour {
 	public static bool teleported = false;
 	public static int teleportTarget = 0;
 
+	private GameObject screenFadeObj;
+	private bool locked = false;
 
+	void Start()
+	{
+		screenFadeObj = GameObject.FindGameObjectWithTag ("ScreenFader");
+	}
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.tag == "Player") {
+		if (other.tag == "Player" && !locked) {
 			other.GetComponent<PlayerDataManager>().saveCurrent();
-			StartCoroutine (TimedTeleport ());
+
+			if (screenFadeObj != null)
+			{
+				locked = true;
+				screenFadeObj.GetComponent<ScreenFading>().Transition(TeleportTransition, true);
+			}
+			else
+				TeleportTransition();
 		}
 	}
 
-	IEnumerator TimedTeleport() {
-		for (int i = 0; i < 20; i++) {
-			//if (GameObject.FindGameObjectWithTag("background").audio.volume > 0.0f) {
-			if(GameObject.FindGameObjectWithTag("background") != null)
-			{
-				GameObject.FindGameObjectWithTag("background").audio.volume -= 0.05f;
-			}
-				yield return new WaitForSeconds(0.05f);
-			//}
-		}
-
+	void TeleportTransition()
+	{
 		teleported = true;
 		teleportTarget = targetID;
 		Application.LoadLevel(levelToTeleportTo);	
+		locked = false;
 	}
 
 }
