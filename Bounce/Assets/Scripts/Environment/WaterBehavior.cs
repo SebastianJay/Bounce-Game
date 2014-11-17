@@ -2,39 +2,37 @@
 using System.Collections;
 
 public class WaterBehavior : MonoBehaviour {
-	private Vector2 waterForce;
+	private Vector2 waterForce = new Vector2(0, 450);
 	private Vector2 entryVelocity;
-	private Vector2 dampingForce = new Vector2(0, -900);
+	private Vector2 dampingForce = new Vector2(0, -1300);
 
 	void OnTriggerEnter2D(Collider2D c) {
 		entryVelocity = c.gameObject.rigidbody2D.velocity;
 		Debug.Log (c.gameObject.rigidbody2D.velocity.y);
-		if (-entryVelocity.y > 7) {
-						waterForce = new Vector2 (0, 450);
-						dampingForce = new Vector2 (0, -1200);
+		if (-entryVelocity.y < 4) {					
+						dampingForce.y = -1000;
+						waterForce.y = 400;
+						c.gameObject.rigidbody2D.AddForce (waterForce);
+				} else if (-entryVelocity.y < 3 && -entryVelocity.y > 0) {
+			c.gameObject.rigidbody2D.velocity = new Vector2(c.gameObject.rigidbody2D.velocity.x, 0);
+				} else {
+						c.gameObject.rigidbody2D.AddForce (waterForce);
 				}
-				else if (entryVelocity.y > 5 && -entryVelocity.y < 7)
-						waterForce = new Vector2 (0, 300);
-				else if (-entryVelocity.y > 3 && -entryVelocity.y < 5)
-						waterForce = new Vector2 (0, 290);
-				//else if (-entryVelocity.y < 3) {
-				//		c.gameObject.rigidbody2D.velocity = new Vector2 (c.gameObject.rigidbody2D.velocity.x, 0);
-				//}
-				else
-						waterForce = new Vector2 (0, 450);
+
 		}
 
 	void OnTriggerStay2D(Collider2D c) {
-		if (c.gameObject.tag == "Player") {
-			//if (!(-entryVelocity.y > 3))
-			c.gameObject.rigidbody2D.AddForce(waterForce);
+		if (c.gameObject.tag == "Player") { 
+						c.gameObject.rigidbody2D.AddForce (waterForce);
+			if (-entryVelocity.y < 3 && -entryVelocity.y > 0) {
+								c.gameObject.rigidbody2D.velocity = new Vector2 (c.gameObject.rigidbody2D.velocity.x, 0);
+						}
 				}
 		}
 
 	void OnTriggerExit2D(Collider2D c) {
-		if (c.gameObject.tag == "Player") {
-			dampingForce = new Vector2(0, -900);
+		if (c.gameObject.tag == "Player") 
 			c.gameObject.rigidbody2D.AddForce(dampingForce);
-				}
+				
 		}
 }
