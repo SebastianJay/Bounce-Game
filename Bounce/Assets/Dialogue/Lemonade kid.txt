@@ -11,12 +11,12 @@ if TakenLemon
 [...Or you can just take the whole lemon. Sure. That works. {End, set TalkAfterLemon}]
 
 if TalkAfterLemon and PoweredUp
-[Pretty cool, huh? {Line 2}]
+[Pretty cool, huh? {Line 7}]
 [It's just like my trampoline back there! {End}]
 
 if TalkAfterLemon and not PoweredUp
 [Hey, mister head! Need a refill? {End, Event NewLemon}]
 
 if FallenInRiver
-[Wow... what happened to you? {Line 2}]
+[Wow... what happened to you? {Line 10}]
 [Oh well. Need a refill? {End, Event NewLemon}]

@@ -3,10 +3,10 @@
 --- !u!78 &1
 TagManager:
   tags:
-  - HeroText
   - 
   - 
-  - 
+  - RiverGate
+  - MotherFollower
   - Obstacle
   - background
   - ScreenFader

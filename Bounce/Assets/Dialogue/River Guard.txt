@@ -8,14 +8,14 @@
 [Come back in 25 years or so. {End, set TalkedToGuard}]
 
 if TalkedToGuard and not MotherIsFollowing
-[What did I tell you before??? {Line 2}]
+[What did I tell you before??? {Line 6}]
 [Geez, for a head, you don't have many brains. {End}]
 
-if MotherIsFollowing
-[Sorry, bub, you really can't go through. {}][We have to. {Line 2}][But her kid is missing! {Line 3}]
-[Hm. Well, that's just vague enough to comvince me. {Line 4}]
-[A missing child??? How terrible! {Line 4}]
-[Go on through! Try not to get crushed and stuff.{End, Event RemoveObstacle}]
+if TalkedToGuard and MotherIsFollowing
+[Sorry, bub, you really can't go through. {}][We have to. {Line 8}][But her kid is missing! {Line 9}]
+[Hm. Well, that's just vague enough to convince me. {Line 10}]
+[A missing child??? How terrible! {Line 10}]
+[Go on through! Try not to get crushed and stuff.{End, Event LiftRiverGate, Set RiverGateOpen}]
 
-if not Obstacle
+if RiverGateOpen
 [Go through before I change my mind! {End}]
