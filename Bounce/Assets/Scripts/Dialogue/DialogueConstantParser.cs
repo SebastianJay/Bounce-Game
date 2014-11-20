@@ -9,12 +9,24 @@ public static class DialogueConstantParser
 
 	public static void ExecuteEvent(string eventName)
 	{
-		/*
+		GameObject obj = null;
+		//We hard-code every possible dialogue event here!
+		//Typically we accomplish this by picking out GameObjects using tags
+		//	and modifying, enabling, or invoking a method in some component of theirs
 		switch(eventName)
 		{
-			//TODO: hard-code events
+		case "MotherFollows":
+			obj = GameObject.FindGameObjectWithTag("MotherFollower");
+			if (obj != null)
+				obj.GetComponent<FollowAI>().enabled = true;
+			break;
+		case "LiftRiverGate":
+			obj = GameObject.FindGameObjectWithTag("RiverGate");
+			if (obj != null)
+				obj.GetComponent<AnimatedMover>().MoveRelative(new Vector3(0f, 10f), 2.0f);
+			break;
 		}
-		*/
+
 	}
 
 	/// <summary>
@@ -30,12 +42,15 @@ public static class DialogueConstantParser
 
 		// for string literals in the dialogue
 		// which cannot be found in the hashset
-		/*
 		switch(constant)
 		{
-			//TODO: hard-code checks
+		case "MotherIsFollowing":
+			GameObject obj = GameObject.FindGameObjectWithTag("MotherFollower");
+			if (obj != null)
+				return obj.GetComponent<FollowAI>().enabled;
+			break;
 		}
-		*/
+
 		return false;
 	}
 

@@ -125,7 +125,7 @@ public class Interaction
 				{
 					while(true)
 					{
-						if (lineIndex >= line.Length || line.IndexOf('[', lineIndex+1) == -1)
+						if (lineIndex >= line.Length || line.IndexOf('[', lineIndex) == -1)
 							break;
 						InteractionTreeNode node = new InteractionTreeNode();
 						ParseDialogueLine(line, ref node, ref lineIndex);
@@ -221,10 +221,10 @@ public class Interaction
 		{
 			return rand.Next(chooseStatement.randomStart, chooseStatement.randomEnd + 1) - 1;
 		}
-	    foreach (InteractionControlPath cond in this.controlList)
+		for (int i = controlList.Count - 1; i >= 0; i--)	//we look in reverse order in the file
 	    {
-	        if (ConditionalParser.EvaluateStatement(cond.statement))
-	        	return cond.lineNumber - 1;
+	        if (ConditionalParser.EvaluateStatement(controlList[i].statement))
+	        	return controlList[i].lineNumber - 1;
 	    }
 	    return 0;
 	}
