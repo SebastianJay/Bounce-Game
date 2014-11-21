@@ -31,6 +31,8 @@ public class FollowAI : MonoBehaviour {
 					transform.position += transform.right * speed * Time.deltaTime;
 			}
 		}
+		else
+			speed = 1.0f;	//Reset speed back to start
 		target = player.transform;
 	}
 }
