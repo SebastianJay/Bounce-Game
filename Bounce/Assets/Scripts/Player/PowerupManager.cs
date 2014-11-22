@@ -17,7 +17,7 @@ public class PowerupManager : MonoBehaviour {
 	{
 		//player = GameObject.FindGameObjectWithTag ("Player");
 		player = gameObject;
-		normalJumpForce = player.GetComponent<PlayerBallControl> ().jumpForce;
+		normalJumpForce = this.GetComponent<PlayerBallControl> ().jumpForce;
 	}
 
 	public void ActivatePowerup(PowerupType type)
@@ -34,6 +34,10 @@ public class PowerupManager : MonoBehaviour {
 		case PowerupType.SuperJump:
 			pbc.jumpForce = superJumpBoost;
 			powerupTime = superJumpTime;
+			break;
+		
+		case PowerupType.Spiderball:
+			player.GetComponent<Spiderball>().activated = true;
 			break;
 		}
 		powerupTimer = 0f;
@@ -58,6 +62,9 @@ public class PowerupManager : MonoBehaviour {
 		{
 		case PowerupType.SuperJump:
 			pbc.jumpForce = normalJumpForce;
+			break;
+		case PowerupType.Spiderball:
+			this.GetComponent<Spiderball>().activated = false;
 			break;
 		}
 		currentPowerup = PowerupType.Normal;
