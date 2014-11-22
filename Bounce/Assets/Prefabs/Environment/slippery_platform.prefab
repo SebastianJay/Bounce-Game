@@ -9,11 +9,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 400000}
   - 212: {fileID: 21200000}
-  - 61: {fileID: 6100000}
-  - 50: {fileID: 5000000}
   - 114: {fileID: 11400000}
+  - 61: {fileID: 6100000}
   m_Layer: 0
-  m_Name: moving_platform
+  m_Name: slippery_platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,26 +25,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.33591175, y: .442299843, z: 0}
+  m_LocalPosition: {x: -12.6450233, y: 3.10597491, z: 0}
   m_LocalScale: {x: 9, y: 7, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!50 &5000000
-Rigidbody2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: .0500000007
-  m_GravityScale: 0
-  m_FixedAngle: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
 --- !u!61 &6100000
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -65,14 +49,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 655e28db896cced4d878c4a86ab65bde, type: 3}
+  m_Script: {fileID: 11500000, guid: faf8df9fb1695bf4b883a625c1f42095, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialPoint: {x: 4, y: .5}
-  endPoint: {x: 6, y: 9}
-  useCurrentStartPosition: 0
-  moveTime: 2
-  pauseTime: 2
+  moveForceSlippery: 75
+  stopMultiplierSlippery: .5
+  frictionCoeffSliperry: 10
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
