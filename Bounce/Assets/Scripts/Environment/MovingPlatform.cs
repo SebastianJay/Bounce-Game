@@ -16,11 +16,18 @@ public class MovingPlatform : MonoBehaviour {
 
 	void Start() {
 		if (useCurrentStartPosition)
-			initialPoint = rigidbody2D.position;
-		else
+		{
+			//initialPoint = rigidbody2D.position;
+			Vector2 moveVector = endPoint-initialPoint;
+			mFrom = rigidbody2D.transform.position;
+			mTo = mFrom+moveVector;
+
+		}else
+		{
 			transform.position = new Vector3(initialPoint.x, initialPoint.y, 0);
-		mFrom = initialPoint;
-		mTo = endPoint;
+			mFrom = initialPoint;
+			mTo = endPoint;
+		}
 	}
 
 	void Update () {
@@ -45,7 +52,8 @@ public class MovingPlatform : MonoBehaviour {
 				paused = true;
 			}
 			float frac = moveTimer / moveTime;
-			rigidbody2D.MovePosition (Vector2.Lerp (mFrom, mTo, Mathf.Clamp (frac, 0.0f, 1.0f)));
+			//rigidbody2D.MovePosition (Vector2.Lerp (mFrom, mTo, Mathf.Clamp (frac, 0.0f, 1.0f)));
+			rigidbody2D.transform.position= new Vector3(Vector2.Lerp (mFrom, mTo, Mathf.Clamp (frac, 0.0f, 1.0f)).x,Vector2.Lerp (mFrom, mTo, Mathf.Clamp (frac, 0.0f, 1.0f)).y,0);
 		}
 	}
 

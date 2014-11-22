@@ -54,6 +54,9 @@ public class PlayerBallControl : MonoBehaviour {
 	private float outAngularVelocity;
 	private GameObject scaleObject;
 	private bool wasGrounded;
+	private bool platformContact = false;
+	private bool setScaleParent = false;
+	private Transform platform;
 	private float originalMagnitude;
 
 	public bool spiderball = false;
@@ -82,6 +85,7 @@ public class PlayerBallControl : MonoBehaviour {
 			    || collision.gameObject.GetComponent<Treadmill>() != null)
 				return;	//we want the spring to immediately bounce the character, so we don't check for deforming
 
+
 			//Determine if ball should deform
 			float velocityToCheck = boostThresholdVelocity;
 			if(wasGrounded)
@@ -101,7 +105,9 @@ public class PlayerBallControl : MonoBehaviour {
 				scaleObject.transform.rotation = rot;
 
 				scaleObject.transform.position = contact.point;//Center the scaleObject at the contact point so that the ball scales from one end
-				this.transform.parent.parent = scaleObject.transform; //Parent the ball to the scaleObject
+	
+				setScaleParent = true;
+				//Parent the ball to the scaleObject
 				deformTimer = 0.0f;
 
 				originalMagnitude = originalVelocity.magnitude;
@@ -155,7 +161,7 @@ public class PlayerBallControl : MonoBehaviour {
 			//aimed to bring motion to a complete stop
 		}
 		hasContact = true;
-		ListenForJump ();
+
 	}
 
 	void OnCollisionExit2D(Collision2D collision) {
@@ -168,6 +174,7 @@ public class PlayerBallControl : MonoBehaviour {
 		{
 			this.rigidbody2D.AddForce(Vector2.up * jumpForce);
 			jumpTimer = 0.0f;
+			hasContact = false;
 		}
 	}
 
@@ -212,9 +219,56 @@ public class PlayerBallControl : MonoBehaviour {
 
 		float h = Input.GetAxis ("Horizontal");
 		//float v = Input.GetAxis ("Vertical");
+		LayerMask mask = 1 << LayerMask.NameToLayer("Default");
+		RaycastHit2D hit = Physics2D.Raycast (new Vector2(transform.position.x,transform.position.y),-Vector2.up,0.65f,mask);
+
+		if(hit.collider != null)
+		{
+			if(setScaleParent && scaleObject != null)
+			{
+				transform.parent.parent = scaleObject.transform;
+				setScaleParent = false;
+			}
+
+			if(hit.transform.gameObject.GetComponent<MovingPlatform>() != null)
+			{
+				platformContact = true;
+				platform = hit.transform;
+				if(dState != DeformationState.Normal && dState != DeformationState.Reformed)
+				{
+					transform.parent.parent.parent = platform;
+				}else{
+					transform.parent.parent=platform;
+				}
+			}else{
+				if(platformContact)
+				{
+				if(dState != DeformationState.Normal && dState != DeformationState.Reformed)
+				{
+					transform.parent.parent.parent = null;
+				}else{
+					transform.parent.parent=null;
+				}
+				}
+				platformContact = false;
+			}
+		}else{
+			if(platformContact)
+			{
+			if(dState != DeformationState.Normal && dState != DeformationState.Reformed)
+			{
+				transform.parent.parent.parent = null;
+			}else{
+				transform.parent.parent=null;
+			}
+			}
+			platformContact = false;
+		}
+
 
 		if(dState == DeformationState.Normal)
 		{
+			ListenForJump ();
 			if(h != 0)
 			{
 				//recordButtonDelay();
@@ -269,7 +323,13 @@ public class PlayerBallControl : MonoBehaviour {
 				scaleObject.transform.localScale = new Vector3(scaleObject.transform.localScale.x,scaleObject.transform.localScale.y,baseScale + compressScale);
 			}else{
 				//Unparent from scaleObject and destroy scaleObject
-				this.transform.parent.parent = null;
+				if(platformContact)
+				{
+					this.transform.parent.parent.parent = null;
+					this.transform.parent.parent = platform;
+				}else{
+					this.transform.parent.parent = null;
+				}
 				GameObject.Destroy (scaleObject);
 				
 				this.rigidbody2D.isKinematic = false;//Re-enabled rigidbody physics
