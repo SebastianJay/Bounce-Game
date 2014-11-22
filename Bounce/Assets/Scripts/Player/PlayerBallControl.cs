@@ -59,6 +59,8 @@ public class PlayerBallControl : MonoBehaviour {
 	private Transform platform;
 	private float originalMagnitude;
 
+	public bool spiderball = false;
+
 	// Use this for initialization
 	void Awake () {
 	}
@@ -168,7 +170,7 @@ public class PlayerBallControl : MonoBehaviour {
 
 	private void ListenForJump() {
 		float v = Input.GetAxis ("Vertical");
-		if ((v > 0 && grounded && jumpTimer >= jumpDelay) || (platformContact && v > 0 && jumpTimer >= jumpDelay))
+		if (v > 0 && grounded && jumpTimer >= jumpDelay && !spiderball)
 		{
 			this.rigidbody2D.AddForce(Vector2.up * jumpForce);
 			jumpTimer = 0.0f;
@@ -271,15 +273,16 @@ public class PlayerBallControl : MonoBehaviour {
 			{
 				//recordButtonDelay();
 				//translational movement
-				if(Mathf.Sign(h) != Mathf.Sign (this.rigidbody2D.velocity.x))
-				{
-					this.rigidbody2D.AddForce(Vector2.right * h * moveForce * translationStoppingMultiplier);
+				if (!spiderball) {
+					if(Mathf.Sign(h) != Mathf.Sign (this.rigidbody2D.velocity.x))
+					{
+						this.rigidbody2D.AddForce(Vector2.right * h * moveForce * translationStoppingMultiplier);
+					}
+					else if (Mathf.Abs(this.rigidbody2D.velocity.x) < maxPlayerGeneratedSpeed)
+					{
+						this.rigidbody2D.AddForce(Vector2.right * h * moveForce);
+					}
 				}
-				else if (Mathf.Abs(this.rigidbody2D.velocity.x) < maxPlayerGeneratedSpeed)
-				{
-					this.rigidbody2D.AddForce(Vector2.right * h * moveForce);
-				}
-
 				//rotational movement
 				if (Mathf.Sign (h) == Mathf.Sign (rigidbody2D.angularVelocity) && !hasContact)
 				{
