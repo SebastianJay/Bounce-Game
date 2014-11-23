@@ -1,0 +1,12 @@
+#Construction Worker
+#---
+#For use in the "break room" hub of the city world
+
+choose 1, 5
+[Ah, what a nice day to be a construction worker. {End}]
+[Ah, what a nice day to not be a disembodied head. {End}]
+[I'm glad that lady came. That kid was getting annoying. {End}]
+[*Sniff sniff* Something smells like lemons. {End}]
+[You lost? {}][Yes {Line 6}][No {Line 7}]
+[Got a little ahead of yourself, huh? {End}]
+[You sure? You really shouldn't be here. {End}]

@@ -1,0 +1,8 @@
+#Steve
+#---
+#For use in the break room hub of the city world
+#Note that he is just a head
+
+[What? No, I'm not a Bob or any variation thereof. {Line 2}]
+[I'm a Steve. {Line 3}]
+[I just ticked Rob off. {End}]
