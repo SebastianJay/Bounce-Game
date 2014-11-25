@@ -1,0 +1,14 @@
+#Little Bobby
+#---
+#For use in the break room hub of the city world
+
+[Thank you, mister head! {Line 2}]
+[It's so good to see my mommy again. {Line 3}]
+[...But couldn't you have waited a little bit? {Line 4}]
+[I wanted to play a little bit longer. {End, set talkedToBobby}]
+
+if talkedToBobby
+[Hi, mister head! {Line 6}]
+[We should play a game sometime. {Line 7}]
+[We could do headstands! {Line 8}]
+[Although I guess you would always win. {End}]

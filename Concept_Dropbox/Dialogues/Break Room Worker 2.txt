@@ -1,0 +1,11 @@
+#Break Room Worker 2
+#---
+#For use in the break room hub of the city world
+
+[Hey, what happened to you? {Line 2}]
+[Wait, don't answer, let me guess. {Line 3}]
+[Rob got you, didn't he? {}][You guess right {Line 4}][Wrong! {Line 6}]
+[Yeah, I figured. Roberto's in the same state. {Line 5}]
+[He's up in the tower, if you can find him. {End}]
+[Really? Wow, you must just be really unlucky. {Line 7}]
+[You poor schmuck. {End}]
