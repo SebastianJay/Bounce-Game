@@ -8,6 +8,7 @@ public class PowerupManager : MonoBehaviour {
 
 	public float superJumpBoost = 3500f;	//new jump force
 	public float superJumpTime = 10f;	//in seconds
+	public float spiderballTime = 100f;	
 
 	private GameObject player;
 	private float powerupTimer = 0f;
@@ -38,6 +39,7 @@ public class PowerupManager : MonoBehaviour {
 		
 		case PowerupType.Spiderball:
 			player.GetComponent<Spiderball>().activated = true;
+			powerupTime = spiderballTime;
 			break;
 		}
 		powerupTimer = 0f;

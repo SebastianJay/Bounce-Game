@@ -77,15 +77,17 @@ public class Spiderball : MonoBehaviour {
 				Vector2 relativeRight = new Vector2 ();
 				relativeRight.x = lastCollision.contacts[0].normal.y;
 				relativeRight.y = -lastCollision.contacts[0].normal.x;
-				
-				float currentSpeed = Mathf.Sqrt (Mathf.Pow (this.rigidbody2D.velocity.x, 2) + Mathf.Pow (this.rigidbody2D.velocity.y,2));
+				Debug.Log(relativeRight);
+
+				float currentSpeed = rigidbody2D.velocity.magnitude;
 				float currentSpeedRelativeRight = currentSpeed * Mathf.Cos (Mathf.Atan2 (relativeRight.y, relativeRight.x));
 
 				Debug.Log (currentSpeed);
 				//Debug.Log (currentSpeedRelativeRight);
 
 				if (currentSpeed < this.maxPlayerGeneratedSpeed) {
-					this.rigidbody2D.AddForce(relativeRight * h  * spiderballMoveForce);
+					Debug.Log("Moving");
+					this.rigidbody2D.AddForce(relativeRight.normalized * h  * spiderballMoveForce);
 				}
 			}
 		}

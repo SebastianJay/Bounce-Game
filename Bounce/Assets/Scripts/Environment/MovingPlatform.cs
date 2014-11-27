@@ -1,12 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Script for a moving platform. As currently implemented, should be attached
+/// to an object with a TRIGGER collider attached as a child to the larger platform object
+/// with a NON-TRIGGER collider. The trigger goes on the top part of the platform.
+/// </summary>
 public class MovingPlatform : MonoBehaviour {
 	public Vector2 initialPoint;
-	public Vector2 endPoint;
+	public Vector2 endPoint;	//if flag below is set, this specifies an offset
 	public bool useCurrentStartPosition = false;
 	public float moveTime = 5.0f;	//in seconds, from start to end
 	public float pauseTime = 2.0f;	//in seconds, time at endpoints
+	public bool moveParent = true;	// if this collider is a "dummy child" to the larger platform
 
 	private float moveTimer = 0.0f;
 	private float pauseTimer = 0.0f;
@@ -18,9 +24,12 @@ public class MovingPlatform : MonoBehaviour {
 		if (useCurrentStartPosition)
 		{
 			//initialPoint = rigidbody2D.position;
-			Vector2 moveVector = endPoint-initialPoint;
-			mFrom = rigidbody2D.transform.position;
-			mTo = mFrom+moveVector;
+			//Vector2 moveVector = endPoint-initialPoint;
+			if (moveParent)
+				mFrom = transform.parent.position;
+			else
+				mFrom = transform.position;
+			mTo = mFrom+endPoint;
 
 		}else
 		{
@@ -53,47 +62,11 @@ public class MovingPlatform : MonoBehaviour {
 			}
 			float frac = moveTimer / moveTime;
 			//rigidbody2D.MovePosition (Vector2.Lerp (mFrom, mTo, Mathf.Clamp (frac, 0.0f, 1.0f)));
-			rigidbody2D.transform.position= new Vector3(Vector2.Lerp (mFrom, mTo, Mathf.Clamp (frac, 0.0f, 1.0f)).x,Vector2.Lerp (mFrom, mTo, Mathf.Clamp (frac, 0.0f, 1.0f)).y,0);
+			Vector2 lerp = Vector2.Lerp(mFrom, mTo, Mathf.Clamp(frac, 0.0f, 1.0f));
+			if (moveParent)
+				transform.parent.position = new Vector3(lerp.x,lerp.y,0f);
+			else
+				transform.position = new Vector3(lerp.x,lerp.y,0f);
 		}
 	}
-
-	///Alternate implementation
-	/*
-	public int platformSpeedHorizontal;
-	public int platformSpeedVertical;
-	private int distance = 5; //distance from initial point
-	private float initialX; //x position it starts at
-	private float initialY; //y position it starts at
-	void Start() {
-
-		//initializes platform with velocities entered by user
-		initialX = rigidbody2D.position.x;
-		initialY = rigidbody2D.position.y;
-		rigidbody2D.velocity = new Vector2(platformSpeedHorizontal, platformSpeedVertical);
-	}
-	void Update () {
-		//when the platform is moving right and reaches the specified distance, it turns around
-		if (rigidbody2D.position.x > initialX &&(rigidbody2D.position.x - initialX) >= distance) {
-			Vector2 reverseDirection = new Vector2(-rigidbody2D.velocity.x, rigidbody2D.velocity.y);
-			rigidbody2D.velocity = reverseDirection;
-		}
-
-		//when the platform is moving left and reaches the specified distance, it turns around
-		if (rigidbody2D.position.x < initialX &&(initialX - rigidbody2D.position.x) >= distance) {
-			Vector2 reverseDirection = new Vector2(-rigidbody2D.velocity.x, rigidbody2D.velocity.y);
-			rigidbody2D.velocity = reverseDirection;
-		}
-		//when the platform is moving up and reaches the specified distance, it turns around
-		if (rigidbody2D.position.y > initialY &&(rigidbody2D.position.y - initialY) >= distance) {
-			Vector2 reverseDirection = new Vector2(rigidbody2D.velocity.x, -rigidbody2D.velocity.y);
-			rigidbody2D.velocity = reverseDirection;
-		}
-		
-		//when the platform is moving down and reaches the specified distance, it turns around
-		if (rigidbody2D.position.y < initialY &&(initialY - rigidbody2D.position.y) >= distance) {
-			Vector2 reverseDirection = new Vector2(rigidbody2D.velocity.x, -rigidbody2D.velocity.y);
-			rigidbody2D.velocity = reverseDirection;
-		}
-	}
-	*/
 }

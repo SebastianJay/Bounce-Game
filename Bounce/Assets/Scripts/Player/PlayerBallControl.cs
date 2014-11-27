@@ -38,7 +38,8 @@ public class PlayerBallControl : MonoBehaviour {
 	[HideInInspector]
 	public float deformTime = 0.15f;
 	private float deformTimer = 0.0f;
-	private float baseScale = 0.0f;	//temp
+	private Vector3 originalScale; 
+	private Vector3 baseScale;	//temp
 	private enum DeformationState{Deforming, Reforming,Reformed, Normal};
 	private DeformationState dState = DeformationState.Normal;
 	//Talking, speech vars
@@ -48,16 +49,17 @@ public class PlayerBallControl : MonoBehaviour {
 	public Interactable npcTalker;
 
 	// Temp Storage Vars
+	private float originalMagnitude;
 	private Vector2 prevVelocity;
 	private float prevAngularVelocity;
 	private Vector2 outVelocity;
 	private float outAngularVelocity;
 	private GameObject scaleObject;
 	private bool wasGrounded;
-	private bool platformContact = false;
-	private bool setScaleParent = false;
-	private Transform platform;
-	private float originalMagnitude;
+
+	//moving platform detection vars
+	private bool onMovingPlatform = false;
+	private Transform platformParent;
 
 	public bool spiderball = false;
 
@@ -67,7 +69,24 @@ public class PlayerBallControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update() {
-		//recordButtonDelay();
+	}
+
+	void OnTriggerEnter2D(Collider2D col)
+	{
+		if (col.GetComponent<MovingPlatform>() != null) 
+		{
+			onMovingPlatform = true;
+			platformParent = col.transform.parent;
+			//Debug.Log ("Player entered");
+		}
+	}
+	void OnTriggerExit2D(Collider2D col)
+	{
+		if (col.GetComponent<MovingPlatform>() != null) 
+		{
+			onMovingPlatform = false;
+			//Debug.Log ("Player exited");
+		}
 	}
 
 	void OnCollisionEnter2D(Collision2D collision) {
@@ -106,8 +125,25 @@ public class PlayerBallControl : MonoBehaviour {
 
 				scaleObject.transform.position = contact.point;//Center the scaleObject at the contact point so that the ball scales from one end
 	
-				setScaleParent = true;
+				//deforming onto a moving platform logic - in this case, the scale object should be child of platform
+				//if (collision.gameObject.GetComponent<MovingPlatform>() != null)
+				//	scaleObject.transform.parent = collision.gameObject.transform;
+				if (onMovingPlatform && Vector2.Angle(contact.normal, Vector2.up) <= 5f)	//odd angles cause screwiness
+				{
+					scaleObject.transform.parent = platformParent;
+				}
+				else if (collision.gameObject.transform.childCount > 0
+				         && collision.gameObject.transform.GetChild(0).GetComponent<MovingPlatform>() != null
+						   && Vector2.Angle(contact.normal, Vector2.up) <= 2f)	//super-hard-coding
+				{
+					//this is cheating a bit - relying on a straight collision with a horizontal platform
+					//we probably won't have any exeptional cases in the game, though, so it should be fine..(?)
+					scaleObject.transform.parent = collision.gameObject.transform;
+				}
+
 				//Parent the ball to the scaleObject
+				transform.parent.parent = scaleObject.transform;
+				originalScale = scaleObject.transform.localScale;
 				deformTimer = 0.0f;
 
 				originalMagnitude = originalVelocity.magnitude;
@@ -130,6 +166,11 @@ public class PlayerBallControl : MonoBehaviour {
 				deformTime = Mathf.Clamp(Mathf.Abs (Vector2.Dot (collision.relativeVelocity, contact.normal)) * deformTimeFactor, 0.02f, 0.08f);
 				return;
 			}
+			//else if (collision.gameObject.GetComponent<MovingPlatform>() != null)
+			//	transform.parent.parent = collision.gameObject.transform;	//if we aren't deforming, just do normal parenting
+			//else if (onMovingPlatform)
+			//	transform.parent.parent = platformParent;	//if we aren't deforming, just do normal parenting
+
 		}
 		hasContact = true;
 	}
@@ -166,11 +207,16 @@ public class PlayerBallControl : MonoBehaviour {
 
 	void OnCollisionExit2D(Collision2D collision) {
 		hasContact = false;
+		//if (collision.gameObject.GetComponent<MovingPlatform>() != null
+		//    && dState == DeformationState.Normal)
+		//	transform.parent.parent = null;	//get off the platform
+		if (!onMovingPlatform
+		    && dState == DeformationState.Normal)
+			transform.parent.parent = null;	//get off the platform
 	}
 
 	private void ListenForJump() {
-		float v = Input.GetAxis ("Vertical");
-		if (v > 0 && grounded && jumpTimer >= jumpDelay && !spiderball)
+		if (Input.GetButton("Jump") && grounded && jumpTimer >= jumpDelay && !spiderball)
 		{
 			this.rigidbody2D.AddForce(Vector2.up * jumpForce);
 			jumpTimer = 0.0f;
@@ -218,54 +264,6 @@ public class PlayerBallControl : MonoBehaviour {
 			wasGrounded = true;
 
 		float h = Input.GetAxis ("Horizontal");
-		//float v = Input.GetAxis ("Vertical");
-		LayerMask mask = 1 << LayerMask.NameToLayer("Default");
-		RaycastHit2D hit = Physics2D.Raycast (new Vector2(transform.position.x,transform.position.y),-Vector2.up,0.65f,mask);
-
-		if(hit.collider != null)
-		{
-			if(setScaleParent && scaleObject != null)
-			{
-				transform.parent.parent = scaleObject.transform;
-				setScaleParent = false;
-			}
-
-			if(hit.transform.gameObject.GetComponent<MovingPlatform>() != null)
-			{
-				platformContact = true;
-				platform = hit.transform;
-				if(dState != DeformationState.Normal && dState != DeformationState.Reformed)
-				{
-					transform.parent.parent.parent = platform;
-				}else{
-					transform.parent.parent=platform;
-				}
-			}else{
-				if(platformContact)
-				{
-				if(dState != DeformationState.Normal && dState != DeformationState.Reformed)
-				{
-					transform.parent.parent.parent = null;
-				}else{
-					transform.parent.parent=null;
-				}
-				}
-				platformContact = false;
-			}
-		}else{
-			if(platformContact)
-			{
-			if(dState != DeformationState.Normal && dState != DeformationState.Reformed)
-			{
-				transform.parent.parent.parent = null;
-			}else{
-				transform.parent.parent=null;
-			}
-			}
-			platformContact = false;
-		}
-
-
 		if(dState == DeformationState.Normal)
 		{
 			ListenForJump ();
@@ -293,7 +291,8 @@ public class PlayerBallControl : MonoBehaviour {
 					this.rigidbody2D.AddTorque(-h * moveTorque);
 				}
 			}		
-		}else if(dState == DeformationState.Deforming)
+		}
+		else if(dState == DeformationState.Deforming)
 		{// Scale ball down along z axis of scale object at deformSpeed until it's scale has changed more than the intended change
 			//recordButtonDelay();
 			checkJumpBoosted();
@@ -302,15 +301,18 @@ public class PlayerBallControl : MonoBehaviour {
 			{
 				deformTimer += Time.deltaTime;
 				float compressScale = deformScaleChange * Mathf.Clamp (deformTimer / deformTime, 0.0f, 1.0f);
-				scaleObject.transform.localScale = new Vector3(scaleObject.transform.localScale.x,scaleObject.transform.localScale.y,1.0f - compressScale);
+				//scaleObject.transform.localScale = new Vector3(scaleObject.transform.localScale.x,
+				//                                               scaleObject.transform.localScale.y,
+				//                                               1.0f - compressScale);
+				scaleObject.transform.localScale = new Vector3(originalScale.x, originalScale.y, originalScale.z * (1.0f - compressScale));
 			}else{
 				dState = DeformationState.Reforming;
 				deformTimer = 0.0f;
-				baseScale = scaleObject.transform.localScale.z;
+				//baseScale = scaleObject.transform.localScale.z;
+				baseScale = scaleObject.transform.localScale;
 			}
-
-
-		}else if(dState == DeformationState.Reforming)
+		}
+		else if(dState == DeformationState.Reforming)
 		{//Scale ball up along z axis of scale object at deformSpeed until it's scale has changed more than the intended change
 
 			//recordButtonDelay();
@@ -320,18 +322,16 @@ public class PlayerBallControl : MonoBehaviour {
 			{
 				deformTimer += Time.deltaTime;
 				float compressScale = deformScaleChange * Mathf.Clamp (deformTimer / deformTime, 0.0f, 1.0f);
-				scaleObject.transform.localScale = new Vector3(scaleObject.transform.localScale.x,scaleObject.transform.localScale.y,baseScale + compressScale);
+				//scaleObject.transform.localScale = new Vector3(scaleObject.transform.localScale.x,
+				//                                               scaleObject.transform.localScale.y,
+				//                                               baseScale + compressScale);
+				scaleObject.transform.localScale = baseScale + new Vector3(0f, 0f, originalScale.z * compressScale);
 			}else{
 				//Unparent from scaleObject and destroy scaleObject
-				if(platformContact)
-				{
-					this.transform.parent.parent.parent = null;
-					this.transform.parent.parent = platform;
-				}else{
-					this.transform.parent.parent = null;
-				}
+				this.transform.parent.parent = null;
 				GameObject.Destroy (scaleObject);
-				
+				this.transform.parent.localScale = Vector3.one;
+
 				this.rigidbody2D.isKinematic = false;//Re-enabled rigidbody physics
 				if(jumpBoosted)
 				{
@@ -352,26 +352,33 @@ public class PlayerBallControl : MonoBehaviour {
 				{
 					jumpDepressed = false;
 					outVelocity = outVelocity.normalized*originalMagnitude*depressedBounciness;
-					/*
-					if(outVelocity.magnitude < (jumpForce/this.rigidbody2D.mass)*Time.fixedDeltaTime)
-					{
-						outVelocity.Normalize();
-						outVelocity*=(jumpForce/this.rigidbody2D.mass)*Time.fixedDeltaTime;
-					}
-					*/
 				}
 
 				this.rigidbody2D.angularVelocity = outAngularVelocity;
 				this.rigidbody2D.velocity = outVelocity;
 				dState = DeformationState.Reformed;
 			}
-		}else if(dState == DeformationState.Reformed)
+		}
+		else if(dState == DeformationState.Reformed)
 		{//Allow an extra tick before the ball is allowed to deform again
-			//recordButtonDelay();
-			//checkJumpBoosted();
 			dState = DeformationState.Normal;
 		}
 
+		if (onMovingPlatform && transform.parent.parent == null)
+			transform.parent.parent = platformParent;
+		//else if (onMovingPlatform && scaleObject != null && transform.parent.parent == scaleObject.transform
+		//         && transform.parent.parent.parent == null)
+		//{
+		//	scaleObject.transform.parent = platformParent;
+		//	Debug.Log ("moving scale object");
+			//originalScale = new Vector3(scaleObject.transform.localScale.x * 
+			//originalScale = scaleObject.transform.localScale;
+		//}
+		else if (!onMovingPlatform && platformParent != null)
+		{
+			transform.parent.parent = null;
+			platformParent = null;
+		}
 
 		grounded = false;
 		jumpTimer += Time.fixedDeltaTime;
