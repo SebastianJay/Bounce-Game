@@ -96,14 +96,12 @@ public class PlayerBallControl : MonoBehaviour {
 			Debug.DrawRay (contact.point, contact.normal, Color.white);
 		foreach (ContactPoint2D contact in collision.contacts)
 		{
-
-			if (Mathf.Abs(Vector2.Angle(Vector2.up, contact.normal)) < groundedThresholdAngle)
-				grounded = true;
-
 			if (collision.gameObject.GetComponent<Spring>() != null
 			    || collision.gameObject.GetComponent<Treadmill>() != null)
 				return;	//we want the spring to immediately bounce the character, so we don't check for deforming
 
+			if (Mathf.Abs(Vector2.Angle(Vector2.up, contact.normal)) < groundedThresholdAngle)
+				grounded = true;
 
 			//Determine if ball should deform
 			float velocityToCheck = boostThresholdVelocity;
@@ -211,7 +209,8 @@ public class PlayerBallControl : MonoBehaviour {
 		//    && dState == DeformationState.Normal)
 		//	transform.parent.parent = null;	//get off the platform
 		if (!onMovingPlatform
-		    && dState == DeformationState.Normal)
+		    && dState == DeformationState.Normal
+		    && transform.parent.parent != null)
 			transform.parent.parent = null;	//get off the platform
 	}
 
