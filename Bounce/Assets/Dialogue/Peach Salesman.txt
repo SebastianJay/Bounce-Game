@@ -1,0 +1,10 @@
+#Peach Salesman
+#---
+#For use in the break room hub of the city world
+
+[I'm the travelling peach salesman! {Line 2}]
+[You may have met my brother, the travelling lemon salesman. {Line 3}]
+[It's our job to bring happy peaches and lemons to these lovely workers. {Line 4}]
+[My stock was especially sticky today, so if you find any lost peaches... {Line 5}]
+[You can eat them, I guess. {Line 6}]
+[Don't want the workers to stick to their tools or anything. {End}]

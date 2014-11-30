@@ -13,7 +13,6 @@ public class ButtonMoves : MonoBehaviour {
 	public float yOffset;
 	public float moveTime = 5.0f;
 	public float pressTime = 0.5f;
-	//public bool alsoMoves = false;		//whether button moves along with the moveObj		
 	public Transform[] otherButtons;		//special case if multiple buttons need to be pressed at once
 
 	private bool depressed = false;	//whether player is on button
@@ -21,6 +20,7 @@ public class ButtonMoves : MonoBehaviour {
 	private Vector3 originalScale;
 	private Vector3 pressOffset;
 	private float pressTimer = 0.0f;
+	private Transform pressPerson;
 
 	// Use this for initialization
 	void Start () {
@@ -55,32 +55,25 @@ public class ButtonMoves : MonoBehaviour {
 						{
 							ButtonMoves script = otherButtons[i].GetComponent<ButtonMoves>();
 							script.activated = true;
-							/*
-							if (script.alsoMoves)
-							{
-								otherButtons[i].GetComponent<AnimatedMover>().MoveRelative(
-									new Vector3(xOffset, yOffset, 0f), moveTime); 
-							}
-							*/
 						}
+						activated = true;
+						moveObj.GetComponent<AnimatedMover>().MoveRelative(
+							new Vector3(xOffset, yOffset, 0f), moveTime);
 					}
 				}
-
-				activated = true;
-				/*
-				if (alsoMoves)
-					GetComponent<AnimatedMover>().MoveRelative(
+				else
+				{
+					activated = true;
+					moveObj.GetComponent<AnimatedMover>().MoveRelative(
 						new Vector3(xOffset, yOffset, 0f), moveTime);
-				*/
-				moveObj.GetComponent<AnimatedMover>().MoveRelative(
-					new Vector3(xOffset, yOffset, 0f), moveTime);
+				}
 			}
 		}
 	}
 
 	void OnTriggerEnter2D(Collider2D col)
 	{
-		if (col.tag == "Player")
+		if (col.tag == "Player" || col.tag == "MotherFollower")
 		{
 			if (!depressed)
 			{
@@ -90,12 +83,14 @@ public class ButtonMoves : MonoBehaviour {
 				buttonObj.position += pressOffset;
 			}
 			depressed = true;
+			pressPerson = col.transform;
 		}
 	}
 
 	void OnTriggerExit2D(Collider2D col)
 	{
-		if (col.tag == "Player")
+		if ((col.tag == "Player" || col.tag == "MotherFollower")
+		    && pressPerson != null && pressPerson == col.transform)
 		{
 			if (depressed)
 			{

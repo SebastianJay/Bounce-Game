@@ -23,7 +23,7 @@ public static class DialogueConstantParser
 		case "LiftRiverGate":
 			obj = GameObject.FindGameObjectWithTag("RiverGate");
 			if (obj != null)
-				obj.GetComponent<AnimatedMover>().MoveRelative(new Vector3(0f, 10f), 2.0f);
+				obj.GetComponent<AnimatedMover>().MoveRelative(new Vector3(0f, 5f, 0f), 2.0f);
 			break;
 		}
 

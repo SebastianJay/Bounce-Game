@@ -1,0 +1,13 @@
+#Robinda and Baby Bobbie NPC
+#Ball NPC with smaller ball
+#Smaller ball is rotated upwards, so that the face is looking upwards
+
+[Robinda: Why hel-{Line 2}]
+[Baby Bobbie: WAAA! WAAAAAAAAAA!!!{Line 3}]
+[Robinda: How ar-{Line 4}]
+[Baby Bobbie: WAAAAAA!{Line 5}]
+[Robinda: -ing today?{}] [Pretty good, thanks.{Line 6}] [Umm...pretty well, thanks.{Line 7}] [Can you shut that thing up?{Line 8}] [Ballin'.{Line 9}]
+[Robinda: You mean "pretty well, thanks."{End, Set TalkedToRobindaAndBabyBobbie}]
+[Robinda: WAAA! WAAAAAA! How you like me now, son?{End, Set TalkedToRobindaAndBabyBobbie}]
+[Well that was ballsy!{End, Set TalkedToRobindaAndBabyBobbie}]
+[No hon...just no.{End, Set TalkedToRobindaAndBabyBobbie}]

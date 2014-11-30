@@ -14,3 +14,15 @@ if MotherIsFollowing choose 8, 10
 [Oh my, would you look at that!{End}]
 [Hmm... I wonder how we'll get through here?{End}]
 [I hope little Bobby is alright...{End}]
+
+#Note: This should trigger AS the player enters the break room hub
+if inBreakRoom
+[OH! {Line 12}]
+[Little Bobby! Are you okay? {Line 13}]
+[I was so terribly worried... Don't you ever run off again! {End, set afterScene}]
+
+if afterScene
+[Ah, yes, mister head. {Line 15}]
+[I can't thank you enough for what you did! {}][You're very welcome, ma'am. {Line 16}][Watch your kid better, lady. {Line 17}]
+[I do hope we'll see you again! {End}]
+[You don't have to sound so bitter about it. {End}]

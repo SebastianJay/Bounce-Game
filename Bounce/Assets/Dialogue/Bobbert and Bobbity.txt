@@ -1,0 +1,21 @@
+#Bobbert and Bobbity
+#Bobbert is ball with wrinkled forehead and white hair
+#Bobbity is parrot
+
+[Bobbert: Bob! Humbug!{}] [How's it going, mister?{Line 2}]
+[Bobbity: How's it going, mister?{}] [Pretty well, thanks.{Line 3}]
+[Bobbity: Pretty well, thanks.{}] [Hey, wait a second...{Line 4}]
+[Bobbity: Hey, wait a-{}] [Can I speak to your owner?{Line 5}] [C'mere you rascal...{Line 13, Event BobApproachesBobbertAndBobbity}]
+[Bobbert: Whattaya think y'are, head honcho over here or somethin'?{}] [Please, I just need a boat.{Line 6}] [Yeah, I think I'm better than you, son.{Line 15}]
+[Bobbert: Naw. Pothead.{}] [But pleeeeease!{Line 7}]
+[Bobbity: But pleeeeease!{Line 8}]
+[Bobbert: Naw. You need some manners.{Line 9}]
+[Bobbert: But I'll tell ya what.{}] [What?{Line 10}]
+[Bobbity: What?{Line 11}]
+[Bobbert: I'll give ya a boat if you say please.{}] [Umm...please?{Line 12, Event TeardropReliefEmoteOnBob}]
+[Bobbert: Here ya go, ya sleazeball.{Event GivesBobBoat}] [Thanks!{End, Set TalkedToBobbertAndBobbity}]
+[Bobbert: Whattaya think y'are, some kind of bouncer or somethin'?{Line 14}]
+[Bobbert: Bobbity! Use Peck!{Event BobbityPecksBobToDeathAndBobRespawnsAtDock}]
+[Bobbert: Oh yeah, whippersnapper?{Line 16}]
+[Bobbert: It's my move now.{Line 17}]
+[Bobbert: Bobbity! Use Growl!{Event BobbitySquawksAndBobDiesAndRespawnsAtDock}]

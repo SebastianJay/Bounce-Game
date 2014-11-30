@@ -1,0 +1,34 @@
+#Scientist
+#---
+#For use on the roof of the tower in the city world
+
+[You, sir! You look like a smart felloW! {Line 2}]
+[There must be a lot of brains in that big head of yours. {Line 3}]
+[So clearly, you understand that we must be on the forefront of technology! {}][What are you talking about? {Line 4}][How did you get up here? {Line 8}]
+[Teleportation, my dear head! Teleportation! {Line 5}]
+[It is the key to the future, and I have the lock! {Line 6}]
+[Er, or however that expression goes. {Line 7}]
+[And you, sir, have just made yourself one very lucky volunteer! {}][Wait wait wait, what??? {Line 10}][Did you teleport up here, then? {Line 13}]
+[That is inconsequential! {Line 9}]
+[More importantly, you have just made yourself one very lucky volunteer! {}][Volunteer for what? {Line 10}][No, seriously, how did you get up here? {Line 13}]
+[Well, it just so happens that I need someone to test my teleporter. {Line 11}]
+[And it just so happens that YOU arrived right as I needed one! {Line 12}]
+[So of course, YOU'LL be the one to test it, yes? {}][Yes. {Line 16}][No! {Line 19}]
+[Eh, I took the elevator up. {Line 14}]
+[Now, about your gracious volunteering...{}]
+[I'll just need you to step into this teleporter for me. {}][Okay.{Line 16}][No way!{Line 19}]
+[Excellent! Now, this won't hurt a bit. {Line 17}]
+[Although you may be a bit... discombobulated. {Line 18}]
+[And I can personally guarantee you won't lose any limbs! {End, Event ActivateTeleporter}]
+[...What? {Line 20}]
+[Well, I'll just activate my teleporter anyway. {Line 21}]
+[You might have second thoughts, after all. {Line 22}]
+[Besides, the only other way out of here is a long drop into a row of spikes. {End, Event ActivateTeleporter}]
+
+if TeleporterActive
+[Oh, I suppose I should have mentioned before...{Line 24}]
+[I don't actually know where the other teleporter is. {Line 25}]
+[I've been sending other teleporters through to find out, but... {Line 26}]
+[Tests have been... inconclusive. {Line 27}]
+[You probably won't end up in space or anything. {Line 28}]
+[Just don't worry about it too much. Good luck! {End}]

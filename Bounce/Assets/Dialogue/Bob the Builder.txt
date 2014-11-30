@@ -1,0 +1,9 @@
+#Bob the Builder
+#construction hat; hammer in mouth
+#For use in the Jungle Village of the Jungle-Beach-Water world
+
+[Hey there, mister.{}][My name's Bob.{Line 2}]
+[You see this hammer? I could bust your balls with it.{}][Not-uh.{Line 3}]
+[Yeah-huh.{}][I don't have any balls.{Line 4}]
+[Yeah you do, throwing my name around like that.{}][Wait, so you're Bob, too?{End}]
+

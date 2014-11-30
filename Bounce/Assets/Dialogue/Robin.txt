@@ -1,0 +1,26 @@
+#Robin
+#Head surrounded by outline of hood, perhaps a little of hood draping over forehead; bow and arrow diagonally behind head
+#For use in the Treetop Village of the Jungle-Beach-Water world
+
+[RAWWWWR!{}] [AHHH!{Line 2}]
+[GRRRR!{}] [OMIGOSH!{Line 3}]
+[State your name and purpose, voyager!{}] [Your head! Your head! What happened?{Line 4}]
+[Name and purpose! {Event BowAndArrowAimedAtBob}] [AHHHHHH!{Line 5}]
+[Calm down - it wasn't in my head.{Line 6}] 
+[It was on my back. Ah, the nuisances of 2D...{Line 7}]
+[Now, NAME AND PURPOSE!{}] [Phew!{Line 8, Event TeardropReliefEmoteOnBob}]
+[...{}] [I'm Bob. I've come to defeat Rob and regain my body{Line 9}]
+[Are you rolling in the dough, little Bob?{}] [I'm rolling on these...leaves?{Line 10}] 
+[?{}] [Stop being discombobulating!{Line 11}]
+[Watch your tongue if you want to keep it, you conniving ball of quips!{Line 12}]
+[Now are you a nabob or not?{}] [Bloody, balls, what are you talking about?{Line 13}] [Yes, I am a high-ranking Muslim who reports to my Mogul overlord.{Line 21}]
+[You posh trash!{Line 14}]
+[Of course you don't understand the dialect of your "social inferiors!"{}] [wait, wait, I get it now, Mr. Hood!{Line 15}]
+[?{}] [I'm not rich! I'm poor; look, no body!{Line 16}]
+[...{}] [I'm just trying to bounce that evil Rob!{Line 17}]
+[HAR HAR HAR! Your humor is ballistic!{Line 18}]
+[Just for that, I'll give you this bow.{Line 19, Event GivesBobBow}]
+[You're not exactly poorer than the rest of us, but it might come in handy.{Line 20}]
+[Well, maybe not handy...but you get what I mean.{End, set TalkedToRobin}]
+[I knew you were a wealthy little runt!{Line 22}]
+[You have the balls to rob the people of their wealth? {Event ShootsBobAndBobRespawnsAtBeginningOfTreetopVillage}]

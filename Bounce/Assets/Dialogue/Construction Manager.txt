@@ -1,0 +1,17 @@
+#Construction Manager
+#---
+#For use in the break room hub of the city world
+
+[Oh boy, we got another roller here. {Line 2}]
+[I'm the boss around here. {Line 3}]
+[Now, this tower is a HUGE project for us. {Line 4}]
+[So if you gotta go in there, don't mess it up, capisce?{}][You got it, boss. {Line 5}][Not a chance, bub! {Line 6}]
+[Good. Glad we're on the same page. {End}]
+[WHAAAAAT? That does it, you glorified tennis ball! {Line 7}]
+[You're not leaving this site on MY watch! {End, Event ManagerBlocks}]
+
+if ManagerIsBlocking
+[Nope! I'm not letting you through, you lost marble! {Line 9}]
+[Not unless you're ready to cooperate? {}][Fine. {Line 10}][Never! {Line 11}]
+[Hmph. 'Bout time. Be careful in there, you spare tire. {End, Event RemoveBlock}]
+[Well, then I'm never letting you through! {End}]
