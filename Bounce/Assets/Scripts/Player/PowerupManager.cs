@@ -67,6 +67,7 @@ public class PowerupManager : MonoBehaviour {
 			break;
 		case PowerupType.Spiderball:
 			this.GetComponent<Spiderball>().activated = false;
+			pbc.spiderball = false;
 			break;
 		}
 		currentPowerup = PowerupType.Normal;

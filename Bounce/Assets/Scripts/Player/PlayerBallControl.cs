@@ -352,6 +352,10 @@ public class PlayerBallControl : MonoBehaviour {
 					jumpDepressed = false;
 					outVelocity = outVelocity.normalized*originalMagnitude*depressedBounciness;
 				}
+				if (spiderball)
+				{
+					outVelocity = Vector2.zero;	//super sticky!
+				}
 
 				this.rigidbody2D.angularVelocity = outAngularVelocity;
 				this.rigidbody2D.velocity = outVelocity;

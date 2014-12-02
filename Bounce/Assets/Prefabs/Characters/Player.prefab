@@ -30,6 +30,7 @@ GameObject:
   - 114: {fileID: 11400002}
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400006}
+  - 114: {fileID: 11400008}
   m_Layer: 9
   m_Name: ball
   m_TagString: Player
@@ -44,7 +45,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 447.969757, y: 1.89502525, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400004}
@@ -121,6 +122,7 @@ MonoBehaviour:
   deformTime: .150000006
   isTalking: 0
   npcTalker: {fileID: 0}
+  spiderball: 0
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -149,6 +151,7 @@ MonoBehaviour:
   currentPowerup: 0
   superJumpBoost: 5000
   superJumpTime: 10
+  spiderballTime: 100
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -162,6 +165,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textMeshPrefab: {fileID: 400000, guid: 077a2eb49a093724190a114fe2ab5c87, type: 2}
   cursor: 0
+--- !u!114 &11400008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 617b895d8e79c4ce1957bb1a17c89b24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spiderballMoveForce: 400
+  maxPlayerGeneratedSpeed: 10
+  stickiness: 5
+  stickyTimeout: 10
+  dampingRatio: 1
+  activated: 0
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
