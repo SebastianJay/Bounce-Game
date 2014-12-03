@@ -5,6 +5,9 @@ using System.Collections;
 /// Script for a moving platform. As currently implemented, should be attached
 /// to an object with a TRIGGER collider attached as a child to the larger platform object
 /// with a NON-TRIGGER collider. The trigger goes on the top part of the platform.
+/// 
+/// Can also be used for moving things which are not meant to be platformed on..
+/// be sure to set moveParent to false then!!
 /// </summary>
 public class MovingPlatform : MonoBehaviour {
 	public Vector2 initialPoint;
