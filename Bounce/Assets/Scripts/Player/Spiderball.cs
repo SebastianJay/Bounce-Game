@@ -18,7 +18,8 @@ public class Spiderball : MonoBehaviour {
 
 	private float gravity; 
 	private bool jumpOnNextFrame = false;
-
+	private int collisionInst = 0;	//number of collisions in a frame
+	private ContactPoint2D otherCollide;
 
 	public Collision2D lastCollision = new Collision2D();
 
@@ -97,29 +98,40 @@ public class Spiderball : MonoBehaviour {
 		} else {
 			this.rigidbody2D.gravityScale = gravity;
 		}
+
+		collisionInst = 0;
 	}
 
 	void OnCollisionEnter2D(Collision2D collision) {
+		collisionInst++;
 		if (activated) {
-			lastCollision = collision;
-			if (joint == null && !isConnected) {
-				joint = gameObject.AddComponent("SpringJoint2D") as SpringJoint2D;
-				isConnected = true;
-				framesSinceDisconnected = 0;
-				
-				joint.distance = jointDistance;
+			float h = Input.GetAxis("Horizontal");
+			//Debug.Log (collision.contacts[0].normal + " " + collisionInst);
+			if (collisionInst == 1 || shouldShiftJoint(h, collision.contacts[0], otherCollide))
+			{
+				if (collisionInst == 1)
+					otherCollide = collision.contacts[0];
 
-				joint.anchor = new Vector2(0f,0f);
-				joint.connectedAnchor = collision.contacts[0].point;
-				joint.collideConnected = true;
-				joint.dampingRatio = dampingRatio;
-				joint.frequency = stickiness;
+				lastCollision = collision;
+				if (joint == null && !isConnected) {
+					joint = gameObject.AddComponent("SpringJoint2D") as SpringJoint2D;
+					isConnected = true;
+					framesSinceDisconnected = 0;
+					
+					joint.distance = jointDistance;
 
-			} else if (joint != null) {
-				joint.anchor = new Vector2(0f,0f);
-				joint.connectedAnchor = collision.contacts[0].point;
-				framesSinceDisconnected = 0;
+					joint.anchor = new Vector2(0f,0f);
+					joint.connectedAnchor = collision.contacts[0].point;
+					joint.collideConnected = true;
+					joint.dampingRatio = dampingRatio;
+					joint.frequency = stickiness;
 
+				} else if (joint != null) {
+					joint.anchor = new Vector2(0f,0f);
+					joint.connectedAnchor = collision.contacts[0].point;
+					framesSinceDisconnected = 0;
+
+				}
 			}
 
 		} else {
@@ -131,26 +143,36 @@ public class Spiderball : MonoBehaviour {
 	}
 
 	void OnCollisionStay2D(Collision2D collision) {
-		lastCollision = collision;
-		if (activated && joint != null) {
-			joint.anchor = new Vector2(0f,0f);
-			joint.connectedAnchor = collision.contacts[0].point;
-			framesSinceDisconnected = 0;
-			
-		} else if (joint == null && activated) {
-			joint = gameObject.AddComponent("SpringJoint2D") as SpringJoint2D;
-			isConnected = true;
-			framesSinceDisconnected = 0;
-			
-			joint.distance = jointDistance;
-			
-			joint.anchor = new Vector2(0f,0f);
-			joint.connectedAnchor = collision.contacts[0].point;
-			joint.collideConnected = true;
-			joint.dampingRatio = dampingRatio;
-			joint.frequency = stickiness;
-		} else  {
-			Destroy (joint);
+		collisionInst++;
+		float h = Input.GetAxis("Horizontal");
+		//Debug.Log (collision.contacts[0].normal + " " + collisionInst);
+
+		if (collisionInst == 1 || shouldShiftJoint(h, collision.contacts[0], otherCollide))
+		{
+			if (collisionInst == 1)
+				otherCollide = collision.contacts[0];
+
+			lastCollision = collision;
+			if (activated && joint != null) {
+				joint.anchor = new Vector2(0f,0f);
+				joint.connectedAnchor = collision.contacts[0].point;
+				framesSinceDisconnected = 0;
+				
+			} else if (joint == null && activated) {
+				joint = gameObject.AddComponent("SpringJoint2D") as SpringJoint2D;
+				isConnected = true;
+				framesSinceDisconnected = 0;
+				
+				joint.distance = jointDistance;
+				
+				joint.anchor = new Vector2(0f,0f);
+				joint.connectedAnchor = collision.contacts[0].point;
+				joint.collideConnected = true;
+				joint.dampingRatio = dampingRatio;
+				joint.frequency = stickiness;
+			} else  {
+				Destroy (joint);
+			}
 		}
 		if (joint != null)
 			Debug.DrawLine(new Vector3(joint.connectedAnchor.x, joint.connectedAnchor.y, 0f), transform.position, Color.green);
@@ -162,4 +184,20 @@ public class Spiderball : MonoBehaviour {
 
 	}
 
+	// Used when two collision events fire on the same frame (haven't tested > 2)
+	//  determines whether this contact is the desirable one, based on player movement
+	// h - direction of horizontal input (from Input.GetAxis)
+	// contact - the collision point to test
+	// other - the other collision point detected in the same frame
+	bool shouldShiftJoint(float h, ContactPoint2D contact, ContactPoint2D other)
+	{
+		return (h > 0 && ((contact.point.x > transform.position.x && other.normal.y > 0) ||
+		              	  (contact.point.x < transform.position.x && other.normal.y < 0) ||
+		                  (contact.point.y < transform.position.y && other.normal.x > 0) ||
+		                  (contact.point.y > transform.position.y && other.normal.x < 0)))
+			|| (h < 0 && ((contact.point.x < transform.position.x && other.normal.y > 0) ||
+			              (contact.point.x > transform.position.x && other.normal.y < 0) ||
+			              (contact.point.y > transform.position.y && other.normal.x > 0) ||
+			              (contact.point.y < transform.position.y && other.normal.x < 0)));
+	}
 }
