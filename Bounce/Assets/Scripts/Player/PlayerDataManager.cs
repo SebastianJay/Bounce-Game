@@ -8,6 +8,7 @@ public class PlayerDataManager : MonoBehaviour {
 	public int lastLevel = 0;
 	public bool debugNoLoad = false;
 	public bool debugInitRespawn = true;
+	public bool debugInitCamera = true;
 	public Dictionary<int,List<int>> previousCheckpoints = new Dictionary<int,List<int>>();
 	public Inventory inventory = new Inventory();
 	public HashSet<string> gameConstants = new HashSet<string>();
@@ -20,6 +21,17 @@ public class PlayerDataManager : MonoBehaviour {
 	void Start () {
 		if (!debugNoLoad)
 			LoadCurrentSave ();
+		if (debugInitCamera)
+		{
+			GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
+			CameraFollowConfig cfc = new CameraFollowConfig();
+			cfc.minXAndY = new Vector2(-1000f, -1000f);
+			cfc.maxXAndY = new Vector2(1000f, 1000f);
+			cfc.isLocked = false;
+			cfc.lockedOrthoSize = 7f;
+			cfc.position = new Vector3(this.transform.position.x, this.transform.position.y, -10f);
+			cam.GetComponent<CameraFollow>().LoadConfig(cfc);
+		}
 		if (debugInitRespawn)
 		{
 			Death.respawn = new Vector2(transform.position.x, transform.position.y);
@@ -50,7 +62,7 @@ public class PlayerDataManager : MonoBehaviour {
 			lastCheckpoint = myData.lastCheckpoint;
 			
 			Vector3 myPos = Vector3.zero;
-			Checkpoint.checkpointTable.TryGetValue(lastCheckpoint,out myPos);
+			Checkpoint.posCheckTable.TryGetValue(lastCheckpoint,out myPos);
 
 			transform.position = myPos;
 			

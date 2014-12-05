@@ -5,17 +5,20 @@ public class Checkpoint : MonoBehaviour {
 
 	public int checkPointID = 0;
 
-	public static Dictionary<int,Vector3> checkpointTable = new Dictionary<int,Vector3>();
-	
+	public static Dictionary<int, Vector3> posCheckTable = new Dictionary<int, Vector3>();
+	public static Dictionary<int, CameraFollowConfig> camCheckTable = new Dictionary<int,CameraFollowConfig>();
 
 	void Awake (){
-		if (!checkpointTable.ContainsKey (checkPointID)) {
-			checkpointTable.Add (checkPointID, transform.position);
+		if (!posCheckTable.ContainsKey (checkPointID)) {
+			posCheckTable.Add (checkPointID, transform.position);
 		}
 	}
 	
 	void OnTriggerEnter2D(Collider2D other) {
 		Debug.Log ("Triggered");
+		if (!camCheckTable.ContainsKey(checkPointID) && GameObject.FindGameObjectWithTag("MainCamera") != null) {
+			camCheckTable.Add (checkPointID, GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>().GetConfig());
+		}
 		if (other.gameObject.GetComponent<PlayerDataManager> () != null) 
 		{
 			PlayerDataManager m = other.GetComponent<PlayerDataManager>();

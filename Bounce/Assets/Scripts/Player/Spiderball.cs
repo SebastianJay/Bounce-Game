@@ -13,33 +13,29 @@ public class Spiderball : MonoBehaviour {
 									//not sure why multiple jumps occur, but this'll be a stop-gap
 	private float jumpTimer = 0.3f;
 
-	public bool activated = false;
 	SpringJoint2D joint;
-
-	private float gravity; 
-	private bool jumpOnNextFrame = false;
-	private int collisionInst = 0;	//number of collisions in a frame
-	private ContactPoint2D otherCollide;
-
 	public Collision2D lastCollision = new Collision2D();
+
+	private float originalGravity; 	//player's starting gravity (it will be changed during spiderball process)
+	private PlayerBallControl pbc;	//reference for ease of access
+	private int collisionInst = 0;	//number of collisions in a frame
+	private ContactPoint2D otherCollide; //used for handling multi-collision cases
 
 	private bool isConnected = false;
 	private int framesSinceDisconnected = 0;
 
 	void Start () {
-		gravity = this.rigidbody2D.gravityScale;
-	}
-
-	void Update () {
+		originalGravity = this.rigidbody2D.gravityScale;
+		pbc = GetComponent<PlayerBallControl>();
 	}
 
 	void FixedUpdate () {
-
-		if (isConnected && activated) {
-			this.GetComponent<PlayerBallControl>().spiderball = true;
+		
+		//Lateral movement
+		if (isConnected) {
+			pbc.spiderball = true;
 
 			float h = Input.GetAxis ("Horizontal");
-				
 			if (h != 0) {
 				
 				Vector2 relativeRight = new Vector2 ();
@@ -54,114 +50,84 @@ public class Spiderball : MonoBehaviour {
 				//Debug.Log (currentSpeedRelativeRight);
 
 				if (currentSpeed < this.maxPlayerGeneratedSpeed) {
-					this.rigidbody2D.AddForce(relativeRight.normalized * h  * spiderballMoveForce);
-					//Debug.Log ("applied move force");
+					this.rigidbody2D.AddForce(relativeRight.normalized * Mathf.Sign(h)  * spiderballMoveForce);
 				}
 			}
 		}
 
-		if (activated) {
-			if (!isConnected) {
-				
-				if (++framesSinceDisconnected > stickyTimeout) {
-					if (joint != null) {
-						Destroy (joint);
-						framesSinceDisconnected = 0;
-						//Debug.Log ("Destroying joint here");
-					}
-					gameObject.GetComponent <PlayerBallControl>().spiderball = false;
-				}
-			} else if (activated) {
-				gameObject.GetComponent<PlayerBallControl>().spiderball = true;
-			}
-		}
-
-		if (activated)
-		{
-			jumpTimer += Time.deltaTime;
-			if (Input.GetButton ("Jump") && isConnected
-			    && jumpTimer >= jumpDelay) {
-				
-				Destroy (joint);
-				isConnected = false;
-				jumpOnNextFrame = true;
-				framesSinceDisconnected = 0;
-				jumpTimer = 0.0f;
-				//Debug.Log ("spider jump");
-			}
+		//Jumping
+		jumpTimer += Time.deltaTime;
+		if (Input.GetButton ("Jump") && isConnected
+		    && jumpTimer >= jumpDelay
+		    && !pbc.jumpedInCurrentFrame) {
 			
-			if (jumpOnNextFrame) {
-				this.rigidbody2D.AddForce(lastCollision.contacts[0].normal.normalized * this.GetComponent<PlayerBallControl>().jumpForce);
-				jumpOnNextFrame = false;
-			}
+			Destroy (joint);
+			//joint.enabled = false;
+			isConnected = false;
+			framesSinceDisconnected = 0;
+			jumpTimer = 0.0f;
+			
+			this.rigidbody2D.AddForce(lastCollision.contacts[0].normal.normalized * pbc.jumpForce);
 		}
-		
-		if (joint != null) {
+
+		// Detecting whether spiderball physics still apply
+		if (!isConnected) {
+			
+			if (++framesSinceDisconnected > stickyTimeout) {
+				if (joint != null) {
+					Destroy (joint);
+					//joint.enabled = false;
+					framesSinceDisconnected = 0;
+					//Debug.Log ("Destroying joint here");
+				}
+				pbc.spiderball = false;
+			}
+		} else {
+			pbc.spiderball = true;
+		}
+		if (joint != null && joint.enabled) {
 			this.rigidbody2D.gravityScale = 0;
 		} else {
-			this.rigidbody2D.gravityScale = gravity;
+			this.rigidbody2D.gravityScale = originalGravity;
 		}
 
+		//Reset the collision instance counter every frame
 		collisionInst = 0;
 	}
 
 	void OnCollisionEnter2D(Collision2D collision) {
-		collisionInst++;
-		if (activated) {
-			float h = Input.GetAxis("Horizontal");
-			//Debug.Log (collision.contacts[0].normal + " " + collisionInst);
-			if (collisionInst == 1 || shouldShiftJoint(h, collision.contacts[0], otherCollide))
-			{
-				if (collisionInst == 1)
-					otherCollide = collision.contacts[0];
-
-				lastCollision = collision;
-				if (joint == null && !isConnected) {
-					joint = gameObject.AddComponent("SpringJoint2D") as SpringJoint2D;
-					isConnected = true;
-					framesSinceDisconnected = 0;
-					
-					joint.distance = jointDistance;
-
-					joint.anchor = new Vector2(0f,0f);
-					joint.connectedAnchor = collision.contacts[0].point;
-					joint.collideConnected = true;
-					joint.dampingRatio = dampingRatio;
-					joint.frequency = stickiness;
-
-				} else if (joint != null) {
-					joint.anchor = new Vector2(0f,0f);
-					joint.connectedAnchor = collision.contacts[0].point;
-					framesSinceDisconnected = 0;
-
-				}
-			}
-
-		} else {
-			if (joint != null)
-				Destroy (joint);
-		}
-		if (joint != null)
-			Debug.DrawLine(new Vector3(joint.connectedAnchor.x, joint.connectedAnchor.y, 0f), transform.position, Color.red);
+		if (enabled)
+			SpiderCollisionCheck(collision);
 	}
 
 	void OnCollisionStay2D(Collision2D collision) {
+		if (enabled)
+			SpiderCollisionCheck(collision);
+	}
+
+	void OnCollisionExit2D(Collision2D collision) {
+		if (enabled)
+			lastCollision = collision;
+	}
+
+	void SpiderCollisionCheck(Collision2D collision)
+	{
+		if (collision.gameObject.GetComponent<OneWay>() != null
+		    || collision.gameObject.GetComponent<Spring>() != null)
+		{	//avoids the weird behavior of certain objects by ignoring them
+			//crawling on a spring or one-way platform should be undefined anyway
+			ForceQuit();
+			return;
+		}
 		collisionInst++;
 		float h = Input.GetAxis("Horizontal");
-		//Debug.Log (collision.contacts[0].normal + " " + collisionInst);
-
 		if (collisionInst == 1 || shouldShiftJoint(h, collision.contacts[0], otherCollide))
 		{
 			if (collisionInst == 1)
 				otherCollide = collision.contacts[0];
-
+			
 			lastCollision = collision;
-			if (activated && joint != null) {
-				joint.anchor = new Vector2(0f,0f);
-				joint.connectedAnchor = collision.contacts[0].point;
-				framesSinceDisconnected = 0;
-				
-			} else if (joint == null && activated) {
+			if (joint == null && !isConnected) {
 				joint = gameObject.AddComponent("SpringJoint2D") as SpringJoint2D;
 				isConnected = true;
 				framesSinceDisconnected = 0;
@@ -173,18 +139,16 @@ public class Spiderball : MonoBehaviour {
 				joint.collideConnected = true;
 				joint.dampingRatio = dampingRatio;
 				joint.frequency = stickiness;
-			} else  {
-				Destroy (joint);
+				
+			} else if (joint != null) {
+				joint.enabled = true;
+				joint.anchor = new Vector2(0f,0f);
+				joint.connectedAnchor = collision.contacts[0].point;
+				framesSinceDisconnected = 0;
 			}
 		}
 		if (joint != null)
-			Debug.DrawLine(new Vector3(joint.connectedAnchor.x, joint.connectedAnchor.y, 0f), transform.position, Color.green);
-	}
-
-	void OnCollisionExit2D(Collision2D collision) {
-		lastCollision = collision;
-		//isConnected = false;
-
+			Debug.DrawLine(new Vector3(joint.connectedAnchor.x, joint.connectedAnchor.y, 0f), transform.position, Color.red);
 	}
 
 	// Used when two collision events fire on the same frame (haven't tested > 2)
@@ -204,12 +168,13 @@ public class Spiderball : MonoBehaviour {
 			              (contact.point.y < transform.position.y && other.normal.x < 0)));
 	}
 
+	// Called when we want to disenable the spiderball mechanic
+	// to take care of resetting all the physical properties of the character
 	public void ForceQuit()
 	{
-		activated = false;
-		GetComponent<PlayerBallControl> ().spiderball = false;
+		GetComponent<PlayerBallControl>().spiderball = false;
 		isConnected = false;
-		rigidbody2D.gravityScale = gravity;
+		rigidbody2D.gravityScale = originalGravity;
 		if (joint != null)
 			Destroy (joint);
 	}

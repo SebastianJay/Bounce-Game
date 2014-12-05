@@ -16,6 +16,8 @@ public class PlayerBallControl : MonoBehaviour {
 	public float jumpForce = 2800f;
 	public float jumpDelay = 0.4f;	//time (in s) delay between jumps
 	private float jumpTimer = 0.4f;
+	[HideInInspector]
+	public bool jumpedInCurrentFrame = false;
 	//public float boostForgiveness = 0.75f; //Extra time in seconds the player has to get a boosted bounce
 	//private float timeSinceLeft = 0.0f;
 	//private float timeSinceRight = 0.0f;
@@ -220,7 +222,10 @@ public class PlayerBallControl : MonoBehaviour {
 			this.rigidbody2D.AddForce(Vector2.up * jumpForce);
 			jumpTimer = 0.0f;
 			hasContact = false;
+			jumpedInCurrentFrame = true;
 		}
+		else
+			jumpedInCurrentFrame = false;
 	}
 
 	private bool jumpBoosted = false;

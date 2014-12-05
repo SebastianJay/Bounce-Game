@@ -3,6 +3,7 @@ using System.Collections;
 
 public struct CameraFollowConfig
 {
+	public Vector3 position;
 	public Vector2 minXAndY;
 	public Vector2 maxXAndY;
 	public bool isLocked;
@@ -127,6 +128,7 @@ public class CameraFollow : MonoBehaviour
 	public CameraFollowConfig GetConfig()
 	{
 		CameraFollowConfig retVal;
+		retVal.position = transform.position;
 		retVal.minXAndY = minXAndY;
 		retVal.maxXAndY = maxXAndY;
 		retVal.isLocked = isLocked;
@@ -137,6 +139,7 @@ public class CameraFollow : MonoBehaviour
 	
 	public void LoadConfig(CameraFollowConfig state)
 	{
+		transform.position = state.position;
 		minXAndY = state.minXAndY;
 		maxXAndY = state.maxXAndY;
 		isLocked = state.isLocked;

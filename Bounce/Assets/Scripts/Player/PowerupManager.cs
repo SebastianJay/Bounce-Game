@@ -38,7 +38,7 @@ public class PowerupManager : MonoBehaviour {
 			break;
 		
 		case PowerupType.Spiderball:
-			this.GetComponent<Spiderball>().activated = true;
+			this.GetComponent<Spiderball>().enabled = true;
 			powerupTime = spiderballTime;
 			break;
 		}
@@ -67,8 +67,8 @@ public class PowerupManager : MonoBehaviour {
 			break;
 		case PowerupType.Spiderball:
 			this.GetComponent<Spiderball>().ForceQuit();
+			this.GetComponent<Spiderball>().enabled = false;
 			//this.GetComponent<Spiderball>().activated = false;
-			//this.GetComponent<Spiderball>().enabled = false;
 			//pbc.spiderball = false;
 			break;
 		}

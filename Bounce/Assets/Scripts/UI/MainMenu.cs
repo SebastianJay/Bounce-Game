@@ -135,7 +135,14 @@ public class MainMenu : MonoBehaviour
 						GUI.Label (new Rect (10, i*50+j*50+10, scrollViewWidth-10, 50),"Checkpoint "+entry.Value[j-1]);
 						if(GUI.Button (new Rect(150,i*50+j*50+10,100,50),"Teleport"))
 						{
-
+							GameObject player = GameObject.FindGameObjectWithTag("Player");
+							player.transform.position = Checkpoint.posCheckTable[entry.Value[j-1]];
+							player.rigidbody2D.velocity = Vector2.zero;
+							if (Checkpoint.camCheckTable.ContainsKey(entry.Value[j-1]))
+							{
+								GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
+								cam.GetComponent<CameraFollow>().LoadConfig(Checkpoint.camCheckTable[entry.Value[j-1]]);
+							}
 						}
 					}
 					i+=entry.Value.Count;
