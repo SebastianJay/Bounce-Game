@@ -66,7 +66,7 @@ public class Death : MonoBehaviour {
 		player.GetComponent<PowerupManager>().EndPowerup();
 		// do other possible resets!
 
-		camObj.GetComponent<CameraFollow>().loadConfig(camConfig);
+		camObj.GetComponent<CameraFollow>().LoadConfig(camConfig);
 
 		locked = false;
 	}
@@ -82,7 +82,7 @@ public class Death : MonoBehaviour {
 		escort.rigidbody2D.velocity = Vector2.zero;
 		escort.GetComponent<FollowAI>().enabled = false;
 
-		camObj.GetComponent<CameraFollow>().loadConfig(camConfig);
+		camObj.GetComponent<CameraFollow>().LoadConfig(camConfig);
 
 		locked = false;
 	}

@@ -7,7 +7,7 @@ public class RespawnPoint : MonoBehaviour {
 		if (col.tag == "Player") {
 			Death.respawn = this.gameObject.transform.position;
 			Death.camConfig = GameObject.FindGameObjectWithTag("MainCamera").
-				GetComponent<CameraFollow>().getConfig();
+				GetComponent<CameraFollow>().GetConfig();
 		}
 	}
 }

@@ -124,7 +124,7 @@ public class CameraFollow : MonoBehaviour
 			transform.position = new Vector3(lockedPosition.x, lockedPosition.y, transform.position.z);
 	}
 
-	public CameraFollowConfig getConfig()
+	public CameraFollowConfig GetConfig()
 	{
 		CameraFollowConfig retVal;
 		retVal.minXAndY = minXAndY;
@@ -135,7 +135,7 @@ public class CameraFollow : MonoBehaviour
 		return retVal;
 	}
 	
-	public void loadConfig(CameraFollowConfig state)
+	public void LoadConfig(CameraFollowConfig state)
 	{
 		minXAndY = state.minXAndY;
 		maxXAndY = state.maxXAndY;

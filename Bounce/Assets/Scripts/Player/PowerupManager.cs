@@ -38,7 +38,7 @@ public class PowerupManager : MonoBehaviour {
 			break;
 		
 		case PowerupType.Spiderball:
-			player.GetComponent<Spiderball>().activated = true;
+			this.GetComponent<Spiderball>().activated = true;
 			powerupTime = spiderballTime;
 			break;
 		}
@@ -66,8 +66,10 @@ public class PowerupManager : MonoBehaviour {
 			pbc.jumpForce = normalJumpForce;
 			break;
 		case PowerupType.Spiderball:
-			this.GetComponent<Spiderball>().activated = false;
-			pbc.spiderball = false;
+			this.GetComponent<Spiderball>().ForceQuit();
+			//this.GetComponent<Spiderball>().activated = false;
+			//this.GetComponent<Spiderball>().enabled = false;
+			//pbc.spiderball = false;
 			break;
 		}
 		currentPowerup = PowerupType.Normal;

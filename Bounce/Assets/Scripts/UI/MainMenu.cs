@@ -125,7 +125,7 @@ public class MainMenu : MonoBehaviour
 
 				scrollPosition2 = GUI.BeginScrollView (new Rect (Screen.width / 2 - menuWidth / 2 + 10, Screen.height / 2 - menuHeight / 2 + 15 + tabButtonHeight, scrollViewWidth, scrollViewHeight), scrollPosition2, new Rect (0, 0, scrollViewWidth - 20, scrollViewHeight * 4));
 				Dictionary<int,List<int>> previousCheckpoints = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDataManager>().previousCheckpoints;
-				Debug.Log (previousCheckpoints.Count);
+				//Debug.Log (previousCheckpoints.Count);
 				int i = 0;
 				foreach(KeyValuePair<int, List<int>> entry in previousCheckpoints)
 				{

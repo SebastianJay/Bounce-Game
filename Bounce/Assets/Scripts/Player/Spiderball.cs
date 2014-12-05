@@ -75,22 +75,25 @@ public class Spiderball : MonoBehaviour {
 				gameObject.GetComponent<PlayerBallControl>().spiderball = true;
 			}
 		}
-		
-		jumpTimer += Time.deltaTime;
-		if (Input.GetButton ("Jump") && isConnected
-		    && jumpTimer >= jumpDelay) {
+
+		if (activated)
+		{
+			jumpTimer += Time.deltaTime;
+			if (Input.GetButton ("Jump") && isConnected
+			    && jumpTimer >= jumpDelay) {
+				
+				Destroy (joint);
+				isConnected = false;
+				jumpOnNextFrame = true;
+				framesSinceDisconnected = 0;
+				jumpTimer = 0.0f;
+				//Debug.Log ("spider jump");
+			}
 			
-			Destroy (joint);
-			isConnected = false;
-			jumpOnNextFrame = true;
-			framesSinceDisconnected = 0;
-			jumpTimer = 0.0f;
-			//Debug.Log ("spider jump");
-		}
-		
-		if (jumpOnNextFrame) {
-			this.rigidbody2D.AddForce(lastCollision.contacts[0].normal.normalized * this.GetComponent<PlayerBallControl>().jumpForce);
-			jumpOnNextFrame = false;
+			if (jumpOnNextFrame) {
+				this.rigidbody2D.AddForce(lastCollision.contacts[0].normal.normalized * this.GetComponent<PlayerBallControl>().jumpForce);
+				jumpOnNextFrame = false;
+			}
 		}
 		
 		if (joint != null) {
@@ -199,5 +202,15 @@ public class Spiderball : MonoBehaviour {
 			              (contact.point.x > transform.position.x && other.normal.y < 0) ||
 			              (contact.point.y > transform.position.y && other.normal.x > 0) ||
 			              (contact.point.y < transform.position.y && other.normal.x < 0)));
+	}
+
+	public void ForceQuit()
+	{
+		activated = false;
+		GetComponent<PlayerBallControl> ().spiderball = false;
+		isConnected = false;
+		rigidbody2D.gravityScale = gravity;
+		if (joint != null)
+			Destroy (joint);
 	}
 }
