@@ -9,20 +9,19 @@ public class ScreenFading : MonoBehaviour {
 	public float fadeSpeed = 4.0f;
 	public bool fadeOutOnStart = false;
 
+	public bool fadeMusic = false;
+	public GameObject musicObj = null;
+
 	private bool fadingIn = false;
 	private bool fadingOut = false;
 	private float inThreshold = 0.95f;
 	private float outThreshold = 0.05f;
 	private Action transitionFunc = null;
-
-	private bool fadeMusic = false;
-	private GameObject musicObj = null;
-
+	
 	void Awake()
 	{
 		guiTexture.pixelInset = new Rect (0f, 0f, Screen.width, Screen.height);
 		guiTexture.color = Color.clear;
-		musicObj = GameObject.FindGameObjectWithTag ("background");
 		if (fadeOutOnStart)
 		{
 			fadeMusic = true;

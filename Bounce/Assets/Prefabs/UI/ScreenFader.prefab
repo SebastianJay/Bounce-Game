@@ -43,6 +43,8 @@ MonoBehaviour:
   opaqueColor: {r: 0, g: 0, b: 0, a: 1}
   fadeSpeed: 4
   fadeOutOnStart: 0
+  fadeMusic: 1
+  musicObj: {fileID: 0}
 --- !u!131 &13100000
 GUITexture:
   m_ObjectHideFlags: 1
