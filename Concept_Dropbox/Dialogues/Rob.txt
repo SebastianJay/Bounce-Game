@@ -1,0 +1,39 @@
+#Rob
+#---
+#For use in the last frame of the city world, space level
+
+[Well, well, well. If it isn't... {Line 2}]
+[Wait, what was your name again? Were you Roberto? {}][No. {Line 3}][Si. {Line 4}]
+[Well, whatever. You're a head, so I figure you must be a Rob or a Bob or something. {Line 5}]
+[Really? Wow, I could have sworn you were Bob. Oh well. {Line 5}]
+[In any case, you may have noticed your sad little leg sitting on that platform over there! {}][Yeah? {Line 8}][What leg? {Line 6}]
+[...Seriously? Is my role as a villain going to be completely ignored? {Line 7}]
+[I feel so underappreciated. {Line 8}]
+[Well, anyway, your leg is over there! All alone! {Line 9}]
+[I totally didn't lose it or anything. {Line 10}]
+[It's not like I got it stuck and now can't get it back. {Line 11}]
+[Ahem... this is a bit awkward, actually. {Line 12}]
+[I didn't exactly expect you to follow me into space {Line 13}]
+[I mean, villain's code of conduct demands that I let you have a go at your leg, so... {Line 14}]
+[And frankly I'm not getting it back anyway. {Line 15}]
+[So, have fun leaping through space! Ahahahaha! {End, set TalkedToRob}]
+
+if TalkedToRob
+[Well? Well? {Line 17}]
+[You gonna go for it? I'm excited to watch you fall! {End}]
+
+if FallenOffEdge
+#Make it so that this variable can't be true until after speaking to Rob, so that he doesn't default to this dialogue if the player rolls off the edge first and then talks to him
+[Hahahahahaha! {Line 19}]
+[Hahh.... okay that was funny for like 4 seconds. {Line 20}]
+[I could make this a bit more interesting, I bet. {Line 21}]
+[Hmm... how to make this more fun... {Line 22}]
+[I GOT IT! *snaps* {Line 23, Event GirdersInSpace}]
+[HAHAHAHA! This is SOOO much better! {Line 24}]
+[Have fun with my... dun dun DUNNNN! {Line 25}]
+[SPIKES FOR DAAAAAYS!!! {End, set TalkedToRob2}]
+
+if TalkedToRob2
+[This is gonna be great fun to watch, I can tell. {Line 27}]
+[Hmm? No, I told you, I didn't get it stuck there! {Line 28}]
+[I totally didn't... {End}]

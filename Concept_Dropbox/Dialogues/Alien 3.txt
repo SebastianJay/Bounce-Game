@@ -1,0 +1,17 @@
+#Alien 3
+#---
+#For use in the meteor field etc etc
+
+[Sgniteerg, Gnilhtrae! {}][Sgniteerg! {Line 2}][What? {Line 4}]
+[Ha, tahw a lufrednow dneirf! {Line 3}]
+[Ew dluohs yalp niaga emitemos! {End, set ISpokeAlien}]
+[Oh... I thought you might know my language. {Line 5}]
+[Never mind then... {End, set ISpokeHuman}]
+
+if ISpokeAlien
+[Sgniteerg, dneirf! {Line 7}]
+[Ti si os doog ot ees uoy niaga! {End}]
+
+if ISpokeHuman
+[Sgnit... I mean, greetings, Earthling. {Line 9}]
+[Are you having nuf? I mean, fun? {End}]

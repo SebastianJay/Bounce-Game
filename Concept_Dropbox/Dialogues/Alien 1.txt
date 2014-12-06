@@ -1,0 +1,11 @@
+#Alien 1
+#---
+#For use in the first frame of the space field, in the city world
+
+[Greetings, Earthling! {Line 2}]
+[Did you come to play in the teleporter field? {}][Yes {Line 3}][No {Line 5}]
+[I knew it! {Line 4}]
+[The teleporter field is so much fun! {End}]
+[Really? {Line 6}]
+[But the teleporter field is just so much fun. {Line 7}]
+[Maybe you're scared of getting lost in space? {End}]

@@ -1,0 +1,10 @@
+#Alien 2
+#---
+#For use in the meteor field of the space level of the city world
+
+choose 1, 5
+[Greetings, Earthling! {End}]
+[I love playing in the teleporter field! {End}]
+[I lost some trophies somewhere. I wonder where they are. {End}]
+[I wonder where my friend is. I'd like to play more. {End}]
+[I saw a bad guy go by earlier. I bet he's causing trouble! {End}]

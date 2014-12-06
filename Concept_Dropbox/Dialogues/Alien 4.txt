@@ -1,0 +1,10 @@
+#Alien 4
+#---
+#For use in the meteor field, he likes trophies
+
+[Lookit, lookit! {Line 2}]
+[Do you see all those trophies out there? {Line 3}]
+[I wish I could get them... {Line 4}]
+[Or I wish you could get them. {Line 5}]
+[That would be pretty cool! {Line 6}]
+[I wish I could help you get them. Check all the teleporters! {End}]
