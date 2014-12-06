@@ -3,6 +3,8 @@ using System.Collections;
 
 public class PlayerBallControl : MonoBehaviour {
 
+	public bool playerLock =false;
+
 	// Physics for lateral movement
 	public float moveForce = 75f;			// Amount of force for translational movement
 	public float moveTorque = 100f; 		// Amount of force for rotation
@@ -263,11 +265,15 @@ public class PlayerBallControl : MonoBehaviour {
 	*/
 
 	void FixedUpdate () {
-
 		if (grounded)
-			wasGrounded = true;
-
+						wasGrounded = true;
 		float h = Input.GetAxis ("Horizontal");
+
+		if (playerLock == true) {
+						h = 0;
+				jumpTimer = 0;
+				}
+		//locks the player
 		if(dState == DeformationState.Normal)
 		{
 			ListenForJump ();

@@ -11,6 +11,7 @@ public class Interactable : MonoBehaviour {
 	private GameObject playerObj;
 	private GameObject NPC;
 	private bool inConveration = false;
+	
 
 	// Use this for initialization
 	void Awake () {
@@ -21,6 +22,7 @@ public class Interactable : MonoBehaviour {
 	void Update () {
 		if (Input.GetButtonDown ("Action") && inTrigger)
 		{
+			PlayerBallControl bScript = playerObj.GetComponent<PlayerBallControl>();
 			if (!inConveration)
 				inConveration = true;
 			List<string> lines = dialogue.Step(playerObj.GetComponent<DialogueResponses>().cursor);
@@ -36,6 +38,10 @@ public class Interactable : MonoBehaviour {
 			{
 				gText.text = "";
 				inConveration = false;
+				bScript.playerLock = false;
+			}
+			if (inConveration == true) {
+				bScript.playerLock = true;
 			}
 		}
 		else if (Input.GetButtonDown("Jump") && inConveration)
@@ -75,15 +81,26 @@ public class Interactable : MonoBehaviour {
 				index += 1;
 			}
 		}
-		/*
-		float BoxX, BoxY;
-		BoxX = NPC.transform.GetChild (0).localScale.x;
-		BoxY = NPC.transform.GetChild (0).localScale.y;
-		Texture2D texture = new Texture2D(BoxX, BoxY);
-		texture.SetPixel(0,0,Color.white);
+
+		/*float BoxX, BoxY;
+		BoxX = NPC.transform.GetChild (0).transform.position.x;
+		int BoxX1 = (int) BoxX;
+		BoxY = NPC.transform.GetChild (0).transform.position.y;
+		int BoxY1 = (int)BoxY;
+		Texture2D texture = new Texture2D(BoxX1, BoxY1);
+		int y = 0;
+		while (y < texture.height) {
+			int x = 0;
+			while (x < texture.width) {
+				Color color = Color.white;
+				texture.SetPixel(x, y, color);
+				++x;
+			}
+			++y;
+		}
 		texture.Apply();
 		GUI.skin.box.normal.background = texture;
-		GUI.Box(NPC.transform.GetChild(0).transform.localPosition, GUIContent.none);
+		//GUI.Box(, GUIContent.none);
 		*/
 		}
 	
