@@ -6,6 +6,7 @@ public class Spawner : MonoBehaviour {
 	public GameObject obj;			//the object to clone
 	public bool constantFrequency = true;	
 	public float frequency = 10f;	//if constantFrequency, how often the object is spawned
+									//otherwise, the respawn time of a pick-up
 	public bool spawnImmediately = true;
 
 	private bool invalidated = false;	//if not constantFrequency, used to let other objects call spawner
@@ -16,6 +17,7 @@ public class Spawner : MonoBehaviour {
 		if (spawnImmediately)
 		{
 			GameObject clone = Instantiate(obj, transform.position, transform.rotation) as GameObject;
+			clone.GetComponent<PowerupPickUp>().respawnTime = frequency;
 			clone.transform.parent = transform;
 		}
 	}
@@ -38,6 +40,7 @@ public class Spawner : MonoBehaviour {
 			{
 				GameObject clone = Instantiate(obj, transform.position, transform.rotation) as GameObject;
 				clone.transform.parent = transform;
+				clone.GetComponent<PowerupPickUp>().respawnTime = frequency;
 				invalidated = false;
 				timer = 0f;
 			}
