@@ -67,8 +67,6 @@ public class PowerupManager : MonoBehaviour {
 			if (powerupTimer >= powerupTime)
 			{
 				EndPowerup();
-				if (timeObj != null)
-					timeObj.GetComponent<GUIText>().text = "";
 			}
 		}
 		//Gliding effect
@@ -101,5 +99,8 @@ public class PowerupManager : MonoBehaviour {
 			break;
 		}
 		currentPowerup = PowerupType.Normal;
+
+		if (timeObj != null)
+			timeObj.GetComponent<GUIText>().text = "";
 	}
 }
