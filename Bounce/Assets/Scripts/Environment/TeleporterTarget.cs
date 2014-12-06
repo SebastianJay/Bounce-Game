@@ -8,7 +8,7 @@ public class TeleporterTarget : MonoBehaviour {
 	void Awake()
 	{
 		if (!LevelTeleporter.teleporterTargetTable.ContainsKey (targetID)) {
-						LevelTeleporter.teleporterTargetTable.Add (targetID, this.transform.position);
-				}
+			LevelTeleporter.teleporterTargetTable.Add (targetID, this.transform.position);
+		}
 	}
 }

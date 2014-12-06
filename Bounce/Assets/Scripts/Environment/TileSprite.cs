@@ -56,7 +56,8 @@ public class TileSprite : MonoBehaviour {
 		childPrefab.transform.localScale = desiredScale;
 		childSprite.sprite = sprite.sprite;
 		childSprite.sortingLayerName = sprite.sortingLayerName;
-		
+
+		Debug.Log (tileX + " " + tileY);
 		// Loop through and spit out repeated tiles
 		GameObject child;
 		for (int i = 0; i < tileX; i++) 
