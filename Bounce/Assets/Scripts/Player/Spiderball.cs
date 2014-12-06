@@ -36,7 +36,7 @@ public class Spiderball : MonoBehaviour {
 			pbc.spiderball = true;
 
 			float h = Input.GetAxis ("Horizontal");
-			if (h != 0) {
+			if (h != 0 && !pbc.playerLock) {
 				
 				Vector2 relativeRight = new Vector2 ();
 				relativeRight.x = lastCollision.contacts[0].normal.y;
@@ -59,7 +59,8 @@ public class Spiderball : MonoBehaviour {
 		jumpTimer += Time.deltaTime;
 		if (Input.GetButton ("Jump") && isConnected
 		    && jumpTimer >= jumpDelay
-		    && !pbc.jumpedInCurrentFrame) {
+		    && !pbc.jumpedInCurrentFrame
+		    && !pbc.playerLock) {
 			
 			Destroy (joint);
 			//joint.enabled = false;

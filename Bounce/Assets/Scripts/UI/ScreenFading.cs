@@ -70,6 +70,8 @@ public class ScreenFading : MonoBehaviour {
 
 	public void Transition(Action transitionAction, bool music = false)
 	{
+		if (fadingIn && transitionFunc != null)	//if we are already fading perform the old transition function first..
+			transitionFunc ();
 		fadingIn = true;
 		fadeMusic = music;
 		transitionFunc = transitionAction;

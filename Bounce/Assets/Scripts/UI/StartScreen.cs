@@ -16,7 +16,7 @@ public class StartScreen : MonoBehaviour {
 
 		if (GUI.Button (new Rect (Screen.width * 0.4f, Screen.height * 0.3f, Screen.width * 0.2f, Screen.height * 0.1f), "New Game")) {
 			if (screenFadeObj != null)
-				screenFadeObj.GetComponent<ScreenFading>().Transition(StartTransition);
+				screenFadeObj.GetComponent<ScreenFading>().Transition(StartTransition, true);
 			else
 				StartTransition();
 		}

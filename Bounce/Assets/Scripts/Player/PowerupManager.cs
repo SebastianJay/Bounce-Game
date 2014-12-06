@@ -17,11 +17,14 @@ public class PowerupManager : MonoBehaviour {
 	private float powerupTime = 1f;
 	private float normalJumpForce;
 
+	private GameObject timeObj;
+
 	void Start()
 	{
 		//player = GameObject.FindGameObjectWithTag ("Player");
 		player = gameObject;
 		normalJumpForce = this.GetComponent<PlayerBallControl> ().jumpForce;
+		timeObj = GameObject.FindGameObjectWithTag("PowerupTimer");
 	}
 
 	public void ActivatePowerup(PowerupType type)
@@ -57,9 +60,15 @@ public class PowerupManager : MonoBehaviour {
 		if (currentPowerup != PowerupType.Normal)
 		{
 			powerupTimer += Time.deltaTime;
+			if (timeObj != null)
+				timeObj.GetComponent<GUIText>().text = 
+					("Time: " + string.Format("{0:0.##}", powerupTime - powerupTimer));
+
 			if (powerupTimer >= powerupTime)
 			{
 				EndPowerup();
+				if (timeObj != null)
+					timeObj.GetComponent<GUIText>().text = "";
 			}
 		}
 		//Gliding effect

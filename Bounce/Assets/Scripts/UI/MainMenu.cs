@@ -138,6 +138,7 @@ public class MainMenu : MonoBehaviour
 							GameObject player = GameObject.FindGameObjectWithTag("Player");
 							player.transform.position = Checkpoint.posCheckTable[entry.Value[j-1]];
 							player.rigidbody2D.velocity = Vector2.zero;
+							player.rigidbody2D.angularVelocity = 0f;
 							if (Checkpoint.camCheckTable.ContainsKey(entry.Value[j-1]))
 							{
 								GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");

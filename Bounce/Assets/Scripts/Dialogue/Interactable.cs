@@ -32,6 +32,7 @@ public class Interactable : MonoBehaviour {
 				List<string> heroLines = lines.GetRange(1, lines.Count - 1);
 				playerObj.GetComponent<DialogueResponses>().SetResponses(heroLines);
 				playerObj.rigidbody2D.velocity = Vector2.zero;
+				playerObj.rigidbody2D.angularVelocity = 0f;
 				formatter ();
 			}
 			else
@@ -69,11 +70,13 @@ public class Interactable : MonoBehaviour {
 					gText.text = new string(carray);
 					//Best way to replace a single character in a string I could find
 
-					NPC.transform.GetChild(0).transform.localPosition = new Vector3(-0.733f, 0.911f, 0f);
+					if (NPC.transform.childCount > 0)
+						NPC.transform.GetChild(0).transform.localPosition = new Vector3(-0.733f, 0.911f, 0f);
 					//Resets to original posistion
 					Vector3 addY = new Vector3(0f, 1f);
 					//Decides how much to increase height of text
-					NPC.transform.GetChild(0).transform.localPosition += addY;
+					if (NPC.transform.childCount > 0)
+						NPC.transform.GetChild(0).transform.localPosition += addY;
 
 					index += 15;
 					//Prepares a new line to be added after another 15 characters

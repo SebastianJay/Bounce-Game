@@ -65,6 +65,7 @@ public class Death : MonoBehaviour {
 	{
 		player.transform.position = respawn;
 		player.rigidbody2D.velocity = Vector2.zero;
+		player.rigidbody2D.angularVelocity = 0f;
 		player.GetComponent<PowerupManager>().EndPowerup();
 		// do other possible resets!
 
