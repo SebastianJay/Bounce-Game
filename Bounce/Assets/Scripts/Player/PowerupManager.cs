@@ -9,11 +9,14 @@ public class PowerupManager : MonoBehaviour {
 	public float superJumpBoost = 3500f;	//new jump force
 	public float superJumpTime = 10f;	//in seconds
 	public float spiderballTime = 100f;	
+	public float glidingScale = .02f;
+	public float glidingTime = 15f;
 
 	private GameObject player;
 	private float powerupTimer = 0f;
 	private float powerupTime = 1f;
 	private float normalJumpForce;
+
 	void Start()
 	{
 		//player = GameObject.FindGameObjectWithTag ("Player");
@@ -41,6 +44,10 @@ public class PowerupManager : MonoBehaviour {
 			this.GetComponent<Spiderball>().enabled = true;
 			powerupTime = spiderballTime;
 			break;
+
+		case PowerupType.Gliding:
+			powerupTime = glidingTime;
+			break;
 		}
 		powerupTimer = 0f;
 	}
@@ -54,6 +61,15 @@ public class PowerupManager : MonoBehaviour {
 			{
 				EndPowerup();
 			}
+		}
+		//Gliding effect
+		if (currentPowerup == PowerupType.Gliding)
+		{
+			if (player.rigidbody2D.velocity.y < 0f)
+				player.rigidbody2D.gravityScale = glidingScale;
+			else if (player.rigidbody2D.velocity.y > 0f)
+				player.rigidbody2D.gravityScale = 1f;
+
 		}
 	}
 
@@ -70,6 +86,9 @@ public class PowerupManager : MonoBehaviour {
 			this.GetComponent<Spiderball>().enabled = false;
 			//this.GetComponent<Spiderball>().activated = false;
 			//pbc.spiderball = false;
+			break;
+		case PowerupType.Gliding:
+			player.rigidbody2D.gravityScale = 1f;
 			break;
 		}
 		currentPowerup = PowerupType.Normal;
