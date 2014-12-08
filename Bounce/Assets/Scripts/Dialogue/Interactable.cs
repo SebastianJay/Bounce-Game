@@ -6,25 +6,37 @@ public class Interactable : MonoBehaviour {
 	public TextAsset dialogueFile;
 	private Interaction dialogue;
 	public TextMesh gText;
+	public AudioClip talkNoise;
+	public float talkVolume = 1f;
 
 	private bool inTrigger = false;
 	private GameObject playerObj;
 	private GameObject NPC;
 	private bool inConveration = false;
-	
+  private AudioSource talkSrc;
 
 	// Use this for initialization
 	void Awake () {
 		dialogue = new Interaction (dialogueFile);
+		if (talkNoise != null)
+		{
+			talkSrc = gameObject.AddComponent<AudioSource>();
+			talkSrc.clip = talkNoise;
+			talkSrc.volume = talkVolume;
+		}
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetButtonDown ("Action") && inTrigger)
 		{
 			PlayerBallControl bScript = playerObj.GetComponent<PlayerBallControl>();
 			if (!inConveration)
+			{
 				inConveration = true;
+				if (talkSrc != null)
+					talkSrc.Play();
+			}
 			List<string> lines = dialogue.Step(playerObj.GetComponent<DialogueResponses>().cursor);
 			if(lines.Count > 0)
 			{
@@ -106,7 +118,7 @@ public class Interactable : MonoBehaviour {
 		//GUI.Box(, GUIContent.none);
 		*/
 		}
-	
+
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.tag == "Player") {
 			//animation appears to show you can talk
@@ -115,7 +127,7 @@ public class Interactable : MonoBehaviour {
 			NPC = this.gameObject;
 		}
 	}
-	
+
 	void OnTriggerExit2D(Collider2D other) {
 		if (other.tag == "Player") {
 			//animation disappears

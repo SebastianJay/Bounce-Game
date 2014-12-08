@@ -4,7 +4,7 @@ using System.Collections;
 public class Spawner : MonoBehaviour {
 
 	public GameObject obj;			//the object to clone
-	public bool constantFrequency = true;	
+	public bool constantFrequency = true;
 	public float frequency = 10f;	//if constantFrequency, how often the object is spawned
 									//otherwise, the respawn time of a pick-up
 	public bool spawnImmediately = true;
@@ -21,7 +21,7 @@ public class Spawner : MonoBehaviour {
 			clone.transform.parent = transform;
 		}
 	}
-	
+
 	void Update () {
 		if (constantFrequency)
 		{
@@ -32,7 +32,7 @@ public class Spawner : MonoBehaviour {
 				clone.transform.parent = transform;
 				timer = 0f;
 			}
-		}		
+		}
 		else if (invalidated)
 		{
 			timer += Time.deltaTime;

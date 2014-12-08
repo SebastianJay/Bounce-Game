@@ -30,14 +30,14 @@ public class Spiderball : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-		
+
 		//Lateral movement
 		if (isConnected) {
 			pbc.spiderball = true;
 
 			float h = Input.GetAxis ("Horizontal");
 			if (h != 0 && !pbc.playerLock) {
-				
+
 				Vector2 relativeRight = new Vector2 ();
 				relativeRight.x = lastCollision.contacts[0].normal.y;
 				relativeRight.y = -lastCollision.contacts[0].normal.x;
@@ -61,19 +61,19 @@ public class Spiderball : MonoBehaviour {
 		    && jumpTimer >= jumpDelay
 		    && !pbc.jumpedInCurrentFrame
 		    && !pbc.playerLock) {
-			
+
 			Destroy (joint);
 			//joint.enabled = false;
 			isConnected = false;
 			framesSinceDisconnected = 0;
 			jumpTimer = 0.0f;
-			
+
 			this.rigidbody2D.AddForce(lastCollision.contacts[0].normal.normalized * pbc.jumpForce);
 		}
 
 		// Detecting whether spiderball physics still apply
 		if (!isConnected) {
-			
+
 			if (++framesSinceDisconnected > stickyTimeout) {
 				if (joint != null) {
 					Destroy (joint);
@@ -126,21 +126,21 @@ public class Spiderball : MonoBehaviour {
 		{
 			if (collisionInst == 1)
 				otherCollide = collision.contacts[0];
-			
+
 			lastCollision = collision;
 			if (joint == null && !isConnected) {
 				joint = gameObject.AddComponent("SpringJoint2D") as SpringJoint2D;
 				isConnected = true;
 				framesSinceDisconnected = 0;
-				
+
 				joint.distance = jointDistance;
-				
+
 				joint.anchor = new Vector2(0f,0f);
 				joint.connectedAnchor = collision.contacts[0].point;
 				joint.collideConnected = true;
 				joint.dampingRatio = dampingRatio;
 				joint.frequency = stickiness;
-				
+
 			} else if (joint != null) {
 				joint.enabled = true;
 				joint.anchor = new Vector2(0f,0f);

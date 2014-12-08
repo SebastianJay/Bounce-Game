@@ -7,11 +7,24 @@ public class Death : MonoBehaviour {
 	public static Vector2 respawn;
 	public static CameraFollowConfig camConfig;
 
+	public AudioClip deathNoise;
+	public float deathVolume;
+	private AudioSource deathSrc;
+
 	private bool locked = false;
 	private GameObject screenFadeObj;
 	private GameObject camObj;
 	private GameObject player;
 	private GameObject escort;
+
+	void Awake()
+	{
+			if (deathNoise != null) {
+				deathSrc = gameObject.AddComponent<AudioSource>();
+				deathSrc.clip = deathNoise;
+				deathSrc.volume = deathVolume;
+			}
+	}
 
 	void Start()
 	{
@@ -36,7 +49,8 @@ public class Death : MonoBehaviour {
 	{
 		if ((col.tag == "Player" || col.tag == "MotherFollower") && !locked) {
 
-			//player = col.transform;
+			if (deathSrc != null)
+				deathSrc.Play();
 			if (screenFadeObj != null)
 			{
 				locked = true;
@@ -45,20 +59,6 @@ public class Death : MonoBehaviour {
 			else
 				DeathTransition();
 		}
-		/*
-		else if (col.tag == "MotherFollower" && !locked)	//special case.. bla
-		{
-			//player = GameObject.FindGameObjectWithTag("Player").transform;
-			//escort = col.transform;
-			if (screenFadeObj != null)
-			{
-				locked = true;
-				screenFadeObj.GetComponent<ScreenFading>().Transition(DeathWithEscortTransition);
-			}
-			else
-				DeathWithEscortTransition();
-		}
-		*/
 	}
 
 	void DeathTransition()
@@ -83,25 +83,4 @@ public class Death : MonoBehaviour {
 
 		locked = false;
 	}
-
-	/*
-	void DeathWithEscortTransition()
-	{
-		player.transform.position = respawn;
-		player.rigidbody2D.velocity = Vector2.zero;
-		player.GetComponent<PowerupManager>().EndPowerup();
-		// do other possible resets!
-
-		escort.transform.position = new Vector3(246f, 2.3f, 0f);	//we'll hard-code this one..
-		escort.rigidbody2D.velocity = Vector2.zero;
-		escort.GetComponent<FollowAI>().enabled = false;
-
-		camObj.GetComponent<CameraFollow>().LoadConfig(camConfig);
-		camObj.transform.position = new Vector3 (Mathf.Clamp (player.transform.position.x, camConfig.minXAndY.x, camConfig.maxXAndY.x),
-		                                        Mathf.Clamp (player.transform.position.y, camConfig.minXAndY.y, camConfig.maxXAndY.y),
-		                                        0f);
-
-		locked = false;
-	}
-	*/
 }

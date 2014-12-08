@@ -6,88 +6,90 @@ using System.Linq;
 
 public class MainMenu : MonoBehaviour
 {
+	public enum MenuTab
+	{
+		Save,
+		Inventory,
+		Map
+	};
 
-		// Use this for initialization
-		void Start ()
-		{
+	public MenuTab currentTab = MenuTab.Save;
+	public bool showMenu = false;
 	
-		}
+	public float menuWidth = 500;
+	public float menuHeight = 510;
+	public float tabButtonWidth = 150;
+	public float tabButtonHeight = 50;
+	public float scrollViewWidth = 480;
+	public float scrollViewHeight = 400;
 
-		public bool showMenu = false;
-
-		// Update is called once per frame
-		void Update ()
-		{
+	Vector2 scrollPosition = Vector2.zero;
+	Vector2 scrollPosition2 = Vector2.zero;
 	
-				if (Input.GetKeyDown (KeyCode.Escape))
-						showMenu = !showMenu;
-		}
+	private bool menuWasOpen = false;		//represents the first "tick" of active menu
+	private GameObject player;
+	List<string> saveFileList = new List<string>();
 
-		public float menuWidth = 500;
-		public float menuHeight = 510;
-		public float tabButtonWidth = 150;
-		public float tabButtonHeight = 50;
-		public float scrollViewWidth = 480;
-		public float scrollViewHeight = 400;
-
-		public enum Tab
-		{
-				Save,
-				Inventory,
-				Map}
-		;
-
-		public Tab currentTab = Tab.Save;
-		Vector2 scrollPosition = Vector2.zero;
-		Vector2 scrollPosition2 = Vector2.zero;
-
-		private bool menuWasOpen = false;
-
-		List<string> saveFileList = new List<string>();
-
-
+	//temp vars
 	public int inventoryGridX = 5;
 	public int selectedItem = 0;
-
 	public string[] inventoryPlaceholder = {"Item1","Item2","Item3","Item4","Item5","Item6","Item7"};
 
-		void OnGUI ()
-		{
-			if (showMenu) {
+	// Use this for initialization
+	void Start ()
+	{
+		player = GameObject.FindGameObjectWithTag("Player");
+	}
 
-				Time.timeScale = 0;
+	// Update is called once per frame
+	void Update ()
+	{
+		if (Input.GetButtonDown("Menu"))
+			showMenu = !showMenu;
+	}
 
-				GUI.Box (new Rect (Screen.width / 2 - menuWidth / 2, Screen.height / 2 - menuHeight / 2, menuWidth, menuHeight), "");
+	void OnGUI ()
+	{
+		if (showMenu) {
 
-				if (GUI.Button (new Rect (Screen.width / 2 - menuWidth / 2 + 10, Screen.height / 2 - menuHeight / 2 + 10, tabButtonWidth, tabButtonHeight), "Saves")) {
-						currentTab = Tab.Save;
-				}
+			//Freeze the game if the menu is active
+			Time.timeScale = 0;
 
-				if (GUI.Button (new Rect (Screen.width / 2 - tabButtonWidth / 2, Screen.height / 2 - menuHeight / 2 + 10, tabButtonWidth, tabButtonHeight), "Inventory")) {
-						currentTab = Tab.Inventory;
-				}
+			//Main menu frame
+			GUI.Box (new Rect (Screen.width / 2 - menuWidth / 2, Screen.height / 2 - menuHeight / 2, menuWidth, menuHeight), "");
 
-				if (GUI.Button (new Rect (Screen.width / 2 + menuWidth / 2 - 10 - tabButtonWidth, Screen.height / 2 - menuHeight / 2 + 10, tabButtonWidth, tabButtonHeight), "Map")) {
-						currentTab = Tab.Map;
-				}
+			//Buttons for the three tabs
+			if (GUI.Button (new Rect (Screen.width / 2 - menuWidth / 2 + 10, Screen.height / 2 - menuHeight / 2 + 10, tabButtonWidth, tabButtonHeight), "Saves")) {
+					currentTab = MenuTab.Save;
+			}
+			if (GUI.Button (new Rect (Screen.width / 2 - tabButtonWidth / 2, Screen.height / 2 - menuHeight / 2 + 10, tabButtonWidth, tabButtonHeight), "Inventory")) {
+					currentTab = MenuTab.Inventory;
+			}
+			if (GUI.Button (new Rect (Screen.width / 2 + menuWidth / 2 - 10 - tabButtonWidth, Screen.height / 2 - menuHeight / 2 + 10, tabButtonWidth, tabButtonHeight), "Map")) {
+					currentTab = MenuTab.Map;
+			}
 
-
-				if (currentTab == Tab.Save) {
+			//The following layout of the menu is dependent on which tab is open
+			//Save tab layout - scrollable list of save files
+			//from which you can save, load, or create a new save
+			if (currentTab == MenuTab.Save) {
 
 				if(!menuWasOpen)
 				{
 					updateSaveFileList();
 				}
-				//scrollViewHeight = saveFileList.Count*50+10;
+
 				scrollPosition = GUI.BeginScrollView (new Rect (Screen.width / 2 - menuWidth / 2 + 10, Screen.height / 2 - menuHeight / 2 + 15 + tabButtonHeight, scrollViewWidth, scrollViewHeight), scrollPosition, new Rect (0, 0, scrollViewWidth - 20, saveFileList.Count*50+10));
 
+				// A button for creating a new save file
 				if(GUI.Button (new Rect(10,10,100,50),"New File"))
 				{
 					XmlSerialzer.currentSaveFile = saveFileList.Count-1;
-					GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDataManager>().saveCurrent();
+					player.GetComponent<PlayerDataManager>().saveCurrent();
 					updateSaveFileList();
 				}
 
+				// A list of all our save files
 				for(int i = 1; i < saveFileList.Count+1; i++)
 				{
 					string s = saveFileList[i-1];
@@ -95,36 +97,37 @@ public class MainMenu : MonoBehaviour
 					if(GUI.Button (new Rect(50,i*60+10,100,50),"Save"))
 					{
 						XmlSerialzer.currentSaveFile = int.Parse(s.ElementAt(s.Length-1).ToString());
-						GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDataManager>().saveCurrent();
+						player.GetComponent<PlayerDataManager>().saveCurrent();
 						updateSaveFileList();
 					}
 					if(GUI.Button (new Rect(160,i*60+10,100,50),"Load"))
 					{
 						XmlSerialzer.currentSaveFile = int.Parse(s.ElementAt(s.Length-1).ToString());
 						PlayerDataManager.loadedLevel = false;
-						GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDataManager>().LoadCurrentSave();
+						player.GetComponent<PlayerDataManager>().LoadCurrentSave();
 						updateSaveFileList();
 					}
+				}						
+				GUI.EndScrollView ();
+			}
 
-				}
-							
-					GUI.EndScrollView ();
-				}
-
-				if (currentTab == Tab.Inventory) {
-				Inventory inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDataManager>().inventory;
+			//Inventory tab layout - grid of items
+			//hovering over an item yields its name and description
+			if (currentTab == MenuTab.Inventory) {
+				Inventory inventory = player.GetComponent<PlayerDataManager>().inventory;
 				int count = inventory.items.Length;
 				float gridHeight = (float)count/inventoryGridX;
 				gridHeight = Mathf.Ceil(gridHeight*150);
 				string[] itemNames = {"1","2","3"};
-				selectedItem = GUI.SelectionGrid(new Rect (Screen.width / 2 - menuWidth / 2 + 10, Screen.height / 2 - menuHeight / 2 + 15 + tabButtonHeight, scrollViewWidth, gridHeight), selectedItem,itemNames, inventoryGridX);
+				selectedItem = GUI.SelectionGrid(new Rect (Screen.width / 2 - menuWidth / 2 + 10, Screen.height / 2 - menuHeight / 2 + 15 + tabButtonHeight, scrollViewWidth, gridHeight), selectedItem, itemNames, inventoryGridX);
+			}
 
-				}
-
-				if (currentTab == Tab.Map) {
+			//Map layout - scrollable list of locations across levels
+			//You can teleport instantly to any checkpoint you have visited from here
+			if (currentTab == MenuTab.Map) {
 
 				scrollPosition2 = GUI.BeginScrollView (new Rect (Screen.width / 2 - menuWidth / 2 + 10, Screen.height / 2 - menuHeight / 2 + 15 + tabButtonHeight, scrollViewWidth, scrollViewHeight), scrollPosition2, new Rect (0, 0, scrollViewWidth - 20, scrollViewHeight * 4));
-				Dictionary<int,List<int>> previousCheckpoints = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDataManager>().previousCheckpoints;
+				Dictionary<int,List<int>> previousCheckpoints = player.GetComponent<PlayerDataManager>().previousCheckpoints;
 				//Debug.Log (previousCheckpoints.Count);
 				int i = 0;
 				foreach(KeyValuePair<int, List<int>> entry in previousCheckpoints)
@@ -135,7 +138,6 @@ public class MainMenu : MonoBehaviour
 						GUI.Label (new Rect (10, i*50+j*50+10, scrollViewWidth-10, 50),"Checkpoint "+entry.Value[j-1]);
 						if(GUI.Button (new Rect(150,i*50+j*50+10,100,50),"Teleport"))
 						{
-							GameObject player = GameObject.FindGameObjectWithTag("Player");
 							player.transform.position = Checkpoint.posCheckTable[entry.Value[j-1]];
 							player.rigidbody2D.velocity = Vector2.zero;
 							player.rigidbody2D.angularVelocity = 0f;
@@ -149,16 +151,16 @@ public class MainMenu : MonoBehaviour
 					i+=entry.Value.Count;
 					i++;
 				}
-
 				GUI.EndScrollView ();
 			}
+
 			menuWasOpen = true;
-		} else {
+		} 
+		else {
 			menuWasOpen = false;
 			Time.timeScale = 1;
-
 		}
-		}
+	}
 
 	void updateSaveFileList()
 	{
@@ -169,7 +171,7 @@ public class MainMenu : MonoBehaviour
 		{
 			if(s.Contains("BounceSaveData"))
 			{
-				saveFileList.Add (s);
+				saveFileList.Add(s);
 			}
 		}
 	}

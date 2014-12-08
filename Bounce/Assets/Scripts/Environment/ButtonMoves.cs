@@ -13,6 +13,8 @@ public class ButtonMoves : MonoBehaviour {
 	public float yOffset;
 	public float moveTime = 5.0f;
 	public float pressTime = 0.5f;
+	public AudioClip pressNoise;
+	public float pressVolume = 1f;
 	public Transform[] otherButtons;		//special case if multiple buttons need to be pressed at once
 
 	private bool depressed = false;	//whether player is on button
@@ -21,6 +23,15 @@ public class ButtonMoves : MonoBehaviour {
 	private Vector3 pressOffset;
 	private float pressTimer = 0.0f;
 	private Transform pressPerson;
+	private AudioSource pressSrc;
+
+	void Awake() {
+		if (pressNoise != null) {
+			pressSrc = gameObject.AddComponent<AudioSource>();
+			pressSrc.clip = pressNoise;
+			pressSrc.volume = pressVolume;
+		}
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -29,7 +40,7 @@ public class ButtonMoves : MonoBehaviour {
 		pressOffset = new Vector3 (0f, -height / 2, 0f);
 		//heightDiff = 0f;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		if (depressed && !activated)
@@ -81,6 +92,8 @@ public class ButtonMoves : MonoBehaviour {
 				                                   originalScale.y / 2,
 				                                   originalScale.z);
 				buttonObj.position += pressOffset;
+				if (pressSrc != null)
+					pressSrc.Play();
 			}
 			depressed = true;
 			pressPerson = col.transform;

@@ -6,14 +6,25 @@ using System.Collections;
 /// Invoked programmatically via the MoveAbsolute or MoveRelative methods
 /// </summary>
 public class AnimatedMover : MonoBehaviour {
-	
+
 	private Vector3 start;
 	private Vector3 stop;
 	private float moveTime = 1.0f;
 	public bool quadratic = false;	//if true, "accelerated movement"
 									//otherwise linear, "constant speed"
+	public AudioClip moveNoise;
+	public float moveVolume = 1f;
 	private float timer;
 	private bool isMoving;
+	private AudioSource moveSrc;
+
+	void Awake() {
+		if (moveNoise != null) {
+			moveSrc = gameObject.AddComponent<AudioSource>();
+			moveSrc.clip = moveNoise;
+			moveSrc.volume = moveVolume;
+		}
+	}
 
 	// Update is called once per frame
 	void Update () {
@@ -44,6 +55,8 @@ public class AnimatedMover : MonoBehaviour {
 		moveTime = time;
 		isMoving = true;
 		timer = 0f;
+		if (moveSrc != null)
+			moveSrc.Play();
 	}
 
 	public void MoveRelative(Vector3 offset, float time)
@@ -53,5 +66,7 @@ public class AnimatedMover : MonoBehaviour {
 		moveTime = time;
 		isMoving = true;
 		timer = 0f;
+		if (moveSrc != null)
+			moveSrc.Play();
 	}
 }

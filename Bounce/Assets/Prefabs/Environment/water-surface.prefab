@@ -98,6 +98,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 762b4b5536d5108488665ba416fe2bdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bigSplashNoise: {fileID: 8300000, guid: 578da7645bba90644a2b58d9f5f7d0af, type: 3}
+  smallSplashNoise: {fileID: 8300000, guid: 231a08122cad488419ac852d140828a6, type: 3}
+  bigSplashVolume: 1
+  smallSplashVolume: 1
+  bigNoiseThreshold: 10
+  noNoiseThreshold: 3
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

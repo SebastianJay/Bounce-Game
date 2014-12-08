@@ -181,8 +181,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f10c9b8b3e90f74c8750a5228e6335c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueFile: {fileID: 4900000, guid: aa295f6f3f7f3b04aa0937d2db13a928, type: 3}
+  dialogueFile: {fileID: 4900000, guid: acc9ccbc183a1f54db8da013d8f94a71, type: 3}
   gText: {fileID: 10200000}
+  talkNoise: {fileID: 8300000, guid: cbe97fd68db457a4a956b593a6c7518f, type: 3}
+  talkVolume: 1
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

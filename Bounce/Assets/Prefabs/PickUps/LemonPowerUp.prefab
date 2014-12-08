@@ -55,6 +55,8 @@ MonoBehaviour:
   type: 1
   respawns: 1
   respawnTime: 15
+  pickUpNoise: {fileID: 8300000, guid: 33de77d20154ecd45a8f3191145f4e76, type: 3}
+  pickUpVolume: 0
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

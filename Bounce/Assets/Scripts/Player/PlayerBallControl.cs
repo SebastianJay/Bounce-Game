@@ -225,6 +225,10 @@ public class PlayerBallControl : MonoBehaviour {
 			jumpTimer = 0.0f;
 			hasContact = false;
 			jumpedInCurrentFrame = true;
+			if (GetComponent<PowerupManager>().currentPowerup == PowerupType.SuperJump)
+				GetComponent<PlayerSoundManager>().PlaySound("SuperJump");
+			else
+				GetComponent<PlayerSoundManager>().PlaySound("Jump");
 		}
 		else
 			jumpedInCurrentFrame = false;
@@ -265,15 +269,17 @@ public class PlayerBallControl : MonoBehaviour {
 	*/
 
 	void FixedUpdate () {
+
 		if (grounded)
-						wasGrounded = true;
+			wasGrounded = true;
 		float h = Input.GetAxis ("Horizontal");
 
-		if (playerLock == true) {
-						h = 0;
-				jumpTimer = 0;
-				}
 		//locks the player
+		if (playerLock == true) {
+			h = 0;
+			jumpTimer = 0;
+		}
+
 		if(dState == DeformationState.Normal)
 		{
 			ListenForJump ();
@@ -371,6 +377,7 @@ public class PlayerBallControl : MonoBehaviour {
 				this.rigidbody2D.angularVelocity = outAngularVelocity;
 				this.rigidbody2D.velocity = outVelocity;
 				dState = DeformationState.Reformed;
+				GetComponent<PlayerSoundManager>().PlaySound("Bounce");
 			}
 		}
 		else if(dState == DeformationState.Reformed)
