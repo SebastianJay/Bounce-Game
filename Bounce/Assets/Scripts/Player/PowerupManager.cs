@@ -13,8 +13,8 @@ public class PowerupManager : MonoBehaviour {
 	public float glidingTime = 15f;
 
 	private GameObject player;
-	private float powerupTimer = 0f;
-	private float powerupTime = 1f;
+	public float powerupTimer = 0f;
+	public float powerupTime = 1f;
 	private float normalJumpForce;
 
 	private GameObject timeObj;
