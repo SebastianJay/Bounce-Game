@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+//Stick this to an empty game object and tag it with "DialogueSystem"
+//so the Interactable objects can use it to push dialogue text to the scene
 public class DialogueSystem : MonoBehaviour {
 
 	public Transform backgroundPrefab;
@@ -18,57 +20,109 @@ public class DialogueSystem : MonoBehaviour {
 	public Vector2 npcOffset;
 	public Vector2 playerOffset;
 	public int wordWrapCharCount = 25;
+	public float animateSpeed = 0.03f;	//seconds per character for NPC text scrolling
+	public float responseSpeed = 0.5f;	//time between NPC line and player response appearing
 
+	//animation
 	private int cursor;
+	private bool animating = false;
+	private bool settingUpNPCText = false;
+	private bool waitingForResponse = false;
+	private int animateIndex = 0;
+	private float animateTimer = 0f;
+	//npc vars
+	private GameObject npcContainer;
+	private Transform npcTextObj;
+	private string npcName;
+	private string npcText;
 	private Rect npcTextBounds;
-	private List<Transform> textObjLst = new List<Transform>();
-	private GameObject npcLine;
-	private GameObject playerLine;
+	//player vars
+	private GameObject playerContainer;
+	private List<Transform> playerTextObjLst = new List<Transform>();
 
-	// Use this for initialization
-	void Start () {
-	}
-	
 	// Update is called once per frame
 	void Update () {
+		if (animating)
+		{
+			animateTimer += Time.deltaTime;
+			if (settingUpNPCText)	//first phase
+			{
+				if (animateTimer >= animateSpeed)
+				{
+					animateIndex++;
+					animateTimer -= animateSpeed;
+					if (animateIndex <= npcText.Length)
+						npcTextObj.GetComponent<TextMesh>().text = npcName + ":\n" + npcText.Substring(0, animateIndex);
+					else
+						npcTextObj.GetComponent<TextMesh>().text = npcName + ":\n" + npcText;
+				}
+				if (animateIndex > npcText.Length)
+				{
+					settingUpNPCText = false;
+					if (playerContainer != null)
+						waitingForResponse = true;
+					else
+						animating = false;
+				}
+			}
+			else if (waitingForResponse)	//second phase
+			{
+				if (animateTimer >= responseSpeed)
+				{
+					playerContainer.SetActive(true);
+					animateTimer = 0f;
+					animating = false;
+					waitingForResponse = false;
+				}
+			}
+		}
 	}
 
-	public void PushNPCText(string text, Vector2 position)
+	public void PushNPCText(string text, Vector2 position, string name = "NPC")
 	{
 		//destroy the existing dialogue box
-		if (npcLine != null)
-			Destroy(npcLine);
+		if (npcContainer != null)
+			Destroy(npcContainer);
 
 		//Draw the text
-		Transform npcText = Instantiate (textPrefab) as Transform;
+		npcName = name;
+		npcText = text;
+		npcTextObj = Instantiate (textPrefab) as Transform;
 		int lineCount = 1;
-		FormatText (ref text, ref lineCount); 
-		npcText.GetComponent<TextMesh> ().text = text;
-		npcText.GetComponent<TextMesh> ().color = npcTextColor;
-		npcText.GetComponent<TextMesh> ().anchor = TextAnchor.MiddleCenter;
-		Vector2 textSize = new Vector2 (npcText.GetComponent<MeshRenderer> ().bounds.size.x,
-                               			npcText.GetComponent<MeshRenderer> ().bounds.size.y);
-		npcText.position = position + npcOffset + new Vector2(textSize.x / 2, -textSize.y / 2);
-		npcLine = CreateTextBox (npcText.position, textSize, npcBgColor);
-		npcText.parent = npcLine.transform;
-		npcLine.transform.parent = this.transform;
-		npcTextBounds = new Rect(npcText.position.x - textSize.x / 2,
-		                         npcText.position.y - textSize.y / 2,
+		FormatText (ref npcText, ref lineCount); 
+		npcTextObj.GetComponent<TextMesh> ().text = npcName + ":\n" + npcText;
+		npcTextObj.GetComponent<TextMesh> ().color = npcTextColor;
+		npcTextObj.GetComponent<TextMesh> ().anchor = TextAnchor.UpperLeft;
+		Vector2 textSize = new Vector2 (npcTextObj.GetComponent<MeshRenderer> ().bounds.size.x,
+                               			npcTextObj.GetComponent<MeshRenderer> ().bounds.size.y);
+		npcTextObj.position = position + npcOffset /*+ new Vector2(textSize.x / 2, -textSize.y / 2)*/;
+		npcContainer = CreateTextBox (npcTextObj.position + new Vector3(textSize.x / 2, -textSize.y / 2), 
+		                              textSize, npcBgColor);
+		npcTextObj.parent = npcContainer.transform;
+		npcContainer.transform.parent = this.transform;
+		npcTextBounds = new Rect(npcTextObj.position.x - textSize.x,
+		                         npcTextObj.position.y - textSize.y,
 		                         textSize.x, textSize.y);
+
+		//indicate animation can start
+		npcTextObj.GetComponent<TextMesh> ().text = npcName + ":\n";
+		animating = true;
+		animateIndex = 0;
+		settingUpNPCText = true;
 	}
 
 	public void PushPlayerText(List<string> textLst, Vector2 position)
 	{
 		//destroy the existing dialogue box
-		if (playerLine != null)
+		if (playerContainer != null)
 		{
-			Destroy (playerLine);
-			textObjLst.Clear();//remove dangling references
+			Destroy (playerContainer);
+			playerTextObjLst.Clear();//remove dangling references
 		}
 		if (textLst.Count == 0)
 			return;
 
-		textObjLst.Clear();
+		playerTextObjLst.Clear();
 		Vector2 textSize = Vector2.zero;
 		int lineCount = 0;
 		foreach (string text in textLst)
@@ -79,26 +133,28 @@ public class DialogueSystem : MonoBehaviour {
 			playerText.GetComponent<TextMesh>().color = playerRespNormalColor;
 			textSize.y += playerText.GetComponent<MeshRenderer>().bounds.size.y;
 			textSize.x = Mathf.Max(textSize.x, playerText.GetComponent<MeshRenderer>().bounds.size.x);
-			textObjLst.Add(playerText);
+			playerTextObjLst.Add(playerText);
 		}
 		position = position + playerOffset + new Vector2(textSize.x / 2, -textSize.y / 2);
-		if (npcLine != null)
+		if (npcContainer != null)
 			position.y = Mathf.Min (position.y, npcTextBounds.yMin - bgMargin - frameThickness / 2 - textSize.y / 2);//prevent overlap
-		playerLine = CreateTextBox(position, textSize, playerBgColor);
+		playerContainer = CreateTextBox(position, textSize, playerBgColor);
 		int i = 0;
-		foreach (Transform textObj in textObjLst)
+		foreach (Transform textObj in playerTextObjLst)
 		{
-			textObjLst[i].parent = playerLine.transform;
-			textObjLst[i].GetComponent<TextMesh>().anchor = TextAnchor.UpperLeft;
-			textObjLst[i].position = new Vector3(position.x - textSize.x / 2, 
-			                                     position.y + textSize.y / 2 - (i * textSize.y / textObjLst.Count), 0f);
+			textObj.parent = playerContainer.transform;
+			textObj.GetComponent<TextMesh>().anchor = TextAnchor.UpperLeft;
+			textObj.position = new Vector3(position.x - textSize.x / 2, 
+			                               position.y + textSize.y / 2 - (i * textSize.y / playerTextObjLst.Count), 0f);
 			i++;
 		}
-		playerLine.transform.parent = this.transform;
+		playerContainer.transform.parent = this.transform;
 
+		//set up the animation
 		cursor = 0;
-		if (textObjLst.Count > 1)
-			textObjLst[0].GetComponent<TextMesh>().color = playerRespHighlightColor;	//current selection
+		if (playerTextObjLst.Count > 1)
+			playerTextObjLst[0].GetComponent<TextMesh>().color = playerRespHighlightColor;	//current selection
+		playerContainer.SetActive(false);
 	}
 
 	public int GetCursor()
@@ -108,10 +164,10 @@ public class DialogueSystem : MonoBehaviour {
 
 	public void MoveCursor(bool up)
 	{
-		int numChoices = textObjLst.Count;
+		int numChoices = playerTextObjLst.Count;
 		if (numChoices <= 1)
 			return;
-		textObjLst[cursor].GetComponent<TextMesh>().color = Color.black;
+		playerTextObjLst[cursor].GetComponent<TextMesh>().color = playerRespNormalColor;
 		if (up)
 		{
 			cursor--;
@@ -122,16 +178,35 @@ public class DialogueSystem : MonoBehaviour {
 		{
 			cursor = (cursor + 1) % numChoices;
 		}
-		textObjLst[cursor].GetComponent<TextMesh>().color = Color.yellow;
+		playerTextObjLst[cursor].GetComponent<TextMesh>().color = playerRespHighlightColor;
 	}
 
+	public bool IsAnimating()
+	{
+		return animating;
+	}
+
+	public void StepAnimation()
+	{
+		//finish the animation manually
+		npcTextObj.GetComponent<TextMesh>().text = npcName + ":\n" + npcText;
+		if (playerContainer != null)
+			playerContainer.SetActive(true);
+		//reset all the flags
+		animating = false;
+		animateTimer = 0f;
+		animateIndex = 0;
+		settingUpNPCText = false;
+		waitingForResponse = false;
+	}
+	
 	public void EndConversation()
 	{
-		if (playerLine != null)
-			Destroy(playerLine);
-		if (npcLine != null)
-			Destroy (npcLine);
-		textObjLst.Clear();
+		if (playerContainer != null)
+			Destroy(playerContainer);
+		if (npcContainer != null)
+			Destroy (npcContainer);
+		playerTextObjLst.Clear();
 	}
 
 	private GameObject CreateTextBox(Vector3 textPosition, Vector2 textDimensions, Color color)

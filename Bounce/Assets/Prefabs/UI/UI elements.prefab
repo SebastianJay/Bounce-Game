@@ -110,6 +110,8 @@ MonoBehaviour:
   npcOffset: {x: -4, y: 4}
   playerOffset: {x: -4, y: 4}
   wordWrapCharCount: 25
+  animateSpeed: .0299999993
+  responseSpeed: .5
 --- !u!132 &13200000
 GUIText:
   m_ObjectHideFlags: 1

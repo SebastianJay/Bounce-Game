@@ -8,6 +8,7 @@ public class Interactable : MonoBehaviour {
 	public AudioClip talkNoise;
 	public float talkVolume = 1f;
 
+	private string npcName;
 	private bool inTrigger = false;
 	private bool inConversation = false;
 	private GameObject playerObj;
@@ -17,6 +18,10 @@ public class Interactable : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 		dialogue = new Interaction (dialogueFile);
+		if (dialogueFile.name.IndexOf('.') != -1)
+			npcName = dialogueFile.name.Substring(0, dialogueFile.name.IndexOf ('.'));
+		else
+			npcName = dialogueFile.name;
 		if (talkNoise != null)
 		{
 			talkSrc = gameObject.AddComponent<AudioSource>();
@@ -30,7 +35,7 @@ public class Interactable : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetButtonDown ("Action") && inTrigger)
+		if (Input.GetButtonDown ("Action") && (inTrigger || inConversation))
 		{
 			PlayerBallControl bScript = playerObj.GetComponent<PlayerBallControl>();
 			if (!bScript.inConversation)
@@ -41,21 +46,35 @@ public class Interactable : MonoBehaviour {
 				if (talkSrc != null)
 					talkSrc.Play();
 			}
-			List<string> lines = dialogue.Step(dSystem.GetComponent<DialogueSystem>().GetCursor());
-			if(lines.Count > 0)
+			if (inConversation)
 			{
-				dSystem.GetComponent<DialogueSystem>().PushNPCText(lines[0], transform.position);
-				dSystem.GetComponent<DialogueSystem>().PushPlayerText(lines.GetRange(1, lines.Count - 1), 
-				                                                      GameObject.FindGameObjectWithTag("Player").transform.position);
-				playerObj.rigidbody2D.velocity = Vector2.zero;
-				playerObj.rigidbody2D.angularVelocity = 0f;
-			}
-			else
-			{
-				dSystem.GetComponent<DialogueSystem>().EndConversation();
-				bScript.inConversation = false;
-				this.inConversation = false;
-				bScript.playerLock = false;
+				if (dSystem.GetComponent<DialogueSystem>().IsAnimating())
+					dSystem.GetComponent<DialogueSystem>().StepAnimation();
+				else
+				{
+					List<string> lines = dialogue.Step(dSystem.GetComponent<DialogueSystem>().GetCursor());
+					if(lines.Count > 0)
+					{
+						string name = npcName;
+						if (lines[0].IndexOf(':') != -1)
+						{
+							name = lines[0].Substring(0, lines[0].IndexOf(':'));	//the colon is reserved for specifying speaker manually
+							lines[0] = lines[0].Substring(lines[0].IndexOf(':')+1);
+						}
+						dSystem.GetComponent<DialogueSystem>().PushNPCText(lines[0], transform.position, name);
+						dSystem.GetComponent<DialogueSystem>().PushPlayerText(lines.GetRange(1, lines.Count - 1), 
+						                                                      GameObject.FindGameObjectWithTag("Player").transform.position);
+						playerObj.rigidbody2D.velocity = Vector2.zero;
+						playerObj.rigidbody2D.angularVelocity = 0f;
+					}
+					else
+					{
+						dSystem.GetComponent<DialogueSystem>().EndConversation();
+						bScript.inConversation = false;
+						this.inConversation = false;
+						bScript.playerLock = false;
+					}
+				}
 			}
 		}
 		else if (Input.GetButtonDown("Jump") && inConversation)
