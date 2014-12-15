@@ -288,6 +288,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &7075223
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -422,6 +424,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!61 &19759916
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -868,6 +872,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &62597314
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1116,6 +1122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &79754410
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1383,6 +1391,60 @@ Prefab:
   m_RootGameObject: {fileID: 1701808960}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &111599574
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: ef5d36ba5a960214a8fc17fb7c3626dc, type: 2}
+  m_PrefabInternal: {fileID: 1991828071}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 111599575}
+  - 114: {fileID: 111599576}
+  m_Layer: 0
+  m_Name: DialogueSystem
+  m_TagString: DialogueSystem
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &111599575
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: ef5d36ba5a960214a8fc17fb7c3626dc, type: 2}
+  m_PrefabInternal: {fileID: 1991828071}
+  m_GameObject: {fileID: 111599574}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 932726874}
+  m_RootOrder: 1
+--- !u!114 &111599576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: ef5d36ba5a960214a8fc17fb7c3626dc,
+    type: 2}
+  m_PrefabInternal: {fileID: 1991828071}
+  m_GameObject: {fileID: 111599574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c03b7ec2fdac0ec40b1a4e358454387a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundPrefab: {fileID: 400000, guid: 62aa56e6b91900d44921dfba4afed2bb, type: 2}
+  framePrefab: {fileID: 400000, guid: 62aa56e6b91900d44921dfba4afed2bb, type: 2}
+  textPrefab: {fileID: 400000, guid: d1ae30dff15fdad499b7968fdbe013ed, type: 2}
+  npcBgColor: {r: 1, g: 1, b: 1, a: 1}
+  playerBgColor: {r: 0, g: .66896534, b: 1, a: 1}
+  frameColor: {r: 0, g: 0, b: 0, a: 1}
+  npcTextColor: {r: 0, g: 0, b: 0, a: 1}
+  playerRespNormalColor: {r: 0, g: 0, b: 0, a: 1}
+  playerRespHighlightColor: {r: 1, g: .921568632, b: .0156862754, a: 1}
+  frameThickness: .300000012
+  bgMargin: .349999994
+  npcOffset: {x: -4, y: 4}
+  playerOffset: {x: -4, y: 4}
+  wordWrapCharCount: 25
 --- !u!1 &118756344
 GameObject:
   m_ObjectHideFlags: 0
@@ -1479,6 +1541,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!61 &119775202
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1533,6 +1597,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &120861498
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1771,6 +1837,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &145963803
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1854,6 +1922,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &164748220
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1930,8 +2000,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 315e3cc3924c3d74abd87bcf8851848f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMeshPrefab: {fileID: 400000, guid: 077a2eb49a093724190a114fe2ab5c87, type: 2}
-  cursor: 0
 --- !u!114 &165234910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1950,6 +2018,8 @@ MonoBehaviour:
   spiderballTime: 5
   glidingScale: .150000006
   glidingTime: 7
+  powerupTimer: 0
+  powerupTime: 1
 --- !u!114 &165234911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2001,7 +2071,7 @@ MonoBehaviour:
   deformScaleFactor: .0149999997
   deformTimeFactor: .00100000005
   deformTime: .150000006
-  isTalking: 0
+  inConversation: 0
   npcTalker: {fileID: 0}
   spiderball: 0
 --- !u!58 &165234913
@@ -2086,6 +2156,58 @@ MonoBehaviour:
   dampingRatio: 1
   jointDistance: .100000001
   jumpDelay: .300000012
+--- !u!1 &166133471
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100004, guid: ef5d36ba5a960214a8fc17fb7c3626dc, type: 2}
+  m_PrefabInternal: {fileID: 1991828071}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 166133473}
+  - 132: {fileID: 166133472}
+  m_Layer: 0
+  m_Name: PowerupTimer
+  m_TagString: PowerupTimer
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!132 &166133472
+GUIText:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 13200000, guid: ef5d36ba5a960214a8fc17fb7c3626dc,
+    type: 2}
+  m_PrefabInternal: {fileID: 1991828071}
+  m_GameObject: {fileID: 166133471}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Text: 
+  m_Anchor: 0
+  m_Alignment: 1
+  m_PixelOffset: {x: 0, y: 0}
+  m_LineSpacing: 1
+  m_TabSize: 4
+  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Material: {fileID: 0}
+  m_FontSize: 20
+  m_FontStyle: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_PixelCorrect: 1
+  m_RichText: 1
+--- !u!4 &166133473
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400004, guid: ef5d36ba5a960214a8fc17fb7c3626dc, type: 2}
+  m_PrefabInternal: {fileID: 1991828071}
+  m_GameObject: {fileID: 166133471}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .850000024, y: .100000001, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 932726874}
+  m_RootOrder: 0
 --- !u!1 &167404191
 GameObject:
   m_ObjectHideFlags: 0
@@ -2128,6 +2250,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &167404194
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -2275,6 +2399,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!61 &171287311
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2329,6 +2455,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &186522022
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -2412,6 +2540,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &191861159
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -2585,6 +2715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56c51c741a28dbc499b3e5aef6a92347, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentTab: 0
   showMenu: 0
   menuWidth: 500
   menuHeight: 510
@@ -2592,7 +2723,6 @@ MonoBehaviour:
   tabButtonHeight: 50
   scrollViewWidth: 480
   scrollViewHeight: 400
-  currentTab: 0
   inventoryGridX: 5
   selectedItem: 0
   inventoryPlaceholder:
@@ -2979,6 +3109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!61 &214126949
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3033,6 +3165,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &220321153
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -3266,6 +3400,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &231568908
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -3550,6 +3686,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &247954868
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -3654,6 +3792,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!61 &248034642
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3771,6 +3911,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &254760778
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -3854,6 +3996,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &260549114
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -3895,58 +4039,6 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfe5114afd35b964f838551f7a717395, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
---- !u!1 &261895253
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100000, guid: 57453718c8a03e148ac3b78b03e379c7, type: 2}
-  m_PrefabInternal: {fileID: 1494160654}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 261895255}
-  - 132: {fileID: 261895254}
-  m_Layer: 0
-  m_Name: PowerupTimer
-  m_TagString: PowerupTimer
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!132 &261895254
-GUIText:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13200000, guid: 57453718c8a03e148ac3b78b03e379c7,
-    type: 2}
-  m_PrefabInternal: {fileID: 1494160654}
-  m_GameObject: {fileID: 261895253}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Text: 
-  m_Anchor: 0
-  m_Alignment: 1
-  m_PixelOffset: {x: 0, y: 0}
-  m_LineSpacing: 1
-  m_TabSize: 4
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-  m_Material: {fileID: 0}
-  m_FontSize: 20
-  m_FontStyle: 1
-  m_Color:
-    serializedVersion: 2
-    rgba: 4278190080
-  m_PixelCorrect: 1
-  m_RichText: 1
---- !u!4 &261895255
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 400000, guid: 57453718c8a03e148ac3b78b03e379c7, type: 2}
-  m_PrefabInternal: {fileID: 1494160654}
-  m_GameObject: {fileID: 261895253}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .850000024, y: .100000001, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
 --- !u!1 &262881550
 GameObject:
   m_ObjectHideFlags: 0
@@ -4235,6 +4327,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   springForce: 4000
+  contactNoise: {fileID: 0}
+  noiseVolume: 1
 --- !u!61 &308372303
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4450,6 +4544,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &332276239
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -4593,6 +4689,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &347257384
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -4676,6 +4774,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &352343875
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -4985,6 +5085,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   springForce: 4000
+  contactNoise: {fileID: 0}
+  noiseVolume: 1
 --- !u!61 &381306499
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5039,6 +5141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &383099426
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -5186,6 +5290,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &395334884
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -5595,6 +5701,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &435561620
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -5678,6 +5786,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &439624095
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -5760,6 +5870,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!61 &480956232
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6241,6 +6353,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &519911655
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -6514,6 +6628,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &530455551
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -6679,93 +6795,6 @@ SpriteRenderer:
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: edced6c586838eb44bc32b4ace956743, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
---- !u!1 &541990211
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100000, guid: 080153ececb00db42811be6e02a09bde, type: 2}
-  m_PrefabInternal: {fileID: 1700280662}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 541990212}
-  - 23: {fileID: 541990215}
-  - 102: {fileID: 541990214}
-  - 114: {fileID: 541990213}
-  m_Layer: 0
-  m_Name: In-game text
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &541990212
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 400000, guid: 080153ececb00db42811be6e02a09bde, type: 2}
-  m_PrefabInternal: {fileID: 1700280662}
-  m_GameObject: {fileID: 541990211}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.733017445, y: .911484599, z: 0}
-  m_LocalScale: {x: .231800124, y: .191953003, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1473717348}
-  m_RootOrder: 0
---- !u!114 &541990213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400000, guid: 080153ececb00db42811be6e02a09bde,
-    type: 2}
-  m_PrefabInternal: {fileID: 1700280662}
-  m_GameObject: {fileID: 541990211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 329d9c73fe5e20f428d1f09f3f7b5bfa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sortingLayer: Foreground
-  sortingOrder: 0
---- !u!102 &541990214
-TextMesh:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 10200000, guid: 080153ececb00db42811be6e02a09bde,
-    type: 2}
-  m_PrefabInternal: {fileID: 1700280662}
-  m_GameObject: {fileID: 541990211}
-  m_Text: 
-  m_OffsetZ: 0
-  m_CharacterSize: 1
-  m_LineSpacing: 1
-  m_Anchor: 0
-  m_Alignment: 0
-  m_TabSize: 4
-  m_FontSize: 0
-  m_FontStyle: 1
-  m_RichText: 1
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-  m_Color:
-    serializedVersion: 2
-    rgba: 4278190080
---- !u!23 &541990215
-Renderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 2300000, guid: 080153ececb00db42811be6e02a09bde,
-    type: 2}
-  m_PrefabInternal: {fileID: 1700280662}
-  m_GameObject: {fileID: 541990211}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 0
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
 --- !u!1001 &558024054
 Prefab:
   m_ObjectHideFlags: 0
@@ -7566,6 +7595,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &663440535
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -8120,6 +8151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!61 &712940904
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8173,6 +8206,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!61 &723450383
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8349,6 +8384,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &748138250
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -8518,6 +8555,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &751457615
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -8644,6 +8683,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!61 &780171429
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8820,6 +8861,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &791761393
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -8903,6 +8946,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &807839626
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -9158,6 +9203,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &855333702
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -9241,6 +9288,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &856294365
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -9589,6 +9638,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &893433764
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -9671,6 +9722,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!61 &898187271
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10028,6 +10081,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &932376162
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -10069,6 +10124,35 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfe5114afd35b964f838551f7a717395, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!1 &932726873
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100002, guid: ef5d36ba5a960214a8fc17fb7c3626dc, type: 2}
+  m_PrefabInternal: {fileID: 1991828071}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 932726874}
+  m_Layer: 0
+  m_Name: UI elements
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &932726874
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400002, guid: ef5d36ba5a960214a8fc17fb7c3626dc, type: 2}
+  m_PrefabInternal: {fileID: 1991828071}
+  m_GameObject: {fileID: 932726873}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 166133473}
+  - {fileID: 111599575}
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
 --- !u!1 &933920711
 GameObject:
   m_ObjectHideFlags: 0
@@ -10099,6 +10183,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   springForce: 4000
+  contactNoise: {fileID: 0}
+  noiseVolume: 1
 --- !u!61 &933920713
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10227,6 +10313,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &937740295
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -10460,6 +10548,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &969355975
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -10543,6 +10633,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &978780135
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -10626,6 +10718,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &982728632
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -10892,6 +10986,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!61 &1010620179
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10946,6 +11042,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &1012751982
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -11091,6 +11189,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &1015814713
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -11317,6 +11417,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &1042378166
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -11562,6 +11664,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &1069448061
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -11755,6 +11859,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &1086001444
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -11838,6 +11944,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   springForce: 5000
+  contactNoise: {fileID: 0}
+  noiseVolume: 1
 --- !u!61 &1088528796
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12028,6 +12136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &1114546875
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -12211,6 +12321,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &1130354368
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -12356,6 +12468,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   springForce: 4000
+  contactNoise: {fileID: 0}
+  noiseVolume: 1
 --- !u!61 &1141823873
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12699,8 +12813,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 26.1000004, y: -16.7382622, z: -0}
   m_LocalScale: {x: 2, y: 2, z: 1}
-  m_Children:
-  - {fileID: 1652368982}
+  m_Children: []
   m_Father: {fileID: 1400372786}
   m_RootOrder: 3
 --- !u!61 &1197489577
@@ -12728,7 +12841,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueFile: {fileID: 4900000, guid: 79c3b1403dbcefc4cacf2107b4f47996, type: 3}
-  gText: {fileID: 1652368984}
+  talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
+  talkVolume: 1
 --- !u!212 &1197489579
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12750,7 +12864,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 1167940005
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 204cd408f1fd5474fb1ef8b56df47862, type: 3}
+  m_Sprite: {fileID: 21300000, guid: efb9a287c7aaac54c8a21e37ad11f84e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1202154099
 GameObject:
@@ -12793,6 +12907,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!61 &1202154102
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13095,6 +13211,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &1249303939
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -13283,6 +13401,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!61 &1258452688
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13337,6 +13457,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   springForce: 5000
+  contactNoise: {fileID: 0}
+  noiseVolume: 1
 --- !u!61 &1269382502
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13453,6 +13575,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   springForce: 4000
+  contactNoise: {fileID: 0}
+  noiseVolume: 1
 --- !u!61 &1285852328
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13492,8 +13616,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 36.0585365, y: -16.9591789, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
-  m_Children:
-  - {fileID: 1326288678}
+  m_Children: []
   m_Father: {fileID: 1400372786}
   m_RootOrder: 2
 --- !u!61 &1285874834
@@ -13521,7 +13644,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueFile: {fileID: 4900000, guid: 0c1e83e8894787c4fb966ce08bbf5c16, type: 3}
-  gText: {fileID: 1326288676}
+  talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
+  talkVolume: 1
 --- !u!212 &1285874836
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13543,7 +13667,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 1167940005
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 204cd408f1fd5474fb1ef8b56df47862, type: 3}
+  m_Sprite: {fileID: 21300000, guid: efb9a287c7aaac54c8a21e37ad11f84e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1285893067
 GameObject:
@@ -13765,93 +13889,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 490990835}
   m_RootOrder: 13
---- !u!1 &1326288674
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100000, guid: 080153ececb00db42811be6e02a09bde, type: 2}
-  m_PrefabInternal: {fileID: 410428779}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1326288678}
-  - 23: {fileID: 1326288677}
-  - 102: {fileID: 1326288676}
-  - 114: {fileID: 1326288675}
-  m_Layer: 0
-  m_Name: In-game text
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1326288675
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400000, guid: 080153ececb00db42811be6e02a09bde,
-    type: 2}
-  m_PrefabInternal: {fileID: 410428779}
-  m_GameObject: {fileID: 1326288674}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 329d9c73fe5e20f428d1f09f3f7b5bfa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sortingLayer: Foreground
-  sortingOrder: 0
---- !u!102 &1326288676
-TextMesh:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 10200000, guid: 080153ececb00db42811be6e02a09bde,
-    type: 2}
-  m_PrefabInternal: {fileID: 410428779}
-  m_GameObject: {fileID: 1326288674}
-  m_Text: 
-  m_OffsetZ: 0
-  m_CharacterSize: 1
-  m_LineSpacing: 1
-  m_Anchor: 0
-  m_Alignment: 0
-  m_TabSize: 4
-  m_FontSize: 0
-  m_FontStyle: 1
-  m_RichText: 1
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-  m_Color:
-    serializedVersion: 2
-    rgba: 4278190080
---- !u!23 &1326288677
-Renderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 2300000, guid: 080153ececb00db42811be6e02a09bde,
-    type: 2}
-  m_PrefabInternal: {fileID: 410428779}
-  m_GameObject: {fileID: 1326288674}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 0
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
---- !u!4 &1326288678
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 400000, guid: 080153ececb00db42811be6e02a09bde, type: 2}
-  m_PrefabInternal: {fileID: 410428779}
-  m_GameObject: {fileID: 1326288674}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.733017445, y: .911484599, z: 0}
-  m_LocalScale: {x: .231800124, y: .191953003, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1285874833}
-  m_RootOrder: 0
 --- !u!1001 &1338313110
 Prefab:
   m_ObjectHideFlags: 0
@@ -14044,6 +14081,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &1361224848
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -14127,6 +14166,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &1363971007
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -14210,6 +14251,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &1368279039
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -14354,6 +14397,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!61 &1376287734
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14456,6 +14501,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &1384319120
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -14538,6 +14585,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!61 &1394533842
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14971,8 +15020,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -41.030941, y: 105.879028, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
-  m_Children:
-  - {fileID: 541990212}
+  m_Children: []
   m_Father: {fileID: 1400372786}
   m_RootOrder: 0
 --- !u!61 &1473717349
@@ -15000,7 +15048,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueFile: {fileID: 4900000, guid: 8d77d9e8504bd4c4984cbad2218df5ff, type: 3}
-  gText: {fileID: 541990214}
+  talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
+  talkVolume: 1
 --- !u!212 &1473717351
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15022,7 +15071,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 1167940005
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 204cd408f1fd5474fb1ef8b56df47862, type: 3}
+  m_Sprite: {fileID: 21300000, guid: efb9a287c7aaac54c8a21e37ad11f84e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1488836107
 GameObject:
@@ -15072,50 +15121,6 @@ Transform:
   - {fileID: 1987429758}
   m_Father: {fileID: 1571577633}
   m_RootOrder: 0
---- !u!1001 &1494160654
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 400000, guid: 57453718c8a03e148ac3b78b03e379c7, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: .850000024
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 57453718c8a03e148ac3b78b03e379c7, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: .100000001
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 57453718c8a03e148ac3b78b03e379c7, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 57453718c8a03e148ac3b78b03e379c7, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 57453718c8a03e148ac3b78b03e379c7, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 57453718c8a03e148ac3b78b03e379c7, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 57453718c8a03e148ac3b78b03e379c7, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 57453718c8a03e148ac3b78b03e379c7, type: 2}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 57453718c8a03e148ac3b78b03e379c7, type: 2}
-  m_RootGameObject: {fileID: 261895253}
-  m_IsPrefabParent: 0
-  m_IsExploded: 1
 --- !u!1001 &1494882288
 Prefab:
   m_ObjectHideFlags: 0
@@ -15318,6 +15323,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   springForce: 4000
+  contactNoise: {fileID: 0}
+  noiseVolume: 1
 --- !u!61 &1510597547
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15537,6 +15544,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &1541559182
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -15673,6 +15682,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   springForce: 4000
+  contactNoise: {fileID: 0}
+  noiseVolume: 1
 --- !u!61 &1553775311
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16211,6 +16222,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   springForce: 5000
+  contactNoise: {fileID: 0}
+  noiseVolume: 1
 --- !u!61 &1609178559
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16492,93 +16505,6 @@ Transform:
   - {fileID: 67170232}
   m_Father: {fileID: 1571577633}
   m_RootOrder: 6
---- !u!1 &1652368981
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100000, guid: 080153ececb00db42811be6e02a09bde, type: 2}
-  m_PrefabInternal: {fileID: 1409158476}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1652368982}
-  - 23: {fileID: 1652368985}
-  - 102: {fileID: 1652368984}
-  - 114: {fileID: 1652368983}
-  m_Layer: 0
-  m_Name: In-game text
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1652368982
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 400000, guid: 080153ececb00db42811be6e02a09bde, type: 2}
-  m_PrefabInternal: {fileID: 1409158476}
-  m_GameObject: {fileID: 1652368981}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.733017445, y: .911484599, z: 0}
-  m_LocalScale: {x: .231800124, y: .191953003, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1197489576}
-  m_RootOrder: 0
---- !u!114 &1652368983
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400000, guid: 080153ececb00db42811be6e02a09bde,
-    type: 2}
-  m_PrefabInternal: {fileID: 1409158476}
-  m_GameObject: {fileID: 1652368981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 329d9c73fe5e20f428d1f09f3f7b5bfa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sortingLayer: Foreground
-  sortingOrder: 0
---- !u!102 &1652368984
-TextMesh:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 10200000, guid: 080153ececb00db42811be6e02a09bde,
-    type: 2}
-  m_PrefabInternal: {fileID: 1409158476}
-  m_GameObject: {fileID: 1652368981}
-  m_Text: 
-  m_OffsetZ: 0
-  m_CharacterSize: 1
-  m_LineSpacing: 1
-  m_Anchor: 0
-  m_Alignment: 0
-  m_TabSize: 4
-  m_FontSize: 0
-  m_FontStyle: 1
-  m_RichText: 1
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-  m_Color:
-    serializedVersion: 2
-    rgba: 4278190080
---- !u!23 &1652368985
-Renderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 2300000, guid: 080153ececb00db42811be6e02a09bde,
-    type: 2}
-  m_PrefabInternal: {fileID: 1409158476}
-  m_GameObject: {fileID: 1652368981}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 0
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
 --- !u!1 &1656706024
 GameObject:
   m_ObjectHideFlags: 0
@@ -16798,6 +16724,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &1679099191
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -16839,93 +16767,6 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfe5114afd35b964f838551f7a717395, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
---- !u!1 &1681377948
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100000, guid: 080153ececb00db42811be6e02a09bde, type: 2}
-  m_PrefabInternal: {fileID: 1949602781}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1681377949}
-  - 23: {fileID: 1681377952}
-  - 102: {fileID: 1681377951}
-  - 114: {fileID: 1681377950}
-  m_Layer: 0
-  m_Name: In-game text
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1681377949
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 400000, guid: 080153ececb00db42811be6e02a09bde, type: 2}
-  m_PrefabInternal: {fileID: 1949602781}
-  m_GameObject: {fileID: 1681377948}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.733017445, y: .911484599, z: 0}
-  m_LocalScale: {x: .231800124, y: .191953003, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2054639869}
-  m_RootOrder: 0
---- !u!114 &1681377950
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400000, guid: 080153ececb00db42811be6e02a09bde,
-    type: 2}
-  m_PrefabInternal: {fileID: 1949602781}
-  m_GameObject: {fileID: 1681377948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 329d9c73fe5e20f428d1f09f3f7b5bfa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sortingLayer: Foreground
-  sortingOrder: 0
---- !u!102 &1681377951
-TextMesh:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 10200000, guid: 080153ececb00db42811be6e02a09bde,
-    type: 2}
-  m_PrefabInternal: {fileID: 1949602781}
-  m_GameObject: {fileID: 1681377948}
-  m_Text: 
-  m_OffsetZ: 0
-  m_CharacterSize: 1
-  m_LineSpacing: 1
-  m_Anchor: 0
-  m_Alignment: 0
-  m_TabSize: 4
-  m_FontSize: 0
-  m_FontStyle: 1
-  m_RichText: 1
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-  m_Color:
-    serializedVersion: 2
-    rgba: 4278190080
---- !u!23 &1681377952
-Renderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 2300000, guid: 080153ececb00db42811be6e02a09bde,
-    type: 2}
-  m_PrefabInternal: {fileID: 1949602781}
-  m_GameObject: {fileID: 1681377948}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 0
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
 --- !u!1 &1695964583
 GameObject:
   m_ObjectHideFlags: 0
@@ -17077,6 +16918,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!61 &1701808963
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17255,6 +17098,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &1743287001
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -17386,6 +17231,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &1760866762
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -17861,6 +17708,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   springForce: 4000
+  contactNoise: {fileID: 0}
+  noiseVolume: 1
 --- !u!61 &1796679771
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17967,6 +17816,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &1805988158
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -18049,6 +17900,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!61 &1821699557
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18278,6 +18131,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &1843643457
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -18360,6 +18215,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!61 &1852529497
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18576,6 +18433,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &1867826785
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -18781,6 +18640,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &1891034576
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -18992,6 +18853,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &1904374739
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -19075,6 +18938,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   springForce: 5000
+  contactNoise: {fileID: 0}
+  noiseVolume: 1
 --- !u!61 &1907095823
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19129,6 +18994,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &1909228816
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -19386,6 +19253,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   springForce: 4000
+  contactNoise: {fileID: 0}
+  noiseVolume: 1
 --- !u!61 &1933243593
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19812,6 +19681,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!61 &1986845887
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19907,6 +19778,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &1988692240
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -20010,6 +19883,50 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 29a71e966b365834bbb13321478ae2cb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!1001 &1991828071
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400002, guid: ef5d36ba5a960214a8fc17fb7c3626dc, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: ef5d36ba5a960214a8fc17fb7c3626dc, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: ef5d36ba5a960214a8fc17fb7c3626dc, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: ef5d36ba5a960214a8fc17fb7c3626dc, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: ef5d36ba5a960214a8fc17fb7c3626dc, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: ef5d36ba5a960214a8fc17fb7c3626dc, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: ef5d36ba5a960214a8fc17fb7c3626dc, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: ef5d36ba5a960214a8fc17fb7c3626dc, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: ef5d36ba5a960214a8fc17fb7c3626dc, type: 2}
+  m_RootGameObject: {fileID: 932726873}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &2000493585
 GameObject:
   m_ObjectHideFlags: 0
@@ -20655,8 +20572,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -56.5402107, y: 80.695343, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
-  m_Children:
-  - {fileID: 1681377949}
+  m_Children: []
   m_Father: {fileID: 1400372786}
   m_RootOrder: 1
 --- !u!61 &2054639870
@@ -20684,7 +20600,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueFile: {fileID: 4900000, guid: 013729ec93cc9b34a8f8ba5ad3941c59, type: 3}
-  gText: {fileID: 1681377951}
+  talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
+  talkVolume: 1
 --- !u!212 &2054639872
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20706,7 +20623,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 1167940005
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 204cd408f1fd5474fb1ef8b56df47862, type: 3}
+  m_Sprite: {fileID: 21300000, guid: efb9a287c7aaac54c8a21e37ad11f84e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &2057589609
 Prefab:
@@ -20798,6 +20715,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   springForce: 5000
+  contactNoise: {fileID: 0}
+  noiseVolume: 1
 --- !u!61 &2088187928
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -20852,6 +20771,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &2089880220
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -21053,6 +20974,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &2097521980
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -21136,6 +21059,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &2110487168
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -21219,6 +21144,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   springForce: 4000
+  contactNoise: {fileID: 0}
+  noiseVolume: 1
 --- !u!61 &2130846814
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21273,6 +21200,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathNoise: {fileID: 0}
+  deathVolume: 0
 --- !u!60 &2132322899
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -21356,6 +21285,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   springForce: 4000
+  contactNoise: {fileID: 0}
+  noiseVolume: 1
 --- !u!61 &2137477547
 BoxCollider2D:
   m_ObjectHideFlags: 0

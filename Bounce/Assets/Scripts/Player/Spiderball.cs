@@ -69,6 +69,7 @@ public class Spiderball : MonoBehaviour {
 			jumpTimer = 0.0f;
 
 			this.rigidbody2D.AddForce(lastCollision.contacts[0].normal.normalized * pbc.jumpForce);
+			GetComponent<PlayerSoundManager>().PlaySound("SpiderJump");
 		}
 
 		// Detecting whether spiderball physics still apply

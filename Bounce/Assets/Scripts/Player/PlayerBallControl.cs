@@ -19,11 +19,7 @@ public class PlayerBallControl : MonoBehaviour {
 	public float jumpDelay = 0.4f;	//time (in s) delay between jumps
 	private float jumpTimer = 0.4f;
 	[HideInInspector]
-	public bool jumpedInCurrentFrame = false;
-	//public float boostForgiveness = 0.75f; //Extra time in seconds the player has to get a boosted bounce
-	//private float timeSinceLeft = 0.0f;
-	//private float timeSinceRight = 0.0f;
-	//private float timeSinceJump = 0.0f;
+	public bool jumpedInCurrentFrame = false;	//used so spiderball doesn't repeat jump
 	// bouncy vars
 	public float bounciness = 0.6f;
 	public float boostedBounciness = 0.85f;
@@ -48,9 +44,9 @@ public class PlayerBallControl : MonoBehaviour {
 	private DeformationState dState = DeformationState.Normal;
 	//Talking, speech vars
 	[HideInInspector]
-	public bool isTalking = false;
+	public bool inConversation = false;
 	[HideInInspector]
-	public Interactable npcTalker;
+	public Transform npcTalker;
 
 	// Temp Storage Vars
 	private float originalMagnitude;
