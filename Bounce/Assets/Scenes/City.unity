@@ -36977,6 +36977,8 @@ MonoBehaviour:
   npcOffset: {x: -4, y: 4}
   playerOffset: {x: -4, y: 4}
   wordWrapCharCount: 25
+  animateSpeed: .0299999993
+  responseSpeed: .5
 --- !u!1001 &1901244926
 Prefab:
   m_ObjectHideFlags: 0
