@@ -9,10 +9,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 400000}
   - 212: {fileID: 21200000}
-  - 61: {fileID: 6100000}
   - 114: {fileID: 11400000}
+  - 61: {fileID: 6100000}
   m_Layer: 0
-  m_Name: PeachPowerUp
+  m_Name: tree_trunk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,8 +25,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.2071228, y: 13.1335907, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -25.1347847, y: -6.88575745, z: 0}
+  m_LocalScale: {x: 1, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -38,9 +38,9 @@ BoxCollider2D:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Size: {x: .90785718, y: .923442781}
-  m_Center: {x: 0, y: .0382785797}
+  m_IsTrigger: 0
+  m_Size: {x: 1.44000006, y: 4.80000019}
+  m_Center: {x: 0, y: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -49,14 +49,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdf5d57255e1d3843a37a22d5af20877, type: 3}
+  m_Script: {fileID: 11500000, guid: b0212e8ea2c609f42b67f050ef788780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
-  respawns: 1
-  respawnTime: 10
-  pickUpNoise: {fileID: 8300000, guid: 33de77d20154ecd45a8f3191145f4e76, type: 3}
-  pickUpVolume: 1
+  tileX: 1
+  tileY: 1
+  scaleX: 1
+  scaleY: 1
+  useScaleAsTile: 1
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -76,8 +76,8 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayerID: 3477195907
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 77c5603e0cbb6d24ea9248b025470077, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: 7a9efdc8f231b444384fe24e65a8bd5a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+//[RequireComponent (typeof(BoxCollider2D))]
 public class Interactable : MonoBehaviour {
 
 	public TextAsset dialogueFile;
@@ -35,6 +36,10 @@ public class Interactable : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		//manually check if player is in bounds
+		//if (playerObj != null &&
+		//    playerObj.transform.position.x > transform.position.x + GetComponent<BoxCollider2D>().center.x - GetComponent<BoxCollider2D>()
+
 		if (Input.GetButtonDown ("Action") && (inTrigger || inConversation))
 		{
 			PlayerBallControl bScript = playerObj.GetComponent<PlayerBallControl>();
