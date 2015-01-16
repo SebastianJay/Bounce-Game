@@ -6,6 +6,7 @@ public class Death : MonoBehaviour {
 	//Remember to initialize this upon entering the level!
 	public static Vector2 respawn;
 	public static CameraFollowConfig camConfig;
+	public static bool deathTransitioning = false;
 
 	public AudioClip deathNoise;
 	public float deathVolume = 1.0f;
@@ -47,7 +48,8 @@ public class Death : MonoBehaviour {
 
 	void CheckForDeath(Collider2D col)
 	{
-		if ((col.tag == "Player" || col.tag == "MotherFollower") && !locked) {
+		if ((col.tag == "Player" || col.tag == "MotherFollower") && !locked && 
+		    (screenFadeObj == null || !screenFadeObj.GetComponent<ScreenFading>().IsTransitioning())) {
 
 			if (deathSrc != null)
 				deathSrc.Play();

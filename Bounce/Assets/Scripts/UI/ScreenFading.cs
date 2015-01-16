@@ -76,4 +76,9 @@ public class ScreenFading : MonoBehaviour {
 		fadeMusic = music;
 		transitionFunc = transitionAction;
 	}
+
+	public bool IsTransitioning()
+	{
+		return fadingIn;
+	}
 }

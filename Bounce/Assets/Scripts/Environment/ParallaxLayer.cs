@@ -15,17 +15,14 @@ public class ParallaxLayer : MonoBehaviour {
 	}
 
 	private void UpdateParallax(object sender, ParaCamArgs e) {
+		float zfactor = 7f / e.orthoSize;	//kinda arbitrary, but parallax should be less if camera is zoomed out
 		if (moveHorizontally)
 		{
-			transform.position = transform.position - new Vector3(e.dx * horizontalFactor, 0f, 0f);
+			transform.position = transform.position - new Vector3(e.dx * horizontalFactor * zfactor, 0f, 0f);
 		}
 		if (moveVertically)
 		{
-			transform.position = transform.position - new Vector3(0f, e.dy * verticalFactor, 0f);
+			transform.position = transform.position - new Vector3(0f, e.dy * verticalFactor * zfactor, 0f);
 		}
 	}
-
-	// Update is called once per frame
-	//void Update () {
-	//}
 }
