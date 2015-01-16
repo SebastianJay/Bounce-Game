@@ -8,7 +8,7 @@ public class Death : MonoBehaviour {
 	public static CameraFollowConfig camConfig;
 
 	public AudioClip deathNoise;
-	public float deathVolume;
+	public float deathVolume = 1.0f;
 	private AudioSource deathSrc;
 
 	private bool locked = false;
