@@ -9,9 +9,16 @@ public class PowerupPickUp : MonoBehaviour {
 	public AudioClip pickUpNoise;
 	public float pickUpVolume = 1f;
 
+	private GameObject screenFadeObj;
+	void Start()
+	{
+		screenFadeObj = GameObject.FindGameObjectWithTag ("ScreenFader");
+	}
+
 	void OnTriggerEnter2D (Collider2D col)
 	{
-		if (col.tag == "Player")
+		if (col.tag == "Player"
+		    && (screenFadeObj == null || !screenFadeObj.GetComponent<ScreenFading>().IsTransitioning()))
 		{
 			if (pickUpNoise != null) {
 				//we create a dummy object for the noise since this one will get killed

@@ -402,4 +402,16 @@ public class PlayerBallControl : MonoBehaviour {
 		prevVelocity = this.rigidbody2D.velocity;
 		prevAngularVelocity = this.rigidbody2D.angularVelocity;
 	}
+
+	public void ForceUndoDeformation()
+	{
+		if (dState == DeformationState.Deforming || dState == DeformationState.Reforming)
+		{
+			this.transform.parent.parent = null;
+			GameObject.Destroy (scaleObject);
+			this.transform.parent.localScale = Vector3.one;
+			this.rigidbody2D.isKinematic = false;
+		}
+		dState = DeformationState.Normal;
+	}
 }

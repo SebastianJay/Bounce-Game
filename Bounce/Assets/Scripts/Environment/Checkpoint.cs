@@ -8,31 +8,35 @@ public class Checkpoint : MonoBehaviour {
 	public static Dictionary<int, Vector3> posCheckTable = new Dictionary<int, Vector3>();
 	public static Dictionary<int, CameraFollowConfig> camCheckTable = new Dictionary<int,CameraFollowConfig>();
 
+	private GameObject screenFadeObj;
 	void Awake (){
+		screenFadeObj = GameObject.FindGameObjectWithTag ("ScreenFader");
 		if (!posCheckTable.ContainsKey (checkPointID)) {
 			posCheckTable.Add (checkPointID, transform.position);
 		}
 	}
 	
 	void OnTriggerEnter2D(Collider2D other) {
-		Debug.Log ("Triggered");
-		if (!camCheckTable.ContainsKey(checkPointID) && GameObject.FindGameObjectWithTag("MainCamera") != null) {
-			camCheckTable.Add (checkPointID, GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>().GetConfig());
-		}
-		if (other.gameObject.GetComponent<PlayerDataManager> () != null) 
+		if (other.tag == "Player"
+		    && (screenFadeObj == null || !screenFadeObj.GetComponent<ScreenFading>().IsTransitioning()))
 		{
-			PlayerDataManager m = other.GetComponent<PlayerDataManager>();
-			if(!m.previousCheckpoints.ContainsKey(Application.loadedLevel))
-				m.previousCheckpoints[Application.loadedLevel] = new List<int>();
+			if (!camCheckTable.ContainsKey(checkPointID) && GameObject.FindGameObjectWithTag("MainCamera") != null) {
+				camCheckTable.Add (checkPointID, GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraFollow>().GetConfig());
+			}
+			if (other.gameObject.GetComponent<PlayerDataManager> () != null) 
+			{
+				PlayerDataManager m = other.GetComponent<PlayerDataManager>();
+				if(!m.previousCheckpoints.ContainsKey(Application.loadedLevel))
+					m.previousCheckpoints[Application.loadedLevel] = new List<int>();
 
-			if(!m.previousCheckpoints[Application.loadedLevel].Contains (checkPointID))
-				m.previousCheckpoints[Application.loadedLevel].Add (checkPointID);
+				if(!m.previousCheckpoints[Application.loadedLevel].Contains (checkPointID))
+					m.previousCheckpoints[Application.loadedLevel].Add (checkPointID);
 
-			m.lastCheckpoint = checkPointID;
-			m.lastLevel = Application.loadedLevel;
+				m.lastCheckpoint = checkPointID;
+				m.lastLevel = Application.loadedLevel;
 
-			m.saveCurrent();
+				m.saveCurrent();
+			}
 		}
 	}
-	
 }
