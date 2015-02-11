@@ -23,9 +23,14 @@ public class Spring : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D coll) {
 		if (coll.gameObject.tag == "Player")
 		{
-			coll.gameObject.rigidbody2D.AddForce (springForce * direction);
-			if (noiseSrc != null)
-				noiseSrc.Play();
+			if (!coll.gameObject.GetComponent<PlayerBallControl>().jumpedInCurrentFrame
+			    && !coll.gameObject.GetComponent<PlayerBallControl>().springInCurrentFrame)
+			{
+				coll.gameObject.rigidbody2D.AddForce (springForce * direction);
+				coll.gameObject.GetComponent<PlayerBallControl>().springInCurrentFrame = true;
+				if (noiseSrc != null)
+					noiseSrc.Play();
+			}
 		}
 	}
 }

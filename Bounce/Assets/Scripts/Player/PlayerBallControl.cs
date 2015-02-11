@@ -20,6 +20,8 @@ public class PlayerBallControl : MonoBehaviour {
 	private float jumpTimer = 0.4f;
 	[HideInInspector]
 	public bool jumpedInCurrentFrame = false;	//used so spiderball doesn't repeat jump
+	[HideInInspector]
+	public bool springInCurrentFrame = false;
 	// bouncy vars
 	public float bounciness = 0.6f;
 	public float boostedBounciness = 0.85f;
@@ -215,7 +217,7 @@ public class PlayerBallControl : MonoBehaviour {
 	}
 
 	private void ListenForJump() {
-		if (Input.GetButton("Jump") && grounded && jumpTimer >= jumpDelay && !spiderball)
+		if (Input.GetButton("Jump") && grounded && jumpTimer >= jumpDelay && !spiderball && !springInCurrentFrame)
 		{
 			this.rigidbody2D.AddForce(Vector2.up * jumpForce);
 			jumpTimer = 0.0f;
@@ -234,15 +236,17 @@ public class PlayerBallControl : MonoBehaviour {
 	private bool jumpDepressed = false;
 	private void checkJumpBoosted()
 	{
-		if(((Input.GetButton("Jump") /*|| timeSinceJump < boostForgiveness*/) && outVelocity.y > 0) ||
-		   ((Input.GetButtonDown("Left") /*|| timeSinceLeft < boostForgiveness*/) && outVelocity.x < 0) ||
-		   ((Input.GetButtonDown("Right") /*|| timeSinceRight < boostForgiveness*/) && outVelocity.x > 0))
+		if (springInCurrentFrame)
+			return;	//ignore boosts if you hit a spring
+		if(((Input.GetButton("Jump") /*|| timeSinceJump < boostForgiveness*/) && outVelocity.y > 0))
+		//   ((Input.GetButtonDown("Left") /*|| timeSinceLeft < boostForgiveness*/) && outVelocity.x < 0) ||
+		//   ((Input.GetButtonDown("Right") /*|| timeSinceRight < boostForgiveness*/) && outVelocity.x > 0))
 		{
 			jumpBoosted = true;
 		}
-		else if(((Input.GetButton("Floor") /*|| timeSinceJump < boostForgiveness*/) && outVelocity.y > 0) ||
-				((Input.GetButtonDown("Left") /*|| timeSinceLeft < boostForgiveness*/) && outVelocity.x > 0) ||
-				((Input.GetButtonDown("Right") /*|| timeSinceRight < boostForgiveness*/) && outVelocity.x < 0))
+		else if(((Input.GetButton("Floor") /*|| timeSinceJump < boostForgiveness*/) && outVelocity.y > 0))
+		//		((Input.GetButtonDown("Left") /*|| timeSinceLeft < boostForgiveness*/) && outVelocity.x > 0) ||
+		//		((Input.GetButtonDown("Right") /*|| timeSinceRight < boostForgiveness*/) && outVelocity.x < 0))
 		{
 			jumpDepressed = true;
 		}
@@ -329,7 +333,6 @@ public class PlayerBallControl : MonoBehaviour {
 
 			//recordButtonDelay();
 			checkJumpBoosted();
-
 			if(deformTimer < deformTime)
 			{
 				deformTimer += Time.deltaTime;
@@ -348,14 +351,16 @@ public class PlayerBallControl : MonoBehaviour {
 				if(jumpBoosted)
 				{
 					jumpBoosted = false;
+					jumpedInCurrentFrame = true;
 					//timeSinceJump = boostForgiveness;
 					//timeSinceLeft = boostForgiveness;
 					//timeSinceRight = boostForgiveness;
-
+					Debug.Log ("Boosted bounce");
 					outVelocity = outVelocity.normalized*originalMagnitude*boostedBounciness;
 
 					if(outVelocity.magnitude < (jumpForce/this.rigidbody2D.mass)*Time.fixedDeltaTime)
 					{
+						Debug.Log("Back to original height");
 						outVelocity.Normalize();
 						outVelocity*=(jumpForce/this.rigidbody2D.mass)*Time.fixedDeltaTime;
 					}
@@ -401,6 +406,7 @@ public class PlayerBallControl : MonoBehaviour {
 		jumpTimer += Time.fixedDeltaTime;
 		prevVelocity = this.rigidbody2D.velocity;
 		prevAngularVelocity = this.rigidbody2D.angularVelocity;
+		springInCurrentFrame = false;
 	}
 
 	public void ForceUndoDeformation()
