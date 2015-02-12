@@ -6,6 +6,8 @@ public class Spring : MonoBehaviour {
 	public AudioClip contactNoise;
 	public float noiseVolume = 1f;
 
+	public const int springJumpFrameThreshold = 10;
+
 	private float orientation;
 	private Vector2 direction;
 	private AudioSource noiseSrc;
@@ -19,7 +21,8 @@ public class Spring : MonoBehaviour {
 			noiseSrc.volume = noiseVolume;
 		}
 	}
-	
+
+	/*
 	void OnCollisionEnter2D(Collision2D coll) {
 		if (coll.gameObject.tag == "Player")
 		{
@@ -28,9 +31,23 @@ public class Spring : MonoBehaviour {
 			{
 				coll.gameObject.rigidbody2D.AddForce (springForce * direction);
 				coll.gameObject.GetComponent<PlayerBallControl>().springInCurrentFrame = true;
+				Debug.Log ("Spring bounce");
 				if (noiseSrc != null)
 					noiseSrc.Play();
 			}
 		}
 	}
+	*/
+
+	public void SpringCollide(GameObject player) {
+		if (Time.frameCount - player.GetComponent<PlayerBallControl>().jumpFrame > springJumpFrameThreshold)
+		{
+			player.rigidbody2D.AddForce (springForce * direction);
+			player.GetComponent<PlayerBallControl>().springFrame = Time.frameCount;
+			Debug.Log ("Spring bounce " + Time.frameCount);
+			if (noiseSrc != null)
+				noiseSrc.Play();
+		}
+	}
+
 }

@@ -59,7 +59,7 @@ public class Spiderball : MonoBehaviour {
 		jumpTimer += Time.deltaTime;
 		if (Input.GetButton ("Jump") && isConnected
 		    && jumpTimer >= jumpDelay
-		    && !pbc.jumpedInCurrentFrame
+		    && Time.frameCount - pbc.jumpFrame > 0
 		    && !pbc.playerLock) {
 
 			Destroy (joint);
