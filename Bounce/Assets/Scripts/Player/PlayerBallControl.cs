@@ -221,9 +221,14 @@ public class PlayerBallControl : MonoBehaviour {
 	}
 
 	private void ListenForJump() {
-		if (Input.GetButton("Jump") && grounded && jumpTimer >= jumpDelay && !spiderball && Time.frameCount - springFrame > Spring.springJumpFrameThreshold)
+		if (Input.GetButton("Jump") && grounded && jumpTimer >= jumpDelay && !spiderball 
+		    && Time.frameCount - springFrame > Spring.springJumpFrameThreshold)
 		{
-			//Debug.Log ("Jump" + Time.frameCount);
+			//Debug.Log ("Jump");
+			//Debug.Log (rigidbody2D.velocity);
+			//DEBUG
+			rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0f);	//gets rid of the "extra high jump"
+			//
 			this.rigidbody2D.AddForce(Vector2.up * jumpForce);
 			jumpTimer = 0.0f;
 			hasContact = false;
@@ -360,12 +365,12 @@ public class PlayerBallControl : MonoBehaviour {
 					//timeSinceJump = boostForgiveness;
 					//timeSinceLeft = boostForgiveness;
 					//timeSinceRight = boostForgiveness;
-					//Debug.Log ("Boosted bounce");
+					Debug.Log ("Boosted bounce");
 					outVelocity = outVelocity.normalized*originalMagnitude*boostedBounciness;
 
 					if(outVelocity.magnitude < (jumpForce/this.rigidbody2D.mass)*Time.fixedDeltaTime)
 					{
-						//Debug.Log("Back to original height");
+						Debug.Log("Back to original height");
 						outVelocity.Normalize();
 						outVelocity*=(jumpForce/this.rigidbody2D.mass)*Time.fixedDeltaTime;
 					}
