@@ -365,12 +365,12 @@ public class PlayerBallControl : MonoBehaviour {
 					//timeSinceJump = boostForgiveness;
 					//timeSinceLeft = boostForgiveness;
 					//timeSinceRight = boostForgiveness;
-					Debug.Log ("Boosted bounce");
+					//Debug.Log ("Boosted bounce");
 					outVelocity = outVelocity.normalized*originalMagnitude*boostedBounciness;
 
 					if(outVelocity.magnitude < (jumpForce/this.rigidbody2D.mass)*Time.fixedDeltaTime)
 					{
-						Debug.Log("Back to original height");
+						//Debug.Log("Back to original height");
 						outVelocity.Normalize();
 						outVelocity*=(jumpForce/this.rigidbody2D.mass)*Time.fixedDeltaTime;
 					}

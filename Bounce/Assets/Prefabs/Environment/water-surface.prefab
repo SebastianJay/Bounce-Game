@@ -103,7 +103,10 @@ MonoBehaviour:
   bigSplashVolume: 1
   smallSplashVolume: 1
   bigNoiseThreshold: 10
-  noNoiseThreshold: 3
+  noNoiseThreshold: 5
+  buoyancyForce: {x: 0, y: 300}
+  dampingCoefficient: -20
+  maxDampingForce: 100
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
