@@ -766,11 +766,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 34317420}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.33590698, y: -.22985816, z: .126953125}
+  m_LocalPosition: {x: 0, y: .889999986, z: .129999995}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 242279245}
-  m_RootOrder: 6
+  m_RootOrder: 5
 --- !u!212 &34317422
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4923,11 +4923,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 191094500}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.3359375, y: -4.65999985, z: .126953125}
+  m_LocalPosition: {x: 0, y: -3.53999996, z: .129999995}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 242279245}
-  m_RootOrder: 2
+  m_RootOrder: 0
 --- !u!212 &191094502
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5661,6 +5661,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 242279245}
   - 61: {fileID: 242279246}
+  - 114: {fileID: 242279247}
   m_Layer: 0
   m_Name: wrecking_chain
   m_TagString: Untagged
@@ -5675,20 +5676,20 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 242279244}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.52346802, y: 1.55000019, z: -.126953125}
+  m_LocalPosition: {x: 7.88000488, y: .409999847, z: -.129999995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 191094501}
   - {fileID: 1359975336}
   - {fileID: 643622533}
-  - {fileID: 191094501}
-  - {fileID: 1892214798}
   - {fileID: 1699318799}
-  - {fileID: 2032869096}
+  - {fileID: 1892214798}
   - {fileID: 34317421}
-  - {fileID: 658786893}
+  - {fileID: 2032869096}
   - {fileID: 610283238}
+  - {fileID: 658786893}
   m_Father: {fileID: 1928116714}
-  m_RootOrder: 4
+  m_RootOrder: 1
 --- !u!61 &242279246
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5698,8 +5699,31 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: .883393288, y: 8.19701385}
-  m_Center: {x: 2.35836792, y: -1.07362533}
+  m_Size: {x: 1, y: 8}
+  m_Center: {x: 0, y: 0}
+--- !u!114 &242279247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 242279244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8e44ac7c1147174f86adcdc5c4fb389, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chainLinks:
+  - {fileID: 658786893}
+  - {fileID: 610283238}
+  - {fileID: 2032869096}
+  - {fileID: 34317421}
+  - {fileID: 1892214798}
+  - {fileID: 1699318799}
+  - {fileID: 643622533}
+  - {fileID: 1359975336}
+  - {fileID: 191094501}
+  animateTime: 3
+  contractDistance: 4
 --- !u!1001 &257620779
 Prefab:
   m_ObjectHideFlags: 0
@@ -14769,11 +14793,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 610283237}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.33499146, y: 1.55278516, z: .126953125}
+  m_LocalPosition: {x: 0, y: 2.67000008, z: .129999995}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 242279245}
-  m_RootOrder: 8
+  m_RootOrder: 7
 --- !u!212 &610283239
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15464,11 +15488,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 643622532}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.3359375, y: -2.89095688, z: .126953125}
+  m_LocalPosition: {x: 0, y: -1.76999998, z: .129999995}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 242279245}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!212 &643622534
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16001,11 +16025,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 658786892}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.33502197, y: 2.43163514, z: .126953125}
+  m_LocalPosition: {x: 0, y: 3.54999995, z: .129999995}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 242279245}
-  m_RootOrder: 7
+  m_RootOrder: 8
 --- !u!212 &658786894
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19233,7 +19257,7 @@ Transform:
   m_Children:
   - {fileID: 1777625843}
   m_Father: {fileID: 1928116714}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!61 &812156073
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19273,13 +19297,15 @@ MonoBehaviour:
   moveObj: {fileID: 1038925860}
   buttonObj: {fileID: 1777625843}
   xOffset: 0
-  yOffset: 5
+  yOffset: 3.25
   moveTime: 3
   pressTime: 2.5
   pressNoise: {fileID: 8300000, guid: 09366c06763938647a76f0ac406aab48, type: 3}
   pressVolume: 1
   otherButtons:
   - {fileID: 1996851148}
+  animateChainToo: 1
+  chainObj: {fileID: 242279245}
 --- !u!1 &812304072
 GameObject:
   m_ObjectHideFlags: 0
@@ -22769,7 +22795,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: f8bbca876de9292408c1fbdcf478b4de, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: f8bbca876de9292408c1fbdcf478b4de, type: 2}
       propertyPath: m_LocalScale.x
@@ -22785,7 +22811,7 @@ Prefab:
       objectReference: {fileID: 1038925860}
     - target: {fileID: 11400000, guid: f8bbca876de9292408c1fbdcf478b4de, type: 2}
       propertyPath: yOffset
-      value: 5
+      value: 3.25
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: f8bbca876de9292408c1fbdcf478b4de, type: 2}
       propertyPath: pressTime
@@ -22799,6 +22825,14 @@ Prefab:
       propertyPath: pressNoise
       value: 
       objectReference: {fileID: 8300000, guid: 09366c06763938647a76f0ac406aab48, type: 3}
+    - target: {fileID: 11400000, guid: f8bbca876de9292408c1fbdcf478b4de, type: 2}
+      propertyPath: animateChainToo
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: f8bbca876de9292408c1fbdcf478b4de, type: 2}
+      propertyPath: chainObj
+      value: 
+      objectReference: {fileID: 242279245}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f8bbca876de9292408c1fbdcf478b4de, type: 2}
   m_RootGameObject: {fileID: 1996851147}
@@ -25303,6 +25337,8 @@ MonoBehaviour:
   pressNoise: {fileID: 8300000, guid: 09366c06763938647a76f0ac406aab48, type: 3}
   pressVolume: 1
   otherButtons: []
+  animateChainToo: 0
+  chainObj: {fileID: 0}
 --- !u!61 &1118977077
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -30922,11 +30958,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1359975335}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.33590698, y: -3.76980782, z: .126953125}
+  m_LocalPosition: {x: 0, y: -2.6500001, z: .129999995}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 242279245}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!212 &1359975337
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -37211,7 +37247,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: f8bbca876de9292408c1fbdcf478b4de, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: f8bbca876de9292408c1fbdcf478b4de, type: 2}
       propertyPath: m_LocalScale.x
@@ -37227,7 +37263,7 @@ Prefab:
       objectReference: {fileID: 1038925860}
     - target: {fileID: 11400000, guid: f8bbca876de9292408c1fbdcf478b4de, type: 2}
       propertyPath: yOffset
-      value: 5
+      value: 3.25
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: f8bbca876de9292408c1fbdcf478b4de, type: 2}
       propertyPath: pressTime
@@ -37241,6 +37277,14 @@ Prefab:
       propertyPath: pressNoise
       value: 
       objectReference: {fileID: 8300000, guid: 09366c06763938647a76f0ac406aab48, type: 3}
+    - target: {fileID: 11400000, guid: f8bbca876de9292408c1fbdcf478b4de, type: 2}
+      propertyPath: animateChainToo
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: f8bbca876de9292408c1fbdcf478b4de, type: 2}
+      propertyPath: chainObj
+      value: 
+      objectReference: {fileID: 242279245}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f8bbca876de9292408c1fbdcf478b4de, type: 2}
   m_RootGameObject: {fileID: 812156071}
@@ -38140,11 +38184,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1699318798}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.33590698, y: -1.99485946, z: .126953125}
+  m_LocalPosition: {x: 0, y: -.870000005, z: .129999995}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 242279245}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!212 &1699318800
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -41272,6 +41316,8 @@ MonoBehaviour:
   pressNoise: {fileID: 8300000, guid: 09366c06763938647a76f0ac406aab48, type: 3}
   pressVolume: 1
   otherButtons: []
+  animateChainToo: 0
+  chainObj: {fileID: 0}
 --- !u!1 &1827210869
 GameObject:
   m_ObjectHideFlags: 0
@@ -42607,11 +42653,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1892214797}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.3359375, y: -1.11600947, z: .126953125}
+  m_LocalPosition: {x: 0, y: -0, z: .129999995}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 242279245}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!212 &1892214799
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -43124,7 +43170,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6c3746defc1a8d94d8c7c871793b4456, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 6c3746defc1a8d94d8c7c871793b4456, type: 2}
       propertyPath: updateCameraRange
@@ -43469,10 +43515,10 @@ Transform:
   m_LocalScale: {x: .5, y: .5, z: 1}
   m_Children:
   - {fileID: 1038925860}
+  - {fileID: 242279245}
   - {fileID: 1998682814}
   - {fileID: 1996851148}
   - {fileID: 812156072}
-  - {fileID: 242279245}
   - {fileID: 336444587}
   m_Father: {fileID: 397143852}
   m_RootOrder: 8
@@ -44873,7 +44919,7 @@ Transform:
   m_Children:
   - {fileID: 64664183}
   m_Father: {fileID: 1928116714}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!61 &1996851149
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -44913,13 +44959,15 @@ MonoBehaviour:
   moveObj: {fileID: 1038925860}
   buttonObj: {fileID: 64664183}
   xOffset: 0
-  yOffset: 5
+  yOffset: 3.25
   moveTime: 3
   pressTime: 2.5
   pressNoise: {fileID: 8300000, guid: 09366c06763938647a76f0ac406aab48, type: 3}
   pressVolume: 1
   otherButtons:
   - {fileID: 812156072}
+  animateChainToo: 1
+  chainObj: {fileID: 242279245}
 --- !u!1 &1998682813
 GameObject:
   m_ObjectHideFlags: 0
@@ -44948,7 +44996,7 @@ Transform:
   m_LocalScale: {x: .179893136, y: .25, z: 1}
   m_Children: []
   m_Father: {fileID: 1928116714}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!114 &1998682815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45856,11 +45904,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2032869095}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.3359375, y: .648992777, z: .126953125}
+  m_LocalPosition: {x: 0, y: 1.76999998, z: .129999995}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 242279245}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!212 &2032869097
 SpriteRenderer:
   m_ObjectHideFlags: 0

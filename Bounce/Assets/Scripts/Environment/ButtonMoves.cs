@@ -16,6 +16,8 @@ public class ButtonMoves : MonoBehaviour {
 	public AudioClip pressNoise;
 	public float pressVolume = 1f;
 	public Transform[] otherButtons;		//special case if multiple buttons need to be pressed at once
+	public bool animateChainToo = false;	//special case for city wrecking ball
+	public Transform chainObj;
 
 	private bool depressed = false;	//whether player is on button
 	private bool activated = false;	//whether the button event happened
@@ -70,6 +72,8 @@ public class ButtonMoves : MonoBehaviour {
 						activated = true;
 						moveObj.GetComponent<AnimatedMover>().MoveRelative(
 							new Vector3(xOffset, yOffset, 0f), moveTime);
+						if (animateChainToo)
+							chainObj.GetComponent<AnimatedChain>().Animate();
 					}
 				}
 				else
