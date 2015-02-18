@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -22,7 +22,7 @@ public class LevelTeleporter : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other)
 	{
 		if (other.tag == "Player" && !locked) {
-			other.GetComponent<PlayerDataManager>().saveCurrent();
+			other.GetComponent<PlayerDataManager>().SaveCurrent();
 
 			if (screenFadeObj != null)
 			{

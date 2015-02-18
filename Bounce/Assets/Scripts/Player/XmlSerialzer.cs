@@ -7,25 +7,32 @@ using System.IO;
 public class XmlSerialzer : MonoBehaviour {
 
 	public static int currentSaveFile = 0;
+	public const string saveDirectory = "Save_Data/";
+	public const string savePrefix = "BounceSaveData";
+	public const string saveSuffix = ".sav";
 
-	public static void Save(playerData p)
+	public static void Save(PlayerData p)
 	{
-		string savePath = "BounceSaveData" + currentSaveFile;
-		var serializer = new XmlSerializer(typeof(playerData));
+		if (!Directory.Exists(saveDirectory))
+			Directory.CreateDirectory(saveDirectory);
+		string savePath = saveDirectory + savePrefix + currentSaveFile + saveSuffix;
+		var serializer = new XmlSerializer(typeof(PlayerData));
 		using(var stream = new FileStream(savePath, FileMode.Create))
 		{
 			serializer.Serialize(stream,p);
 		}
 	}
 	
-	public static playerData Load()
+	public static PlayerData Load()
 	{
-		string savePath = "BounceSaveData" + currentSaveFile;
-		var serializer = new XmlSerializer(typeof(playerData));
+		if (!Directory.Exists(saveDirectory))
+			return null;
+		string savePath = saveDirectory + savePrefix + currentSaveFile + saveSuffix;
+		var serializer = new XmlSerializer(typeof(PlayerData));
 		try{
 		using(var stream = new FileStream(savePath, FileMode.Open))
 		{
-			return serializer.Deserialize(stream) as playerData;
+			return serializer.Deserialize(stream) as PlayerData;
 		}
 		}catch(FileNotFoundException e)
 		{
@@ -35,7 +42,7 @@ public class XmlSerialzer : MonoBehaviour {
 }
 
 [XmlRoot("PlayerData")]
-public class playerData
+public class PlayerData
 {
 	[XmlAttribute("lastCheckpoint")]
 	public int lastCheckpoint = 0;
@@ -45,7 +52,7 @@ public class playerData
 
 	[XmlArray("previousCheckpoints")]
 	[XmlArrayItem("Entry")]
-	public List<Entry> previousCheckpoints = new List<Entry>();
+	public List<PlayerDataEntry> previousCheckpoints = new List<PlayerDataEntry>();
 	//Each element of the list corresponds to a level which has a list of checkpoints visited
 
 	[XmlArray("Inventory")]
@@ -53,7 +60,7 @@ public class playerData
 	public List<int> inventory = new List<int>();
 }
 [XmlRoot("Entry")]
-public class Entry
+public class PlayerDataEntry
 {
 	[XmlAttribute("key")]
 	public int key;
@@ -62,12 +69,12 @@ public class Entry
 	[XmlArrayItem("int")]
 	public List<int> value;
 
-	public Entry(int k, List<int> v)
+	public PlayerDataEntry(int k, List<int> v)
 	{
 		key = k;
 		value = v;
 	}
-	public Entry()
+	public PlayerDataEntry()
 	{
 	}
 }

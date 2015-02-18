@@ -35,7 +35,7 @@ public class Checkpoint : MonoBehaviour {
 				m.lastCheckpoint = checkPointID;
 				m.lastLevel = Application.loadedLevel;
 
-				m.saveCurrent();
+				//m.SaveCurrent();
 			}
 		}
 	}

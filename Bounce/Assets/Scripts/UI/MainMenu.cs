@@ -59,13 +59,19 @@ public class MainMenu : MonoBehaviour
 			GUI.Box (new Rect (Screen.width / 2 - menuWidth / 2, Screen.height / 2 - menuHeight / 2, menuWidth, menuHeight), "");
 
 			//Buttons for the three tabs
-			if (GUI.Button (new Rect (Screen.width / 2 - menuWidth / 2 + 10, Screen.height / 2 - menuHeight / 2 + 10, tabButtonWidth, tabButtonHeight), "Saves")) {
+			if (GUI.Button (new Rect (Screen.width / 2 - menuWidth / 2 + 10, 
+			                          Screen.height / 2 - menuHeight / 2 + 10, 
+			                          tabButtonWidth, tabButtonHeight), "Saves")) {
 					currentTab = MenuTab.Save;
 			}
-			if (GUI.Button (new Rect (Screen.width / 2 - tabButtonWidth / 2, Screen.height / 2 - menuHeight / 2 + 10, tabButtonWidth, tabButtonHeight), "Inventory")) {
+			if (GUI.Button (new Rect (Screen.width / 2 - tabButtonWidth / 2, 
+			                          Screen.height / 2 - menuHeight / 2 + 10, 
+			                          tabButtonWidth, tabButtonHeight), "Inventory")) {
 					currentTab = MenuTab.Inventory;
 			}
-			if (GUI.Button (new Rect (Screen.width / 2 + menuWidth / 2 - 10 - tabButtonWidth, Screen.height / 2 - menuHeight / 2 + 10, tabButtonWidth, tabButtonHeight), "Map")) {
+			if (GUI.Button (new Rect (Screen.width / 2 + menuWidth / 2 - 10 - tabButtonWidth, 
+			                          Screen.height / 2 - menuHeight / 2 + 10, 
+			                          tabButtonWidth, tabButtonHeight), "Map")) {
 					currentTab = MenuTab.Map;
 			}
 
@@ -76,36 +82,55 @@ public class MainMenu : MonoBehaviour
 
 				if(!menuWasOpen)
 				{
-					updateSaveFileList();
+					UpdateSaveFileList();
 				}
 
-				scrollPosition = GUI.BeginScrollView (new Rect (Screen.width / 2 - menuWidth / 2 + 10, Screen.height / 2 - menuHeight / 2 + 15 + tabButtonHeight, scrollViewWidth, scrollViewHeight), scrollPosition, new Rect (0, 0, scrollViewWidth - 20, saveFileList.Count*50+10));
+				scrollPosition = GUI.BeginScrollView (new Rect (Screen.width / 2 - menuWidth / 2 + 10, 
+				                                                Screen.height / 2 - menuHeight / 2 + 15 + tabButtonHeight, 
+				                                                scrollViewWidth, scrollViewHeight), scrollPosition, 
+				                                      new Rect (0, 0, scrollViewWidth - 20, saveFileList.Count*50+10));
 
 				// A button for creating a new save file
-				if(GUI.Button (new Rect(10,10,100,50),"New File"))
+				if(GUI.Button (new Rect(10,10,200,50),"Save to New File"))
 				{
-					XmlSerialzer.currentSaveFile = saveFileList.Count-1;
-					player.GetComponent<PlayerDataManager>().saveCurrent();
-					updateSaveFileList();
+					XmlSerialzer.currentSaveFile = saveFileList.Count;
+					player.GetComponent<PlayerDataManager>().SaveCurrent();
+					UpdateSaveFileList();
+				}
+				if (XmlSerialzer.currentSaveFile >= 0 && saveFileList.Count > 0) {
+					// A button for creating a new save file
+					if(GUI.Button (new Rect(210,10,200,50),"Overwrite current data (" + XmlSerialzer.currentSaveFile + ")"))
+					{
+						player.GetComponent<PlayerDataManager>().SaveCurrent();
+						UpdateSaveFileList();
+					}
+				}
+
+				if(GUI.Button (new Rect(10,10,200,50),"Save to New File"))
+				{
+					XmlSerialzer.currentSaveFile = saveFileList.Count;
+					player.GetComponent<PlayerDataManager>().SaveCurrent();
+					UpdateSaveFileList();
 				}
 
 				// A list of all our save files
 				for(int i = 1; i < saveFileList.Count+1; i++)
 				{
 					string s = saveFileList[i-1];
-					GUI.Label (new Rect (10, i*70+10, scrollViewWidth-10, 50),"File "+s.ElementAt(s.Length-1));
-					if(GUI.Button (new Rect(50,i*60+10,100,50),"Save"))
+					int saveFileIndex = i-1;
+					GUI.Label (new Rect (10, i*70+10, scrollViewWidth-10, 50),"File "+saveFileIndex);
+					if(GUI.Button (new Rect(50,i*60+10,120,50),"Overwrite"))
 					{
-						XmlSerialzer.currentSaveFile = int.Parse(s.ElementAt(s.Length-1).ToString());
-						player.GetComponent<PlayerDataManager>().saveCurrent();
-						updateSaveFileList();
+						XmlSerialzer.currentSaveFile = saveFileIndex;
+						player.GetComponent<PlayerDataManager>().SaveCurrent();
+						UpdateSaveFileList();
 					}
-					if(GUI.Button (new Rect(160,i*60+10,100,50),"Load"))
+					if(GUI.Button (new Rect(170,i*60+10,120,50),"Load"))
 					{
-						XmlSerialzer.currentSaveFile = int.Parse(s.ElementAt(s.Length-1).ToString());
+						XmlSerialzer.currentSaveFile = saveFileIndex;
 						PlayerDataManager.loadedLevel = false;
 						player.GetComponent<PlayerDataManager>().LoadCurrentSave();
-						updateSaveFileList();
+						UpdateSaveFileList();
 					}
 				}						
 				GUI.EndScrollView ();
@@ -127,7 +152,7 @@ public class MainMenu : MonoBehaviour
 			if (currentTab == MenuTab.Map) {
 
 				scrollPosition2 = GUI.BeginScrollView (new Rect (Screen.width / 2 - menuWidth / 2 + 10, Screen.height / 2 - menuHeight / 2 + 15 + tabButtonHeight, scrollViewWidth, scrollViewHeight), scrollPosition2, new Rect (0, 0, scrollViewWidth - 20, scrollViewHeight * 4));
-				Dictionary<int,List<int>> previousCheckpoints = player.GetComponent<PlayerDataManager>().previousCheckpoints;
+				Dictionary<int, List<int> > previousCheckpoints = player.GetComponent<PlayerDataManager>().previousCheckpoints;
 				//Debug.Log (previousCheckpoints.Count);
 				int i = 0;
 				foreach(KeyValuePair<int, List<int>> entry in previousCheckpoints)
@@ -162,17 +187,19 @@ public class MainMenu : MonoBehaviour
 		}
 	}
 
-	void updateSaveFileList()
+	void UpdateSaveFileList()
 	{
-		string root = Path.GetDirectoryName (Application.dataPath);
-		List<string> FullFileList = Directory.GetFiles (root, "*.*", SearchOption.AllDirectories).Select (file => file.Replace (root, "")).ToList ();
-		saveFileList.Clear ();
-		foreach (string s in FullFileList) 
-		{
-			if(s.Contains("BounceSaveData"))
-			{
-				saveFileList.Add(s);
-			}
+		if (!Directory.Exists(XmlSerialzer.saveDirectory)) {
+			saveFileList.Clear();
+			return;
 		}
+
+		//string root = Path.GetDirectoryName (Application.dataPath);
+		List<string> FullFileList = Directory.GetFiles (XmlSerialzer.saveDirectory, 
+		                                                XmlSerialzer.savePrefix + "*" + XmlSerialzer.saveSuffix, 
+		                                                SearchOption.TopDirectoryOnly).ToList();
+		saveFileList.Clear ();
+		saveFileList.AddRange (FullFileList);
+		saveFileList.Sort ();
 	}
 }

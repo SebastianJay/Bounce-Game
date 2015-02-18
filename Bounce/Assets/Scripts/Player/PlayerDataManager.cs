@@ -16,7 +16,7 @@ public class PlayerDataManager : MonoBehaviour {
 	public static bool loadedLevel = false;
 	public static int initialLevel = 0;
 
-	public playerData myData;
+	public PlayerData myData;
 
 	void Start () {
 		if (!debugNoLoad)
@@ -66,9 +66,9 @@ public class PlayerDataManager : MonoBehaviour {
 
 			transform.position = myPos;
 			
-			List<Entry> entries = myData.previousCheckpoints;
+			List<PlayerDataEntry> entries = myData.previousCheckpoints;
 			previousCheckpoints.Clear();
-			foreach (Entry e in entries)
+			foreach (PlayerDataEntry e in entries)
 			{
 				previousCheckpoints[e.key] = e.value;
 			}
@@ -77,9 +77,9 @@ public class PlayerDataManager : MonoBehaviour {
 		}else if(myData != null && loadedLevel)
 		{
 			lastCheckpoint = myData.lastCheckpoint;
-			List<Entry> entries = myData.previousCheckpoints;
+			List<PlayerDataEntry> entries = myData.previousCheckpoints;
 			previousCheckpoints.Clear();
-			foreach (Entry e in entries)
+			foreach (PlayerDataEntry e in entries)
 			{
 				previousCheckpoints[e.key] = e.value;
 			}
@@ -93,24 +93,16 @@ public class PlayerDataManager : MonoBehaviour {
 		}
 	}
 
-	public void saveCurrent()
+	public void SaveCurrent()
 	{
 		Debug.Log ("Saving");
-		List<Entry> entries = new List<Entry>();
+		List<PlayerDataEntry> entries = new List<PlayerDataEntry>();
 		foreach (int key in previousCheckpoints.Keys)
 		{
-			entries.Add (new Entry(key,previousCheckpoints[key]));
+			entries.Add (new PlayerDataEntry(key,previousCheckpoints[key]));
 		}
-		myData = new playerData ();
+		myData = new PlayerData();
 		myData.previousCheckpoints = entries;
-		foreach(Entry e in myData.previousCheckpoints)
-		{
-			foreach(int i in e.value)
-			{
-				Debug.Log (i);
-			}
-
-		}
 		myData.inventory = inventory.ToList();
 		myData.lastCheckpoint = lastCheckpoint;
 		myData.lastLevel = lastLevel;

@@ -60,3 +60,7 @@ monodroid*.msi
 
 #Game Files
 Bounce/BounceSaveData*
+Bounce/Save_Data/BounceSaveData*
+Builds/*/Save_Data/BounceSaveData*
+
+
