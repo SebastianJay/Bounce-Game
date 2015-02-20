@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-// 
+// The platform must have a HingeJoint2D, a Collider2D, and a RigidBody2D
+// Now with Try-Catch Blocks for Added Safety!!!!!1!
 
 public class BreakingPlatform : MonoBehaviour {
 
@@ -23,8 +24,19 @@ public class BreakingPlatform : MonoBehaviour {
 			this.gameObject.rigidbody2D.fixedAngle = false;
 		}
 		if (this.timer >= this.fallTime) {
-			this.gameObject.GetComponent<HingeJoint2D>().enabled = false;
-			this.gameObject.GetComponent<PolygonCollider2D>().enabled = false;
+
+			try {
+				//this.gameObject.GetComponent<PolygonCollider2D>().enabled = false;
+			} catch ( MissingComponentException) {
+			}
+			try {
+				this.gameObject.GetComponent<HingeJoint2D>().enabled = false;
+			} catch ( MissingComponentException ) {
+			}
+			try {
+				this.gameObject.GetComponent<Collider2D>().enabled = false;
+			} catch ( MissingComponentException ) {
+			}
 		}
 	}
 
