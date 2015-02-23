@@ -3,18 +3,19 @@ using System.Collections.Generic;
 
 public class PlayerDataManager : MonoBehaviour {
 
-	// Use this for initialization
-	public int lastCheckpoint = 0;
-	public int lastLevel = 0;
 	public bool debugNoLoad = false;
 	public bool debugInitRespawn = true;
 	public bool debugInitCamera = true;
-	public Dictionary<int,List<int>> previousCheckpoints = new Dictionary<int,List<int>>();
-	public Inventory inventory = new Inventory();
-	public HashSet<string> gameConstants = new HashSet<string>();
+
+	public static int lastCheckpoint = 0;
+	public static int lastLevel = 0;
+	public static Inventory inventory = new Inventory();
+	//public static Dictionary<int,List<int>> previousCheckpoints = new Dictionary<int,List<int>>();
+	public static HashSet<int> previousCheckpoints = new HashSet<int>();
 
 	public static bool loadedLevel = false;
-	public static int initialLevel = 0;
+	public static int checkpointID = 0;
+	//public static int initialLevel = 0;
 
 	public PlayerData myData;
 
@@ -28,7 +29,7 @@ public class PlayerDataManager : MonoBehaviour {
 			cfc.minXAndY = new Vector2(-1000f, -1000f);
 			cfc.maxXAndY = new Vector2(1000f, 1000f);
 			cfc.isLocked = false;
-			cfc.lockedOrthoSize = 7f;
+			cfc.orthoSize = 7f;
 			cfc.position = new Vector3(this.transform.position.x, this.transform.position.y, -10f);
 			cam.GetComponent<CameraFollow>().LoadConfig(cfc);
 		}
@@ -45,16 +46,27 @@ public class PlayerDataManager : MonoBehaviour {
 		if(myData != null && !loadedLevel)
 		{
 			lastLevel = myData.lastLevel;
-			initialLevel = lastLevel;
 			Application.LoadLevel(myData.lastLevel);
+			//initialLevel = lastLevel;
 			loadedLevel = true;
-			
-			
 		}
 	}
 
 	void OnLevelWasLoaded(int level)
 	{
+		//GameObject player = GameObject.FindGameObjectWithTag("Player");
+		//Debug.Log (player.transform.position);
+
+		if (/*myData != null && */loadedLevel)
+		{
+			ImmutableData.CheckpointData cData = ImmutableData.GetCheckpointData()[lastCheckpoint];
+
+			GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
+			cam.GetComponent<CameraFollow>().LoadConfig(cData.camConfig);
+
+			transform.position = cData.location;
+		}
+		/*
 		myData = XmlSerialzer.Load ();
 		if (myData != null && loadedLevel && level == initialLevel)
 		{
@@ -91,16 +103,17 @@ public class PlayerDataManager : MonoBehaviour {
 			LevelTeleporter.teleported = false;
 			transform.position = LevelTeleporter.teleporterTargetTable[LevelTeleporter.teleportTarget];
 		}
+		*/
 	}
 
 	public void SaveCurrent()
 	{
 		Debug.Log ("Saving");
-		List<PlayerDataEntry> entries = new List<PlayerDataEntry>();
-		foreach (int key in previousCheckpoints.Keys)
-		{
-			entries.Add (new PlayerDataEntry(key,previousCheckpoints[key]));
-		}
+		List<int> entries = new List<int>(previousCheckpoints);
+		//foreach (int key in previousCheckpoints)
+		//{
+		//	entries.Add (key);
+		//}
 		myData = new PlayerData();
 		myData.previousCheckpoints = entries;
 		myData.inventory = inventory.ToList();

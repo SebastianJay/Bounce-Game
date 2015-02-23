@@ -12,7 +12,7 @@ public class Parachuter : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+
 	}
 	
 	// Update is called once per frame
@@ -24,7 +24,8 @@ public class Parachuter : MonoBehaviour {
 			if (dampingForce.sqrMagnitude > maxDampingForce * maxDampingForce)
 				dampingForce = dampingForce.normalized * maxDampingForce;
 			rigidbody2D.AddForce(dampingForce);
-			Debug.Log (dampingForce);
+			//Debug.Log (velocity);
+			//Debug.Log (dampingForce);
 		}
 	}
 

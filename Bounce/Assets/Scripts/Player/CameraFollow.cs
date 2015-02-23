@@ -8,14 +8,16 @@ public struct CameraFollowConfig
 	public Vector2 maxXAndY;
 	public bool isLocked;
 	public Vector2 lockedPosition;
-	public float lockedOrthoSize;
+	public float orthoSize;
 }
 
 [RequireComponent(typeof(Camera))]
 public class CameraFollow : MonoBehaviour 
 {
 	//Var for config when game was last saved
-	public static CameraFollowConfig camConfig;
+	//public static CameraFollowConfig camConfig;
+	//arbitrary constant
+	public const float camZCoordinate = -10.0f;
 
 	//Vars for following the player
 	public float xMargin = 1f;		// Distance in the x axis the player can move before the camera follows.
@@ -127,13 +129,13 @@ public class CameraFollow : MonoBehaviour
 
 	public CameraFollowConfig GetConfig()
 	{
-		CameraFollowConfig retVal;
+		CameraFollowConfig retVal = new CameraFollowConfig();
 		retVal.position = transform.position;
 		retVal.minXAndY = minXAndY;
 		retVal.maxXAndY = maxXAndY;
 		retVal.isLocked = isLocked;
 		retVal.lockedPosition = lockedPosition;
-		retVal.lockedOrthoSize = lockedOrthoSize;
+		retVal.orthoSize = lockedOrthoSize;
 		return retVal;
 	}
 	
@@ -144,6 +146,6 @@ public class CameraFollow : MonoBehaviour
 		maxXAndY = state.maxXAndY;
 		isLocked = state.isLocked;
 		lockedPosition = state.lockedPosition;
-		lockedOrthoSize = state.lockedOrthoSize;
+		lockedOrthoSize = state.orthoSize;
 	}
 }

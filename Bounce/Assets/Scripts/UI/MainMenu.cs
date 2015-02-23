@@ -139,7 +139,8 @@ public class MainMenu : MonoBehaviour
 			//Inventory tab layout - grid of items
 			//hovering over an item yields its name and description
 			if (currentTab == MenuTab.Inventory) {
-				Inventory inventory = player.GetComponent<PlayerDataManager>().inventory;
+				//Inventory inventory = player.GetComponent<PlayerDataManager>().inventory;
+				Inventory inventory = PlayerDataManager.inventory;
 				int count = inventory.items.Length;
 				float gridHeight = (float)count/inventoryGridX;
 				gridHeight = Mathf.Ceil(gridHeight*150);
@@ -152,17 +153,27 @@ public class MainMenu : MonoBehaviour
 			if (currentTab == MenuTab.Map) {
 
 				scrollPosition2 = GUI.BeginScrollView (new Rect (Screen.width / 2 - menuWidth / 2 + 10, Screen.height / 2 - menuHeight / 2 + 15 + tabButtonHeight, scrollViewWidth, scrollViewHeight), scrollPosition2, new Rect (0, 0, scrollViewWidth - 20, scrollViewHeight * 4));
-				Dictionary<int, List<int> > previousCheckpoints = player.GetComponent<PlayerDataManager>().previousCheckpoints;
+				//Dictionary<int, List<int> > previousCheckpoints = player.GetComponent<PlayerDataManager>().previousCheckpoints;
+				//Dictionary<int, List<int> > previousCheckpoints = PlayerDataManager.previousCheckpoints;
+				HashSet<int> previousCheckpoints = PlayerDataManager.previousCheckpoints;
 				//Debug.Log (previousCheckpoints.Count);
 				int i = 0;
-				foreach(KeyValuePair<int, List<int>> entry in previousCheckpoints)
+				//foreach(KeyValuePair<int, List<int>> entry in previousCheckpoints)
+				foreach (KeyValuePair<string, List<int> > entry in ImmutableData.GetLevelData())
 				{
-					GUI.Label (new Rect (10, i*50+10, scrollViewWidth-10, 50),"Level "+entry.Key);
+					GUI.Label (new Rect (10, i*50+10, scrollViewWidth-10, 50), entry.Key);
 					for(int j = 1; j < entry.Value.Count+1; j++)
 					{
 						GUI.Label (new Rect (10, i*50+j*50+10, scrollViewWidth-10, 50),"Checkpoint "+entry.Value[j-1]);
 						if(GUI.Button (new Rect(150,i*50+j*50+10,100,50),"Teleport"))
 						{
+							PlayerDataManager.loadedLevel = true;
+							PlayerDataManager.lastCheckpoint = entry.Value[j-1];
+							//here specify the location (checkpoint ID) to load
+							//Debug.Log (player.transform.position);
+							Application.LoadLevel(entry.Key);
+
+							/*
 							player.transform.position = Checkpoint.posCheckTable[entry.Value[j-1]];
 							player.rigidbody2D.velocity = Vector2.zero;
 							player.rigidbody2D.angularVelocity = 0f;
@@ -171,6 +182,7 @@ public class MainMenu : MonoBehaviour
 								GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
 								cam.GetComponent<CameraFollow>().LoadConfig(Checkpoint.camCheckTable[entry.Value[j-1]]);
 							}
+							*/
 						}
 					}
 					i+=entry.Value.Count;

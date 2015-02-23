@@ -28,8 +28,9 @@ public class ItemPickUp : MonoBehaviour {
 				obj.AddComponent<SelfRemove>();	//default 10 s
 				src.Play();
 			}
-			PlayerDataManager data = col.gameObject.GetComponent<PlayerDataManager>();
-			data.inventory.AddItem(type);
+			//PlayerDataManager data = col.gameObject.GetComponent<PlayerDataManager>();
+			//data.inventory.AddItem(type);
+			PlayerDataManager.inventory.AddItem(type);
 			Destroy (this.gameObject);
 		}
 	}
