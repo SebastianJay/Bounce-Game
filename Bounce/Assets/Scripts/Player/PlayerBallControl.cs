@@ -19,7 +19,9 @@ public class PlayerBallControl : MonoBehaviour {
 	public float jumpDelay = 0.4f;	//time (in s) delay between jumps
 	private float jumpTimer = 0.4f;
 	[HideInInspector]
-	public bool jumpedInCurrentFrame = false;	//used so spiderball doesn't repeat jump
+	public int jumpFrame = 0;	//used so spiderball doesn't repeat jump
+	[HideInInspector]
+	public int springFrame = 0;
 	// bouncy vars
 	public float bounciness = 0.6f;
 	public float boostedBounciness = 0.85f;
@@ -96,8 +98,12 @@ public class PlayerBallControl : MonoBehaviour {
 			Debug.DrawRay (contact.point, contact.normal, Color.white);
 		foreach (ContactPoint2D contact in collision.contacts)
 		{
-			if (collision.gameObject.GetComponent<Spring>() != null
-			    || collision.gameObject.GetComponent<Treadmill>() != null)
+			if (collision.gameObject.GetComponent<Spring>() != null) {
+				//must initiate from here to avoid some race condition
+				collision.gameObject.GetComponent<Spring>().SpringCollide(gameObject);
+				return;
+			}
+			if (collision.gameObject.GetComponent<Treadmill>() != null)
 				return;	//we want the spring to immediately bounce the character, so we don't check for deforming
 
 			if (Mathf.Abs(Vector2.Angle(Vector2.up, contact.normal)) < groundedThresholdAngle)
@@ -215,34 +221,42 @@ public class PlayerBallControl : MonoBehaviour {
 	}
 
 	private void ListenForJump() {
-		if (Input.GetButton("Jump") && grounded && jumpTimer >= jumpDelay && !spiderball)
+		if (Input.GetButton("Jump") && grounded && jumpTimer >= jumpDelay && !spiderball 
+		    && Time.frameCount - springFrame > Spring.springJumpFrameThreshold)
 		{
+			//Debug.Log ("Jump");
+			//Debug.Log (rigidbody2D.velocity);
+			//DEBUG
+			rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0f);	//gets rid of the "extra high jump"
+			//
 			this.rigidbody2D.AddForce(Vector2.up * jumpForce);
 			jumpTimer = 0.0f;
 			hasContact = false;
-			jumpedInCurrentFrame = true;
+			jumpFrame = Time.frameCount;
 			if (GetComponent<PowerupManager>().currentPowerup == PowerupType.SuperJump)
 				GetComponent<PlayerSoundManager>().PlaySound("SuperJump");
 			else
 				GetComponent<PlayerSoundManager>().PlaySound("Jump");
 		}
-		else
-			jumpedInCurrentFrame = false;
+		//else
+		//	jumpFrame = 
 	}
 
 	private bool jumpBoosted = false;
 	private bool jumpDepressed = false;
 	private void checkJumpBoosted()
 	{
-		if(((Input.GetButton("Jump") /*|| timeSinceJump < boostForgiveness*/) && outVelocity.y > 0) ||
-		   ((Input.GetButtonDown("Left") /*|| timeSinceLeft < boostForgiveness*/) && outVelocity.x < 0) ||
-		   ((Input.GetButtonDown("Right") /*|| timeSinceRight < boostForgiveness*/) && outVelocity.x > 0))
+		//if (springFrame)
+		//	return;	//ignore boosts if you hit a spring
+		if(((Input.GetButton("Jump") /*|| timeSinceJump < boostForgiveness*/) && outVelocity.y > 0))
+		//   ((Input.GetButtonDown("Left") /*|| timeSinceLeft < boostForgiveness*/) && outVelocity.x < 0) ||
+		//   ((Input.GetButtonDown("Right") /*|| timeSinceRight < boostForgiveness*/) && outVelocity.x > 0))
 		{
 			jumpBoosted = true;
 		}
-		else if(((Input.GetButton("Floor") /*|| timeSinceJump < boostForgiveness*/) && outVelocity.y > 0) ||
-				((Input.GetButtonDown("Left") /*|| timeSinceLeft < boostForgiveness*/) && outVelocity.x > 0) ||
-				((Input.GetButtonDown("Right") /*|| timeSinceRight < boostForgiveness*/) && outVelocity.x < 0))
+		else if(((Input.GetButton("Floor") /*|| timeSinceJump < boostForgiveness*/) && outVelocity.y > 0))
+		//		((Input.GetButtonDown("Left") /*|| timeSinceLeft < boostForgiveness*/) && outVelocity.x > 0) ||
+		//		((Input.GetButtonDown("Right") /*|| timeSinceRight < boostForgiveness*/) && outVelocity.x < 0))
 		{
 			jumpDepressed = true;
 		}
@@ -329,7 +343,6 @@ public class PlayerBallControl : MonoBehaviour {
 
 			//recordButtonDelay();
 			checkJumpBoosted();
-
 			if(deformTimer < deformTime)
 			{
 				deformTimer += Time.deltaTime;
@@ -348,14 +361,16 @@ public class PlayerBallControl : MonoBehaviour {
 				if(jumpBoosted)
 				{
 					jumpBoosted = false;
+					jumpFrame = Time.frameCount;
 					//timeSinceJump = boostForgiveness;
 					//timeSinceLeft = boostForgiveness;
 					//timeSinceRight = boostForgiveness;
-
+					Debug.Log ("Boosted bounce");
 					outVelocity = outVelocity.normalized*originalMagnitude*boostedBounciness;
 
 					if(outVelocity.magnitude < (jumpForce/this.rigidbody2D.mass)*Time.fixedDeltaTime)
 					{
+						Debug.Log("Back to original height");
 						outVelocity.Normalize();
 						outVelocity*=(jumpForce/this.rigidbody2D.mass)*Time.fixedDeltaTime;
 					}
