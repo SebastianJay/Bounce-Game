@@ -102,17 +102,21 @@ public static class ImmutableData {
 		itemMapping = new Dictionary<ItemType, ItemData> ();
 		levelMapping = new Dictionary<string, List<int> > ();
 
+		//Hub checkpoints
+		InitCheck (1, "Temp", 0f, 3.75f, 0f, 2.5f, 5f);
+
 		//City checkpoints
 		InitCheck (100, "The Chimney", -20f, 51f, -12f, 51f, -15f, 300f, -5f, 50f, 7f);
 		InitCheck (101, "Picnic Spot", 235f, 1.4f, 235f, 5.5f, 217f, 248f, 5.5f, 6.5f, 7f);	
 		InitCheck (102, "Break Room", 460f, 1.6f, 462f, 6.5f, 407f, 462f, 6.5f, 12f, 8f);	
-		InitCheck (103, "Tower Top", 487f, 151f, 235f, 154f, 488f, 488f, 7f, 200f, 8f);	
+		InitCheck (103, "Tower Top", 487f, 151f, 488f, 154f, 488f, 488f, 7f, 200f, 8f);	
 
 		//Jungle checkpoints
-		InitCheck (200, "Treetop Village", 3.37f, -1.35f, -20f, 50f, -35f, -20f, 28f, 50f, 8f);
-		InitCheck (201, "Lowtown", 28f, -64f, 20f, -70f, 12f, 35f, -71f, -70f, 7f);	
+		InitCheck (200, "Treetop Village", -20f, 49f, -20f, 50f, -35f, -20f, 28f, 50f, 8f);
+		InitCheck (201, "Treebottom Town", 28f, -74f, 20f, -70f, 12f, 35f, -71f, -70f, 7f);	
 
 		//level mappings
+		InitLevel ("MainHub", 1);
 		InitLevel ("City", 100, 101, 102, 103);
 		InitLevel ("Jungle", 200, 201);
 

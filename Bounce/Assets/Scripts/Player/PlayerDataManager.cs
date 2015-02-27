@@ -22,7 +22,7 @@ public class PlayerDataManager : MonoBehaviour {
 	void Start () {
 		if (!debugNoLoad)
 			LoadCurrentSave ();
-		if (debugInitCamera)
+		if (debugInitCamera && !loadedLevel)
 		{
 			GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
 			CameraFollowConfig cfc = new CameraFollowConfig();

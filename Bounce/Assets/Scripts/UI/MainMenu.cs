@@ -161,16 +161,31 @@ public class MainMenu : MonoBehaviour
 				//foreach(KeyValuePair<int, List<int>> entry in previousCheckpoints)
 				foreach (KeyValuePair<string, List<int> > entry in ImmutableData.GetLevelData())
 				{
+					bool flag = false;
+					foreach (int checkID in entry.Value)
+					{
+						if (PlayerDataManager.previousCheckpoints.Contains(checkID)) {
+							flag = true;
+							break;
+						}
+					}
+					if (!flag)
+						continue;
+
 					GUI.Label (new Rect (10, i*50+10, scrollViewWidth-10, 50), entry.Key);
 					for(int j = 1; j < entry.Value.Count+1; j++)
 					{
-						GUI.Label (new Rect (10, i*50+j*50+10, scrollViewWidth-10, 50),"Checkpoint "+entry.Value[j-1]);
-						if(GUI.Button (new Rect(150,i*50+j*50+10,100,50),"Teleport"))
+						if (!PlayerDataManager.previousCheckpoints.Contains (entry.Value[j-1]))
+							continue;
+						i++;
+						//GUI.Label (new Rect (10, i*50+j*50+10, scrollViewWidth-10, 50),"Checkpoint "+entry.Value[j-1]);
+						GUI.Label (new Rect (10, i*50+10, scrollViewWidth-10, 50),ImmutableData.GetCheckpointData()[entry.Value[j-1]].name);
+
+						if(GUI.Button (new Rect(250,i*50+10,100,50),"Teleport"))
 						{
 							PlayerDataManager.loadedLevel = true;
 							PlayerDataManager.lastCheckpoint = entry.Value[j-1];
-							//here specify the location (checkpoint ID) to load
-							//Debug.Log (player.transform.position);
+
 							Application.LoadLevel(entry.Key);
 
 							/*
@@ -185,7 +200,7 @@ public class MainMenu : MonoBehaviour
 							*/
 						}
 					}
-					i+=entry.Value.Count;
+					//i+=entry.Value.Count;
 					i++;
 				}
 				GUI.EndScrollView ();

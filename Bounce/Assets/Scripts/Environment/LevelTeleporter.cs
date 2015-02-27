@@ -39,6 +39,7 @@ public class LevelTeleporter : MonoBehaviour {
 		teleported = true;
 		teleportTarget = targetID;
 		Application.LoadLevel(levelToTeleportTo);
+		PlayerDataManager.loadedLevel = false;
 		locked = false;
 	}
 
