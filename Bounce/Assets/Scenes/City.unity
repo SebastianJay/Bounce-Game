@@ -495,7 +495,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!60 &20879402
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1566,11 +1566,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: a1d01adf92f8f6c43ba04e14484ea3be, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 500.371948
+      value: 433.742188
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a1d01adf92f8f6c43ba04e14484ea3be, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 95.7251587
+      value: 28.0207291
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a1d01adf92f8f6c43ba04e14484ea3be, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1804,7 +1804,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 5dbeb001849977a448b6c5243b7ef180, type: 2}
   m_PrefabInternal: {fileID: 1735074102}
   m_GameObject: {fileID: 98369624}
-  m_LocalRotation: {x: 0, y: 0, z: .258819044, w: .965925813}
+  m_LocalRotation: {x: 0, y: 0, z: .258819073, w: .965925872}
   m_LocalPosition: {x: 3.5999999, y: 11.6000004, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
@@ -2107,7 +2107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!60 &106452651
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -2951,7 +2951,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!60 &144162058
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -5129,7 +5129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!60 &283827804
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -5377,7 +5377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!61 &288447122
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5541,7 +5541,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!60 &296929104
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -6715,7 +6715,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!60 &341095448
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -6800,7 +6800,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!60 &342235959
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -6981,7 +6981,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!60 &346779591
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -7331,7 +7331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!60 &365064022
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -7741,7 +7741,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!60 &393117089
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -7921,7 +7921,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!60 &399828495
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -8367,7 +8367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!60 &430135526
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -9656,7 +9656,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 3f3d48437c247d34b990ab86fc7838fc, type: 2}
   m_PrefabInternal: {fileID: 185203879}
   m_GameObject: {fileID: 483810132}
-  m_LocalRotation: {x: 0, y: 0, z: .258819044, w: .965925813}
+  m_LocalRotation: {x: 0, y: 0, z: .258819073, w: .965925872}
   m_LocalPosition: {x: 2.9000001, y: 29.1100006, z: 0}
   m_LocalScale: {x: 27.670002, y: 5.00616693, z: 1}
   m_Children: []
@@ -10244,7 +10244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!61 &511620305
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13258,7 +13258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!60 &648336335
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -14173,7 +14173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!60 &693581979
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -14689,7 +14689,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!60 &708197789
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -16775,7 +16775,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!60 &816785195
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -17995,7 +17995,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 3f3d48437c247d34b990ab86fc7838fc, type: 2}
   m_PrefabInternal: {fileID: 1807953649}
   m_GameObject: {fileID: 883026178}
-  m_LocalRotation: {x: 0, y: 0, z: -.258819044, w: .965925813}
+  m_LocalRotation: {x: 0, y: 0, z: -.258819073, w: .965925872}
   m_LocalPosition: {x: 27.3500004, y: 29.1000004, z: 0}
   m_LocalScale: {x: 27.6700001, y: 5.00616789, z: 1}
   m_Children: []
@@ -18339,7 +18339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!60 &896613425
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -18424,7 +18424,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!60 &903818200
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -19279,7 +19279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!60 &970411890
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -19616,7 +19616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!60 &1003900071
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -20104,7 +20104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!60 &1018232951
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -20219,7 +20219,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 5dbeb001849977a448b6c5243b7ef180, type: 2}
   m_PrefabInternal: {fileID: 1475312561}
   m_GameObject: {fileID: 1026571057}
-  m_LocalRotation: {x: 0, y: 0, z: -.258819044, w: .965925813}
+  m_LocalRotation: {x: 0, y: 0, z: -.258819073, w: .965925872}
   m_LocalPosition: {x: -19.5991516, y: 9.19265842, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
@@ -21387,7 +21387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!60 &1102859196
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -21836,7 +21836,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!60 &1120606885
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -22787,7 +22787,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!60 &1164398927
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -23182,7 +23182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!60 &1181412874
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -23267,7 +23267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!60 &1181486832
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -23973,7 +23973,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!60 &1222056141
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -24412,7 +24412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!60 &1261259877
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -25698,7 +25698,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!60 &1309743166
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -26361,7 +26361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!60 &1330840471
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -26471,6 +26471,7 @@ GameObject:
   - 124: {fileID: 1359291901}
   - 81: {fileID: 1359291900}
   - 114: {fileID: 1359291899}
+  - 114: {fileID: 1359291905}
   m_Layer: 0
   m_Name: mainCamera
   m_TagString: MainCamera
@@ -26495,12 +26496,12 @@ MonoBehaviour:
   xSmooth: 2
   ySmooth: 2
   orthoSmooth: 8
-  maxXAndY: {x: 3000, y: 50}
-  minXAndY: {x: -30, y: 6}
+  maxXAndY: {x: 3000, y: 300}
+  minXAndY: {x: -300, y: -300}
   isLocked: 0
   lockMoveTime: 3
   lockedPosition: {x: 0, y: 0}
-  lockedOrthoSize: 7
+  lockedOrthoSize: 8
 --- !u!81 &1359291900
 AudioListener:
   m_ObjectHideFlags: 0
@@ -26546,7 +26547,7 @@ Camera:
   far clip plane: 1000
   field of view: 80
   orthographic: 1
-  orthographic size: 7
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -26570,6 +26571,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!114 &1359291905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400002, guid: 64b12b15baf9644af9f0651e6705f0ef,
+    type: 2}
+  m_PrefabInternal: {fileID: 764960347}
+  m_GameObject: {fileID: 1359291898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8010a4c1586b1f740bf8c45bdc85a2d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  epsilon: 9.99999975e-05
 --- !u!1 &1359975335
 GameObject:
   m_ObjectHideFlags: 0
@@ -26650,7 +26664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!61 &1371351597
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27904,7 +27918,7 @@ Transform:
   m_PrefabInternal: {fileID: 85928720}
   m_GameObject: {fileID: 1417584658}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 500.371948, y: 95.7251587, z: 10}
+  m_LocalPosition: {x: 433.742188, y: 28.0207291, z: 10}
   m_LocalScale: {x: 2000, y: 400, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -31394,7 +31408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!60 &1612042930
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -31909,7 +31923,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!61 &1647782875
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -31965,7 +31979,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!60 &1651806833
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -34526,7 +34540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!60 &1766543197
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -35009,7 +35023,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!60 &1779041657
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -37065,7 +37079,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!61 &1903670202
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -39031,7 +39045,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!61 &1999421572
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -40644,7 +40658,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!60 &2073062405
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -40796,7 +40810,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!60 &2079104582
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -41105,7 +41119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathNoise: {fileID: 0}
-  deathVolume: 0
+  deathVolume: 1
 --- !u!60 &2090816630
 PolygonCollider2D:
   m_ObjectHideFlags: 0
