@@ -25,6 +25,7 @@ public class MainMenu : MonoBehaviour
 
 	Vector2 scrollPosition = Vector2.zero;
 	Vector2 scrollPosition2 = Vector2.zero;
+	Vector2 scrollPositionI = Vector2.zero;
 	
 	private bool menuWasOpen = false;		//represents the first "tick" of active menu
 	private GameObject player;
@@ -139,13 +140,18 @@ public class MainMenu : MonoBehaviour
 			//Inventory tab layout - grid of items
 			//hovering over an item yields its name and description
 			if (currentTab == MenuTab.Inventory) {
+				scrollPositionI = GUI.BeginScrollView (new Rect (Screen.width / 2 - menuWidth / 2 + 10, Screen.height / 2 - menuHeight / 2 + 15 + tabButtonHeight, scrollViewWidth, scrollViewHeight), scrollPositionI, new Rect (0, 0, scrollViewWidth - 20, scrollViewHeight * 4));
 				//Inventory inventory = player.GetComponent<PlayerDataManager>().inventory;
 				Inventory inventory = PlayerDataManager.inventory;
 				int count = inventory.items.Length;
 				float gridHeight = (float)count/inventoryGridX;
-				gridHeight = Mathf.Ceil(gridHeight*150);
-				string[] itemNames = {"1","2","3"};
+				gridHeight = Mathf.Ceil(gridHeight*100);
+				string[] itemNames = new string[inventory.ToList().Count];
+				for(int i=0; i < inventory.ToList().Count; i++){
+					itemNames[i] = inventory.items[i].ToString();
+				}
 				selectedItem = GUI.SelectionGrid(new Rect (Screen.width / 2 - menuWidth / 2 + 10, Screen.height / 2 - menuHeight / 2 + 15 + tabButtonHeight, scrollViewWidth, gridHeight), selectedItem, itemNames, inventoryGridX);
+				GUI.EndScrollView ();
 			}
 
 			//Map layout - scrollable list of locations across levels
