@@ -15,6 +15,7 @@ public class Interactable : MonoBehaviour {
 	private GameObject playerObj;
   	private AudioSource talkSrc;
 	private GameObject dSystem;	//reference to the dialogue system
+	private static int endedTalkFrame = -1;
 
 	// Use this for initialization
 	void Awake () {
@@ -39,8 +40,7 @@ public class Interactable : MonoBehaviour {
 		//manually check if player is in bounds
 		//if (playerObj != null &&
 		//    playerObj.transform.position.x > transform.position.x + GetComponent<BoxCollider2D>().center.x - GetComponent<BoxCollider2D>()
-
-		if (Input.GetButtonDown ("Action") && (inTrigger || inConversation))
+		if (Input.GetButtonDown ("Action") && (inTrigger || inConversation) && Time.frameCount != endedTalkFrame)
 		{
 			PlayerBallControl bScript = playerObj.GetComponent<PlayerBallControl>();
 			if (!bScript.inConversation)
@@ -78,6 +78,7 @@ public class Interactable : MonoBehaviour {
 						bScript.inConversation = false;
 						this.inConversation = false;
 						bScript.playerLock = false;
+						endedTalkFrame = Time.frameCount;
 					}
 				}
 			}

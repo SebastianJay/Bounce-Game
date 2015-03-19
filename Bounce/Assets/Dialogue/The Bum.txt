@@ -1,0 +1,7 @@
+#Bum in the pier
+
+[Spare some change, sir? I just need a couple more bucks to buy some lasers.] [PU! You smell! {Line 2}] [*Give him a dollar* {Line 3}] [I'm feeling generous. Have a twenty.{Line 4}] [Go get a job, you ugly bum!{Line 5}]
+[Ah yes, that's to ward off those creepy folks who can't get enough of my lavishly full and round cheeks.{End}]
+[Thanks, man. I'll let you know that every little bit helps.{End}]
+[Wow! Y'know, you're a pretty cool guy.{End}]
+[Excuse me, but I'll let you know that I have a very charming set of full and round cheeks!{End}]

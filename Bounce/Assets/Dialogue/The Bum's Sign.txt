@@ -1,0 +1,9 @@
+# For the sign displayed next to the smelly bum
+
+choose 1,6
+["Just need some more $ to buy lasers to repel alien invaders."{End}]
+["Spacecraft out of fuel. Help me get back to Jupiter."{End}]
+["Help! Stranded time traveler. Need $ to buy parts for particle accelerator."{End}]
+["Need money for karate lessons to save wife from ninjas."{End}]
+["Home invaded by giant mutant squirrels. Need money to buy traps. Every bit helps. God bless."{End}]
+["Lost home to global warming. Spare some change?"{End}]
