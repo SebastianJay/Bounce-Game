@@ -9,6 +9,7 @@ public class PlayerDataManager : MonoBehaviour {
 
 	public static int lastCheckpoint = 0;
 	public static int lastLevel = 0;
+	public static ItemType itemEquipped = ItemType.None;
 	public static Inventory inventory = new Inventory();
 	//public static Dictionary<int,List<int>> previousCheckpoints = new Dictionary<int,List<int>>();
 	public static HashSet<int> previousCheckpoints = new HashSet<int>();
@@ -65,6 +66,10 @@ public class PlayerDataManager : MonoBehaviour {
 			cam.GetComponent<CameraFollow>().LoadConfig(cData.camConfig);
 
 			transform.position = cData.location;
+
+			if (itemEquipped != ItemType.None) {
+				GetComponent<AccessoryManager>().SetAccessory(itemEquipped);
+			}
 		}
 		/*
 		myData = XmlSerialzer.Load ();

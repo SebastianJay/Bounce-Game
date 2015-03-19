@@ -16,7 +16,7 @@ public class PlayerSoundManager : MonoBehaviour {
 	public float spiderStickVolume = 1f;
 
 	private Dictionary<string, AudioSource> mappings;
-
+	private GameObject screenFadeObj;
 	// Add all the new audio sources on initialization
 	// Be aware of the strings used as keys in map initialization
 	// 	these keys will be used elsewhere when PlaySound is called
@@ -52,11 +52,13 @@ public class PlayerSoundManager : MonoBehaviour {
 			sStickSrc.volume = spiderStickVolume;
 			mappings.Add("SpiderStick", sStickSrc);
 		}
+		screenFadeObj = GameObject.FindGameObjectWithTag ("ScreenFader");
 	}
 
 	public void PlaySound(string key)
 	{
-		if (mappings.ContainsKey (key))
+		if (mappings.ContainsKey (key)
+		    && (screenFadeObj==null || (screenFadeObj!=null && !screenFadeObj.GetComponent<ScreenFading>().IsTransitioning())))
 			mappings[key].Play ();
 		else
 			Debug.LogWarning("PlayerSoundManager could not find sound corresponding to " + key);

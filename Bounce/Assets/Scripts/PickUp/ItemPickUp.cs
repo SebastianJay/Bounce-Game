@@ -6,10 +6,13 @@ public class ItemPickUp : MonoBehaviour {
 	public ItemType type;
 	public AudioClip pickUpNoise;
 	public float pickUpVolume = 1f;
+	public bool unique = true;	//if true, item only spawns if player doesn't have it
 
 	private GameObject screenFadeObj;
 	void Start()
 	{
+		if (unique && PlayerDataManager.inventory.HasItem (type))
+			Destroy (gameObject);
 		screenFadeObj = GameObject.FindGameObjectWithTag ("ScreenFader");
 	}
 

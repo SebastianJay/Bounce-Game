@@ -150,7 +150,38 @@ public class MainMenu : MonoBehaviour
 				for(int i=0; i < inventory.ToList().Count; i++){
 					itemNames[i] = inventory.items[i].ToString();
 				}
-				selectedItem = GUI.SelectionGrid(new Rect (Screen.width / 2 - menuWidth / 2 + 10, Screen.height / 2 - menuHeight / 2 + 15 + tabButtonHeight, scrollViewWidth, gridHeight), selectedItem, itemNames, inventoryGridX);
+
+				Dictionary<ItemType, ImmutableData.ItemData>.Enumerator iter = ImmutableData.GetItemData().GetEnumerator();			
+				if (iter.MoveNext()) {
+					bool iterdone = false;
+					//Todo: adjust bounds based on number of items & adjust sizes of buttons dynamically based on menu panel size
+					for (int i = 0; i < 5; i++) {
+						for (int j = 0; j < 5; j++)
+						{
+							if (PlayerDataManager.inventory.HasItem(iter.Current.Key)) {
+								if (GUI.Button(new Rect(10 + (j * 60), 10 + (i * 60), 50, 50), iter.Current.Value.image.texture)) {
+									if (player.GetComponent<AccessoryManager>() != null) {
+										if (PlayerDataManager.itemEquipped == iter.Current.Key)
+											player.GetComponent<AccessoryManager>().RemoveAccessory();
+										else
+											player.GetComponent<AccessoryManager>().SetAccessory(iter.Current.Key);
+									}
+								}
+							} else {
+								//blank button
+								GUI.Button(new Rect(10 + (j * 60), 10 + (i * 60), 50, 50), "");
+							}
+							if (!iter.MoveNext()) {
+								iterdone = true;
+								break;
+							}
+						}
+						if (iterdone)
+							break;
+					}
+				}
+
+				//selectedItem = GUI.SelectionGrid(new Rect (Screen.width / 2 - menuWidth / 2 + 10, Screen.height / 2 - menuHeight / 2 + 15 + tabButtonHeight, scrollViewWidth, gridHeight), selectedItem, itemNames, inventoryGridX);				 
 				GUI.EndScrollView ();
 			}
 

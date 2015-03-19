@@ -16,9 +16,10 @@ public static class ImmutableData {
 	public struct ItemData {
 		public ItemType id;						//unique
 		public string name;						//display name in-game
+		public Sprite image;					//what item looks like
 		public string description;				//more detail for menu
 		public Vector2 localPosition;			//where item is placed on character
-		public Vector3 localRotation;			//how item should be rotated
+		public Quaternion localRotation;			//how item should be rotated
 	}
 
 	//checkpoint locations in each level
@@ -73,14 +74,15 @@ public static class ImmutableData {
 		checkpointMapping[id] = data;
 	}
 	
-	private static void InitItem(ItemType type, string name, string description,
+	private static void InitItem(ItemType type, string path, string name, string description,
 	                             float xpos, float ypos, float zrot) {
 		ItemData data = new ItemData();
 		data.id = type;
+		data.image = Resources.Load<Sprite>(path);
 		data.name = name;
 		data.description = description;
 		data.localPosition = new Vector3 (xpos, ypos, 0f);
-		data.localRotation = new Vector3 (0f, 0f, zrot);
+		data.localRotation = Quaternion.LookRotation (new Vector3 (0f, 0f, zrot));
 		itemMapping[type] = data;
 	}
 
@@ -121,7 +123,13 @@ public static class ImmutableData {
 		InitLevel ("Jungle", 200, 201);
 
 		//Items!
-
+		InitItem (ItemType.Item1, "Accessories/sample_glasses", "Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);
+		InitItem (ItemType.Item2, "Accessories/sample_glasses", "Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);
+		InitItem (ItemType.Item3, "Accessories/sample_glasses", "Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);
+		InitItem (ItemType.Item4, "Accessories/sample_glasses", "Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);
+		InitItem (ItemType.Item5, "Accessories/sample_glasses", "Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);
+		InitItem (ItemType.Item6, "Accessories/sample_glasses", "Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);
+		InitItem (ItemType.Item7, "Accessories/sample_glasses", "Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);
 
 		init = true;
 	}
