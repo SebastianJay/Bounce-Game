@@ -32,6 +32,7 @@ GameObject:
   - 114: {fileID: 11400008}
   - 114: {fileID: 11495496}
   - 114: {fileID: 11400006}
+  - 114: {fileID: 11486938}
   m_Layer: 9
   m_Name: ball
   m_TagString: Player
@@ -46,7 +47,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -19.9792175, y: 49.5458298, z: 0}
+  m_LocalPosition: {x: 5.9000001, y: 10.6999998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400004}
@@ -138,8 +139,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14514390b9543894fa5c78cfd9d63955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lastCheckpoint: 0
-  lastLevel: 0
   debugNoLoad: 1
   debugInitRespawn: 1
   debugInitCamera: 1
@@ -200,6 +199,17 @@ MonoBehaviour:
   dampingRatio: 1
   jointDistance: .100000001
   jumpDelay: .300000012
+--- !u!114 &11486938
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d0c7ea658c467344a23bbdf2c54262f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11495496
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -213,6 +223,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dampingCoefficient: -23
   maxDampingForce: 138
+  dampingDebug: 30
+  velocityThreshDebug: -2
+  startForce: 10
+  endForce: 20
+  transitionTime: 3
+  gravityScale: .600000024
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

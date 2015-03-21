@@ -105,7 +105,7 @@ public static class ImmutableData {
 		levelMapping = new Dictionary<string, List<int> > ();
 
 		//Hub checkpoints
-		InitCheck (1, "Temp", 0f, 3.75f, 0f, 2.5f, 5f);
+		InitCheck (1, "The Big Ship", 150f, 13.5f, 150f, 13.5f, -1000f, 1000f, -1000f, 1000f, 11f);
 
 		//City checkpoints
 		InitCheck (100, "The Chimney", -20f, 51f, -12f, 51f, -15f, 300f, -5f, 50f, 7f);
@@ -118,14 +118,14 @@ public static class ImmutableData {
 		InitCheck (201, "Treebottom Town", 28f, -74f, 20f, -70f, 12f, 35f, -71f, -70f, 7f);	
 
 		//level mappings
-		InitLevel ("MainHub", 1);
+		InitLevel ("Pier", 1);
 		InitLevel ("City", 100, 101, 102, 103);
 		InitLevel ("Jungle", 200, 201);
 
 		//Items!
 		InitItem (ItemType.Item1, "Accessories/sample_glasses", "Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);
-		InitItem (ItemType.Item2, "Accessories/sample_glasses", "Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);
-		InitItem (ItemType.Item3, "Accessories/sample_glasses", "Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);
+		InitItem (ItemType.Item2, "Accessories/Glasses2", "Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);
+		InitItem (ItemType.Item3, "Accessories/Glasses3", "Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);
 		InitItem (ItemType.Item4, "Accessories/sample_glasses", "Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);
 		InitItem (ItemType.Item5, "Accessories/sample_glasses", "Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);
 		InitItem (ItemType.Item6, "Accessories/sample_glasses", "Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);

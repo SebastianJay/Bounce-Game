@@ -1,0 +1,6 @@
+# temp
+
+[Yo. If you pick up these glasses, you can equip them later!{Line 2}]
+[Press "Space" to open up the menu and select the "Inventory" tab.{Line 3}]
+[Then select the button with the glasses to put them on!{Line 4}]
+[They don't help you out gameplay-wise, but they're pretty groovy.{End}]
