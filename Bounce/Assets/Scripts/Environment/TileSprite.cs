@@ -57,6 +57,7 @@ public class TileSprite : MonoBehaviour {
 		childSprite.sprite = sprite.sprite;
 		childSprite.sortingLayerName = sprite.sortingLayerName;
 		childSprite.sortingOrder = sprite.sortingOrder;
+		childSprite.color = sprite.color;
 
 		//Debug.Log (tileX + " " + tileY);
 		// Loop through and spit out repeated tiles

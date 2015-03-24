@@ -67,10 +67,11 @@ public class PlayerDataManager : MonoBehaviour {
 
 			transform.position = cData.location;
 
-			if (itemEquipped != ItemType.None) {
-				GetComponent<AccessoryManager>().SetAccessory(itemEquipped);
-			}
 		}
+		if (itemEquipped != ItemType.None) {
+			GetComponent<AccessoryManager>().SetAccessory(itemEquipped);
+		}
+
 		/*
 		myData = XmlSerialzer.Load ();
 		if (myData != null && loadedLevel && level == initialLevel)
