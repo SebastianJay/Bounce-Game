@@ -10,6 +10,7 @@ public class Interactable : MonoBehaviour {
 	public float talkBubbleOffset = 1.6f;
 	public AudioClip talkNoise;
 	public float talkVolume = 1f;
+	public float cameraOrthoThreshold = 8f;
 
 	private string npcName;
 	private bool inTrigger = false;
@@ -17,9 +18,12 @@ public class Interactable : MonoBehaviour {
 	private GameObject playerObj;
   	private AudioSource talkSrc;
 	private GameObject dSystem;	//reference to the dialogue system
+	private GameObject cam;
 	private Transform talkBubble;
 	private static int endedTalkFrame = -1;
-	
+	private CameraFollowConfig lastConfig;
+	private bool changedCamConfig = false;
+
 	// Use this for initialization
 	void Awake () {
 		dialogue = new Interaction (dialogueFile);
@@ -34,6 +38,7 @@ public class Interactable : MonoBehaviour {
 			talkSrc.volume = talkVolume;
 		}
 		dSystem = GameObject.FindGameObjectWithTag("DialogueSystem");
+		cam = GameObject.FindGameObjectWithTag("MainCamera");
 		if (dSystem == null)
 			Debug.LogError("No dialogue system present in scene!");
 	}
@@ -55,6 +60,18 @@ public class Interactable : MonoBehaviour {
 					talkSrc.Play();
 				if (talkBubble != null)
 					talkBubble.gameObject.SetActive(false);
+				if (cam.GetComponent<Camera>().orthographicSize > cameraOrthoThreshold) {
+					lastConfig = cam.GetComponent<CameraFollow>().GetConfig();
+					CameraFollowConfig camConfig = new CameraFollowConfig();
+					camConfig.position = transform.position;
+					camConfig.lockedPosition = transform.position;
+					camConfig.isLocked = true;
+					camConfig.orthoSize = cameraOrthoThreshold;
+					cam.GetComponent<CameraFollow>().LoadConfig(camConfig, false);
+					changedCamConfig = true;
+				}
+				else
+					changedCamConfig = false;
 			}
 			if (inConversation)
 			{
@@ -86,6 +103,8 @@ public class Interactable : MonoBehaviour {
 						endedTalkFrame = Time.frameCount;
 						if (talkBubble != null)
 							talkBubble.gameObject.SetActive(true);
+						if (changedCamConfig)
+							cam.GetComponent<CameraFollow>().LoadConfig(lastConfig, false);
 					}
 				}
 			}
