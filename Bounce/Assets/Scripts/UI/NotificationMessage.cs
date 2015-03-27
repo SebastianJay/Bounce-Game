@@ -17,7 +17,11 @@ public class NotificationMessage : MonoBehaviour {
 	void Update () {
 		timer += Time.deltaTime;
 		if (timer > showTime) {
-			GetComponent<GUIText>().color.a = Mathf.Lerp(GetComponent<GUIText>().color.a, 0f, Time.deltaTime * disappearRate);
+			float alpha = Mathf.Lerp(GetComponent<GUIText>().color.a, 0f, Time.deltaTime * disappearRate);
+			GetComponent<GUIText>().color = new Color(GetComponent<GUIText>().color.r,
+			                                          GetComponent<GUIText>().color.g,
+			                                          GetComponent<GUIText>().color.b,
+			                                          alpha);
 			if (GetComponent<GUIText>().color.a < alphaThreshold) {
 				Destroy(gameObject);
 			}

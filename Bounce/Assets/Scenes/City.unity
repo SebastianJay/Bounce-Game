@@ -465,6 +465,7 @@ Transform:
   - {fileID: 848103716}
   - {fileID: 1842829327}
   - {fileID: 1986206365}
+  - {fileID: 706300070}
   m_Father: {fileID: 0}
   m_RootOrder: 7
 --- !u!1 &20879399
@@ -5655,8 +5656,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 224920050}
   - 212: {fileID: 224920049}
-  - 61: {fileID: 224920048}
   - 114: {fileID: 224920047}
+  - 61: {fileID: 224920048}
   m_Layer: 0
   m_Name: PickUpObject
   m_TagString: Untagged
@@ -17412,6 +17413,48 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9f0a532ef80f54411ac795e953c8a344, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!1 &706300069
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 167136, guid: ef5d36ba5a960214a8fc17fb7c3626dc, type: 2}
+  m_PrefabInternal: {fileID: 1268107272}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 706300070}
+  - 114: {fileID: 706300071}
+  m_Layer: 0
+  m_Name: NoteManager
+  m_TagString: NoteManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &706300070
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 467136, guid: ef5d36ba5a960214a8fc17fb7c3626dc, type: 2}
+  m_PrefabInternal: {fileID: 1268107272}
+  m_GameObject: {fileID: 706300069}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 19075051}
+  m_RootOrder: 5
+--- !u!114 &706300071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11467136, guid: ef5d36ba5a960214a8fc17fb7c3626dc,
+    type: 2}
+  m_PrefabInternal: {fileID: 1268107272}
+  m_GameObject: {fileID: 706300069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39c130ba56a15d442889047e162d8ce3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messagePrefab: {fileID: 477728, guid: db147998591bdc44198a54fde1b7ef06, type: 2}
+  newMessageOffset: .0500000007
 --- !u!1 &708197786
 GameObject:
   m_ObjectHideFlags: 0
@@ -45082,6 +45125,7 @@ MonoBehaviour:
   - Item5
   - Item6
   - Item7
+  skin: {fileID: 0}
 --- !u!1 &1991670201
 GameObject:
   m_ObjectHideFlags: 0

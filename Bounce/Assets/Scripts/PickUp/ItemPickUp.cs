@@ -9,11 +9,13 @@ public class ItemPickUp : MonoBehaviour {
 	public bool unique = true;	//if true, item only spawns if player doesn't have it
 
 	private GameObject screenFadeObj;
+	private GameObject notifyObj;
 	void Start()
 	{
 		if (unique && PlayerDataManager.inventory.HasItem (type))
 			Destroy (gameObject);
 		screenFadeObj = GameObject.FindGameObjectWithTag ("ScreenFader");
+		notifyObj = GameObject.FindGameObjectWithTag ("NoteManager");
 	}
 
 	void OnTriggerEnter2D (Collider2D col)
@@ -31,9 +33,12 @@ public class ItemPickUp : MonoBehaviour {
 				obj.AddComponent<SelfRemove>();	//default 10 s
 				src.Play();
 			}
-			//PlayerDataManager data = col.gameObject.GetComponent<PlayerDataManager>();
-			//data.inventory.AddItem(type);
+
 			PlayerDataManager.inventory.AddItem(type);
+			if (notifyObj != null) {
+				notifyObj.GetComponent<NotificationManager>().PushMessage(
+					"Added the item \"" + ImmutableData.GetItemData()[type].name + "\" to Inventory");
+			}
 			Destroy (this.gameObject);
 		}
 	}
