@@ -6,6 +6,8 @@ public class Interactable : MonoBehaviour {
 
 	public TextAsset dialogueFile;
 	private Interaction dialogue;
+	public Transform talkBubblePrefab;
+	public float talkBubbleOffset = 1.6f;
 	public AudioClip talkNoise;
 	public float talkVolume = 1f;
 
@@ -15,8 +17,9 @@ public class Interactable : MonoBehaviour {
 	private GameObject playerObj;
   	private AudioSource talkSrc;
 	private GameObject dSystem;	//reference to the dialogue system
+	private Transform talkBubble;
 	private static int endedTalkFrame = -1;
-
+	
 	// Use this for initialization
 	void Awake () {
 		dialogue = new Interaction (dialogueFile);
@@ -50,6 +53,8 @@ public class Interactable : MonoBehaviour {
 				this.inConversation = true;
 				if (talkSrc != null)
 					talkSrc.Play();
+				if (talkBubble != null)
+					talkBubble.gameObject.SetActive(false);
 			}
 			if (inConversation)
 			{
@@ -79,6 +84,8 @@ public class Interactable : MonoBehaviour {
 						this.inConversation = false;
 						bScript.playerLock = false;
 						endedTalkFrame = Time.frameCount;
+						if (talkBubble != null)
+							talkBubble.gameObject.SetActive(true);
 					}
 				}
 			}
@@ -96,6 +103,12 @@ public class Interactable : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.tag == "Player") {
 			//animation appears to show you can talk
+			if (talkBubblePrefab != null && talkBubble == null) {
+				talkBubble = Instantiate(talkBubblePrefab, 
+				                         transform.position + new Vector3(0f, talkBubbleOffset, 0f), 
+				                         Quaternion.identity) as Transform;
+				talkBubble.parent = transform;
+			}
 			inTrigger = true;
 			playerObj = other.gameObject;
 		}
@@ -104,6 +117,8 @@ public class Interactable : MonoBehaviour {
 	void OnTriggerExit2D(Collider2D other) {
 		if (other.tag == "Player") {
 			//animation disappears
+			if (talkBubble != null)
+				Destroy (talkBubble.gameObject);
 			inTrigger = false;
 		}
 	}

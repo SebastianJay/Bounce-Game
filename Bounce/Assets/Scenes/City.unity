@@ -314,7 +314,7 @@ Transform:
   m_LocalScale: {x: .179893136, y: .25, z: 1}
   m_Children: []
   m_Father: {fileID: 1191703170}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!1 &15125206
 GameObject:
   m_ObjectHideFlags: 0
@@ -678,7 +678,7 @@ Transform:
   m_Children:
   - {fileID: 1177413242}
   m_Father: {fileID: 619337750}
-  m_RootOrder: 7
+  m_RootOrder: 8
 --- !u!61 &29085360
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1929,12 +1929,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 64773118}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.8993683, y: -15.0708961, z: 0}
-  m_LocalScale: {x: .5, y: .5, z: 1}
-  m_Children:
-  - {fileID: 541275246}
-  m_Father: {fileID: 1191703170}
-  m_RootOrder: 1
+  m_LocalPosition: {x: -97.024765, y: -2.20073438, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 619337750}
+  m_RootOrder: 2
 --- !u!212 &64773120
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1953,7 +1952,7 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayerID: 3477195907
+  m_SortingLayerID: 1167940005
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3468441041af5422a89164681fc9a9b6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1969,6 +1968,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueFile: {fileID: 4900000, guid: 5249b3b5e310f514e9d8c17e20fd3cd8, type: 3}
+  talkBubblePrefab: {fileID: 492814, guid: c76ae024642f06b4f8e3722868c55882, type: 2}
+  talkBubbleOffset: 2.20000005
   talkNoise: {fileID: 0}
   talkVolume: 1
 --- !u!61 &64773122
@@ -3912,7 +3913,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 619337750}
-  m_RootOrder: 10
+  m_RootOrder: 11
 --- !u!61 &150045825
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3938,6 +3939,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueFile: {fileID: 4900000, guid: 661a8f63389d1424285ce6d7bad4c108, type: 3}
+  talkBubblePrefab: {fileID: 492814, guid: c76ae024642f06b4f8e3722868c55882, type: 2}
+  talkBubbleOffset: 1.60000002
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
 --- !u!212 &150045827
@@ -5051,7 +5054,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 619337750}
-  m_RootOrder: 15
+  m_RootOrder: 16
 --- !u!61 &196909754
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5077,6 +5080,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueFile: {fileID: 4900000, guid: 6a9bc89a80d9a214186a93d1ba421bfb, type: 3}
+  talkBubblePrefab: {fileID: 492814, guid: c76ae024642f06b4f8e3722868c55882, type: 2}
+  talkBubbleOffset: 1.60000002
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
 --- !u!212 &196909756
@@ -5291,7 +5296,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 619337750}
-  m_RootOrder: 0
+  m_RootOrder: 3
 --- !u!61 &207261894
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5317,6 +5322,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueFile: {fileID: 4900000, guid: c7c530d0e0aa87442b1c5dfc17883bb3, type: 3}
+  talkBubblePrefab: {fileID: 492814, guid: c76ae024642f06b4f8e3722868c55882, type: 2}
+  talkBubbleOffset: 1.60000002
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
 --- !u!212 &207261896
@@ -5379,7 +5386,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 080153ececb00db42811be6e02a09bde, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 21200000, guid: 080153ececb00db42811be6e02a09bde, type: 2}
       propertyPath: m_Sprite
@@ -6330,7 +6337,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 080153ececb00db42811be6e02a09bde, type: 2}
       propertyPath: m_RootOrder
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 21200000, guid: 080153ececb00db42811be6e02a09bde, type: 2}
       propertyPath: m_Sprite
@@ -8607,7 +8614,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 619337750}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!61 &359993558
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8633,6 +8640,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueFile: {fileID: 4900000, guid: 8ad64f1df5aff8a47babf7db057fd6ef, type: 3}
+  talkBubblePrefab: {fileID: 492814, guid: c76ae024642f06b4f8e3722868c55882, type: 2}
+  talkBubbleOffset: 1.60000002
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
 --- !u!212 &359993560
@@ -8687,7 +8696,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 619337750}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!61 &363651398
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8713,6 +8722,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueFile: {fileID: 4900000, guid: f1c856806269e8842b1ebf3e1c95e87f, type: 3}
+  talkBubblePrefab: {fileID: 492814, guid: c76ae024642f06b4f8e3722868c55882, type: 2}
+  talkBubbleOffset: 1.60000002
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
 --- !u!212 &363651400
@@ -11402,6 +11413,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueFile: {fileID: 4900000, guid: 8089f2bea0f944345a9621729b604c0e, type: 3}
+  talkBubblePrefab: {fileID: 492814, guid: c76ae024642f06b4f8e3722868c55882, type: 2}
+  talkBubbleOffset: 1.60000002
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
 --- !u!212 &482322984
@@ -11438,7 +11451,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 619337750}
-  m_RootOrder: 6
+  m_RootOrder: 7
 --- !u!1 &483810132
 GameObject:
   m_ObjectHideFlags: 0
@@ -12548,90 +12561,6 @@ Prefab:
   m_RootGameObject: {fileID: 816785192}
   m_IsPrefabParent: 0
   m_IsExploded: 1
---- !u!1 &541275245
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 541275246}
-  - 23: {fileID: 541275249}
-  - 102: {fileID: 541275247}
-  - 114: {fileID: 541275248}
-  m_Layer: 0
-  m_Name: In-game text
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &541275246
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 541275245}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.04999995, y: 2.43000007, z: 0}
-  m_LocalScale: {x: .46360001, y: .383906007, z: 1}
-  m_Children: []
-  m_Father: {fileID: 64773119}
-  m_RootOrder: 0
---- !u!102 &541275247
-TextMesh:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 541275245}
-  m_Text: 
-  m_OffsetZ: 0
-  m_CharacterSize: 1
-  m_LineSpacing: 1
-  m_Anchor: 0
-  m_Alignment: 0
-  m_TabSize: 4
-  m_FontSize: 0
-  m_FontStyle: 1
-  m_RichText: 1
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-  m_Color:
-    serializedVersion: 2
-    rgba: 4278190080
---- !u!114 &541275248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 541275245}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 329d9c73fe5e20f428d1f09f3f7b5bfa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sortingLayer: Foreground
-  sortingOrder: 0
---- !u!23 &541275249
-Renderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 541275245}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 0
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
 --- !u!1 &541286329
 GameObject:
   m_ObjectHideFlags: 0
@@ -13880,7 +13809,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 080153ececb00db42811be6e02a09bde, type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 21200000, guid: 080153ececb00db42811be6e02a09bde, type: 2}
       propertyPath: m_Sprite
@@ -14106,7 +14035,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 619337750}
-  m_RootOrder: 2
+  m_RootOrder: 4
 --- !u!61 &576609338
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14132,6 +14061,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueFile: {fileID: 4900000, guid: f9db2bb3a1ae7bb41bf5d4ecc1cf48ad, type: 3}
+  talkBubblePrefab: {fileID: 492814, guid: c76ae024642f06b4f8e3722868c55882, type: 2}
+  talkBubbleOffset: 1.60000002
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
 --- !u!212 &576609340
@@ -15378,10 +15309,11 @@ Transform:
   m_LocalPosition: {x: 198.684647, y: 6.15821457, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 207261893}
   - {fileID: 359993557}
-  - {fileID: 576609337}
   - {fileID: 1171290176}
+  - {fileID: 64773119}
+  - {fileID: 207261893}
+  - {fileID: 576609337}
   - {fileID: 1760162373}
   - {fileID: 363651397}
   - {fileID: 482322985}
@@ -15642,7 +15574,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 080153ececb00db42811be6e02a09bde, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 21200000, guid: 080153ececb00db42811be6e02a09bde, type: 2}
       propertyPath: m_Sprite
@@ -16339,7 +16271,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 619337750}
-  m_RootOrder: 8
+  m_RootOrder: 9
 --- !u!61 &663755630
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16365,6 +16297,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueFile: {fileID: 4900000, guid: 17ae854dad61a7a49ad33ce0251c0b39, type: 3}
+  talkBubblePrefab: {fileID: 492814, guid: c76ae024642f06b4f8e3722868c55882, type: 2}
+  talkBubbleOffset: 1.60000002
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
 --- !u!212 &663755632
@@ -17835,7 +17769,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 080153ececb00db42811be6e02a09bde, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 21200000, guid: 080153ececb00db42811be6e02a09bde, type: 2}
       propertyPath: m_Sprite
@@ -18471,7 +18405,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 080153ececb00db42811be6e02a09bde, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: 080153ececb00db42811be6e02a09bde, type: 2}
       propertyPath: talkNoise
@@ -18587,7 +18521,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 080153ececb00db42811be6e02a09bde, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 21200000, guid: 080153ececb00db42811be6e02a09bde, type: 2}
       propertyPath: m_Sprite
@@ -18953,7 +18887,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 080153ececb00db42811be6e02a09bde, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 21200000, guid: 080153ececb00db42811be6e02a09bde, type: 2}
       propertyPath: m_Sprite
@@ -19092,7 +19026,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 080153ececb00db42811be6e02a09bde, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 21200000, guid: 080153ececb00db42811be6e02a09bde, type: 2}
       propertyPath: m_Sprite
@@ -21627,7 +21561,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 619337750}
-  m_RootOrder: 9
+  m_RootOrder: 10
 --- !u!61 &884519108
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21653,6 +21587,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueFile: {fileID: 4900000, guid: 4cb90e62ece8d4a439c8cffa32fc2b8f, type: 3}
+  talkBubblePrefab: {fileID: 492814, guid: c76ae024642f06b4f8e3722868c55882, type: 2}
+  talkBubbleOffset: 1.60000002
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
 --- !u!212 &884519110
@@ -21715,7 +21651,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 354fc939cc6b3ff4c9eaa85a28042fb1, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 354fc939cc6b3ff4c9eaa85a28042fb1, type: 2}
@@ -22813,7 +22749,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 080153ececb00db42811be6e02a09bde, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 080153ececb00db42811be6e02a09bde, type: 2}
@@ -23315,7 +23251,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 619337750}
-  m_RootOrder: 14
+  m_RootOrder: 15
 --- !u!61 &999387490
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -23341,6 +23277,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueFile: {fileID: 4900000, guid: 2883a96f835975b4d897cf046a323a2f, type: 3}
+  talkBubblePrefab: {fileID: 492814, guid: c76ae024642f06b4f8e3722868c55882, type: 2}
+  talkBubbleOffset: 1.60000002
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
 --- !u!212 &999387492
@@ -24376,7 +24314,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 619337750}
-  m_RootOrder: 17
+  m_RootOrder: 18
 --- !u!61 &1040344727
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -24402,6 +24340,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueFile: {fileID: 4900000, guid: 7c5016830b701724f991c63d828e3b17, type: 3}
+  talkBubblePrefab: {fileID: 492814, guid: c76ae024642f06b4f8e3722868c55882, type: 2}
+  talkBubbleOffset: 1.60000002
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
 --- !u!212 &1040344729
@@ -25913,7 +25853,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 619337750}
-  m_RootOrder: 13
+  m_RootOrder: 14
 --- !u!61 &1129632979
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -25939,6 +25879,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueFile: {fileID: 4900000, guid: 4c33bf11bb9dda9458fe9d36ca8b03d2, type: 3}
+  talkBubblePrefab: {fileID: 492814, guid: c76ae024642f06b4f8e3722868c55882, type: 2}
+  talkBubbleOffset: 1.60000002
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
 --- !u!212 &1129632981
@@ -27048,7 +26990,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 619337750}
-  m_RootOrder: 3
+  m_RootOrder: 1
 --- !u!61 &1171290177
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27074,6 +27016,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueFile: {fileID: 4900000, guid: 7846592bada6f6d4a8a4e18373470755, type: 3}
+  talkBubblePrefab: {fileID: 492814, guid: c76ae024642f06b4f8e3722868c55882, type: 2}
+  talkBubbleOffset: 1.60000002
   talkNoise: {fileID: 8300000, guid: b58daab098d8eec408a4ecc41e61f527, type: 3}
   talkVolume: 1
 --- !u!212 &1171290179
@@ -27348,6 +27292,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueFile: {fileID: 4900000, guid: acc9ccbc183a1f54db8da013d8f94a71, type: 3}
+  talkBubblePrefab: {fileID: 0}
+  talkBubbleOffset: 1.60000002
   talkNoise: {fileID: 8300000, guid: cbe97fd68db457a4a956b593a6c7518f, type: 3}
   talkVolume: 1
 --- !u!61 &1177413244
@@ -27984,7 +27930,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1074371949}
-  - {fileID: 64773119}
   - {fileID: 1930836805}
   - {fileID: 2113855717}
   - {fileID: 7613965}
@@ -28663,7 +28608,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1238694530}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.53234816, y: -12.1236267, z: 0}
+  m_LocalPosition: {x: 7.53234816, y: -12.21, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1993542473}
@@ -28962,7 +28907,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 080153ececb00db42811be6e02a09bde, type: 2}
       propertyPath: m_RootOrder
-      value: 15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 21200000, guid: 080153ececb00db42811be6e02a09bde, type: 2}
       propertyPath: m_Sprite
@@ -29317,7 +29262,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 080153ececb00db42811be6e02a09bde, type: 2}
       propertyPath: m_RootOrder
-      value: 17
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 21200000, guid: 080153ececb00db42811be6e02a09bde, type: 2}
       propertyPath: m_Sprite
@@ -32118,7 +32063,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 619337750}
-  m_RootOrder: 11
+  m_RootOrder: 12
 --- !u!61 &1390811520
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -32144,6 +32089,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueFile: {fileID: 4900000, guid: 40a55df45c2b37445be6999b2f8373cb, type: 3}
+  talkBubblePrefab: {fileID: 492814, guid: c76ae024642f06b4f8e3722868c55882, type: 2}
+  talkBubbleOffset: 1.60000002
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
 --- !u!212 &1390811522
@@ -32342,7 +32289,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 080153ececb00db42811be6e02a09bde, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 21200000, guid: 080153ececb00db42811be6e02a09bde, type: 2}
       propertyPath: m_Sprite
@@ -36878,7 +36825,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 080153ececb00db42811be6e02a09bde, type: 2}
       propertyPath: m_RootOrder
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 21200000, guid: 080153ececb00db42811be6e02a09bde, type: 2}
       propertyPath: m_Sprite
@@ -37671,7 +37618,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 080153ececb00db42811be6e02a09bde, type: 2}
       propertyPath: m_RootOrder
-      value: 16
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 21200000, guid: 080153ececb00db42811be6e02a09bde, type: 2}
       propertyPath: m_Sprite
@@ -38655,7 +38602,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 619337750}
-  m_RootOrder: 16
+  m_RootOrder: 17
 --- !u!61 &1705855479
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -38681,6 +38628,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueFile: {fileID: 4900000, guid: a4f3fe09126703c429f017f621c289f1, type: 3}
+  talkBubblePrefab: {fileID: 492814, guid: c76ae024642f06b4f8e3722868c55882, type: 2}
+  talkBubbleOffset: 1.60000002
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
 --- !u!212 &1705855481
@@ -40126,7 +40075,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 619337750}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!61 &1760162374
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -40152,6 +40101,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueFile: {fileID: 4900000, guid: d884744a621aa4943894ac16d6ed6f79, type: 3}
+  talkBubblePrefab: {fileID: 492814, guid: c76ae024642f06b4f8e3722868c55882, type: 2}
+  talkBubbleOffset: 1.60000002
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
 --- !u!212 &1760162376
@@ -40364,7 +40315,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 080153ececb00db42811be6e02a09bde, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 21200000, guid: 080153ececb00db42811be6e02a09bde, type: 2}
       propertyPath: m_Sprite
@@ -40575,7 +40526,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 619337750}
-  m_RootOrder: 12
+  m_RootOrder: 13
 --- !u!61 &1777553242
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -40601,6 +40552,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueFile: {fileID: 4900000, guid: e3d418a8ae4ad6c40a23d6af3fff877e, type: 3}
+  talkBubblePrefab: {fileID: 492814, guid: c76ae024642f06b4f8e3722868c55882, type: 2}
+  talkBubbleOffset: 1.60000002
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
 --- !u!212 &1777553244
@@ -43941,7 +43894,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 1191703170}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!212 &1930836806
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -44472,7 +44425,7 @@ Transform:
   m_LocalScale: {x: .179893002, y: .25, z: 1}
   m_Children: []
   m_Father: {fileID: 1191703170}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!114 &1955382327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48743,7 +48696,7 @@ Transform:
   m_LocalScale: {x: 1.20000005, y: 1.20000005, z: 1}
   m_Children: []
   m_Father: {fileID: 1191703170}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!212 &2113855718
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -48991,7 +48944,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 080153ececb00db42811be6e02a09bde, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 21200000, guid: 080153ececb00db42811be6e02a09bde, type: 2}
       propertyPath: m_Sprite

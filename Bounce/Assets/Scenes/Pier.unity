@@ -481,6 +481,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueFile: {fileID: 4900000, guid: 3a08f476b26fc2048bbc188f0756032d, type: 3}
+  talkBubblePrefab: {fileID: 492814, guid: c76ae024642f06b4f8e3722868c55882, type: 2}
+  talkBubbleOffset: 1.60000002
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
 --- !u!212 &51906565
@@ -1261,7 +1263,7 @@ Transform:
   m_LocalScale: {x: 3.82500362, y: 3.42500114, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 122
+  m_RootOrder: 121
 --- !u!1 &126395041
 GameObject:
   m_ObjectHideFlags: 0
@@ -2947,7 +2949,7 @@ Transform:
   m_LocalScale: {x: 1.5591526, y: 1.55915284, z: 1.55915284}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 165
+  m_RootOrder: 166
 --- !u!1 &319748828
 GameObject:
   m_ObjectHideFlags: 0
@@ -7845,6 +7847,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueFile: {fileID: 4900000, guid: de373fd02cdb8da469d1e34462f3b336, type: 3}
+  talkBubblePrefab: {fileID: 492814, guid: c76ae024642f06b4f8e3722868c55882, type: 2}
+  talkBubbleOffset: 1.60000002
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
 --- !u!212 &1002635438
@@ -7982,7 +7986,7 @@ Transform:
   m_LocalScale: {x: 1.5591526, y: 1.55915284, z: 1.55915284}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 126
+  m_RootOrder: 128
 --- !u!114 &1012911203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8882,7 +8886,7 @@ Transform:
   m_LocalScale: {x: 3.82500362, y: 3.42500114, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 128
+  m_RootOrder: 127
 --- !u!1 &1129593688
 GameObject:
   m_ObjectHideFlags: 0
@@ -9058,7 +9062,7 @@ Transform:
   m_LocalScale: {x: 1.5591526, y: 1.55915284, z: 1.55915284}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 121
+  m_RootOrder: 122
 --- !u!114 &1133744354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9701,7 +9705,7 @@ Transform:
   m_LocalScale: {x: 3.82500362, y: 3.42500114, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 127
+  m_RootOrder: 126
 --- !u!1 &1237367914
 GameObject:
   m_ObjectHideFlags: 0
@@ -9838,7 +9842,7 @@ Transform:
   m_Children:
   - {fileID: 1855459576}
   m_Father: {fileID: 0}
-  m_RootOrder: 166
+  m_RootOrder: 165
 --- !u!61 &1241391786
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9864,6 +9868,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueFile: {fileID: 4900000, guid: 973acef76a4ca104a8e7a96330bba437, type: 3}
+  talkBubblePrefab: {fileID: 492814, guid: c76ae024642f06b4f8e3722868c55882, type: 2}
+  talkBubbleOffset: 1.60000002
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
 --- !u!212 &1241391788
@@ -10804,6 +10810,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueFile: {fileID: 4900000, guid: 087e6fbe0e3a81445a477bdc387b34cc, type: 3}
+  talkBubblePrefab: {fileID: 492814, guid: c76ae024642f06b4f8e3722868c55882, type: 2}
+  talkBubbleOffset: 1.60000002
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
 --- !u!212 &1417795713
@@ -12815,6 +12823,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueFile: {fileID: 4900000, guid: 1de4281f87746254098e6456e230ec57, type: 3}
+  talkBubblePrefab: {fileID: 492814, guid: c76ae024642f06b4f8e3722868c55882, type: 2}
+  talkBubbleOffset: 1.60000002
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
 --- !u!212 &1733264581
@@ -16122,6 +16132,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueFile: {fileID: 4900000, guid: 0bf430f918d46424b999f1cedcc5e75d, type: 3}
+  talkBubblePrefab: {fileID: 492814, guid: c76ae024642f06b4f8e3722868c55882, type: 2}
+  talkBubbleOffset: 1.60000002
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
 --- !u!212 &2108902803
