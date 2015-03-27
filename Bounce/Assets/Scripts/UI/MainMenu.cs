@@ -36,6 +36,8 @@ public class MainMenu : MonoBehaviour
 	public int selectedItem = 0;
 	public string[] inventoryPlaceholder = {"Item1","Item2","Item3","Item4","Item5","Item6","Item7"};
 
+	public GUISkin skin;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -52,6 +54,7 @@ public class MainMenu : MonoBehaviour
 	void OnGUI ()
 	{
 		if (showMenu) {
+			GUI.skin = skin;
 
 			//Freeze the game if the menu is active
 			Time.timeScale = 0;
