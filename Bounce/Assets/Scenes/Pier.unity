@@ -485,6 +485,7 @@ MonoBehaviour:
   talkBubbleOffset: 1.60000002
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
+  cameraOrthoThreshold: 8
 --- !u!212 &51906565
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -859,7 +860,7 @@ Transform:
   m_LocalScale: {x: 1.96031427, y: 3.42500114, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 124
+  m_RootOrder: 123
 --- !u!1 &83637972
 GameObject:
   m_ObjectHideFlags: 0
@@ -2949,7 +2950,7 @@ Transform:
   m_LocalScale: {x: 1.5591526, y: 1.55915284, z: 1.55915284}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 166
+  m_RootOrder: 167
 --- !u!1 &319748828
 GameObject:
   m_ObjectHideFlags: 0
@@ -5969,16 +5970,6 @@ MonoBehaviour:
   tabButtonHeight: 50
   scrollViewWidth: 480
   scrollViewHeight: 400
-  inventoryGridX: 5
-  selectedItem: 0
-  inventoryPlaceholder:
-  - Item1
-  - Item2
-  - Item3
-  - Item4
-  - Item5
-  - Item6
-  - Item7
   skin: {fileID: 0}
 --- !u!1 &802682085
 GameObject:
@@ -6386,6 +6377,7 @@ Transform:
   - {fileID: 1821056760}
   - {fileID: 792686828}
   - {fileID: 1145216273}
+  - {fileID: 1633242489}
   m_Father: {fileID: 0}
   m_RootOrder: 160
 --- !u!1 &833187087
@@ -7851,6 +7843,7 @@ MonoBehaviour:
   talkBubbleOffset: 1.60000002
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
+  cameraOrthoThreshold: 8
 --- !u!212 &1002635438
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9062,7 +9055,7 @@ Transform:
   m_LocalScale: {x: 1.5591526, y: 1.55915284, z: 1.55915284}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 122
+  m_RootOrder: 124
 --- !u!114 &1133744354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9872,6 +9865,7 @@ MonoBehaviour:
   talkBubbleOffset: 1.60000002
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
+  cameraOrthoThreshold: 8
 --- !u!212 &1241391788
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10317,7 +10311,7 @@ Transform:
   m_LocalScale: {x: 3.82500362, y: 3.42500114, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 123
+  m_RootOrder: 122
 --- !u!1 &1337848744
 GameObject:
   m_ObjectHideFlags: 0
@@ -10814,6 +10808,7 @@ MonoBehaviour:
   talkBubbleOffset: 1.60000002
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
+  cameraOrthoThreshold: 8
 --- !u!212 &1417795713
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11974,6 +11969,46 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_Size: {x: 8.53699398, y: .72161293}
   m_Center: {x: -.231506348, y: 2.45399475}
+--- !u!1 &1633242488
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 162608, guid: ef5d36ba5a960214a8fc17fb7c3626dc, type: 2}
+  m_PrefabInternal: {fileID: 680707984}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1633242489}
+  - 114: {fileID: 1633242490}
+  m_Layer: 0
+  m_Name: InitialConfiguration
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1633242489
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 462608, guid: ef5d36ba5a960214a8fc17fb7c3626dc, type: 2}
+  m_PrefabInternal: {fileID: 680707984}
+  m_GameObject: {fileID: 1633242488}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 823293469}
+  m_RootOrder: 6
+--- !u!114 &1633242490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11462608, guid: ef5d36ba5a960214a8fc17fb7c3626dc,
+    type: 2}
+  m_PrefabInternal: {fileID: 680707984}
+  m_GameObject: {fileID: 1633242488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33ca4efa4d578404da35dc81961fd148, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1634320855
 GameObject:
   m_ObjectHideFlags: 0
@@ -12827,6 +12862,7 @@ MonoBehaviour:
   talkBubbleOffset: 1.60000002
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
+  cameraOrthoThreshold: 8
 --- !u!212 &1733264581
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15130,7 +15166,7 @@ Transform:
   m_LocalScale: {x: .359786272, y: .5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 167
+  m_RootOrder: 166
 --- !u!1 &1994845306
 GameObject:
   m_ObjectHideFlags: 0
@@ -16136,6 +16172,7 @@ MonoBehaviour:
   talkBubbleOffset: 1.60000002
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
+  cameraOrthoThreshold: 8
 --- !u!212 &2108902803
 SpriteRenderer:
   m_ObjectHideFlags: 0

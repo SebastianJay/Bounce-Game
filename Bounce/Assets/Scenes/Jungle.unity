@@ -9970,6 +9970,46 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 7a9efdc8f231b444384fe24e65a8bd5a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!1 &634909139
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 162608, guid: ef5d36ba5a960214a8fc17fb7c3626dc, type: 2}
+  m_PrefabInternal: {fileID: 819708385}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 634909140}
+  - 114: {fileID: 634909141}
+  m_Layer: 0
+  m_Name: InitialConfiguration
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &634909140
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 462608, guid: ef5d36ba5a960214a8fc17fb7c3626dc, type: 2}
+  m_PrefabInternal: {fileID: 819708385}
+  m_GameObject: {fileID: 634909139}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 932726874}
+  m_RootOrder: 6
+--- !u!114 &634909141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11462608, guid: ef5d36ba5a960214a8fc17fb7c3626dc,
+    type: 2}
+  m_PrefabInternal: {fileID: 819708385}
+  m_GameObject: {fileID: 634909139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33ca4efa4d578404da35dc81961fd148, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &638551141
 Prefab:
   m_ObjectHideFlags: 0
@@ -12172,6 +12212,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 8201658, guid: ef5d36ba5a960214a8fc17fb7c3626dc, type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e9fce167ed3cf874d868b96a5b39d8e5, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef5d36ba5a960214a8fc17fb7c3626dc, type: 2}
   m_RootGameObject: {fileID: 932726873}
@@ -13773,6 +13817,7 @@ Transform:
   - {fileID: 611883646}
   - {fileID: 1678381405}
   - {fileID: 1148526698}
+  - {fileID: 634909140}
   m_Father: {fileID: 0}
   m_RootOrder: 4
 --- !u!1 &933920711
@@ -18103,6 +18148,7 @@ MonoBehaviour:
   talkBubbleOffset: 1.60000002
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
+  cameraOrthoThreshold: 8
 --- !u!212 &1197489579
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19430,6 +19476,7 @@ MonoBehaviour:
   talkBubbleOffset: 1.60000002
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
+  cameraOrthoThreshold: 8
 --- !u!212 &1285874836
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -21976,6 +22023,7 @@ MonoBehaviour:
   talkBubbleOffset: 1.60000002
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
+  cameraOrthoThreshold: 8
 --- !u!212 &1473717351
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -24817,16 +24865,6 @@ MonoBehaviour:
   tabButtonHeight: 50
   scrollViewWidth: 480
   scrollViewHeight: 400
-  inventoryGridX: 5
-  selectedItem: 0
-  inventoryPlaceholder:
-  - Item1
-  - Item2
-  - Item3
-  - Item4
-  - Item5
-  - Item6
-  - Item7
   skin: {fileID: 0}
 --- !u!4 &1678381405
 Transform:
@@ -31081,6 +31119,7 @@ MonoBehaviour:
   talkBubbleOffset: 1.60000002
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
+  cameraOrthoThreshold: 8
 --- !u!212 &2054639872
 SpriteRenderer:
   m_ObjectHideFlags: 0
