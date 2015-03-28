@@ -46,6 +46,11 @@ public class AnimatedChain : MonoBehaviour {
 		//	Animate ();
 	}
 
+	public void CompleteAnimation() {
+		isAnimating = true;
+		animateTimer = animateTime - 0.001f;
+	}
+
 	public void Animate() {
 		isAnimating = true;
 	}

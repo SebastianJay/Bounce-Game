@@ -18,6 +18,8 @@ public class ButtonMoves : MonoBehaviour {
 	public Transform[] otherButtons;		//special case if multiple buttons need to be pressed at once
 	public bool animateChainToo = false;	//special case for city wrecking ball
 	public Transform chainObj;
+	public bool setConstant = false;
+	public string constantName = "REPLACE_ME";
 
 	private bool depressed = false;	//whether player is on button
 	private bool activated = false;	//whether the button event happened
@@ -40,7 +42,8 @@ public class ButtonMoves : MonoBehaviour {
 		originalScale = buttonObj.localScale;
 		float height = buttonObj.GetComponent<SpriteRenderer>().sprite.bounds.size.y;	//?
 		pressOffset = new Vector3 (0f, -height / 2, 0f);
-		//heightDiff = 0f;
+		if (setConstant && DialogueConstantParser.EvaluateConstant (constantName))
+			activated = true;	//already activated previously
 	}
 
 	// Update is called once per frame
@@ -74,6 +77,8 @@ public class ButtonMoves : MonoBehaviour {
 							new Vector3(xOffset, yOffset, 0f), moveTime);
 						if (animateChainToo)
 							chainObj.GetComponent<AnimatedChain>().Animate();
+						if (setConstant)
+							DialogueConstantParser.SetConstant(constantName);
 					}
 				}
 				else
@@ -81,6 +86,10 @@ public class ButtonMoves : MonoBehaviour {
 					activated = true;
 					moveObj.GetComponent<AnimatedMover>().MoveRelative(
 						new Vector3(xOffset, yOffset, 0f), moveTime);
+					if (animateChainToo)
+						chainObj.GetComponent<AnimatedChain>().Animate();
+					if (setConstant)
+						DialogueConstantParser.SetConstant(constantName);
 				}
 			}
 		}

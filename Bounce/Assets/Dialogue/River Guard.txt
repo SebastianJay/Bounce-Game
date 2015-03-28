@@ -15,7 +15,7 @@ if TalkedToGuard and MotherIsFollowing
 [Sorry, bub, you really can't go through. {}][We have to. {Line 8}][But her kid is missing! {Line 9}]
 [Hm. Well, that's just vague enough to convince me. {Line 10}]
 [A missing child??? How terrible! {Line 10}]
-[Go on through! Try not to get crushed and stuff.{End, Event LiftRiverGate, Set RiverGateOpen}]
+[Go on through! Try not to get crushed and stuff.{End, Event LiftRiverGate}]
 
 if RiverGateOpen
 [Go through before I change my mind! {End}]

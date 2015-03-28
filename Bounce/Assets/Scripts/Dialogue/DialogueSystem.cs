@@ -36,6 +36,7 @@ public class DialogueSystem : MonoBehaviour {
 	private string npcName;
 	private string npcText;
 	private Rect npcTextBounds;
+	private Transform newParent;
 	//player vars
 	private GameObject playerContainer;
 	private List<Transform> playerTextObjLst = new List<Transform>();
@@ -99,7 +100,12 @@ public class DialogueSystem : MonoBehaviour {
 		npcContainer = CreateTextBox (npcTextObj.position + new Vector3(textSize.x / 2, -textSize.y / 2), 
 		                              textSize, npcBgColor);
 		npcTextObj.parent = npcContainer.transform;
-		npcContainer.transform.parent = this.transform;
+		if (newParent != null) {
+			npcContainer.transform.parent = newParent;
+			newParent = null;
+		} 
+		else
+			npcContainer.transform.parent = this.transform;
 		npcTextBounds = new Rect(npcTextObj.position.x - textSize.x,
 		                         npcTextObj.position.y - textSize.y,
 		                         textSize.x, textSize.y);
@@ -109,6 +115,11 @@ public class DialogueSystem : MonoBehaviour {
 		animating = true;
 		animateIndex = 0;
 		settingUpNPCText = true;
+	}
+
+	//to make NPC text move with the NPC on ONLY the next frame -- limited use
+	public void ReparentNPCText(Transform nParent) {
+		newParent = nParent;
 	}
 
 	public void PushPlayerText(List<string> textLst, Vector2 position)

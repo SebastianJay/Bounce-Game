@@ -39,75 +39,17 @@ public class Interactable : MonoBehaviour {
 		}
 		dSystem = GameObject.FindGameObjectWithTag("DialogueSystem");
 		cam = GameObject.FindGameObjectWithTag("MainCamera");
+		playerObj = GameObject.FindGameObjectWithTag("Player");
 		if (dSystem == null)
 			Debug.LogError("No dialogue system present in scene!");
 	}
 
 	// Update is called once per frame
 	void Update () {
-		//manually check if player is in bounds
-		//if (playerObj != null &&
-		//    playerObj.transform.position.x > transform.position.x + GetComponent<BoxCollider2D>().center.x - GetComponent<BoxCollider2D>()
+
 		if (Input.GetButtonDown ("Action") && (inTrigger || inConversation) && Time.frameCount != endedTalkFrame)
 		{
-			PlayerBallControl bScript = playerObj.GetComponent<PlayerBallControl>();
-			if (!bScript.inConversation)
-			{
-				bScript.inConversation = true;
-				bScript.playerLock = true;
-				this.inConversation = true;
-				if (talkSrc != null)
-					talkSrc.Play();
-				if (talkBubble != null)
-					talkBubble.gameObject.SetActive(false);
-				if (cam.GetComponent<Camera>().orthographicSize > cameraOrthoThreshold) {
-					lastConfig = cam.GetComponent<CameraFollow>().GetConfig();
-					CameraFollowConfig camConfig = new CameraFollowConfig();
-					camConfig.position = transform.position;
-					camConfig.lockedPosition = transform.position;
-					camConfig.isLocked = true;
-					camConfig.orthoSize = cameraOrthoThreshold;
-					cam.GetComponent<CameraFollow>().LoadConfig(camConfig, false);
-					changedCamConfig = true;
-				}
-				else
-					changedCamConfig = false;
-			}
-			if (inConversation)
-			{
-				if (dSystem.GetComponent<DialogueSystem>().IsAnimating())
-					dSystem.GetComponent<DialogueSystem>().StepAnimation();
-				else
-				{
-					List<string> lines = dialogue.Step(dSystem.GetComponent<DialogueSystem>().GetCursor());
-					if(lines.Count > 0)
-					{
-						string name = npcName;
-						if (lines[0].IndexOf(':') != -1)
-						{
-							name = lines[0].Substring(0, lines[0].IndexOf(':'));	//the colon is reserved for specifying speaker manually
-							lines[0] = lines[0].Substring(lines[0].IndexOf(':')+1);
-						}
-						dSystem.GetComponent<DialogueSystem>().PushNPCText(lines[0], transform.position, name);
-						dSystem.GetComponent<DialogueSystem>().PushPlayerText(lines.GetRange(1, lines.Count - 1), 
-						                                                      GameObject.FindGameObjectWithTag("Player").transform.position);
-						playerObj.rigidbody2D.velocity = Vector2.zero;
-						playerObj.rigidbody2D.angularVelocity = 0f;
-					}
-					else
-					{
-						dSystem.GetComponent<DialogueSystem>().EndConversation();
-						bScript.inConversation = false;
-						this.inConversation = false;
-						bScript.playerLock = false;
-						endedTalkFrame = Time.frameCount;
-						if (talkBubble != null)
-							talkBubble.gameObject.SetActive(true);
-						if (changedCamConfig)
-							cam.GetComponent<CameraFollow>().LoadConfig(lastConfig, false);
-					}
-				}
-			}
+			StepConvo();
 		}
 		else if (Input.GetButtonDown("Jump") && inConversation)
 		{
@@ -116,6 +58,67 @@ public class Interactable : MonoBehaviour {
 		else if (Input.GetButtonDown("Floor") && inConversation)
 		{
 			dSystem.GetComponent<DialogueSystem>().MoveCursor(false);
+		}
+	}
+
+	public void StepConvo() {
+		PlayerBallControl bScript = playerObj.GetComponent<PlayerBallControl>();
+		if (!bScript.inConversation)
+		{
+			bScript.inConversation = true;
+			bScript.playerLock = true;
+			this.inConversation = true;
+			if (talkSrc != null)
+				talkSrc.Play();
+			if (talkBubble != null)
+				talkBubble.gameObject.SetActive(false);
+			if (cam.GetComponent<Camera>().orthographicSize > cameraOrthoThreshold) {
+				lastConfig = cam.GetComponent<CameraFollow>().GetConfig();
+				CameraFollowConfig camConfig = new CameraFollowConfig();
+				camConfig.position = transform.position;
+				camConfig.lockedPosition = transform.position;
+				camConfig.isLocked = true;
+				camConfig.orthoSize = cameraOrthoThreshold;
+				cam.GetComponent<CameraFollow>().LoadConfig(camConfig, false);
+				changedCamConfig = true;
+			}
+			else
+				changedCamConfig = false;
+		}
+		if (inConversation)
+		{
+			if (dSystem.GetComponent<DialogueSystem>().IsAnimating())
+				dSystem.GetComponent<DialogueSystem>().StepAnimation();
+			else
+			{
+				List<string> lines = dialogue.Step(dSystem.GetComponent<DialogueSystem>().GetCursor());
+				if(lines.Count > 0)
+				{
+					string name = npcName;
+					if (lines[0].IndexOf(':') != -1)
+					{
+						name = lines[0].Substring(0, lines[0].IndexOf(':'));	//the colon is reserved for specifying speaker manually
+						lines[0] = lines[0].Substring(lines[0].IndexOf(':')+1);
+					}
+					dSystem.GetComponent<DialogueSystem>().PushNPCText(lines[0], transform.position, name);
+					dSystem.GetComponent<DialogueSystem>().PushPlayerText(lines.GetRange(1, lines.Count - 1), 
+					                                                      GameObject.FindGameObjectWithTag("Player").transform.position);
+					playerObj.rigidbody2D.velocity = Vector2.zero;
+					playerObj.rigidbody2D.angularVelocity = 0f;
+				}
+				else
+				{
+					dSystem.GetComponent<DialogueSystem>().EndConversation();
+					bScript.inConversation = false;
+					this.inConversation = false;
+					bScript.playerLock = false;
+					endedTalkFrame = Time.frameCount;
+					if (talkBubble != null)
+						talkBubble.gameObject.SetActive(true);
+					if (changedCamConfig)
+						cam.GetComponent<CameraFollow>().LoadConfig(lastConfig, false);
+				}
+			}
 		}
 	}
 
@@ -129,7 +132,6 @@ public class Interactable : MonoBehaviour {
 				talkBubble.parent = transform;
 			}
 			inTrigger = true;
-			playerObj = other.gameObject;
 		}
 	}
 

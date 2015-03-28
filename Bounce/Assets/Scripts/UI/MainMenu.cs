@@ -29,12 +29,8 @@ public class MainMenu : MonoBehaviour
 	
 	private bool menuWasOpen = false;		//represents the first "tick" of active menu
 	private GameObject player;
+	private GameObject screenFadeObj;
 	List<string> saveFileList = new List<string>();
-
-	//temp vars
-	public int inventoryGridX = 5;
-	public int selectedItem = 0;
-	public string[] inventoryPlaceholder = {"Item1","Item2","Item3","Item4","Item5","Item6","Item7"};
 
 	public GUISkin skin;
 
@@ -42,12 +38,15 @@ public class MainMenu : MonoBehaviour
 	void Start ()
 	{
 		player = GameObject.FindGameObjectWithTag("Player");
+		screenFadeObj = GameObject.FindGameObjectWithTag("ScreenFader");
 	}
 
 	// Update is called once per frame
 	void Update ()
 	{
-		if (Input.GetButtonDown("Menu"))
+		if (Input.GetButtonDown("Menu") && 
+		    (player.GetComponent<PlayerBallControl>() == null || !player.GetComponent<PlayerBallControl>().inConversation) &&
+		    (screenFadeObj == null || !screenFadeObj.GetComponent<ScreenFading>().IsTransitioning()))
 			showMenu = !showMenu;
 	}
 
@@ -145,6 +144,7 @@ public class MainMenu : MonoBehaviour
 			if (currentTab == MenuTab.Inventory) {
 				scrollPositionI = GUI.BeginScrollView (new Rect (Screen.width / 2 - menuWidth / 2 + 10, Screen.height / 2 - menuHeight / 2 + 15 + tabButtonHeight, scrollViewWidth, scrollViewHeight), scrollPositionI, new Rect (0, 0, scrollViewWidth - 20, scrollViewHeight * 4));
 				//Inventory inventory = player.GetComponent<PlayerDataManager>().inventory;
+				/*
 				Inventory inventory = PlayerDataManager.inventory;
 				int count = inventory.items.Length;
 				float gridHeight = (float)count/inventoryGridX;
@@ -153,7 +153,7 @@ public class MainMenu : MonoBehaviour
 				for(int i=0; i < inventory.ToList().Count; i++){
 					itemNames[i] = inventory.items[i].ToString();
 				}
-
+				*/
 				Dictionary<ItemType, ImmutableData.ItemData>.Enumerator iter = ImmutableData.GetItemData().GetEnumerator();			
 				if (iter.MoveNext()) {
 					bool iterdone = false;

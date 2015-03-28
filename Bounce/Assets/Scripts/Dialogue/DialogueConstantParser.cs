@@ -24,7 +24,32 @@ public static class DialogueConstantParser
 			obj = GameObject.FindGameObjectWithTag("RiverGate");
 			if (obj != null)
 				obj.GetComponent<AnimatedMover>().MoveRelative(new Vector3(0f, 5f, 0f), 2.0f);
+			SetConstant("RiverGateOpen");
 			break;
+		case "ChildFound":
+			if (!EvaluateConstant("OnChildFound")) {
+				obj = GameObject.FindGameObjectWithTag("MotherFollower");
+				SetConstant("OnChildFound");
+				if (obj != null) {
+					obj.GetComponent<FollowAI>().enabled = false;
+					obj.transform.GetChild(0).GetComponent<Interactable>().StepConvo();
+				}
+			}
+			break;
+		case "MoveMotherToChild":
+			obj = GameObject.FindGameObjectWithTag("MotherFollower");
+			if (obj != null) {
+				obj.GetComponent<AnimatedMover>().MoveAbsolute(new Vector3(451f, 1.8f, 0f), 
+				                                               (new Vector3(451f, 1.8f, 0f)-obj.transform.position).magnitude / 15f);
+				GameObject.FindGameObjectWithTag("DialogueSystem").GetComponent<DialogueSystem>().ReparentNPCText(obj.transform);
+			}
+			obj = GameObject.FindGameObjectWithTag("MainCamera");
+			if (obj != null) {
+				//recenter camera
+				obj.GetComponent<CameraFollow>().lockedPosition = new Vector2(451f, 2.1f);
+			}
+			break;
+
 		}
 
 	}
