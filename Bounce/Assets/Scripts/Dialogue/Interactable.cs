@@ -46,7 +46,8 @@ public class Interactable : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
+		if (playerObj == null)
+			playerObj = GameObject.FindGameObjectWithTag ("Player");
 		if (Input.GetButtonDown ("Action") && (inTrigger || inConversation) && Time.frameCount != endedTalkFrame)
 		{
 			StepConvo();
@@ -62,11 +63,24 @@ public class Interactable : MonoBehaviour {
 	}
 
 	public void StepConvo() {
-		PlayerBallControl bScript = playerObj.GetComponent<PlayerBallControl>();
-		if (!bScript.inConversation)
+		bool flag = false;
+		if (playerObj.GetComponent<PlayerBallControl>() != null) {
+			PlayerBallControl bScript = playerObj.GetComponent<PlayerBallControl>(); 
+			flag = bScript.inConversation;
+			if (!flag) {
+				bScript.inConversation = true;
+				bScript.playerLock = true;
+			}
+		} else if (playerObj.GetComponent<PlayerBodyControl>() != null) {
+			PlayerBodyControl bScript = playerObj.GetComponent<PlayerBodyControl>(); 
+			flag = bScript.inConversation;
+			if (!flag) {
+				bScript.inConversation = true;
+				bScript.playerLock = true;
+			}
+		}
+		if (!flag)
 		{
-			bScript.inConversation = true;
-			bScript.playerLock = true;
 			this.inConversation = true;
 			if (talkSrc != null)
 				talkSrc.Play();
@@ -101,17 +115,23 @@ public class Interactable : MonoBehaviour {
 						lines[0] = lines[0].Substring(lines[0].IndexOf(':')+1);
 					}
 					dSystem.GetComponent<DialogueSystem>().PushNPCText(lines[0], transform.position, name);
-					dSystem.GetComponent<DialogueSystem>().PushPlayerText(lines.GetRange(1, lines.Count - 1), 
-					                                                      GameObject.FindGameObjectWithTag("Player").transform.position);
+					dSystem.GetComponent<DialogueSystem>().PushPlayerText(lines.GetRange(1, lines.Count - 1), playerObj.transform.position);
 					playerObj.rigidbody2D.velocity = Vector2.zero;
 					playerObj.rigidbody2D.angularVelocity = 0f;
 				}
 				else
 				{
 					dSystem.GetComponent<DialogueSystem>().EndConversation();
-					bScript.inConversation = false;
 					this.inConversation = false;
-					bScript.playerLock = false;
+					if (playerObj.GetComponent<PlayerBallControl>() != null) {
+						PlayerBallControl bScript = playerObj.GetComponent<PlayerBallControl>();
+						bScript.inConversation = false;
+						bScript.playerLock = false;
+					} else if (playerObj.GetComponent<PlayerBodyControl>() != null) {
+						PlayerBodyControl bScript = playerObj.GetComponent<PlayerBodyControl>();
+						bScript.inConversation = false;
+						bScript.playerLock = false;
+					}
 					endedTalkFrame = Time.frameCount;
 					if (talkBubble != null)
 						talkBubble.gameObject.SetActive(true);
@@ -125,7 +145,7 @@ public class Interactable : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.tag == "Player") {
 			//animation appears to show you can talk
-			if (talkBubblePrefab != null && talkBubble == null) {
+			if (talkBubblePrefab != null && talkBubble == null && !inConversation) {
 				talkBubble = Instantiate(talkBubblePrefab, 
 				                         transform.position + new Vector3(0f, talkBubbleOffset, 0f), 
 				                         Quaternion.identity) as Transform;

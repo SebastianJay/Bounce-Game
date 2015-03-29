@@ -20,11 +20,11 @@ public class Death : MonoBehaviour {
 
 	void Awake()
 	{
-			if (deathNoise != null) {
-				deathSrc = gameObject.AddComponent<AudioSource>();
-				deathSrc.clip = deathNoise;
-				deathSrc.volume = deathVolume;
-			}
+		if (deathNoise != null) {
+			deathSrc = gameObject.AddComponent<AudioSource>();
+			deathSrc.clip = deathNoise;
+			deathSrc.volume = deathVolume;
+		}
 	}
 
 	void Start()
@@ -33,7 +33,6 @@ public class Death : MonoBehaviour {
 		camObj = GameObject.FindGameObjectWithTag ("MainCamera");
 		player = GameObject.FindGameObjectWithTag ("Player");
 		escort = GameObject.FindGameObjectWithTag ("MotherFollower");
-
 	}
 
 	void OnCollisionEnter2D(Collision2D collision)
@@ -65,8 +64,12 @@ public class Death : MonoBehaviour {
 
 	void DeathTransition()
 	{
-		player.GetComponent<PowerupManager>().EndPowerup();
-		player.GetComponent<PlayerBallControl>().ForceUndoDeformation ();
+		if (player == null)
+			player = GameObject.FindGameObjectWithTag ("Player");
+		if (player.GetComponent<PowerupManager>() != null)
+			player.GetComponent<PowerupManager>().EndPowerup();
+		if (player.GetComponent<PlayerBallControl>() != null)
+			player.GetComponent<PlayerBallControl>().ForceUndoDeformation ();
 		player.transform.position = respawn;
 		player.rigidbody2D.velocity = Vector2.zero;
 		player.rigidbody2D.angularVelocity = 0f;

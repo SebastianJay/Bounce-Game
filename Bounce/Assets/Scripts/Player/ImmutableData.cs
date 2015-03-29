@@ -82,7 +82,7 @@ public static class ImmutableData {
 		data.name = name;
 		data.description = description;
 		data.localPosition = new Vector3 (xpos, ypos, 0f);
-		data.localRotation = Quaternion.LookRotation (new Vector3 (0f, 0f, zrot));
+		//data.localRotation = Quaternion.LookRotation (new Vector3 (0f, 0f, zrot));
 		itemMapping[type] = data;
 	}
 

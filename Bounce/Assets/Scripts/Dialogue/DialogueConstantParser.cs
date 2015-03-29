@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
@@ -32,6 +33,7 @@ public static class DialogueConstantParser
 				SetConstant("OnChildFound");
 				if (obj != null) {
 					obj.GetComponent<FollowAI>().enabled = false;
+					//we force a conversation to happen here
 					obj.transform.GetChild(0).GetComponent<Interactable>().StepConvo();
 				}
 			}
@@ -49,7 +51,36 @@ public static class DialogueConstantParser
 				obj.GetComponent<CameraFollow>().lockedPosition = new Vector2(451f, 2.1f);
 			}
 			break;
-
+		case "BobSeparated":
+			obj = GameObject.FindGameObjectWithTag("Player");
+			Vector3 playerPos;
+			if (obj != null) {
+				obj.transform.GetChild(0).parent = null;
+				//obj.rigidbody2D.fixedAngle = false;
+				obj.rigidbody2D.AddForce(new Vector2(-3500f, 5000f));
+				obj.collider2D.enabled = false;
+				obj.GetComponent<PlayerBodyControl>().enabled = false;
+				playerPos = obj.transform.position;
+			}
+			obj = GameObject.FindGameObjectWithTag("Villain");
+			if (obj != null) {
+				//inject animation
+				//obj.transform.GetChild(0).position = playerPos;
+				//obj.SetActive(true);
+				//inject sound
+				//obj.transform.GetChild(1).audio.Play();
+			}
+			//move camera out
+			obj = GameObject.FindGameObjectWithTag("MainCamera");
+			if (obj != null) {
+				obj.GetComponent<CameraFollow>().isLocked = true;
+				obj.GetComponent<CameraFollow>().lockedOrthoSize = obj.GetComponent<Camera>().orthographicSize;
+				obj.GetComponent<CameraFollow>().lockedPosition = obj.transform.position;
+				//queue reload of level
+				//...probably shouldn't do it this way (grabbing a random component and calling coroutine)
+				obj.GetComponent<CameraFollow>().StartCoroutine(RobScenePan());
+			}
+			break;
 		}
 
 	}
@@ -82,5 +113,32 @@ public static class DialogueConstantParser
 	public static void SetConstant(string constant)
 	{
 		constantSet.Add(constant);
+	}
+
+	//Event Specific methods below
+	/*
+	 * RobScenePan - there's a pause after the head is blown off and before we zoom in to Rob
+	 */
+	static IEnumerator RobScenePan() {
+		yield return new WaitForSeconds(2.0f);
+
+		GameObject obj = GameObject.FindGameObjectWithTag("Villain");
+		//obj.transform.GetChild (2).audio.Play ();
+
+		GameObject obj2 = GameObject.FindGameObjectWithTag ("MainCamera");
+		obj2.GetComponent<CameraFollow>().isLocked = true;
+		obj2.GetComponent<CameraFollow>().lockedOrthoSize = 5f;
+		obj2.GetComponent<CameraFollow>().lockedPosition = new Vector2(obj.transform.position.x, obj.transform.position.y);
+		
+		GameObject obj3 = GameObject.FindGameObjectWithTag ("ScreenFader");
+		obj3.GetComponent<ScreenFading>().fadeSpeed = 1f;	//to temporarily make the fade longer
+		obj3.GetComponent<ScreenFading>().Transition (RobSceneReload, true);
+	}
+	/*
+	 * RobSceneReload - the screen goes to black as the Pier level reloads with Bob without his body
+	 */
+	static void RobSceneReload() {
+		DialogueConstantParser.SetConstant("BobBodyGone");
+		Application.LoadLevel("Pier");
 	}
 }

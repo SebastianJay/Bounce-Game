@@ -65,26 +65,3 @@ public class PlayerData
 	[XmlAttribute("itemEquipped")]
 	public ItemType itemEquipped;
 }
-
-/*
-[XmlRoot("Entry")]
-public class PlayerDataEntry
-{
-	[XmlAttribute("key")]
-	public int key;
-
-	[XmlArray("value")]
-	[XmlArrayItem("int")]
-	public List<int> value;
-
-	public PlayerDataEntry(int k, List<int> v)
-	{
-		key = k;
-		value = v;
-	}
-	public PlayerDataEntry()
-	{
-	}
-}
-*/
-

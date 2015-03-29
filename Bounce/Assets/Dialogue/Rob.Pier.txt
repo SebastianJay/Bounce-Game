@@ -1,0 +1,3 @@
+# Rob's dialogue for the first encounter of the game
+
+[Wassup.{End, Event BobSeparated}]
