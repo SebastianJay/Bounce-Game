@@ -48,7 +48,8 @@ public class Interactable : MonoBehaviour {
 	void Update () {
 		if (playerObj == null)
 			playerObj = GameObject.FindGameObjectWithTag ("Player");
-		if (Input.GetButtonDown ("Action") && (inTrigger || inConversation) && Time.frameCount != endedTalkFrame)
+		if (Input.GetButtonDown ("Action") && (inTrigger || inConversation) 
+		    && Time.frameCount != endedTalkFrame && !DialogueConstantParser.eventLock)
 		{
 			StepConvo();
 		}

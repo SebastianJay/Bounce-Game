@@ -47,9 +47,12 @@ public class MainMenu : MonoBehaviour
 		if (player == null)
 			player = GameObject.FindGameObjectWithTag ("Player");
 		if (Input.GetButtonDown("Menu") && 
-		    (player.GetComponent<PlayerBallControl>() == null || !player.GetComponent<PlayerBallControl>().inConversation) &&
-		    (player.GetComponent<PlayerBodyControl>() == null || !player.GetComponent<PlayerBodyControl>().inConversation) &&
-		    (screenFadeObj == null || !screenFadeObj.GetComponent<ScreenFading>().IsTransitioning()))
+		    !DialogueConstantParser.eventLock && 
+		    ((player.GetComponent<PlayerBallControl>() == null ||
+				(!player.GetComponent<PlayerBallControl>().playerLock)) &&
+		    (player.GetComponent<PlayerBodyControl>() == null || 
+		 		(!player.GetComponent<PlayerBodyControl>().playerLock)) &&
+		    (screenFadeObj == null || !screenFadeObj.GetComponent<ScreenFading>().IsTransitioning())))
 			showMenu = !showMenu;
 	}
 

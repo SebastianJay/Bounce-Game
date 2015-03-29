@@ -7,6 +7,7 @@ using UnityEngine;
 public static class DialogueConstantParser
 {
 	public static HashSet<string> constantSet = new HashSet<string>();
+	public static bool eventLock = false;
 
 	public static void ExecuteEvent(string eventName)
 	{
@@ -52,8 +53,9 @@ public static class DialogueConstantParser
 			}
 			break;
 		case "BobSeparated":
+			eventLock = true;
 			obj = GameObject.FindGameObjectWithTag("Player");
-			Vector3 playerPos;
+			Vector3 playerPos = Vector3.zero;
 			if (obj != null) {
 				obj.transform.GetChild(0).parent = null;
 				//obj.rigidbody2D.fixedAngle = false;
@@ -65,10 +67,10 @@ public static class DialogueConstantParser
 			obj = GameObject.FindGameObjectWithTag("Villain");
 			if (obj != null) {
 				//inject animation
-				//obj.transform.GetChild(0).position = playerPos;
-				//obj.SetActive(true);
+				obj.transform.GetChild(1).position = playerPos;
+				obj.transform.GetChild(1).gameObject.SetActive(true);
 				//inject sound
-				//obj.transform.GetChild(1).audio.Play();
+				obj.transform.GetChild(2).audio.Play();
 			}
 			//move camera out
 			obj = GameObject.FindGameObjectWithTag("MainCamera");
@@ -123,7 +125,7 @@ public static class DialogueConstantParser
 		yield return new WaitForSeconds(2.0f);
 
 		GameObject obj = GameObject.FindGameObjectWithTag("Villain");
-		//obj.transform.GetChild (2).audio.Play ();
+		obj.transform.GetChild (3).audio.Play ();
 
 		GameObject obj2 = GameObject.FindGameObjectWithTag ("MainCamera");
 		obj2.GetComponent<CameraFollow>().isLocked = true;
@@ -139,6 +141,7 @@ public static class DialogueConstantParser
 	 */
 	static void RobSceneReload() {
 		DialogueConstantParser.SetConstant("BobBodyGone");
+		eventLock = false;
 		Application.LoadLevel("Pier");
 	}
 }

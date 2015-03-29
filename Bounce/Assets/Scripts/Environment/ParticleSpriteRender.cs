@@ -5,7 +5,7 @@ using System.Collections;
 public class ParticleSpriteRender : MonoBehaviour {
 
 	public bool followPlayer = true;
-	public string sortingLayerName = "Player";
+	public string sortingLayerName = "Character";
 	public int sortingOrder = -1;
 	private GameObject playerObj;
 	// Use this for initialization
