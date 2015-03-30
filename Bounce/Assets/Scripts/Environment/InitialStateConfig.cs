@@ -8,7 +8,7 @@ public class InitialStateConfig : MonoBehaviour {
 
 	//value assigned from inspector
 	public Transform playerBallPrefab;
-
+	
 	void OnLevelWasLoaded(int level) {
 		//to see which level maps to which int, look at the Build Settings
 		//1 - pier

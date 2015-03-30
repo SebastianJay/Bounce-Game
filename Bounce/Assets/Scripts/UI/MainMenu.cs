@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour
 		Map
 	};
 
+	public const float EPSILON = 1e-11f;
 	public MenuTab currentTab = MenuTab.Save;
 	public bool showMenu = false;
 	
@@ -59,10 +60,12 @@ public class MainMenu : MonoBehaviour
 	void OnGUI ()
 	{
 		if (showMenu) {
-			GUI.skin = skin;
+			bool fadingOut = screenFadeObj != null && screenFadeObj.GetComponent<ScreenFading>().IsTransitioning();
+
+			//GUI.skin = skin;
 
 			//Freeze the game if the menu is active
-			Time.timeScale = 0;
+			Time.timeScale = EPSILON;
 
 			//Main menu frame
 			GUI.Box (new Rect (Screen.width / 2 - menuWidth / 2, Screen.height / 2 - menuHeight / 2, menuWidth, menuHeight), "");
@@ -100,7 +103,7 @@ public class MainMenu : MonoBehaviour
 				                                      new Rect (0, 0, scrollViewWidth - 20, saveFileList.Count*50+10));
 
 				// A button for creating a new save file
-				if(GUI.Button (new Rect(10,10,200,50),"Save to New File"))
+				if(GUI.Button (new Rect(10,10,200,50),"Save to New File") && !fadingOut)
 				{
 					XmlSerialzer.currentSaveFile = saveFileList.Count;
 					player.GetComponent<PlayerDataManager>().SaveCurrent();
@@ -108,14 +111,14 @@ public class MainMenu : MonoBehaviour
 				}
 				if (XmlSerialzer.currentSaveFile >= 0 && saveFileList.Count > 0) {
 					// A button for creating a new save file
-					if(GUI.Button (new Rect(210,10,200,50),"Overwrite current data (" + XmlSerialzer.currentSaveFile + ")"))
+					if(GUI.Button (new Rect(210,10,200,50),"Overwrite current data (" + XmlSerialzer.currentSaveFile + ")") && !fadingOut)
 					{
 						player.GetComponent<PlayerDataManager>().SaveCurrent();
 						UpdateSaveFileList();
 					}
 				}
 
-				if(GUI.Button (new Rect(10,10,200,50),"Save to New File"))
+				if(GUI.Button (new Rect(10,10,200,50),"Save to New File") && !fadingOut)
 				{
 					XmlSerialzer.currentSaveFile = saveFileList.Count;
 					player.GetComponent<PlayerDataManager>().SaveCurrent();
@@ -128,18 +131,21 @@ public class MainMenu : MonoBehaviour
 					string s = saveFileList[i-1];
 					int saveFileIndex = i-1;
 					GUI.Label (new Rect (10, i*70+10, scrollViewWidth-10, 50),"File "+saveFileIndex);
-					if(GUI.Button (new Rect(50,i*60+10,120,50),"Overwrite"))
+					if(GUI.Button (new Rect(50,i*60+10,120,50),"Overwrite") && !fadingOut)
 					{
 						XmlSerialzer.currentSaveFile = saveFileIndex;
 						player.GetComponent<PlayerDataManager>().SaveCurrent();
 						UpdateSaveFileList();
 					}
-					if(GUI.Button (new Rect(170,i*60+10,120,50),"Load"))
+					if(GUI.Button (new Rect(170,i*60+10,120,50),"Load") && !fadingOut)
 					{
-						XmlSerialzer.currentSaveFile = saveFileIndex;
-						PlayerDataManager.loadedLevel = false;
-						player.GetComponent<PlayerDataManager>().LoadCurrentSave();
-						UpdateSaveFileList();
+						loadDataIndex = saveFileIndex;
+						if (screenFadeObj != null) {
+							screenFadeObj.GetComponent<ScreenFading>().fadeSpeed /= EPSILON;
+							screenFadeObj.GetComponent<ScreenFading>().Transition(LoadTransition, true);
+						} else
+							LoadTransition();
+
 					}
 				}						
 				GUI.EndScrollView ();
@@ -168,7 +174,7 @@ public class MainMenu : MonoBehaviour
 						for (int j = 0; j < 5; j++)
 						{
 							if (PlayerDataManager.inventory.HasItem(iter.Current.Key)) {
-								if (GUI.Button(new Rect(10 + (j * 60), 10 + (i * 60), 50, 50), iter.Current.Value.image.texture)) {
+								if (GUI.Button(new Rect(10 + (j * 60), 10 + (i * 60), 50, 50), iter.Current.Value.image.texture) && !fadingOut) {
 									if (player.GetComponent<AccessoryManager>() != null) {
 										if (PlayerDataManager.itemEquipped == iter.Current.Key)
 											player.GetComponent<AccessoryManager>().RemoveAccessory();
@@ -227,13 +233,21 @@ public class MainMenu : MonoBehaviour
 						//GUI.Label (new Rect (10, i*50+j*50+10, scrollViewWidth-10, 50),"Checkpoint "+entry.Value[j-1]);
 						GUI.Label (new Rect (10, i*50+10, scrollViewWidth-10, 50),ImmutableData.GetCheckpointData()[entry.Value[j-1]].name);
 
-						if(GUI.Button (new Rect(250,i*50+10,100,50),"Teleport"))
+						if(GUI.Button (new Rect(250,i*50+10,100,50),"Teleport") && !fadingOut)
 						{
+							teleportData = entry;
+							teleportDataIndex = j-1;
+							if (screenFadeObj != null) {
+								screenFadeObj.GetComponent<ScreenFading>().fadeSpeed /= EPSILON;
+								screenFadeObj.GetComponent<ScreenFading>().Transition(TeleportTransition, true);
+							} else
+								TeleportTransition();
+							/*
 							PlayerDataManager.loadedLevel = true;
 							PlayerDataManager.lastCheckpoint = entry.Value[j-1];
 
 							Application.LoadLevel(entry.Key);
-
+							*/
 							/*
 							player.transform.position = Checkpoint.posCheckTable[entry.Value[j-1]];
 							player.rigidbody2D.velocity = Vector2.zero;
@@ -260,6 +274,21 @@ public class MainMenu : MonoBehaviour
 		}
 	}
 
+	private int loadDataIndex=0;
+	void LoadTransition() {
+		PlayerDataManager.loadedLevel = false;
+		XmlSerialzer.currentSaveFile = loadDataIndex;
+		player.GetComponent<PlayerDataManager>().LoadCurrentSave();
+	}
+	
+	private KeyValuePair<string, List<int>> teleportData;
+	private int teleportDataIndex=0;
+	void TeleportTransition() {
+		PlayerDataManager.loadedLevel = true;
+		PlayerDataManager.lastCheckpoint = teleportData.Value[teleportDataIndex];
+		Application.LoadLevel(teleportData.Key);
+	}
+	
 	void UpdateSaveFileList()
 	{
 		if (!Directory.Exists(XmlSerialzer.saveDirectory)) {
