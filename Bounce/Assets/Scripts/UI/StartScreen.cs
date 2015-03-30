@@ -30,7 +30,7 @@ public class StartScreen : MonoBehaviour {
 
 	void StartTransition()
 	{
-		Application.LoadLevel("MainHub");
+		Application.LoadLevel("Pier");
 	}
 
 }

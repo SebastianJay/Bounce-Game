@@ -57,27 +57,11 @@ public class PlayerData
 	[XmlArray("inventory")]
 	[XmlArrayItem("int")]
 	public List<int> inventory = new List<int>();
+
+	//[XmlArray("gameConsts")]
+	[XmlElement("string")]
+	public HashSet<string> constants = new HashSet<string>();
+
+	[XmlAttribute("itemEquipped")]
+	public ItemType itemEquipped;
 }
-
-/*
-[XmlRoot("Entry")]
-public class PlayerDataEntry
-{
-	[XmlAttribute("key")]
-	public int key;
-
-	[XmlArray("value")]
-	[XmlArrayItem("int")]
-	public List<int> value;
-
-	public PlayerDataEntry(int k, List<int> v)
-	{
-		key = k;
-		value = v;
-	}
-	public PlayerDataEntry()
-	{
-	}
-}
-*/
-

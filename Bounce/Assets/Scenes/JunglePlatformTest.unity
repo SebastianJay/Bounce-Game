@@ -4721,6 +4721,14 @@ Prefab:
       propertyPath: m_ConnectedAnchor.y
       value: 49.5089722
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 0f2a3527f582b4646a3f4e3d7da24a4e, type: 2}
+      propertyPath: breakTime
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 0f2a3527f582b4646a3f4e3d7da24a4e, type: 2}
+      propertyPath: fallTime
+      value: 35
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0f2a3527f582b4646a3f4e3d7da24a4e, type: 2}
   m_RootGameObject: {fileID: 1633701471}
@@ -7451,8 +7459,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1449419ab9d934dc2951b0329a5e7fad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  breakTime: 50
-  fallTime: 60
+  breakTime: 25
+  fallTime: 35
 --- !u!212 &1633701477
 SpriteRenderer:
   m_ObjectHideFlags: 0

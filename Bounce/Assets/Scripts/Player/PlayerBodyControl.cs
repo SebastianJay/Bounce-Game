@@ -13,6 +13,13 @@ public class PlayerBodyControl : MonoBehaviour {
 	private float wallHug = 0f;
 	private float jumpTimer = 0f;
 
+	//Talking, speech vars
+	[HideInInspector]
+	public bool inConversation = false;
+	[HideInInspector]
+	public Transform npcTalker;
+	public bool playerLock = false;
+	
 	// Use this for initialization
 	void Start () {
 		
@@ -43,14 +50,16 @@ public class PlayerBodyControl : MonoBehaviour {
 
 	// Update is called once per frame
 	void FixedUpdate () {
-		float h = Input.GetAxis ("Horizontal");
-		if (wallHug == 0f || Mathf.Sign(h) == wallHug)
-			rigidbody2D.velocity = new Vector2 (moveVelocity * h, rigidbody2D.velocity.y);
+		if (!playerLock) {
+			float h = Input.GetAxis ("Horizontal");
+			if (wallHug == 0f || Mathf.Sign(h) == wallHug)
+				rigidbody2D.velocity = new Vector2 (moveVelocity * h, rigidbody2D.velocity.y);
 
-		if (Input.GetButton("Jump") && grounded && jumpTimer >= jumpDelay) {
-			rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0f);
-			rigidbody2D.AddForce(new Vector2(0f, jumpForce));
-			jumpTimer = 0f;
+			if (Input.GetButton("Jump") && grounded && jumpTimer >= jumpDelay) {
+				rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0f);
+				rigidbody2D.AddForce(new Vector2(0f, jumpForce));
+				jumpTimer = 0f;
+			}
 		}
 
 		jumpTimer += Time.deltaTime;

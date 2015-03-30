@@ -9,12 +9,12 @@ public class PlayerDataManager : MonoBehaviour {
 
 	public static int lastCheckpoint = 0;
 	public static int lastLevel = 0;
+	public static ItemType itemEquipped = ItemType.None;
 	public static Inventory inventory = new Inventory();
-	//public static Dictionary<int,List<int>> previousCheckpoints = new Dictionary<int,List<int>>();
 	public static HashSet<int> previousCheckpoints = new HashSet<int>();
 
-	public static bool loadedLevel = false;
-	public static int checkpointID = 0;
+	public static bool loadedLevel = false;		//if true, player teleported or loaded using menu
+	//public static int checkpointID = 0;
 	//public static int initialLevel = 0;
 
 	public PlayerData myData;
@@ -40,23 +40,8 @@ public class PlayerDataManager : MonoBehaviour {
 		}
 	}
 
-	public void LoadCurrentSave()
-	{
-		myData = XmlSerialzer.Load ();
-		if(myData != null && !loadedLevel)
-		{
-			lastLevel = myData.lastLevel;
-			Application.LoadLevel(myData.lastLevel);
-			//initialLevel = lastLevel;
-			loadedLevel = true;
-		}
-	}
-
 	void OnLevelWasLoaded(int level)
 	{
-		//GameObject player = GameObject.FindGameObjectWithTag("Player");
-		//Debug.Log (player.transform.position);
-
 		if (/*myData != null && */loadedLevel)
 		{
 			ImmutableData.CheckpointData cData = ImmutableData.GetCheckpointData()[lastCheckpoint];
@@ -65,60 +50,43 @@ public class PlayerDataManager : MonoBehaviour {
 			cam.GetComponent<CameraFollow>().LoadConfig(cData.camConfig);
 
 			transform.position = cData.location;
+
 		}
-		/*
+		if (itemEquipped != ItemType.None) {
+			GetComponent<AccessoryManager>().SetAccessory(itemEquipped);
+		}
+	}
+
+	public void LoadCurrentSave()
+	{
 		myData = XmlSerialzer.Load ();
-		if (myData != null && loadedLevel && level == initialLevel)
+		if(myData != null && !loadedLevel)
 		{
-			
+			lastLevel = myData.lastLevel;
 			lastCheckpoint = myData.lastCheckpoint;
-			
-			Vector3 myPos = Vector3.zero;
-			Checkpoint.posCheckTable.TryGetValue(lastCheckpoint,out myPos);
-
-			transform.position = myPos;
-			
-			List<PlayerDataEntry> entries = myData.previousCheckpoints;
-			previousCheckpoints.Clear();
-			foreach (PlayerDataEntry e in entries)
-			{
-				previousCheckpoints[e.key] = e.value;
-			}
-			
 			inventory.Load(myData.inventory);
-		}else if(myData != null && loadedLevel)
-		{
-			lastCheckpoint = myData.lastCheckpoint;
-			List<PlayerDataEntry> entries = myData.previousCheckpoints;
-			previousCheckpoints.Clear();
-			foreach (PlayerDataEntry e in entries)
-			{
-				previousCheckpoints[e.key] = e.value;
-			}
-			inventory.Load(myData.inventory);
-		}
+			DialogueConstantParser.constantSet.Clear();
+			DialogueConstantParser.constantSet.UnionWith(myData.constants);
+			previousCheckpoints.Clear ();
+			previousCheckpoints.UnionWith(myData.previousCheckpoints);
+			itemEquipped = myData.itemEquipped;
 
-
-		if (LevelTeleporter.teleported) {
-			LevelTeleporter.teleported = false;
-			transform.position = LevelTeleporter.teleporterTargetTable[LevelTeleporter.teleportTarget];
+			Application.LoadLevel(myData.lastLevel);
+			loadedLevel = true;
 		}
-		*/
 	}
 
 	public void SaveCurrent()
 	{
 		Debug.Log ("Saving");
 		List<int> entries = new List<int>(previousCheckpoints);
-		//foreach (int key in previousCheckpoints)
-		//{
-		//	entries.Add (key);
-		//}
 		myData = new PlayerData();
 		myData.previousCheckpoints = entries;
 		myData.inventory = inventory.ToList();
 		myData.lastCheckpoint = lastCheckpoint;
 		myData.lastLevel = lastLevel;
+		myData.constants = DialogueConstantParser.constantSet;
+		myData.itemEquipped = itemEquipped;
 		XmlSerialzer.Save (myData);
 	}
 }

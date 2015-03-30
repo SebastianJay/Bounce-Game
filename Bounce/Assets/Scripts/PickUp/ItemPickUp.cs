@@ -6,11 +6,16 @@ public class ItemPickUp : MonoBehaviour {
 	public ItemType type;
 	public AudioClip pickUpNoise;
 	public float pickUpVolume = 1f;
+	public bool unique = true;	//if true, item only spawns if player doesn't have it
 
 	private GameObject screenFadeObj;
+	private GameObject notifyObj;
 	void Start()
 	{
+		if (unique && PlayerDataManager.inventory.HasItem (type))
+			Destroy (gameObject);
 		screenFadeObj = GameObject.FindGameObjectWithTag ("ScreenFader");
+		notifyObj = GameObject.FindGameObjectWithTag ("NoteManager");
 	}
 
 	void OnTriggerEnter2D (Collider2D col)
@@ -28,9 +33,19 @@ public class ItemPickUp : MonoBehaviour {
 				obj.AddComponent<SelfRemove>();	//default 10 s
 				src.Play();
 			}
-			//PlayerDataManager data = col.gameObject.GetComponent<PlayerDataManager>();
-			//data.inventory.AddItem(type);
+
 			PlayerDataManager.inventory.AddItem(type);
+			if (notifyObj != null) {
+				notifyObj.GetComponent<NotificationManager>().PushMessage(
+					"Added the item \"" + ImmutableData.GetItemData()[type].name + "\" to Inventory");
+			}
+
+			if (transform.childCount > 0 && transform.GetChild(0).particleSystem != null) {
+				transform.GetChild(0).particleSystem.emissionRate = 0f;
+				transform.GetChild(0).GetComponent<SelfRemove>().enabled = true;
+				transform.GetChild(0).parent = null;
+			}
+
 			Destroy (this.gameObject);
 		}
 	}

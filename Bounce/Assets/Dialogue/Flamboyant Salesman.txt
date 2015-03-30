@@ -1,0 +1,12 @@
+# a trampoline salesman who puts on a fake French accent in order to sound like a refined gentleman.
+
+[Bonjour, Monsieur, How vould you like to try out 'zis trampoline?] [Gee, sure!{End, Set TalkedSalesmanOnce}]
+
+if TalkedSalesmanOnce
+[Sacre bleu! Magnifico! Zis ees ze kind of thing I dat I look for for many yeerz.] [What?{Line 3}]
+[Zis talent zat you 'ave! I think you Engliz speakerz vould sey...bounciness.] [It's nothing special...{Line 4}]
+[Eet ees grrreat way to display ze trrrampoline, no? Un, you must stop by ze shop and bounce again eef you everrr see me again.{Line 5}]
+[I am ze trrraveling salesman. You vill see me in many places!{End, Set TalkedSalesmanTwice}]
+
+if TalkedSalesmanTwice
+[Monsieur, show me zat amazing talent zat you 'ave!{End}]

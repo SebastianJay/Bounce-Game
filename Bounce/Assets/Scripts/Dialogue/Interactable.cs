@@ -6,8 +6,11 @@ public class Interactable : MonoBehaviour {
 
 	public TextAsset dialogueFile;
 	private Interaction dialogue;
+	public Transform talkBubblePrefab;
+	public float talkBubbleOffset = 1.6f;
 	public AudioClip talkNoise;
 	public float talkVolume = 1f;
+	public float cameraOrthoThreshold = 8f;
 
 	private string npcName;
 	private bool inTrigger = false;
@@ -15,6 +18,11 @@ public class Interactable : MonoBehaviour {
 	private GameObject playerObj;
   	private AudioSource talkSrc;
 	private GameObject dSystem;	//reference to the dialogue system
+	private GameObject cam;
+	private Transform talkBubble;
+	private static int endedTalkFrame = -1;
+	private CameraFollowConfig lastConfig;
+	private bool changedCamConfig = false;
 
 	// Use this for initialization
 	void Awake () {
@@ -30,57 +38,20 @@ public class Interactable : MonoBehaviour {
 			talkSrc.volume = talkVolume;
 		}
 		dSystem = GameObject.FindGameObjectWithTag("DialogueSystem");
+		cam = GameObject.FindGameObjectWithTag("MainCamera");
+		playerObj = GameObject.FindGameObjectWithTag("Player");
 		if (dSystem == null)
 			Debug.LogError("No dialogue system present in scene!");
 	}
 
 	// Update is called once per frame
 	void Update () {
-		//manually check if player is in bounds
-		//if (playerObj != null &&
-		//    playerObj.transform.position.x > transform.position.x + GetComponent<BoxCollider2D>().center.x - GetComponent<BoxCollider2D>()
-
-		if (Input.GetButtonDown ("Action") && (inTrigger || inConversation))
+		if (playerObj == null)
+			playerObj = GameObject.FindGameObjectWithTag ("Player");
+		if (Input.GetButtonDown ("Action") && (inTrigger || inConversation) 
+		    && Time.frameCount != endedTalkFrame && !DialogueConstantParser.eventLock)
 		{
-			PlayerBallControl bScript = playerObj.GetComponent<PlayerBallControl>();
-			if (!bScript.inConversation)
-			{
-				bScript.inConversation = true;
-				bScript.playerLock = true;
-				this.inConversation = true;
-				if (talkSrc != null)
-					talkSrc.Play();
-			}
-			if (inConversation)
-			{
-				if (dSystem.GetComponent<DialogueSystem>().IsAnimating())
-					dSystem.GetComponent<DialogueSystem>().StepAnimation();
-				else
-				{
-					List<string> lines = dialogue.Step(dSystem.GetComponent<DialogueSystem>().GetCursor());
-					if(lines.Count > 0)
-					{
-						string name = npcName;
-						if (lines[0].IndexOf(':') != -1)
-						{
-							name = lines[0].Substring(0, lines[0].IndexOf(':'));	//the colon is reserved for specifying speaker manually
-							lines[0] = lines[0].Substring(lines[0].IndexOf(':')+1);
-						}
-						dSystem.GetComponent<DialogueSystem>().PushNPCText(lines[0], transform.position, name);
-						dSystem.GetComponent<DialogueSystem>().PushPlayerText(lines.GetRange(1, lines.Count - 1), 
-						                                                      GameObject.FindGameObjectWithTag("Player").transform.position);
-						playerObj.rigidbody2D.velocity = Vector2.zero;
-						playerObj.rigidbody2D.angularVelocity = 0f;
-					}
-					else
-					{
-						dSystem.GetComponent<DialogueSystem>().EndConversation();
-						bScript.inConversation = false;
-						this.inConversation = false;
-						bScript.playerLock = false;
-					}
-				}
-			}
+			StepConvo();
 		}
 		else if (Input.GetButtonDown("Jump") && inConversation)
 		{
@@ -92,17 +63,104 @@ public class Interactable : MonoBehaviour {
 		}
 	}
 
+	public void StepConvo() {
+		bool flag = false;
+		if (playerObj.GetComponent<PlayerBallControl>() != null) {
+			PlayerBallControl bScript = playerObj.GetComponent<PlayerBallControl>(); 
+			flag = bScript.inConversation;
+			if (!flag) {
+				bScript.inConversation = true;
+				bScript.playerLock = true;
+			}
+		} else if (playerObj.GetComponent<PlayerBodyControl>() != null) {
+			PlayerBodyControl bScript = playerObj.GetComponent<PlayerBodyControl>(); 
+			flag = bScript.inConversation;
+			if (!flag) {
+				bScript.inConversation = true;
+				bScript.playerLock = true;
+			}
+		}
+		if (!flag)
+		{
+			this.inConversation = true;
+			if (talkSrc != null)
+				talkSrc.Play();
+			if (talkBubble != null)
+				talkBubble.gameObject.SetActive(false);
+			if (cam.GetComponent<Camera>().orthographicSize > cameraOrthoThreshold) {
+				lastConfig = cam.GetComponent<CameraFollow>().GetConfig();
+				CameraFollowConfig camConfig = new CameraFollowConfig();
+				camConfig.position = transform.position;
+				camConfig.lockedPosition = transform.position;
+				camConfig.isLocked = true;
+				camConfig.orthoSize = cameraOrthoThreshold;
+				cam.GetComponent<CameraFollow>().LoadConfig(camConfig, false);
+				changedCamConfig = true;
+			}
+			else
+				changedCamConfig = false;
+		}
+		if (inConversation)
+		{
+			if (dSystem.GetComponent<DialogueSystem>().IsAnimating())
+				dSystem.GetComponent<DialogueSystem>().StepAnimation();
+			else
+			{
+				List<string> lines = dialogue.Step(dSystem.GetComponent<DialogueSystem>().GetCursor());
+				if(lines.Count > 0)
+				{
+					string name = npcName;
+					if (lines[0].IndexOf(':') != -1)
+					{
+						name = lines[0].Substring(0, lines[0].IndexOf(':'));	//the colon is reserved for specifying speaker manually
+						lines[0] = lines[0].Substring(lines[0].IndexOf(':')+1);
+					}
+					dSystem.GetComponent<DialogueSystem>().PushNPCText(lines[0], transform.position, name);
+					dSystem.GetComponent<DialogueSystem>().PushPlayerText(lines.GetRange(1, lines.Count - 1), playerObj.transform.position);
+					playerObj.rigidbody2D.velocity = Vector2.zero;
+					playerObj.rigidbody2D.angularVelocity = 0f;
+				}
+				else
+				{
+					dSystem.GetComponent<DialogueSystem>().EndConversation();
+					this.inConversation = false;
+					if (playerObj.GetComponent<PlayerBallControl>() != null) {
+						PlayerBallControl bScript = playerObj.GetComponent<PlayerBallControl>();
+						bScript.inConversation = false;
+						bScript.playerLock = false;
+					} else if (playerObj.GetComponent<PlayerBodyControl>() != null) {
+						PlayerBodyControl bScript = playerObj.GetComponent<PlayerBodyControl>();
+						bScript.inConversation = false;
+						bScript.playerLock = false;
+					}
+					endedTalkFrame = Time.frameCount;
+					if (talkBubble != null)
+						talkBubble.gameObject.SetActive(true);
+					if (changedCamConfig)
+						cam.GetComponent<CameraFollow>().LoadConfig(lastConfig, false);
+				}
+			}
+		}
+	}
+
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.tag == "Player") {
 			//animation appears to show you can talk
+			if (talkBubblePrefab != null && talkBubble == null && !inConversation) {
+				talkBubble = Instantiate(talkBubblePrefab, 
+				                         transform.position + new Vector3(0f, talkBubbleOffset, 0f), 
+				                         Quaternion.identity) as Transform;
+				talkBubble.parent = transform;
+			}
 			inTrigger = true;
-			playerObj = other.gameObject;
 		}
 	}
 
 	void OnTriggerExit2D(Collider2D other) {
 		if (other.tag == "Player") {
 			//animation disappears
+			if (talkBubble != null)
+				Destroy (talkBubble.gameObject);
 			inTrigger = false;
 		}
 	}

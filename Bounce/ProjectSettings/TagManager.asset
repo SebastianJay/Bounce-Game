@@ -3,8 +3,8 @@
 --- !u!78 &1
 TagManager:
   tags:
-  - 
-  - 
+  - WreckingBall
+  - RiverGate2
   - RiverGate
   - MotherFollower
   - Obstacle
@@ -12,6 +12,9 @@ TagManager:
   - ScreenFader
   - PowerupTimer
   - DialogueSystem
+  - NoteManager
+  - FirstPlatform
+  - Villain
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

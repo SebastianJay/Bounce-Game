@@ -12,6 +12,12 @@ public class PowerupManager : MonoBehaviour {
 	//public float glidingScale = .02f;
 	public float glidingTime = 15f;
 
+	public Color superJumpColor;
+	public Color spiderBallColor;
+	public Color glidingColor;
+	public Transform particlePrefab;
+	private Transform particleObj;
+
 	private GameObject player;
 	public float powerupTimer = 0f;
 	public float powerupTime = 1f;
@@ -36,23 +42,29 @@ public class PowerupManager : MonoBehaviour {
 
 		currentPowerup = type;
 		PlayerBallControl pbc = player.GetComponent<PlayerBallControl> ();
+		Color particleColor = Color.white;
 		switch (currentPowerup)
 		{
 		case PowerupType.SuperJump:
 			pbc.jumpForce = superJumpBoost;
 			powerupTime = superJumpTime;
+			particleColor = superJumpColor;
 			break;
 		
 		case PowerupType.Spiderball:
 			this.GetComponent<Spiderball>().enabled = true;
 			powerupTime = spiderballTime;
+			particleColor = spiderBallColor;
 			break;
 
 		case PowerupType.Gliding:
 			this.GetComponent<Parachuter>().enabled = true;
 			powerupTime = glidingTime;
+			particleColor = glidingColor;
 			break;
 		}
+		particleObj = Instantiate (particlePrefab, transform.position, Quaternion.identity) as Transform;
+		particleObj.particleSystem.startColor = particleColor;
 		powerupTimer = 0f;
 	}
 
@@ -70,17 +82,6 @@ public class PowerupManager : MonoBehaviour {
 				EndPowerup();
 			}
 		}
-		//Gliding effect
-		/*
-		if (currentPowerup == PowerupType.Gliding)
-		{
-			if (player.rigidbody2D.velocity.y < 0f)
-				player.rigidbody2D.gravityScale = glidingScale;
-			else if (player.rigidbody2D.velocity.y > 0f)
-				player.rigidbody2D.gravityScale = 1f;
-
-		}
-		*/
 	}
 
 	public void EndPowerup()
@@ -107,5 +108,10 @@ public class PowerupManager : MonoBehaviour {
 
 		if (timeObj != null)
 			timeObj.GetComponent<GUIText>().text = "";
+		if (particleObj != null) {
+			//let the old dust die out before killing the object
+			particleObj.particleSystem.emissionRate = 0f;
+			particleObj.GetComponent<SelfRemove>().enabled = true;
+		}
 	}
 }

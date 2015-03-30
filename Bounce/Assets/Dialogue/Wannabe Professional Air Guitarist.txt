@@ -1,0 +1,6 @@
+choose 1,4
+[I'm going to be the best, like no one ever was!{End}]
+[I want to fly like an eagle to the sea, but there are way too many seagulls out there...{End}]
+[I feel the power!{End}]
+[Are you ready to rock and roll?] [What does it look like I'm doing?{Line 5}]
+[Good point...{End}]

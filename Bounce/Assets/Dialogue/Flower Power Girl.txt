@@ -1,0 +1,6 @@
+# flower power - i.e. hippy
+
+[Hello, child. Have you come to partake in the bountiful treasures of the mother?] [I'm not a child.{Line 2}] [Do WHAT with your mom?!?{Line 3}] [Right on!{Line 4}]
+[Peace, child. We are ALL children of this great mother Earth.{End}]
+[Too far, child. That was way too far out.{End}]
+[Groovy!{End}]

@@ -14,8 +14,6 @@ public struct CameraFollowConfig
 [RequireComponent(typeof(Camera))]
 public class CameraFollow : MonoBehaviour 
 {
-	//Var for config when game was last saved
-	//public static CameraFollowConfig camConfig;
 	//arbitrary constant
 	public const float camZCoordinate = -10.0f;
 
@@ -65,6 +63,8 @@ public class CameraFollow : MonoBehaviour
 
 	void LateUpdate ()
 	{
+		if (player == null)
+			player = GameObject.FindGameObjectWithTag ("Player").transform;
 		if (!isLocked) {
 			TrackPlayer ();
 		} else {
@@ -139,9 +139,10 @@ public class CameraFollow : MonoBehaviour
 		return retVal;
 	}
 	
-	public void LoadConfig(CameraFollowConfig state)
+	public void LoadConfig(CameraFollowConfig state, bool loadPosition = true)
 	{
-		transform.position = state.position;
+		if (loadPosition)
+			transform.position = state.position;
 		minXAndY = state.minXAndY;
 		maxXAndY = state.maxXAndY;
 		isLocked = state.isLocked;

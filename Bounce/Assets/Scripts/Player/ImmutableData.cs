@@ -16,9 +16,10 @@ public static class ImmutableData {
 	public struct ItemData {
 		public ItemType id;						//unique
 		public string name;						//display name in-game
+		public Sprite image;					//what item looks like
 		public string description;				//more detail for menu
 		public Vector2 localPosition;			//where item is placed on character
-		public Vector3 localRotation;			//how item should be rotated
+		public Quaternion localRotation;			//how item should be rotated
 	}
 
 	//checkpoint locations in each level
@@ -73,14 +74,15 @@ public static class ImmutableData {
 		checkpointMapping[id] = data;
 	}
 	
-	private static void InitItem(ItemType type, string name, string description,
+	private static void InitItem(ItemType type, string path, string name, string description,
 	                             float xpos, float ypos, float zrot) {
 		ItemData data = new ItemData();
 		data.id = type;
+		data.image = Resources.Load<Sprite>(path);
 		data.name = name;
 		data.description = description;
 		data.localPosition = new Vector3 (xpos, ypos, 0f);
-		data.localRotation = new Vector3 (0f, 0f, zrot);
+		//data.localRotation = Quaternion.LookRotation (new Vector3 (0f, 0f, zrot));
 		itemMapping[type] = data;
 	}
 
@@ -103,7 +105,7 @@ public static class ImmutableData {
 		levelMapping = new Dictionary<string, List<int> > ();
 
 		//Hub checkpoints
-		InitCheck (1, "Temp", 0f, 3.75f, 0f, 2.5f, 5f);
+		InitCheck (1, "The Big Ship", 150f, 13.5f, 150f, 13.5f, -1000f, 1000f, -1000f, 1000f, 11f);
 
 		//City checkpoints
 		InitCheck (100, "The Chimney", -20f, 51f, -12f, 51f, -15f, 300f, -5f, 50f, 7f);
@@ -116,12 +118,18 @@ public static class ImmutableData {
 		InitCheck (201, "Treebottom Town", 28f, -74f, 20f, -70f, 12f, 35f, -71f, -70f, 7f);	
 
 		//level mappings
-		InitLevel ("MainHub", 1);
+		InitLevel ("Pier", 1);
 		InitLevel ("City", 100, 101, 102, 103);
 		InitLevel ("Jungle", 200, 201);
 
 		//Items!
-
+		InitItem (ItemType.Item1, "Accessories/sample_glasses", "Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);
+		InitItem (ItemType.Item2, "Accessories/Glasses2", "Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);
+		InitItem (ItemType.Item3, "Accessories/Glasses3", "Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);
+		InitItem (ItemType.Item4, "Accessories/sample_glasses", "Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);
+		InitItem (ItemType.Item5, "Accessories/sample_glasses", "Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);
+		InitItem (ItemType.Item6, "Accessories/sample_glasses", "Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);
+		InitItem (ItemType.Item7, "Accessories/sample_glasses", "Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);
 
 		init = true;
 	}

@@ -1,0 +1,9 @@
+#Hooker - charges exorbitant prices to show people her hook
+
+[Hey hun, wanna have some fun? For just $808, I'll show you a real treat!] [Umm...sure?{Line 2}] [Eww, no, that's nasty.{Line 3}] [Don't stop me now. I'm on a roll.{Line 4}] [Can't you just round it down to $800?{Line 5}]
+[Check it out! Isn't this hook awesome? Look at what I can do!{End}]
+[You pervert!{End}]
+[Look, it will just take a sec, see?{End}]
+[Look mister, I run a serious business around here.{Line 6}]
+[I stand out here eight hours a day just so that I can make enough money to feed my kids at home.{Line 7}]
+[If I charge any less, I won't be making what this is worth.{End}]

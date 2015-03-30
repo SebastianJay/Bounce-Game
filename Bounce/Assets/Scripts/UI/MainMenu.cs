@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour
 		Map
 	};
 
+	public const float EPSILON = 1e-11f;
 	public MenuTab currentTab = MenuTab.Save;
 	public bool showMenu = false;
 	
@@ -29,32 +30,42 @@ public class MainMenu : MonoBehaviour
 	
 	private bool menuWasOpen = false;		//represents the first "tick" of active menu
 	private GameObject player;
+	private GameObject screenFadeObj;
 	List<string> saveFileList = new List<string>();
 
-	//temp vars
-	public int inventoryGridX = 5;
-	public int selectedItem = 0;
-	public string[] inventoryPlaceholder = {"Item1","Item2","Item3","Item4","Item5","Item6","Item7"};
+	public GUISkin skin;
 
 	// Use this for initialization
 	void Start ()
 	{
 		player = GameObject.FindGameObjectWithTag("Player");
+		screenFadeObj = GameObject.FindGameObjectWithTag("ScreenFader");
 	}
 
 	// Update is called once per frame
 	void Update ()
 	{
-		if (Input.GetButtonDown("Menu"))
+		if (player == null)
+			player = GameObject.FindGameObjectWithTag ("Player");
+		if (Input.GetButtonDown("Menu") && 
+		    !DialogueConstantParser.eventLock && 
+		    ((player.GetComponent<PlayerBallControl>() == null ||
+				(!player.GetComponent<PlayerBallControl>().playerLock)) &&
+		    (player.GetComponent<PlayerBodyControl>() == null || 
+		 		(!player.GetComponent<PlayerBodyControl>().playerLock)) &&
+		    (screenFadeObj == null || !screenFadeObj.GetComponent<ScreenFading>().IsTransitioning())))
 			showMenu = !showMenu;
 	}
 
 	void OnGUI ()
 	{
 		if (showMenu) {
+			bool fadingOut = screenFadeObj != null && screenFadeObj.GetComponent<ScreenFading>().IsTransitioning();
+
+			//GUI.skin = skin;
 
 			//Freeze the game if the menu is active
-			Time.timeScale = 0;
+			Time.timeScale = EPSILON;
 
 			//Main menu frame
 			GUI.Box (new Rect (Screen.width / 2 - menuWidth / 2, Screen.height / 2 - menuHeight / 2, menuWidth, menuHeight), "");
@@ -92,7 +103,7 @@ public class MainMenu : MonoBehaviour
 				                                      new Rect (0, 0, scrollViewWidth - 20, saveFileList.Count*50+10));
 
 				// A button for creating a new save file
-				if(GUI.Button (new Rect(10,10,200,50),"Save to New File"))
+				if(GUI.Button (new Rect(10,10,200,50),"Save to New File") && !fadingOut)
 				{
 					XmlSerialzer.currentSaveFile = saveFileList.Count;
 					player.GetComponent<PlayerDataManager>().SaveCurrent();
@@ -100,14 +111,14 @@ public class MainMenu : MonoBehaviour
 				}
 				if (XmlSerialzer.currentSaveFile >= 0 && saveFileList.Count > 0) {
 					// A button for creating a new save file
-					if(GUI.Button (new Rect(210,10,200,50),"Overwrite current data (" + XmlSerialzer.currentSaveFile + ")"))
+					if(GUI.Button (new Rect(210,10,200,50),"Overwrite current data (" + XmlSerialzer.currentSaveFile + ")") && !fadingOut)
 					{
 						player.GetComponent<PlayerDataManager>().SaveCurrent();
 						UpdateSaveFileList();
 					}
 				}
 
-				if(GUI.Button (new Rect(10,10,200,50),"Save to New File"))
+				if(GUI.Button (new Rect(10,10,200,50),"Save to New File") && !fadingOut)
 				{
 					XmlSerialzer.currentSaveFile = saveFileList.Count;
 					player.GetComponent<PlayerDataManager>().SaveCurrent();
@@ -120,18 +131,21 @@ public class MainMenu : MonoBehaviour
 					string s = saveFileList[i-1];
 					int saveFileIndex = i-1;
 					GUI.Label (new Rect (10, i*70+10, scrollViewWidth-10, 50),"File "+saveFileIndex);
-					if(GUI.Button (new Rect(50,i*60+10,120,50),"Overwrite"))
+					if(GUI.Button (new Rect(50,i*60+10,120,50),"Overwrite") && !fadingOut)
 					{
 						XmlSerialzer.currentSaveFile = saveFileIndex;
 						player.GetComponent<PlayerDataManager>().SaveCurrent();
 						UpdateSaveFileList();
 					}
-					if(GUI.Button (new Rect(170,i*60+10,120,50),"Load"))
+					if(GUI.Button (new Rect(170,i*60+10,120,50),"Load") && !fadingOut)
 					{
-						XmlSerialzer.currentSaveFile = saveFileIndex;
-						PlayerDataManager.loadedLevel = false;
-						player.GetComponent<PlayerDataManager>().LoadCurrentSave();
-						UpdateSaveFileList();
+						loadDataIndex = saveFileIndex;
+						if (screenFadeObj != null) {
+							screenFadeObj.GetComponent<ScreenFading>().fadeSpeed /= EPSILON;
+							screenFadeObj.GetComponent<ScreenFading>().Transition(LoadTransition, true);
+						} else
+							LoadTransition();
+
 					}
 				}						
 				GUI.EndScrollView ();
@@ -142,6 +156,7 @@ public class MainMenu : MonoBehaviour
 			if (currentTab == MenuTab.Inventory) {
 				scrollPositionI = GUI.BeginScrollView (new Rect (Screen.width / 2 - menuWidth / 2 + 10, Screen.height / 2 - menuHeight / 2 + 15 + tabButtonHeight, scrollViewWidth, scrollViewHeight), scrollPositionI, new Rect (0, 0, scrollViewWidth - 20, scrollViewHeight * 4));
 				//Inventory inventory = player.GetComponent<PlayerDataManager>().inventory;
+				/*
 				Inventory inventory = PlayerDataManager.inventory;
 				int count = inventory.items.Length;
 				float gridHeight = (float)count/inventoryGridX;
@@ -150,7 +165,38 @@ public class MainMenu : MonoBehaviour
 				for(int i=0; i < inventory.ToList().Count; i++){
 					itemNames[i] = inventory.items[i].ToString();
 				}
-				selectedItem = GUI.SelectionGrid(new Rect (Screen.width / 2 - menuWidth / 2 + 10, Screen.height / 2 - menuHeight / 2 + 15 + tabButtonHeight, scrollViewWidth, gridHeight), selectedItem, itemNames, inventoryGridX);
+				*/
+				Dictionary<ItemType, ImmutableData.ItemData>.Enumerator iter = ImmutableData.GetItemData().GetEnumerator();			
+				if (iter.MoveNext()) {
+					bool iterdone = false;
+					//Todo: adjust bounds based on number of items & adjust sizes of buttons dynamically based on menu panel size
+					for (int i = 0; i < 5; i++) {
+						for (int j = 0; j < 5; j++)
+						{
+							if (PlayerDataManager.inventory.HasItem(iter.Current.Key)) {
+								if (GUI.Button(new Rect(10 + (j * 60), 10 + (i * 60), 50, 50), iter.Current.Value.image.texture) && !fadingOut) {
+									if (player.GetComponent<AccessoryManager>() != null) {
+										if (PlayerDataManager.itemEquipped == iter.Current.Key)
+											player.GetComponent<AccessoryManager>().RemoveAccessory();
+										else
+											player.GetComponent<AccessoryManager>().SetAccessory(iter.Current.Key);
+									}
+								}
+							} else {
+								//blank button
+								GUI.Button(new Rect(10 + (j * 60), 10 + (i * 60), 50, 50), "");
+							}
+							if (!iter.MoveNext()) {
+								iterdone = true;
+								break;
+							}
+						}
+						if (iterdone)
+							break;
+					}
+				}
+
+				//selectedItem = GUI.SelectionGrid(new Rect (Screen.width / 2 - menuWidth / 2 + 10, Screen.height / 2 - menuHeight / 2 + 15 + tabButtonHeight, scrollViewWidth, gridHeight), selectedItem, itemNames, inventoryGridX);				 
 				GUI.EndScrollView ();
 			}
 
@@ -187,13 +233,21 @@ public class MainMenu : MonoBehaviour
 						//GUI.Label (new Rect (10, i*50+j*50+10, scrollViewWidth-10, 50),"Checkpoint "+entry.Value[j-1]);
 						GUI.Label (new Rect (10, i*50+10, scrollViewWidth-10, 50),ImmutableData.GetCheckpointData()[entry.Value[j-1]].name);
 
-						if(GUI.Button (new Rect(250,i*50+10,100,50),"Teleport"))
+						if(GUI.Button (new Rect(250,i*50+10,100,50),"Teleport") && !fadingOut)
 						{
+							teleportData = entry;
+							teleportDataIndex = j-1;
+							if (screenFadeObj != null) {
+								screenFadeObj.GetComponent<ScreenFading>().fadeSpeed /= EPSILON;
+								screenFadeObj.GetComponent<ScreenFading>().Transition(TeleportTransition, true);
+							} else
+								TeleportTransition();
+							/*
 							PlayerDataManager.loadedLevel = true;
 							PlayerDataManager.lastCheckpoint = entry.Value[j-1];
 
 							Application.LoadLevel(entry.Key);
-
+							*/
 							/*
 							player.transform.position = Checkpoint.posCheckTable[entry.Value[j-1]];
 							player.rigidbody2D.velocity = Vector2.zero;
@@ -220,6 +274,21 @@ public class MainMenu : MonoBehaviour
 		}
 	}
 
+	private int loadDataIndex=0;
+	void LoadTransition() {
+		PlayerDataManager.loadedLevel = false;
+		XmlSerialzer.currentSaveFile = loadDataIndex;
+		player.GetComponent<PlayerDataManager>().LoadCurrentSave();
+	}
+	
+	private KeyValuePair<string, List<int>> teleportData;
+	private int teleportDataIndex=0;
+	void TeleportTransition() {
+		PlayerDataManager.loadedLevel = true;
+		PlayerDataManager.lastCheckpoint = teleportData.Value[teleportDataIndex];
+		Application.LoadLevel(teleportData.Key);
+	}
+	
 	void UpdateSaveFileList()
 	{
 		if (!Directory.Exists(XmlSerialzer.saveDirectory)) {
