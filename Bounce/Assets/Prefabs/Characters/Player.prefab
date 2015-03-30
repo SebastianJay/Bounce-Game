@@ -47,7 +47,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.9000001, y: 10.6999998, z: 0}
+  m_LocalPosition: {x: -20.2549362, y: 50.6787109, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400004}
@@ -158,6 +158,10 @@ MonoBehaviour:
   superJumpTime: 10
   spiderballTime: 5
   glidingTime: 7
+  superJumpColor: {r: .986206889, g: 1, b: 0, a: 1}
+  spiderBallColor: {r: 1, g: .600000024, b: 0, a: 1}
+  glidingColor: {r: .406896591, g: 1, b: 0, a: 1}
+  particlePrefab: {fileID: 484718, guid: df05215a6cef2ed42b5c2dab33229e62, type: 2}
   powerupTimer: 0
   powerupTime: 1
 --- !u!114 &11400006

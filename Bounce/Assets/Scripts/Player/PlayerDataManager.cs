@@ -65,7 +65,9 @@ public class PlayerDataManager : MonoBehaviour {
 			lastLevel = myData.lastLevel;
 			lastCheckpoint = myData.lastCheckpoint;
 			inventory.Load(myData.inventory);
+			DialogueConstantParser.constantSet.Clear();
 			DialogueConstantParser.constantSet.UnionWith(myData.constants);
+			previousCheckpoints.Clear ();
 			previousCheckpoints.UnionWith(myData.previousCheckpoints);
 			itemEquipped = myData.itemEquipped;
 
