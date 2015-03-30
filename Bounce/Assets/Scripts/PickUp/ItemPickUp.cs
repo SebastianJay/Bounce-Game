@@ -39,6 +39,13 @@ public class ItemPickUp : MonoBehaviour {
 				notifyObj.GetComponent<NotificationManager>().PushMessage(
 					"Added the item \"" + ImmutableData.GetItemData()[type].name + "\" to Inventory");
 			}
+
+			if (transform.childCount > 0 && transform.GetChild(0).particleSystem != null) {
+				transform.GetChild(0).particleSystem.emissionRate = 0f;
+				transform.GetChild(0).GetComponent<SelfRemove>().enabled = true;
+				transform.GetChild(0).parent = null;
+			}
+
 			Destroy (this.gameObject);
 		}
 	}
