@@ -13203,6 +13203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 200
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!61 &1500203184
@@ -17204,6 +17205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 200
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!61 &1846663275

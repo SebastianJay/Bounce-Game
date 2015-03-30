@@ -104,7 +104,9 @@ public class PlayerBallControl : MonoBehaviour {
 				return;
 			}
 			if (collision.gameObject.GetComponent<Treadmill>() != null)
-				return;	//we want the spring to immediately bounce the character, so we don't check for deforming
+				return;
+			if (collision.gameObject.GetComponent<Death>() != null)
+				return;
 
 			if (Mathf.Abs(Vector2.Angle(Vector2.up, contact.normal)) < groundedThresholdAngle)
 				grounded = true;

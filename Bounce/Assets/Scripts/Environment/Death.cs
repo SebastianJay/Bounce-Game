@@ -8,6 +8,7 @@ public class Death : MonoBehaviour {
 	public static CameraFollowConfig camConfig;
 	public static bool deathTransitioning = false;
 
+	public float recoilForce = 12000f;
 	public AudioClip deathNoise;
 	public float deathVolume = 1.0f;
 	private AudioSource deathSrc;
@@ -37,7 +38,9 @@ public class Death : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D collision)
 	{
-		CheckForDeath(collision.collider);
+		if (CheckForDeath(collision.collider)) {
+			collision.collider.gameObject.rigidbody2D.AddForce(collision.contacts[0].normal * recoilForce);
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D col)
@@ -45,7 +48,7 @@ public class Death : MonoBehaviour {
 		CheckForDeath(col);
 	}
 
-	void CheckForDeath(Collider2D col)
+	bool CheckForDeath(Collider2D col)
 	{
 		if ((col.tag == "Player" || col.tag == "MotherFollower") && !locked && 
 		    (screenFadeObj == null || !screenFadeObj.GetComponent<ScreenFading>().IsTransitioning())) {
@@ -59,7 +62,9 @@ public class Death : MonoBehaviour {
 			}
 			else
 				DeathTransition();
+			return true;
 		}
+		return false;
 	}
 
 	void DeathTransition()

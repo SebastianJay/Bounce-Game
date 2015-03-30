@@ -8,12 +8,11 @@ public class InitialStateConfig : MonoBehaviour {
 
 	//value assigned from inspector
 	public Transform playerBallPrefab;
-	
-	void OnLevelWasLoaded(int level) {
-		//to see which level maps to which int, look at the Build Settings
+
+	//the player "switching out" process needs to happen on Awake to avoid race conditions and broken references
+	void Awake() {
 		//1 - pier
-		if (level == 1)
-		{
+		if (Application.loadedLevel == 1) {
 			if (DialogueConstantParser.EvaluateConstant("BobBodyGone")) {
 				GameObject obj = GameObject.FindGameObjectWithTag("Player");
 				if (obj != null) {
@@ -22,6 +21,14 @@ public class InitialStateConfig : MonoBehaviour {
 					Instantiate(playerBallPrefab);
 				}
 			}
+		}
+	}
+	
+	void OnLevelWasLoaded(int level) {
+		//to see which level maps to which int, look at the Build Settings
+		//1 - pier
+		if (level == 1)
+		{
 		}
 		//2 - city
 		if (level == 2)

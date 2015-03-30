@@ -354,6 +354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &7075223
@@ -490,6 +491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 200
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!61 &19759916
@@ -1029,6 +1031,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &62597314
@@ -1317,6 +1320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &79754410
@@ -1642,6 +1646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 0
 --- !u!60 &102613961
@@ -1991,6 +1996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 200
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!61 &119775202
@@ -2047,6 +2053,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &120861498
@@ -2421,6 +2428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &145963803
@@ -2506,6 +2514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &164748220
@@ -2928,6 +2937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &167404194
@@ -3077,6 +3087,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 200
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!61 &171287311
@@ -3184,6 +3195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &186522022
@@ -3331,6 +3343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &191861159
@@ -3916,6 +3929,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 200
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!61 &214126949
@@ -3972,6 +3986,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &220321153
@@ -4192,6 +4207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &231568908
@@ -4593,6 +4609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &247954868
@@ -4701,6 +4718,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 0
 --- !u!61 &248034642
@@ -4932,6 +4950,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &254760778
@@ -5017,6 +5036,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &260549114
@@ -6028,6 +6048,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &347257384
@@ -6113,6 +6134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &352343875
@@ -6679,6 +6701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &383099426
@@ -6764,6 +6787,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &395334884
@@ -7458,6 +7482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &435561620
@@ -7543,6 +7568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &439624095
@@ -8371,6 +8397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &519911655
@@ -8584,6 +8611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &530455551
@@ -10429,6 +10457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &663440535
@@ -11078,6 +11107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 200
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!61 &712940904
@@ -11133,6 +11163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 200
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!61 &723450383
@@ -11325,6 +11356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &751457615
@@ -11735,6 +11767,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 200
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!61 &780171429
@@ -11851,6 +11884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &791761393
@@ -12056,6 +12090,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &807839626
@@ -12347,6 +12382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &855333702
@@ -12432,6 +12468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &856294365
@@ -12895,6 +12932,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 200
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!61 &891819793
@@ -12951,6 +12989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &893433764
@@ -13085,6 +13124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 200
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!61 &898187271
@@ -13744,6 +13784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &932376162
@@ -13919,6 +13960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &937740295
@@ -14373,6 +14415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &969355975
@@ -14575,6 +14618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &978780135
@@ -14794,6 +14838,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &982728632
@@ -15112,6 +15157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 200
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!61 &1010620179
@@ -15168,6 +15214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &1012751982
@@ -15304,6 +15351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &1015814713
@@ -15723,6 +15771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &1042378166
@@ -16073,6 +16122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &1069448061
@@ -16260,6 +16310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &1086001444
@@ -16841,6 +16892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &1114546875
@@ -17281,6 +17333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &1130354368
@@ -18214,6 +18267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 200
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!61 &1202154102
@@ -18885,6 +18939,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &1249303939
@@ -19075,6 +19130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 200
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!61 &1258452688
@@ -20352,6 +20408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &1361224848
@@ -20437,6 +20494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &1363971007
@@ -20522,6 +20580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &1368279039
@@ -20781,6 +20840,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 200
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!61 &1376287734
@@ -20885,6 +20945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &1384319120
@@ -21031,6 +21092,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 200
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!61 &1394533842
@@ -22255,6 +22317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 0
 --- !u!61 &1489085617
@@ -22977,6 +23040,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &1541559182
@@ -24974,6 +25038,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &1679099191
@@ -25250,6 +25315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 200
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!61 &1701808963
@@ -25859,6 +25925,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &1743287001
@@ -26140,6 +26207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &1760866762
@@ -26872,6 +26940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &1805988158
@@ -27245,6 +27314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &1843643457
@@ -27329,6 +27399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 0
 --- !u!61 &1852529497
@@ -27657,6 +27728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &1867826785
@@ -28082,6 +28154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 0
 --- !u!60 &1891034576
@@ -28295,6 +28368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &1904374739
@@ -28496,6 +28570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &1909228816
@@ -29834,6 +29909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 200
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!61 &1986845887
@@ -29931,6 +30007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &1988692240
@@ -31619,6 +31696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &2089880220
@@ -31777,6 +31855,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &2097521980
@@ -31862,6 +31941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &2110487168
@@ -31947,6 +32027,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 0
 --- !u!61 &2111735314
@@ -32042,6 +32123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 0
 --- !u!60 &2124200900
@@ -32231,6 +32313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
   deathNoise: {fileID: 0}
   deathVolume: 1
 --- !u!60 &2132322899
