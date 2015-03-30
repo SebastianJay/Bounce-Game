@@ -5685,6 +5685,7 @@ GameObject:
   - 4: {fileID: 224920050}
   - 212: {fileID: 224920049}
   - 114: {fileID: 224920047}
+  - 61: {fileID: 224920051}
   - 61: {fileID: 224920048}
   m_Layer: 0
   m_Name: PickUpObject
@@ -5739,7 +5740,7 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayerID: 1535931219
+  m_SortingLayerID: 1167940005
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 174f8b8bcb8617a4590d4c4e95b21fd5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5755,6 +5756,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 328785922}
   m_RootOrder: 5
+--- !u!61 &224920051
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6166662, guid: 50087520713504740a1a0fd3c9af1a13,
+    type: 2}
+  m_PrefabInternal: {fileID: 1334499193}
+  m_GameObject: {fileID: 224920046}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Size: {x: .639999986, y: .639999986}
+  m_Center: {x: 0, y: 0}
 --- !u!1 &226152204
 GameObject:
   m_ObjectHideFlags: 0
@@ -41319,6 +41332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33ca4efa4d578404da35dc81961fd148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerBallPrefab: {fileID: 0}
 --- !u!1 &1819182534
 GameObject:
   m_ObjectHideFlags: 0
