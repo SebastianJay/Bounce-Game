@@ -115,7 +115,7 @@ public static class ImmutableData {
 
 		//Jungle checkpoints
 		InitCheck (200, "Treetop Village", -20f, 49f, -20f, 50f, -35f, -20f, 28f, 50f, 8f);
-		InitCheck (201, "Treebottom Town", 28f, -74f, 20f, -70f, 12f, 35f, -71f, -70f, 7f);	
+		InitCheck (201, "Treebottom Town", 28f, -74f, 27f, -71f, 12f, 35f, -71f, -70f, 7f);	
 
 		//level mappings
 		InitLevel ("Pier", 1);

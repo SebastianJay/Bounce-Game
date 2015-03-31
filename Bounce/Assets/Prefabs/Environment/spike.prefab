@@ -58,6 +58,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
+  deathNoise: {fileID: 8300000, guid: 8d073e2ad9f9a3244b99591c6e06b6bc, type: 3}
+  deathVolume: 1
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -55,6 +55,7 @@ public class PlayerDataManager : MonoBehaviour {
 		if (itemEquipped != ItemType.None) {
 			GetComponent<AccessoryManager>().SetAccessory(itemEquipped);
 		}
+		lastLevel = level;
 	}
 
 	public void LoadCurrentSave()

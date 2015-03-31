@@ -239,7 +239,7 @@ AudioSource:
   m_GameObject: {fileID: 101656}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 0cbe2e63b79a55b4999f9d3e80696119, type: 3}
+  m_audioClip: {fileID: 8300000, guid: cd48ee5ed29f2a34ba8a934eafcbed27, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -335,16 +335,18 @@ MonoBehaviour:
   tabButtonHeight: 50
   scrollViewWidth: 480
   scrollViewHeight: 400
-  inventoryGridX: 5
-  selectedItem: 0
-  inventoryPlaceholder:
-  - Item1
-  - Item2
-  - Item3
-  - Item4
-  - Item5
-  - Item6
-  - Item7
+  openMenuSound: {fileID: 8300000, guid: ec47c1ee53e084047a9d377072183897, type: 3}
+  closeMenuSound: {fileID: 0}
+  loadSound: {fileID: 8300000, guid: de4c6b8e80412fc4c8d92a0a33d95323, type: 3}
+  saveSound: {fileID: 8300000, guid: 666c58a94d36d2347b5e76ecac207794, type: 3}
+  teleportSound: {fileID: 8300000, guid: fee2434d98838aa41980e4aeed6ac382, type: 3}
+  itemSound: {fileID: 8300000, guid: 1ac1f160389f1b44097a42dd40720591, type: 3}
+  openMenuVolume: 1
+  closeMenuVolume: 1
+  loadVolume: 1
+  saveVolume: 1
+  teleportVolume: 1
+  itemVolume: 1
   skin: {fileID: 0}
 --- !u!114 &11455722
 MonoBehaviour:
@@ -373,6 +375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33ca4efa4d578404da35dc81961fd148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerBallPrefab: {fileID: 400002, guid: c7cd5143fa8f15744957923e63b980d5, type: 2}
 --- !u!114 &11467136
 MonoBehaviour:
   m_ObjectHideFlags: 1

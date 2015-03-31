@@ -48,7 +48,8 @@ public class CannonLaunch : MonoBehaviour {
 		playerObj.rigidbody2D.AddForce(unitdelta * cannonForce);
 		playerObj.collider2D.enabled = false;
 		//make explosion sound
-		//transform.audio.Play ();
+		if (transform.audio != null)
+			transform.audio.Play ();
 		//launch "fireworks"
 		transform.GetChild(0).gameObject.SetActive (true);
 
