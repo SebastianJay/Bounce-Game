@@ -241,8 +241,8 @@ public class MainMenu : MonoBehaviour
 					for (int i = 0; i < 5; i++) {
 						for (int j = 0; j < 7; j++)
 						{
+							Rect buttonBoundingBox = new Rect(10 + (j * 60), 120 + (i * 60), 50, 50);
 							if (PlayerDataManager.inventory.HasItem(iter.Current.Key)) {
-								Rect buttonBoundingBox = new Rect(10 + (j * 60), 120 + (i * 60), 50, 50);
 								string nameStr = "";
 								string infoStr = "";
 								if (buttonBoundingBox.Contains(Event.current.mousePosition)) {
@@ -264,7 +264,7 @@ public class MainMenu : MonoBehaviour
 								}
 							} else {
 								//blank button
-								GUI.Button(new Rect(10 + (j * 60), 10 + (i * 60), 50, 50), "");
+								GUI.Button(buttonBoundingBox, "");
 							}
 							if (!iter.MoveNext()) {
 								iterdone = true;
