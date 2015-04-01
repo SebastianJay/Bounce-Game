@@ -7,25 +7,25 @@ public class StartScreen : MonoBehaviour {
 
 	public AudioSource navigateSrc;
 	public AudioSource loadSrc;
+	public GUIStyle style;
 
 	//public Texture backgroundTexture;
 	private GameObject screenFadeObj;
 	private List<string> saveFileList = new List<string>();
 
 	private bool loadPanelVisible = false;
-
+	private bool savePanelVisible = false;
 	Vector2 scrollPosition = Vector2.zero;
 
 	void Start()
 	{
 		UpdateSaveFileList();
 		screenFadeObj = GameObject.FindGameObjectWithTag ("ScreenFader");
-		//navigateSrc = transform.GetChild (0).audio;
-		//loadSrc = transform.GetChild (1).audio;
 	}
 
 	void OnGUI() {
 		//GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height), backgroundTexture);
+		GUI.depth = 0;
 		if (loadPanelVisible) {
 			DrawLoadPanel();
 		} else {
@@ -43,7 +43,8 @@ public class StartScreen : MonoBehaviour {
 	}
 
 	void DrawMainPanel() {
-		if (GUI.Button (new Rect (Screen.width * 0.1f, Screen.height * 0.8f, Screen.width * 0.2f, Screen.height * 0.1f), "New Game")) {
+		bool fading = screenFadeObj != null && screenFadeObj.GetComponent<ScreenFading> ().IsTransitioning();
+		if (GUI.Button (new Rect (Screen.width * 0.1f, Screen.height * 0.8f, Screen.width * 0.2f, Screen.height * 0.1f), "New Game") && !fading) {
 			if (loadSrc != null)
 				loadSrc.Play();
 			if (screenFadeObj != null)
@@ -51,15 +52,15 @@ public class StartScreen : MonoBehaviour {
 			else
 				StartTransition();
 		}
-		if (GUI.Button (new Rect (Screen.width * 0.4f, Screen.height * 0.8f, Screen.width * 0.2f, Screen.height * 0.1f), "Load Game")) {
+		if (GUI.Button (new Rect (Screen.width * 0.4f, Screen.height * 0.8f, Screen.width * 0.2f, Screen.height * 0.1f), "Load Game") && !fading) {
 			if (navigateSrc != null)
 				navigateSrc.Play();
 			if (screenFadeObj != null)
-				screenFadeObj.GetComponent<ScreenFading>().Transition(ShowLoadPanelTransition, true);
+				screenFadeObj.GetComponent<ScreenFading>().Transition(ShowLoadPanelTransition, false);
 			else
 				ShowLoadPanelTransition();
 		}
-		if (GUI.Button (new Rect (Screen.width * 0.7f, Screen.height * 0.8f, Screen.width * 0.2f, Screen.height * 0.1f), "Credits")) {
+		if (GUI.Button (new Rect (Screen.width * 0.7f, Screen.height * 0.8f, Screen.width * 0.2f, Screen.height * 0.1f), "Credits") && !fading) {
 			if (navigateSrc != null)
 				navigateSrc.Play();
 			// go to credits scene
@@ -67,18 +68,18 @@ public class StartScreen : MonoBehaviour {
 	}
 
 	void DrawLoadPanel() {
-		GUI.Box (new Rect (0.1f * Screen.width, 0.1f * Screen.height, 0.8f * Screen.width, 0.8f * Screen.height), "");
+		bool fading = screenFadeObj != null && screenFadeObj.GetComponent<ScreenFading> ().IsTransitioning();
+		GUI.Box (new Rect (0.1f * Screen.width, 0.1f * Screen.height, 0.8f * Screen.width, 0.7f * Screen.height), "");
 
 		scrollPosition = GUI.BeginScrollView (new Rect (0.1f * Screen.width, 0.1f * Screen.height, 0.8f * Screen.width, 0.8f * Screen.height),
 		                                      scrollPosition, new Rect (0, 0, Screen.width * 0.75f, saveFileList.Count*50f+10f));
 
 		// A list of all our save files
-		for(int i = 1; i < saveFileList.Count+1; i++)
+		for(int i = 0; i < saveFileList.Count; i++)
 		{
-			//string s = saveFileList[i-1];
-			int saveFileIndex = i-1;
+			int saveFileIndex = i;
 			GUI.Label (new Rect (10, i*70+10, Screen.width * 0.75f-10, 50),"File "+saveFileIndex);
-			if(GUI.Button (new Rect(170,i*60+10,120,50),"Load"))
+			if(GUI.Button (new Rect(170,i*60+10,120,50),"Load") && !fading)
 			{
 				if (loadSrc != null)
 					loadSrc.Play();
@@ -90,8 +91,16 @@ public class StartScreen : MonoBehaviour {
 					LoadTransition();
 				
 			}
-		}						
+		}
 		GUI.EndScrollView ();
+		if (GUI.Button (new Rect (0.1f * Screen.width, 0.8f * Screen.height, 0.8f * Screen.width, 0.1f * Screen.height), "Back") && !fading) {
+			if (navigateSrc != null)
+				navigateSrc.Play();
+			if (screenFadeObj != null)
+				screenFadeObj.GetComponent<ScreenFading>().Transition(ShowLoadPanelTransition, false);
+			else
+				ShowLoadPanelTransition();
+		}
 	}
 
 	void UpdateSaveFileList()
