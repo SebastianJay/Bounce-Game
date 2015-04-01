@@ -135,7 +135,7 @@ Transform:
   m_PrefabInternal: {fileID: 168003779}
   m_GameObject: {fileID: 152030438}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -5}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -157,7 +157,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 406b7e3bc44b0084fa0f2eef23d675d0, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 406b7e3bc44b0084fa0f2eef23d675d0, type: 2}
       propertyPath: m_LocalRotation.x
@@ -340,6 +340,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1604618774}
   - 114: {fileID: 1604618772}
+  - 131: {fileID: 1604618773}
   m_Layer: 0
   m_Name: TitleDrawing
   m_TagString: Untagged
@@ -358,7 +359,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 899dc9b39ba5c4225b48228f8ab9f609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundTexture: {fileID: 2800000, guid: 1fa15e81f599b4d66952d946578740c3, type: 3}
+--- !u!131 &1604618773
+GUITexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1604618771}
+  m_Enabled: 1
+  m_Texture: {fileID: 2800000, guid: b0eaa0e4daa37c1488a9c07a2e2868a3, type: 3}
+  m_Color: {r: .5, g: .5, b: .5, a: .5}
+  m_PixelInset:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+  m_LeftBorder: 0
+  m_RightBorder: 0
+  m_TopBorder: 0
+  m_BottomBorder: 0
 --- !u!4 &1604618774
 Transform:
   m_ObjectHideFlags: 0
@@ -366,7 +385,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1604618771}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: .5, y: .5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

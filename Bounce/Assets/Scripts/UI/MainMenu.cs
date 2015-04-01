@@ -180,7 +180,7 @@ public class MainMenu : MonoBehaviour
 					if (saveSrc != null)
 						saveSrc.Play();
 					XmlSerialzer.currentSaveFile = saveFileList.Count;
-					player.GetComponent<PlayerDataManager>().SaveCurrent();
+					PlayerDataManager.SaveCurrent();
 					UpdateSaveFileList();
 				}
 				if (XmlSerialzer.currentSaveFile >= 0 && saveFileList.Count > 0) {
@@ -189,7 +189,7 @@ public class MainMenu : MonoBehaviour
 					{
 						if (saveSrc != null)
 							saveSrc.Play();
-						player.GetComponent<PlayerDataManager>().SaveCurrent();
+						PlayerDataManager.SaveCurrent();
 						UpdateSaveFileList();
 					}
 				}
@@ -214,7 +214,7 @@ public class MainMenu : MonoBehaviour
 						if (saveSrc != null)
 							saveSrc.Play();
 						XmlSerialzer.currentSaveFile = saveFileIndex;
-						player.GetComponent<PlayerDataManager>().SaveCurrent();
+						PlayerDataManager.SaveCurrent();
 						UpdateSaveFileList();
 					}
 					if(GUI.Button (new Rect(170,i*60+10,120,50),"Load") && !fadingOut)
@@ -374,7 +374,7 @@ public class MainMenu : MonoBehaviour
 	void LoadTransition() {
 		PlayerDataManager.loadedLevel = false;
 		XmlSerialzer.currentSaveFile = loadDataIndex;
-		player.GetComponent<PlayerDataManager>().LoadCurrentSave();
+		PlayerDataManager.LoadCurrentSave();
 	}
 	
 	private KeyValuePair<string, List<int>> teleportData;
