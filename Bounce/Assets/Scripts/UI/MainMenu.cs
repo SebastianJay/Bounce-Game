@@ -30,6 +30,7 @@ public class MainMenu : MonoBehaviour
 	public AudioClip saveSound;
 	public AudioClip teleportSound;
 	public AudioClip itemSound;
+	public AudioClip switchPanelSound;
 
 	public float openMenuVolume = 1f;
 	public float closeMenuVolume = 1f;
@@ -37,6 +38,7 @@ public class MainMenu : MonoBehaviour
 	public float saveVolume = 1f;
 	public float teleportVolume = 1f;
 	public float itemVolume = 1f;
+	public float switchPanelVolume = 1f;
 
 	private AudioSource openMenuSrc;
 	private AudioSource closeMenuSrc;
@@ -44,6 +46,7 @@ public class MainMenu : MonoBehaviour
 	private AudioSource saveSrc;
 	private AudioSource teleportSrc;
 	private AudioSource itemSrc;
+	private AudioSource switchPanelSrc;
 
 	Vector2 scrollPosition = Vector2.zero;
 	Vector2 scrollPosition2 = Vector2.zero;
@@ -92,6 +95,11 @@ public class MainMenu : MonoBehaviour
 			itemSrc.clip = itemSound;
 			itemSrc.volume = itemVolume;
 		}
+		if (switchPanelSound != null){
+			switchPanelSrc = gameObject.AddComponent<AudioSource>();
+			switchPanelSrc.clip = switchPanelSound;
+			switchPanelSrc.volume = switchPanelVolume;
+		}
 	}
 
 	// Update is called once per frame
@@ -132,17 +140,23 @@ public class MainMenu : MonoBehaviour
 			if (GUI.Button (new Rect (Screen.width / 2 - menuWidth / 2 + 10, 
 			                          Screen.height / 2 - menuHeight / 2 + 10, 
 			                          tabButtonWidth, tabButtonHeight), "Saves")) {
-					currentTab = MenuTab.Save;
+				if (currentTab != MenuTab.Save && switchPanelSrc != null)
+					switchPanelSrc.Play ();
+				currentTab = MenuTab.Save;
 			}
 			if (GUI.Button (new Rect (Screen.width / 2 - tabButtonWidth / 2, 
 			                          Screen.height / 2 - menuHeight / 2 + 10, 
-			                          tabButtonWidth, tabButtonHeight), "Inventory")) {
-					currentTab = MenuTab.Inventory;
+			                          tabButtonWidth, tabButtonHeight), "Collection")) {
+				if (currentTab != MenuTab.Inventory && switchPanelSrc != null)
+					switchPanelSrc.Play ();
+				currentTab = MenuTab.Inventory;
 			}
 			if (GUI.Button (new Rect (Screen.width / 2 + menuWidth / 2 - 10 - tabButtonWidth, 
 			                          Screen.height / 2 - menuHeight / 2 + 10, 
 			                          tabButtonWidth, tabButtonHeight), "Map")) {
-					currentTab = MenuTab.Map;
+				if (currentTab != MenuTab.Map && switchPanelSrc != null)
+					switchPanelSrc.Play ();
+				currentTab = MenuTab.Map;
 			}
 
 			//The following layout of the menu is dependent on which tab is open
@@ -192,7 +206,7 @@ public class MainMenu : MonoBehaviour
 				// A list of all our save files
 				for(int i = 1; i < saveFileList.Count+1; i++)
 				{
-					string s = saveFileList[i-1];
+					//string s = saveFileList[i-1];
 					int saveFileIndex = i-1;
 					GUI.Label (new Rect (10, i*70+10, scrollViewWidth-10, 50),"File "+saveFileIndex);
 					if(GUI.Button (new Rect(50,i*60+10,120,50),"Overwrite") && !fadingOut)
@@ -287,7 +301,7 @@ public class MainMenu : MonoBehaviour
 				scrollPosition2 = GUI.BeginScrollView (new Rect (Screen.width / 2 - menuWidth / 2 + 10, Screen.height / 2 - menuHeight / 2 + 15 + tabButtonHeight, scrollViewWidth, scrollViewHeight), scrollPosition2, new Rect (0, 0, scrollViewWidth - 20, scrollViewHeight * 4));
 				//Dictionary<int, List<int> > previousCheckpoints = player.GetComponent<PlayerDataManager>().previousCheckpoints;
 				//Dictionary<int, List<int> > previousCheckpoints = PlayerDataManager.previousCheckpoints;
-				HashSet<int> previousCheckpoints = PlayerDataManager.previousCheckpoints;
+				//HashSet<int> previousCheckpoints = PlayerDataManager.previousCheckpoints;
 				//Debug.Log (previousCheckpoints.Count);
 				int i = 0;
 				//foreach(KeyValuePair<int, List<int>> entry in previousCheckpoints)

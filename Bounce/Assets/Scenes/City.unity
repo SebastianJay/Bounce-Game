@@ -46578,12 +46578,14 @@ MonoBehaviour:
   saveSound: {fileID: 8300000, guid: 666c58a94d36d2347b5e76ecac207794, type: 3}
   teleportSound: {fileID: 8300000, guid: fee2434d98838aa41980e4aeed6ac382, type: 3}
   itemSound: {fileID: 8300000, guid: 1ac1f160389f1b44097a42dd40720591, type: 3}
+  switchPanelSound: {fileID: 8300000, guid: 75ef17f776e559f4980573e8a4ce1fac, type: 3}
   openMenuVolume: 1
   closeMenuVolume: 1
   loadVolume: 1
   saveVolume: 1
   teleportVolume: 1
   itemVolume: 1
+  switchPanelVolume: 1
   skin: {fileID: 0}
 --- !u!1 &1991670201
 GameObject:

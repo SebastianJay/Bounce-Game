@@ -11,6 +11,7 @@ public class Spring : MonoBehaviour {
 	private float orientation;
 	private Vector2 direction;
 	private AudioSource noiseSrc;
+	private GameObject screenFadeObj;
 
 	void Awake() {
 		orientation = (this.gameObject.transform.rotation.eulerAngles.z);
@@ -20,6 +21,7 @@ public class Spring : MonoBehaviour {
 			noiseSrc.clip = contactNoise;
 			noiseSrc.volume = noiseVolume;
 		}
+		screenFadeObj = GameObject.FindGameObjectWithTag("ScreenFader");
 	}
 
 	/*
@@ -46,7 +48,7 @@ public class Spring : MonoBehaviour {
 			player.rigidbody2D.AddForce (springForce * direction);
 			player.GetComponent<PlayerBallControl>().springFrame = Time.frameCount;
 			//Debug.Log ("Spring bounce " + Time.frameCount);
-			if (noiseSrc != null)
+			if (noiseSrc != null && (screenFadeObj == null || !screenFadeObj.GetComponent<ScreenFading>().IsTransitioning()))
 				noiseSrc.Play();
 		}
 	}
