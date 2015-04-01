@@ -239,10 +239,20 @@ public class MainMenu : MonoBehaviour
 					bool iterdone = false;
 					//Todo: adjust bounds based on number of items & adjust sizes of buttons dynamically based on menu panel size
 					for (int i = 0; i < 5; i++) {
-						for (int j = 0; j < 5; j++)
+						for (int j = 0; j < 7; j++)
 						{
 							if (PlayerDataManager.inventory.HasItem(iter.Current.Key)) {
-								if (GUI.Button(new Rect(10 + (j * 60), 10 + (i * 60), 50, 50), iter.Current.Value.image.texture) && !fadingOut) {
+								Rect buttonBoundingBox = new Rect(10 + (j * 60), 120 + (i * 60), 50, 50);
+								string nameStr = "";
+								string infoStr = "";
+								if (buttonBoundingBox.Contains(Event.current.mousePosition)) {
+									//Debug.Log ("Mouse in button (" + i + ", " + j + ")");
+									nameStr = iter.Current.Value.name;
+									infoStr = iter.Current.Value.description;
+								}
+								GUI.Label(new Rect(10, 10, 420, 30), nameStr);
+								GUI.Label(new Rect(10, 40, 420, 80), infoStr);
+								if (GUI.Button(buttonBoundingBox, iter.Current.Value.image.texture) && !fadingOut) {
 									if (player.GetComponent<AccessoryManager>() != null) {
 										if (itemSrc != null)
 											itemSrc.Play();

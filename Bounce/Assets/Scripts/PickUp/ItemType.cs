@@ -24,4 +24,6 @@ public enum ItemType
 	PurpleVisor,
 	BlueGreenSki,
 	Movie3D,
+	ClownNose,
+	AngryBob,
 }

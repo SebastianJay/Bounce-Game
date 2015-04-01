@@ -146,6 +146,8 @@ public static class ImmutableData {
 		InitItem (ItemType.PurpleVisor, "Accessories/Glasses19", "Purple Visor", "A nondescript pair of glasses", 0f, 0f, 0f);
 		InitItem (ItemType.BlueGreenSki, "Accessories/Glasses20", "Blue-Green Ski Goggles", "A nondescript pair of glasses", 0f, 0f, 0f);
 		InitItem (ItemType.Movie3D, "Accessories/Glasses21", "3D Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);
+		InitItem (ItemType.ClownNose, "Accessories/clown nose skin", "Clown Nose", "I'm serious: don't even think about doing any kind of funny business.", 0f, 0f, 0f);
+		InitItem (ItemType.AngryBob, "Accessories/angry bob skin", "Angry Bob!", "You wouldn't like me when I'm angry.", 0f, 0f, 0f);
 
 		init = true;
 	}
