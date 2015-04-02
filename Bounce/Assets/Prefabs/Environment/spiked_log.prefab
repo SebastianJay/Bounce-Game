@@ -351,7 +351,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100022}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.73310852, y: 3.65839767, z: 0}
+  m_LocalPosition: {x: -4.9000001, y: -7.51000023, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400020}
@@ -559,6 +559,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
+  deathNoise: {fileID: 8300000, guid: 8d073e2ad9f9a3244b99591c6e06b6bc, type: 3}
+  deathVolume: 1
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -570,6 +573,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
+  deathNoise: {fileID: 8300000, guid: 8d073e2ad9f9a3244b99591c6e06b6bc, type: 3}
+  deathVolume: 1
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -581,6 +587,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
+  deathNoise: {fileID: 8300000, guid: 8d073e2ad9f9a3244b99591c6e06b6bc, type: 3}
+  deathVolume: 1
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -592,6 +601,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
+  deathNoise: {fileID: 8300000, guid: 8d073e2ad9f9a3244b99591c6e06b6bc, type: 3}
+  deathVolume: 1
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -603,6 +615,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
+  deathNoise: {fileID: 8300000, guid: 8d073e2ad9f9a3244b99591c6e06b6bc, type: 3}
+  deathVolume: 1
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -614,6 +629,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
+  deathNoise: {fileID: 8300000, guid: 8d073e2ad9f9a3244b99591c6e06b6bc, type: 3}
+  deathVolume: 1
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -625,6 +643,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
+  deathNoise: {fileID: 8300000, guid: 8d073e2ad9f9a3244b99591c6e06b6bc, type: 3}
+  deathVolume: 1
 --- !u!114 &11400014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -636,6 +657,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
+  deathNoise: {fileID: 8300000, guid: 8d073e2ad9f9a3244b99591c6e06b6bc, type: 3}
+  deathVolume: 1
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -647,6 +671,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
+  deathNoise: {fileID: 8300000, guid: 8d073e2ad9f9a3244b99591c6e06b6bc, type: 3}
+  deathVolume: 1
 --- !u!114 &11400018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -658,6 +685,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52b284e4b40c44b83e0c9f653e5cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  recoilForce: 12000
+  deathNoise: {fileID: 8300000, guid: 8d073e2ad9f9a3244b99591c6e06b6bc, type: 3}
+  deathVolume: 1
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

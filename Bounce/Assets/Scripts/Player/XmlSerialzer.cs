@@ -6,7 +6,7 @@ using System.IO;
 
 public class XmlSerialzer : MonoBehaviour {
 
-	public static int currentSaveFile = 0;
+	public static int currentSaveFile = -1;
 	public const string saveDirectory = "Save_Data/";
 	public const string savePrefix = "BounceSaveData";
 	public const string saveSuffix = ".sav";
