@@ -1,7 +1,8 @@
 fileFormatVersion: 2
 guid: 2024638cd3d706a429f5887eb7bbf296
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: 'Meteorite '
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

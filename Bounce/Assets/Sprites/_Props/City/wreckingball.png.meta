@@ -1,7 +1,8 @@
 fileFormatVersion: 2
 guid: 7d42caf4c72634345bd55fbbc4dd2b45
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: wreckingball
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
