@@ -1,7 +1,8 @@
 fileFormatVersion: 2
 guid: 0e67112a65a2b0745bd070e50812c3f3
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Jungle_trees_front_top
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

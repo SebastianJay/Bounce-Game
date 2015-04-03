@@ -1,7 +1,8 @@
 fileFormatVersion: 2
 guid: de60eaa748f0c7e45803facd2a1008e1
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: City_Frame3_truckrear
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

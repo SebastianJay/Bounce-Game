@@ -24,6 +24,30 @@ public class MainMenu : MonoBehaviour
 	public float scrollViewWidth = 480;
 	public float scrollViewHeight = 400;
 
+	public AudioClip openMenuSound;
+	public AudioClip closeMenuSound;
+	public AudioClip loadSound;
+	public AudioClip saveSound;
+	public AudioClip teleportSound;
+	public AudioClip itemSound;
+	public AudioClip switchPanelSound;
+
+	public float openMenuVolume = 1f;
+	public float closeMenuVolume = 1f;
+	public float loadVolume = 1f;
+	public float saveVolume = 1f;
+	public float teleportVolume = 1f;
+	public float itemVolume = 1f;
+	public float switchPanelVolume = 1f;
+
+	private AudioSource openMenuSrc;
+	private AudioSource closeMenuSrc;
+	private AudioSource loadSrc;
+	private AudioSource saveSrc;
+	private AudioSource teleportSrc;
+	private AudioSource itemSrc;
+	private AudioSource switchPanelSrc;
+
 	Vector2 scrollPosition = Vector2.zero;
 	Vector2 scrollPosition2 = Vector2.zero;
 	Vector2 scrollPositionI = Vector2.zero;
@@ -40,6 +64,42 @@ public class MainMenu : MonoBehaviour
 	{
 		player = GameObject.FindGameObjectWithTag("Player");
 		screenFadeObj = GameObject.FindGameObjectWithTag("ScreenFader");
+		//init sound
+		if (openMenuSound != null){
+			openMenuSrc = gameObject.AddComponent<AudioSource>();
+			openMenuSrc.clip = openMenuSound;
+			openMenuSrc.volume = openMenuVolume;
+		}
+		if (closeMenuSound != null){
+			closeMenuSrc = gameObject.AddComponent<AudioSource>();
+			closeMenuSrc.clip = closeMenuSound;
+			closeMenuSrc.volume = closeMenuVolume;
+		}
+		if (loadSound != null){
+			loadSrc = gameObject.AddComponent<AudioSource>();
+			loadSrc.clip = loadSound;
+			loadSrc.volume = loadVolume;
+		}
+		if (saveSound != null){
+			saveSrc = gameObject.AddComponent<AudioSource>();
+			saveSrc.clip = saveSound;
+			saveSrc.volume = saveVolume;
+		}
+		if (teleportSound != null){
+			teleportSrc = gameObject.AddComponent<AudioSource>();
+			teleportSrc.clip = teleportSound;
+			teleportSrc.volume = teleportVolume;
+		}
+		if (itemSound != null){
+			itemSrc = gameObject.AddComponent<AudioSource>();
+			itemSrc.clip = itemSound;
+			itemSrc.volume = itemVolume;
+		}
+		if (switchPanelSound != null){
+			switchPanelSrc = gameObject.AddComponent<AudioSource>();
+			switchPanelSrc.clip = switchPanelSound;
+			switchPanelSrc.volume = switchPanelVolume;
+		}
 	}
 
 	// Update is called once per frame
@@ -50,11 +110,17 @@ public class MainMenu : MonoBehaviour
 		if (Input.GetButtonDown("Menu") && 
 		    !DialogueConstantParser.eventLock && 
 		    ((player.GetComponent<PlayerBallControl>() == null ||
-				(!player.GetComponent<PlayerBallControl>().playerLock)) &&
+			 (!player.GetComponent<PlayerBallControl>().playerLock)) &&
 		    (player.GetComponent<PlayerBodyControl>() == null || 
-		 		(!player.GetComponent<PlayerBodyControl>().playerLock)) &&
-		    (screenFadeObj == null || !screenFadeObj.GetComponent<ScreenFading>().IsTransitioning())))
+		 	 (!player.GetComponent<PlayerBodyControl>().playerLock)) &&
+		    (screenFadeObj == null || !screenFadeObj.GetComponent<ScreenFading>().IsTransitioning()))) {
+		
+			if (!showMenu && openMenuSrc != null)
+				openMenuSrc.Play();
+			if (showMenu && closeMenuSrc != null)
+				closeMenuSrc.Play();
 			showMenu = !showMenu;
+		}
 	}
 
 	void OnGUI ()
@@ -74,17 +140,23 @@ public class MainMenu : MonoBehaviour
 			if (GUI.Button (new Rect (Screen.width / 2 - menuWidth / 2 + 10, 
 			                          Screen.height / 2 - menuHeight / 2 + 10, 
 			                          tabButtonWidth, tabButtonHeight), "Saves")) {
-					currentTab = MenuTab.Save;
+				if (currentTab != MenuTab.Save && switchPanelSrc != null)
+					switchPanelSrc.Play ();
+				currentTab = MenuTab.Save;
 			}
 			if (GUI.Button (new Rect (Screen.width / 2 - tabButtonWidth / 2, 
 			                          Screen.height / 2 - menuHeight / 2 + 10, 
-			                          tabButtonWidth, tabButtonHeight), "Inventory")) {
-					currentTab = MenuTab.Inventory;
+			                          tabButtonWidth, tabButtonHeight), "Collection")) {
+				if (currentTab != MenuTab.Inventory && switchPanelSrc != null)
+					switchPanelSrc.Play ();
+				currentTab = MenuTab.Inventory;
 			}
 			if (GUI.Button (new Rect (Screen.width / 2 + menuWidth / 2 - 10 - tabButtonWidth, 
 			                          Screen.height / 2 - menuHeight / 2 + 10, 
 			                          tabButtonWidth, tabButtonHeight), "Map")) {
-					currentTab = MenuTab.Map;
+				if (currentTab != MenuTab.Map && switchPanelSrc != null)
+					switchPanelSrc.Play ();
+				currentTab = MenuTab.Map;
 			}
 
 			//The following layout of the menu is dependent on which tab is open
@@ -105,40 +177,50 @@ public class MainMenu : MonoBehaviour
 				// A button for creating a new save file
 				if(GUI.Button (new Rect(10,10,200,50),"Save to New File") && !fadingOut)
 				{
+					if (saveSrc != null)
+						saveSrc.Play();
 					XmlSerialzer.currentSaveFile = saveFileList.Count;
-					player.GetComponent<PlayerDataManager>().SaveCurrent();
+					PlayerDataManager.SaveCurrent();
 					UpdateSaveFileList();
 				}
 				if (XmlSerialzer.currentSaveFile >= 0 && saveFileList.Count > 0) {
 					// A button for creating a new save file
 					if(GUI.Button (new Rect(210,10,200,50),"Overwrite current data (" + XmlSerialzer.currentSaveFile + ")") && !fadingOut)
 					{
-						player.GetComponent<PlayerDataManager>().SaveCurrent();
+						if (saveSrc != null)
+							saveSrc.Play();
+						PlayerDataManager.SaveCurrent();
 						UpdateSaveFileList();
 					}
 				}
 
+				/*
 				if(GUI.Button (new Rect(10,10,200,50),"Save to New File") && !fadingOut)
 				{
 					XmlSerialzer.currentSaveFile = saveFileList.Count;
 					player.GetComponent<PlayerDataManager>().SaveCurrent();
 					UpdateSaveFileList();
 				}
+				*/
 
 				// A list of all our save files
 				for(int i = 1; i < saveFileList.Count+1; i++)
 				{
-					string s = saveFileList[i-1];
+					//string s = saveFileList[i-1];
 					int saveFileIndex = i-1;
 					GUI.Label (new Rect (10, i*70+10, scrollViewWidth-10, 50),"File "+saveFileIndex);
 					if(GUI.Button (new Rect(50,i*60+10,120,50),"Overwrite") && !fadingOut)
 					{
+						if (saveSrc != null)
+							saveSrc.Play();
 						XmlSerialzer.currentSaveFile = saveFileIndex;
-						player.GetComponent<PlayerDataManager>().SaveCurrent();
+						PlayerDataManager.SaveCurrent();
 						UpdateSaveFileList();
 					}
 					if(GUI.Button (new Rect(170,i*60+10,120,50),"Load") && !fadingOut)
 					{
+						if (loadSrc != null)
+							loadSrc.Play();
 						loadDataIndex = saveFileIndex;
 						if (screenFadeObj != null) {
 							screenFadeObj.GetComponent<ScreenFading>().fadeSpeed /= EPSILON;
@@ -171,11 +253,23 @@ public class MainMenu : MonoBehaviour
 					bool iterdone = false;
 					//Todo: adjust bounds based on number of items & adjust sizes of buttons dynamically based on menu panel size
 					for (int i = 0; i < 5; i++) {
-						for (int j = 0; j < 5; j++)
+						for (int j = 0; j < 7; j++)
 						{
+							Rect buttonBoundingBox = new Rect(10 + (j * 60), 120 + (i * 60), 50, 50);
 							if (PlayerDataManager.inventory.HasItem(iter.Current.Key)) {
-								if (GUI.Button(new Rect(10 + (j * 60), 10 + (i * 60), 50, 50), iter.Current.Value.image.texture) && !fadingOut) {
+								string nameStr = "";
+								string infoStr = "";
+								if (buttonBoundingBox.Contains(Event.current.mousePosition)) {
+									//Debug.Log ("Mouse in button (" + i + ", " + j + ")");
+									nameStr = iter.Current.Value.name;
+									infoStr = iter.Current.Value.description;
+								}
+								GUI.Label(new Rect(10, 10, 420, 30), nameStr);
+								GUI.Label(new Rect(10, 40, 420, 80), infoStr);
+								if (GUI.Button(buttonBoundingBox, iter.Current.Value.image.texture) && !fadingOut) {
 									if (player.GetComponent<AccessoryManager>() != null) {
+										if (itemSrc != null)
+											itemSrc.Play();
 										if (PlayerDataManager.itemEquipped == iter.Current.Key)
 											player.GetComponent<AccessoryManager>().RemoveAccessory();
 										else
@@ -184,7 +278,7 @@ public class MainMenu : MonoBehaviour
 								}
 							} else {
 								//blank button
-								GUI.Button(new Rect(10 + (j * 60), 10 + (i * 60), 50, 50), "");
+								GUI.Button(buttonBoundingBox, "");
 							}
 							if (!iter.MoveNext()) {
 								iterdone = true;
@@ -207,7 +301,7 @@ public class MainMenu : MonoBehaviour
 				scrollPosition2 = GUI.BeginScrollView (new Rect (Screen.width / 2 - menuWidth / 2 + 10, Screen.height / 2 - menuHeight / 2 + 15 + tabButtonHeight, scrollViewWidth, scrollViewHeight), scrollPosition2, new Rect (0, 0, scrollViewWidth - 20, scrollViewHeight * 4));
 				//Dictionary<int, List<int> > previousCheckpoints = player.GetComponent<PlayerDataManager>().previousCheckpoints;
 				//Dictionary<int, List<int> > previousCheckpoints = PlayerDataManager.previousCheckpoints;
-				HashSet<int> previousCheckpoints = PlayerDataManager.previousCheckpoints;
+				//HashSet<int> previousCheckpoints = PlayerDataManager.previousCheckpoints;
 				//Debug.Log (previousCheckpoints.Count);
 				int i = 0;
 				//foreach(KeyValuePair<int, List<int>> entry in previousCheckpoints)
@@ -235,6 +329,8 @@ public class MainMenu : MonoBehaviour
 
 						if(GUI.Button (new Rect(250,i*50+10,100,50),"Teleport") && !fadingOut)
 						{
+							if (teleportSrc != null)
+								teleportSrc.Play();
 							teleportData = entry;
 							teleportDataIndex = j-1;
 							if (screenFadeObj != null) {
@@ -278,7 +374,7 @@ public class MainMenu : MonoBehaviour
 	void LoadTransition() {
 		PlayerDataManager.loadedLevel = false;
 		XmlSerialzer.currentSaveFile = loadDataIndex;
-		player.GetComponent<PlayerDataManager>().LoadCurrentSave();
+		PlayerDataManager.LoadCurrentSave();
 	}
 	
 	private KeyValuePair<string, List<int>> teleportData;

@@ -1,7 +1,8 @@
 fileFormatVersion: 2
 guid: 77c5603e0cbb6d24ea9248b025470077
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: peachy
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

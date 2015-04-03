@@ -17,7 +17,7 @@ public class PlayerDataManager : MonoBehaviour {
 	//public static int checkpointID = 0;
 	//public static int initialLevel = 0;
 
-	public PlayerData myData;
+	public static PlayerData myData;
 
 	void Start () {
 		if (!debugNoLoad)
@@ -55,9 +55,10 @@ public class PlayerDataManager : MonoBehaviour {
 		if (itemEquipped != ItemType.None) {
 			GetComponent<AccessoryManager>().SetAccessory(itemEquipped);
 		}
+		lastLevel = level;
 	}
 
-	public void LoadCurrentSave()
+	public static void LoadCurrentSave()
 	{
 		myData = XmlSerialzer.Load ();
 		if(myData != null && !loadedLevel)
@@ -76,9 +77,9 @@ public class PlayerDataManager : MonoBehaviour {
 		}
 	}
 
-	public void SaveCurrent()
+	public static void SaveCurrent()
 	{
-		Debug.Log ("Saving");
+		//Debug.Log ("Saving");
 		List<int> entries = new List<int>(previousCheckpoints);
 		myData = new PlayerData();
 		myData.previousCheckpoints = entries;

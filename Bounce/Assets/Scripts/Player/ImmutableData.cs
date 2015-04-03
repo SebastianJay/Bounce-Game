@@ -115,7 +115,7 @@ public static class ImmutableData {
 
 		//Jungle checkpoints
 		InitCheck (200, "Treetop Village", -20f, 49f, -20f, 50f, -35f, -20f, 28f, 50f, 8f);
-		InitCheck (201, "Treebottom Town", 28f, -74f, 20f, -70f, 12f, 35f, -71f, -70f, 7f);	
+		InitCheck (201, "Treebottom Town", 28f, -74f, 27f, -71f, 12f, 35f, -71f, -70f, 7f);	
 
 		//level mappings
 		InitLevel ("Pier", 1);
@@ -123,13 +123,31 @@ public static class ImmutableData {
 		InitLevel ("Jungle", 200, 201);
 
 		//Items!
-		InitItem (ItemType.Item1, "Accessories/sample_glasses", "Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);
-		InitItem (ItemType.Item2, "Accessories/Glasses2", "Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);
-		InitItem (ItemType.Item3, "Accessories/Glasses3", "Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);
-		InitItem (ItemType.Item4, "Accessories/sample_glasses", "Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);
-		InitItem (ItemType.Item5, "Accessories/sample_glasses", "Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);
-		InitItem (ItemType.Item6, "Accessories/sample_glasses", "Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);
-		InitItem (ItemType.Item7, "Accessories/sample_glasses", "Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);
+		//InitItem (ItemType.Item1, "Accessories/sample_glasses", "Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);
+		InitItem (ItemType.CyborgEye, "Accessories/Glasses", "Cyborg Eye", "A nondescript pair of glasses", 0f, 0f, 0f);
+		InitItem (ItemType.YellowSki, "Accessories/Glasses1", "Yellow Ski Goggles", "Life is more extreme with these on.", 0f, 0f, 0f);
+		InitItem (ItemType.DarkShades, "Accessories/Glasses2", "Dark Shades", "Sadly, you won't look as cool as the special agents that wear these.", 0f, 0f, 0f);
+		InitItem (ItemType.LabGoggles, "Accessories/Glasses3", "Lab Goggles", "Safety first!", 0f, 0f, 0f);
+		InitItem (ItemType.Groucho, "Accessories/Glasses4", "Groucho Glasses", "Become a master of disguise with these glasses!", 0f, 0f, 0f);
+		InitItem (ItemType.Goggles, "Accessories/Glasses5", "Goggles", "These don't actually protect your eyes. They just make you look cooler than everybody else.", 0f, 0f, 0f);
+		InitItem (ItemType.BlueShades, "Accessories/Glasses6", "Blue Shades", "You'll go blind if you stare at the sun too long without these.", 0f, 0f, 0f);
+		InitItem (ItemType.Visor, "Accessories/Glasses7", "Visor", "Essential for maintaining proper control of your optic beams.", 0f, 0f, 0f);
+		InitItem (ItemType.Oculus, "Accessories/Glasses8", "Oculus Rift", "3D virtual reality has never looked this amazing. This isn't even the final form.", 0f, 0f, 0f);
+		InitItem (ItemType.Aviator, "Accessories/Glasses9", "Aviator Shades", "Classic and timeless shades that blend together form and function.", 0f, 0f, 0f);
+		InitItem (ItemType.GreenShutter, "Accessories/Glasses10", "Green Shutter Shades", "You'll make a spectacle of yourself if you go out wearing these.  Seriously, the tan lines are not worth wearing these.", 0f, 0f, 0f);
+		InitItem (ItemType.Heart, "Accessories/Glasses11", "Heart Shades", "Contrary to popular belief, pink can be a manly color.", 0f, 0f, 0f);
+		InitItem (ItemType.Future, "Accessories/Glasses12", "Future Goggles", "These may not look impressive, but they somehow protect you from the vortices and light speeds that you will encounter while time traveling.", 0f, 0f, 0f);
+		InitItem (ItemType.Monocole, "Accessories/Glasses13", "Monocle and Stache", "A proper gentleman never leaves the house without an elegant monocle and a neatly trimmed beard.", 0f, 0f, 0f);
+		InitItem (ItemType.Tiny, "Accessories/Glasses14", "Tiny Spectacles", "A nondescript pair of glasses", 0f, 0f, 0f);
+		InitItem (ItemType.DarkFuture, "Accessories/Glasses15", "Dark Future Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);
+		InitItem (ItemType.CrazyEyes, "Accessories/Glasses16", "Crazy Eyes", "A nondescript pair of glasses", 0f, 0f, 0f);
+		InitItem (ItemType.EightBit1, "Accessories/Glasses17", "8-bit Glasses #1", "A nondescript pair of glasses", 0f, 0f, 0f);
+		InitItem (ItemType.EightBit2, "Accessories/Glasses18", "8-bit Glasses #2", "A nondescript pair of glasses", 0f, 0f, 0f);
+		InitItem (ItemType.PurpleVisor, "Accessories/Glasses19", "Purple Visor", "A nondescript pair of glasses", 0f, 0f, 0f);
+		InitItem (ItemType.BlueGreenSki, "Accessories/Glasses20", "Blue-Green Ski Goggles", "A nondescript pair of glasses", 0f, 0f, 0f);
+		InitItem (ItemType.Movie3D, "Accessories/Glasses21", "3D Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);
+		InitItem (ItemType.ClownNose, "Accessories/clown nose skin", "Clown Nose", "I'm serious: don't even think about doing any kind of funny business.", 0f, 0f, 0f);
+		InitItem (ItemType.AngryBob, "Accessories/angry bob skin", "Angry Bob!", "You wouldn't like me when I'm angry.", 0f, 0f, 0f);
 
 		init = true;
 	}
