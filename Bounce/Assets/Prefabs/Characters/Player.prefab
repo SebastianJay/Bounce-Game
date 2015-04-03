@@ -47,7 +47,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.2549362, y: 50.6787109, z: 0}
+  m_LocalPosition: {x: -19.9792175, y: 49.5458298, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400004}
@@ -225,14 +225,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b07c6882b77a08548bbf68648c16f2dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dampingCoefficient: -23
-  maxDampingForce: 138
-  dampingDebug: 30
-  velocityThreshDebug: -2
-  startForce: 10
-  endForce: 20
-  transitionTime: 3
-  gravityScale: .600000024
+  gravityFloor: .25
+  gravityCeil: .0500000007
+  gravityTime: 2
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

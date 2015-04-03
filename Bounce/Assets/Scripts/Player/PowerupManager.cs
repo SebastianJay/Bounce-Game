@@ -66,6 +66,9 @@ public class PowerupManager : MonoBehaviour {
 		particleObj = Instantiate (particlePrefab, transform.position, Quaternion.identity) as Transform;
 		particleObj.particleSystem.startColor = particleColor;
 		powerupTimer = 0f;
+		if (timeObj != null) {
+			timeObj.GetComponent<PowerUpTime>().time = powerupTime;
+		}
 	}
 
 	void Update () 
@@ -73,9 +76,11 @@ public class PowerupManager : MonoBehaviour {
 		if (currentPowerup != PowerupType.Normal)
 		{
 			powerupTimer += Time.deltaTime;
-			if (timeObj != null)
-				timeObj.GetComponent<GUIText>().text = 
-					("Time: " + string.Format("{0:0.##}", powerupTime - powerupTimer));
+			if (timeObj != null) {
+				timeObj.GetComponent<PowerUpTime>().timer = powerupTimer;
+			}
+			//	timeObj.GetComponent<GUIText>().text = 
+			//		("Time: " + string.Format("{0:0.##}", powerupTime - powerupTimer));
 
 			if (powerupTimer >= powerupTime)
 			{
@@ -106,8 +111,10 @@ public class PowerupManager : MonoBehaviour {
 		}
 		currentPowerup = PowerupType.Normal;
 
-		if (timeObj != null)
-			timeObj.GetComponent<GUIText>().text = "";
+		if (timeObj != null) {
+			timeObj.GetComponent<PowerUpTime>().timer = 0f;
+			//timeObj.GetComponent<GUIText>().text = "";
+		}
 		if (particleObj != null) {
 			//let the old dust die out before killing the object
 			particleObj.particleSystem.emissionRate = 0f;

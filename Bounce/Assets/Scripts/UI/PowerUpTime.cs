@@ -2,19 +2,25 @@
 using System.Collections;
 
 public class PowerUpTime : MonoBehaviour {
-	public GameObject player;
-	public GameObject manager;
-	public string timetext = "Time: ";
+	//public GameObject player;
+	//public GameObject manager;
+	//public string timetext = "Time: ";
+
+	//these values are updated from the powerup manager
 	public float timer = 0f;
 	public float time = 1f;
-	public GUIStyle style;
-	public Texture2D bgImage;
-	public Texture2D fgImage;
-	public float timerBarLength;
+	public float barHorizontalLength = 0.5f;
+	public float barVerticalLength = 0.1f;
+	public float frameOffsetFactor = 0.0f;
+
+	//public GUIStyle style;
+	//public Texture2D bgImage;
+	//public Texture2D fgImage;
+	//public float timerBarLength;
 	
-	float barDisplay = 0; 
-	Vector2 pos = new Vector2(20,40);
-	Vector2 size = new Vector2(60,20);
+	//float barDisplay = 0; 
+	//Vector2 pos = new Vector2(20,40);
+	//Vector2 size = new Vector2(60,20);
 //	public Texture2D progressBarEmpty;
 //	public Texture2D progressBarFull;
 	public GUITexture pbbackground;
@@ -22,20 +28,39 @@ public class PowerUpTime : MonoBehaviour {
 	
 	void Start()
 	{
-		player = GameObject.FindGameObjectWithTag ("Player");
+		//player = GameObject.FindGameObjectWithTag ("Player");
 		//instance = this;
-		timerBarLength = Screen.width / 2;
-		manager = gameObject;
-		PowerupManager pum = player.GetComponent<PowerupManager> ();
-		timer = pum.powerupTimer;
-		time = pum.powerupTime;
+		//timerBarLength = Screen.width / 2;
+		//manager = gameObject;
+		//PowerupManager pum = player.GetComponent<PowerupManager> ();
+		//timer = pum.powerupTimer;
+		//time = pum.powerupTime;
 	}
 	
 	void Update () {
-		manager = gameObject;
-		PowerupManager pum = player.GetComponent<PowerupManager> ();
-		timer = pum.powerupTimer;
-		time = pum.powerupTime;
+		//manager = gameObject;
+		//PowerupManager pum = player.GetComponent<PowerupManager> ();
+		//timer = pum.powerupTimer;
+		//time = pum.powerupTime;
+
+		if((time - timer)/time > 0.001f && timer > 0 ){
+			pbbackground.enabled = true;
+			powerbar.enabled = true;
+
+			float frameOffset = frameOffsetFactor * barHorizontalLength;
+			pbbackground.transform.position = new Vector3(barHorizontalLength / 2, 1f - barVerticalLength/2, -2f);
+			pbbackground.transform.localScale = new Vector3(barHorizontalLength, barVerticalLength, 1f);
+			powerbar.transform.position = new Vector3((frameOffset + ((time-timer)/time) * (barHorizontalLength/2 - frameOffset)),
+			                                          1f - barVerticalLength/2, -1f);
+			powerbar.transform.localScale = new Vector3(((time-timer)/time) * (barHorizontalLength - 2*frameOffset),
+			                                            barVerticalLength, 1f);
+		}
+		else{
+			pbbackground.enabled = false;
+			powerbar.enabled = false;
+			//pbbackground.transform.position = new Vector3(0, 2, -2);
+			//powerbar.transform.position = new Vector3(0, 2, -1);
+		}
 	}
 	
 	void OnGUI(){
@@ -63,16 +88,7 @@ public class PowerUpTime : MonoBehaviour {
 //				GUI.EndGroup ();
 //			GUI.EndGroup ();
 //		}
-		if((time - timer)/time > 0.001f && timer > 0 ){
-			pbbackground.transform.position = new Vector3(0, 1, -1);
-			pbbackground.transform.localScale = new Vector2(1, 0);
-			powerbar.transform.position = new Vector3((0.5f*(time-timer)/time)-0.55f, 1, 1);
-			powerbar.transform.localScale = new Vector2(1, 0);
-		}
-		else{
-			pbbackground.transform.position = new Vector3(0, 2, -1);
-			powerbar.transform.position = new Vector3(0, 2, 1);
-		}
+
 	}
 	
 }
