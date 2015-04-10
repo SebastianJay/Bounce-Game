@@ -3496,7 +3496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   springForce: 4000
-  contactNoise: {fileID: 0}
+  contactNoise: {fileID: 8300000, guid: 5500710facc515747ab5e59638e6cbe8, type: 3}
   noiseVolume: 1
 --- !u!61 &805218981
 BoxCollider2D:
@@ -3611,7 +3611,9 @@ GameObject:
   - 114: {fileID: 826002866}
   - 114: {fileID: 826002865}
   - 114: {fileID: 826002864}
+  - 114: {fileID: 826002872}
   - 114: {fileID: 826002863}
+  - 114: {fileID: 826002871}
   m_Layer: 9
   m_Name: ball
   m_TagString: Player
@@ -3688,7 +3690,6 @@ MonoBehaviour:
   superJumpBoost: 5000
   superJumpTime: 10
   spiderballTime: 5
-  glidingScale: .150000006
   glidingTime: 7
   powerupTimer: 0
   powerupTime: 1
@@ -3704,8 +3705,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14514390b9543894fa5c78cfd9d63955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lastCheckpoint: 0
-  lastLevel: 0
   debugNoLoad: 1
   debugInitRespawn: 1
   debugInitCamera: 1
@@ -3798,6 +3797,38 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4e1000ff3a2ca1f4ea25bd5bbb196ba9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &826002871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11486938, guid: c7cd5143fa8f15744957923e63b980d5,
+    type: 2}
+  m_PrefabInternal: {fileID: 885544508}
+  m_GameObject: {fileID: 826002861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d0c7ea658c467344a23bbdf2c54262f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &826002872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11495496, guid: c7cd5143fa8f15744957923e63b980d5,
+    type: 2}
+  m_PrefabInternal: {fileID: 885544508}
+  m_GameObject: {fileID: 826002861}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b07c6882b77a08548bbf68648c16f2dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dampingCoefficient: -23
+  maxDampingForce: 138
+  dampingDebug: 30
+  velocityThreshDebug: -2
+  startForce: 10
+  endForce: 20
+  transitionTime: 3
+  gravityScale: .600000024
 --- !u!1 &829618502
 GameObject:
   m_ObjectHideFlags: 0
@@ -4010,11 +4041,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400002, guid: c7cd5143fa8f15744957923e63b980d5, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -22.1359043
+      value: -25.4475136
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c7cd5143fa8f15744957923e63b980d5, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 49.586731
+      value: 49.8414688
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c7cd5143fa8f15744957923e63b980d5, type: 2}
       propertyPath: m_LocalPosition.z
@@ -4190,7 +4221,7 @@ Transform:
   m_PrefabInternal: {fileID: 885544508}
   m_GameObject: {fileID: 909675130}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -22.1359043, y: 49.586731, z: 0}
+  m_LocalPosition: {x: -25.4475136, y: 49.8414688, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 826002862}
@@ -5121,7 +5152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   springForce: 6000
-  contactNoise: {fileID: 0}
+  contactNoise: {fileID: 8300000, guid: 5500710facc515747ab5e59638e6cbe8, type: 3}
   noiseVolume: 1
 --- !u!61 &1125950510
 BoxCollider2D:
@@ -5818,7 +5849,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   springForce: 5000
-  contactNoise: {fileID: 0}
+  contactNoise: {fileID: 8300000, guid: 5500710facc515747ab5e59638e6cbe8, type: 3}
   noiseVolume: 1
 --- !u!61 &1220429455
 BoxCollider2D:
