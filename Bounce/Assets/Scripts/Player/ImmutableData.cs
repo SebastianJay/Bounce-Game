@@ -111,7 +111,7 @@ public static class ImmutableData {
 		InitCheck (100, "The Chimney", -20f, 51f, -12f, 51f, -15f, 300f, -5f, 50f, 7f);
 		InitCheck (101, "Picnic Spot", 235f, 1.4f, 235f, 5.5f, 217f, 248f, 5.5f, 6.5f, 7f);	
 		InitCheck (102, "Break Room", 460f, 1.6f, 462f, 6.5f, 407f, 462f, 6.5f, 12f, 8f);	
-		InitCheck (103, "Tower Top", 487f, 151f, 488f, 154f, 488f, 488f, 7f, 200f, 8f);	
+		InitCheck (103, "Tower Top", 495f, 151f, 488f, 154f, 488f, 488f, 7f, 200f, 8f);	
 
 		//Jungle checkpoints
 		InitCheck (200, "Treetop Village", -20f, 49f, -20f, 50f, -35f, -20f, 28f, 50f, 8f);

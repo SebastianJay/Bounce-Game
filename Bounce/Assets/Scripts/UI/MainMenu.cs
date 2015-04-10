@@ -175,7 +175,7 @@ public class MainMenu : MonoBehaviour
 				                                      new Rect (0, 0, scrollViewWidth - 20, saveFileList.Count*50+10));
 
 				// A button for creating a new save file
-				if(GUI.Button (new Rect(10,10,200,50),"Save to New File") && !fadingOut)
+				if(GUI.Button (new Rect(0,10,240,tabButtonHeight),"Save to New File") && !fadingOut)
 				{
 					if (saveSrc != null)
 						saveSrc.Play();
@@ -185,7 +185,7 @@ public class MainMenu : MonoBehaviour
 				}
 				if (XmlSerialzer.currentSaveFile >= 0 && saveFileList.Count > 0) {
 					// A button for creating a new save file
-					if(GUI.Button (new Rect(210,10,200,50),"Overwrite current data (" + XmlSerialzer.currentSaveFile + ")") && !fadingOut)
+					if(GUI.Button (new Rect(240,10,240,tabButtonHeight),"Overwrite current data (" + XmlSerialzer.currentSaveFile + ")") && !fadingOut)
 					{
 						if (saveSrc != null)
 							saveSrc.Play();

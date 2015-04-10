@@ -900,7 +900,7 @@ MonoBehaviour:
   m_verticalScrollbar:
     m_Name: verticalscrollbar
     m_Normal:
-      m_Background: {fileID: 11020, guid: 0000000000000000e000000000000000, type: 0}
+      m_Background: {fileID: 2800000, guid: a878be7746e7f1448a8fa95314274db7, type: 3}
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
     m_Hover:
       m_Background: {fileID: 0}
@@ -959,7 +959,7 @@ MonoBehaviour:
   m_verticalScrollbarThumb:
     m_Name: verticalscrollbarthumb
     m_Normal:
-      m_Background: {fileID: 11019, guid: 0000000000000000e000000000000000, type: 0}
+      m_Background: {fileID: 2800000, guid: e59ef0655967bfc46b93ac3b52c47cf8, type: 3}
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
     m_Hover:
       m_Background: {fileID: 0}
