@@ -33,15 +33,6 @@ public class StartScreen : MonoBehaviour {
 		}
 	}
 
-	void StartTransition()
-	{
-		Application.LoadLevel("Pier");
-	}
-
-	void ShowLoadPanelTransition() {
-		loadPanelVisible = !loadPanelVisible;
-	}
-
 	void DrawMainPanel() {
 		bool fading = screenFadeObj != null && screenFadeObj.GetComponent<ScreenFading> ().IsTransitioning();
 		if (GUI.Button (new Rect (Screen.width * 0.1f, Screen.height * 0.8f, Screen.width * 0.2f, Screen.height * 0.1f), "New Game") && !fading) {
@@ -119,8 +110,19 @@ public class StartScreen : MonoBehaviour {
 		saveFileList.Sort ();
 	}
 
+	void StartTransition()
+	{
+		ImmutableData.Init();
+		Application.LoadLevel("Pier");
+	}
+	
+	void ShowLoadPanelTransition() {
+		loadPanelVisible = !loadPanelVisible;
+	}
+
 	private int loadDataIndex=0;
 	void LoadTransition() {
+		ImmutableData.Init();
 		PlayerDataManager.loadedLevel = false;
 		XmlSerialzer.currentSaveFile = loadDataIndex;
 		PlayerDataManager.LoadCurrentSave();

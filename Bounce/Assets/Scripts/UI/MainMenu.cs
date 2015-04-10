@@ -128,8 +128,8 @@ public class MainMenu : MonoBehaviour
 		if (showMenu) {
 			bool fadingOut = screenFadeObj != null && screenFadeObj.GetComponent<ScreenFading>().IsTransitioning();
 
-			//GUI.skin = skin;
-
+			GUI.skin = skin;
+			
 			//Freeze the game if the menu is active
 			Time.timeScale = EPSILON;
 
