@@ -167,7 +167,7 @@ AudioSource:
   m_GameObject: {fileID: 174628}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 6c68c8c63f3746349b69e3dfff65df1d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 7dfc9c336b96ac941a582ff9a81f3b82, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
