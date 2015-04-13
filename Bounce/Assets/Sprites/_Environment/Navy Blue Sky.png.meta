@@ -1,7 +1,8 @@
 fileFormatVersion: 2
 guid: 1d4d10710d2966841942003e8cae15db
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Navy Blue Sky
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

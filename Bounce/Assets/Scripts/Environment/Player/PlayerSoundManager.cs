@@ -60,7 +60,7 @@ public class PlayerSoundManager : MonoBehaviour {
 		if (mappings.ContainsKey (key)
 		    && (screenFadeObj==null || (screenFadeObj!=null && !screenFadeObj.GetComponent<ScreenFading>().IsTransitioning())))
 			mappings[key].Play ();
-		else
-			Debug.LogWarning("PlayerSoundManager could not find sound corresponding to " + key);
+		//else
+		//	Debug.LogWarning("PlayerSoundManager could not find sound corresponding to " + key);
 	}
 }

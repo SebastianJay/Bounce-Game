@@ -12,23 +12,33 @@ public class ScreenFading : MonoBehaviour {
 	public bool fadeMusic = false;
 	public GameObject musicObj = null;
 
+	public bool useOnGUI = false;
+	public GUIStyle style;
+
 	private bool fadingIn = false;
 	private bool fadingOut = false;
 	private float inThreshold = 0.95f;
 	private float outThreshold = 0.05f;
 	private Action transitionFunc = null;
-	
+	private Color mColor;
+
 	void Awake()
 	{
 		guiTexture.pixelInset = new Rect (0f, 0f, Screen.width, Screen.height);
 		guiTexture.color = Color.clear;
-		if (fadeOutOnStart)
-		{
+		if (fadeOutOnStart) {
 			fadeMusic = true;
 			if (musicObj != null)
 				musicObj.audio.volume = 0.0f;
-			guiTexture.color = opaqueColor;
+			mColor = opaqueColor;
+			if (!useOnGUI)
+				guiTexture.color = opaqueColor;
 			fadingOut = true;
+		}
+		else {
+			mColor = Color.clear;
+			if (!useOnGUI)
+				guiTexture.color = Color.clear;
 		}
 	}
 
@@ -37,14 +47,14 @@ public class ScreenFading : MonoBehaviour {
 	{
 		if (fadingIn)
 		{
-			guiTexture.color = Color.Lerp(guiTexture.color, opaqueColor, fadeSpeed * Time.deltaTime);
 			if (fadeMusic && musicObj != null)
 			{
 				musicObj.audio.volume = Mathf.Lerp(musicObj.audio.volume, 0.0f, fadeSpeed * Time.deltaTime);
 			}
-			if (guiTexture.color.a >= inThreshold)
+			mColor = Color.Lerp(mColor, opaqueColor, fadeSpeed * Time.deltaTime);
+			if (mColor.a >= inThreshold)
 			{
-				guiTexture.color = opaqueColor;
+				mColor = opaqueColor;
 				fadingIn = false;
 				if (transitionFunc != null)
 				{
@@ -52,19 +62,35 @@ public class ScreenFading : MonoBehaviour {
 					fadingOut = true;
 				}
 			}
+			if (!useOnGUI) {
+				guiTexture.color = mColor;
+			}
 		}
 		else if (fadingOut)
 		{
-			guiTexture.color = Color.Lerp(guiTexture.color, Color.clear, fadeSpeed * Time.deltaTime);
 			if (fadeMusic && musicObj != null)
 			{
 				musicObj.audio.volume = Mathf.Lerp(musicObj.audio.volume, 1.0f, fadeSpeed * Time.deltaTime);
 			}
-			if (guiTexture.color.a <= outThreshold)
+			mColor = Color.Lerp(mColor, Color.clear, fadeSpeed * Time.deltaTime);
+			if (mColor.a <= outThreshold)
 			{
-				guiTexture.color = Color.clear;
+				mColor = Color.clear;
 				fadingOut = false;
 			}
+			if (!useOnGUI) {
+				guiTexture.color = mColor;
+			}
+		}
+	}
+
+	//very ugly work-around to render over menu elements
+	public void OnGUI() {
+		if (useOnGUI) {
+			GUI.depth = -1;
+			GUI.color = mColor;
+			GUI.Box(new Rect(0, 0, Screen.width, Screen.height), "", style);
+			GUI.color = Color.white;
 		}
 	}
 

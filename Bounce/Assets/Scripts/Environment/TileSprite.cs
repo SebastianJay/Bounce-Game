@@ -12,6 +12,7 @@ public class TileSprite : MonoBehaviour {
 	public float scaleY = 1f;
 	public bool useScaleAsTile = true;	//if true, scale will be (1, 1) and scale of object will be used as tile factor
 										//if false, the other fields in the script will be used
+	public float zrot = 0f;
 
 	SpriteRenderer sprite;
 
@@ -33,6 +34,11 @@ public class TileSprite : MonoBehaviour {
 		sprite = GetComponent<SpriteRenderer>();
 		Vector2 absScale = GetAbsoluteScale();
 		Vector2 spriteSize = new Vector2(sprite.bounds.size.x / absScale.x, sprite.bounds.size.y / absScale.y);
+		//Quaternion prevRot = transform.localRotation;
+		//transform.rotation = Quaternion.identity;
+		//Vector3 prevPos = transform.position;
+		//transform.RotateAround (transform.position, new Vector3 (0f, 0f, 1f), -transform.rotation.eulerAngles.z);
+		//transform.position = prevPos;
 		/*Debug.Log (gameObject.name + " " + sprite.bounds.size.x + " " + sprite.bounds.size.y + " " + 
 		           absScale.x + " " + absScale.y + " " +
 		           spriteSize.x + " " + spriteSize.y);*/
@@ -54,6 +60,7 @@ public class TileSprite : MonoBehaviour {
 
 		childPrefab.transform.position = new Vector3(startX, startY, transform.position.z);
 		childPrefab.transform.localScale = desiredScale;
+		//childPrefab.transform.localRotation = prevRot;
 		childSprite.sprite = sprite.sprite;
 		childSprite.sortingLayerName = sprite.sortingLayerName;
 		childSprite.sortingOrder = sprite.sortingOrder;
@@ -77,7 +84,10 @@ public class TileSprite : MonoBehaviour {
 
 		// Set the parent last on the prefab to prevent transform displacement
 		childPrefab.transform.parent = transform;
-		
+
+		//transform.localRotation = prevRot;
+		transform.RotateAround(transform.position, new Vector3 (0f, 0f, 1f), zrot);
+
 		// Disable the currently existing sprite component since it's now a repeated image
 		sprite.enabled = false;
 	}

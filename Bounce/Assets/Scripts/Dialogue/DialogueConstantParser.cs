@@ -83,6 +83,22 @@ public static class DialogueConstantParser
 				obj.GetComponent<CameraFollow>().StartCoroutine(RobScenePan());
 			}
 			break;
+		case "FreezeControls":
+			obj = GameObject.FindGameObjectWithTag("Player");
+			if (obj.GetComponent<PlayerBallControl>() != null)
+				obj.GetComponent<PlayerBallControl>().playerLock = true;
+			else if (obj.GetComponent<PlayerBodyControl>() != null)
+				obj.GetComponent<PlayerBodyControl>().playerLock = true;
+			eventLock = true;
+			break;
+		case "UnFreezeControls":
+			obj = GameObject.FindGameObjectWithTag("Player");
+			if (obj.GetComponent<PlayerBallControl>() != null)
+				obj.GetComponent<PlayerBallControl>().playerLock = false;
+			else if (obj.GetComponent<PlayerBodyControl>() != null)
+				obj.GetComponent<PlayerBodyControl>().playerLock = false;
+			eventLock = false;
+			break;
 		}
 
 	}

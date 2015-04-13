@@ -2,7 +2,6 @@
 using System.Collections;
 
 // The platform must have a HingeJoint2D, a Collider2D, and a RigidBody2D
-// Now with Try-Catch Blocks for Added Safety!!!!!1!
 
 public class BreakingPlatform : MonoBehaviour {
 
@@ -23,6 +22,7 @@ public class BreakingPlatform : MonoBehaviour {
 		if (this.timer >= this.breakTime) {
 			this.gameObject.rigidbody2D.fixedAngle = false;
 		}
+		// IF A CRAZY BUG SHOWS UP HERE, it's caused by dying between the breakTime and fallTime
 		if (this.timer >= this.fallTime) {
 
 			try {
@@ -37,6 +37,9 @@ public class BreakingPlatform : MonoBehaviour {
 				this.gameObject.GetComponent<Collider2D>().enabled = false;
 			} catch ( MissingComponentException ) {
 			}
+			this.timerStarted = false;
+			this.timer = 0;
+
 		}
 	}
 

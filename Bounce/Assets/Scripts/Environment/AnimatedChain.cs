@@ -51,7 +51,8 @@ public class AnimatedChain : MonoBehaviour {
 		animateTimer = animateTime - 0.001f;
 	}
 
-	public void Animate() {
+	public void Animate(float time) {
+		animateTime = time;
 		isAnimating = true;
 	}
 }

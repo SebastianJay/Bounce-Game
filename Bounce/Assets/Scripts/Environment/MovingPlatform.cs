@@ -2,7 +2,7 @@
 using System.Collections;
 
 /// <summary>
-/// Script for a moving platform. As currently implemented, should be attached
+/// Script for a linearly moving platform. As currently implemented, should be attached
 /// to an object with a TRIGGER collider attached as a child to the larger platform object
 /// with a NON-TRIGGER collider. The trigger goes on the top part of the platform.
 /// 
@@ -17,7 +17,7 @@ public class MovingPlatform : MonoBehaviour {
 	public float pauseTime = 2.0f;	//in seconds, time at endpoints
 	public bool moveParent = true;	// if this collider is a "dummy child" to the larger platform
 
-	private float moveTimer = 0.0f;
+	protected float moveTimer = 0.0f;
 	private float pauseTimer = 0.0f;
 	private bool paused = false;
 	private Vector2 mFrom;
@@ -34,7 +34,8 @@ public class MovingPlatform : MonoBehaviour {
 				mFrom = transform.position;
 			mTo = mFrom+endPoint;
 
-		}else
+		}
+		else
 		{
 			transform.position = new Vector3(initialPoint.x, initialPoint.y, 0);
 			mFrom = initialPoint;

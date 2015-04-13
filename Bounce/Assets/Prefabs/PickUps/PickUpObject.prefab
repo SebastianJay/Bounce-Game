@@ -29,6 +29,7 @@ GameObject:
   - 198: {fileID: 19849386}
   - 199: {fileID: 19949386}
   - 114: {fileID: 11449386}
+  - 114: {fileID: 11433272}
   m_Layer: 0
   m_Name: ItemParticles
   m_TagString: Untagged
@@ -84,9 +85,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 3
-  pickUpNoise: {fileID: 0}
+  pickUpNoise: {fileID: 8300000, guid: 46f7ebbc92c511f408854d6ce5d6b461, type: 3}
   pickUpVolume: 1
   unique: 1
+--- !u!114 &11433272
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 149386}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98c5f4de2deec0145b773f40f6e3ac7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeTime: 5
 --- !u!114 &11449386
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -265,7 +278,7 @@ ParticleSystem:
         rgba: 4294967295
       maxColor:
         serializedVersion: 2
-        rgba: 4294967295
+        rgba: 2617245695
       minMaxState: 0
     startSize:
       scalar: .5
