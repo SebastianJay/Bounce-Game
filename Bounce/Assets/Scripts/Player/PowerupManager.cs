@@ -11,10 +11,12 @@ public class PowerupManager : MonoBehaviour {
 	public float spiderballTime = 100f;	
 	//public float glidingScale = .02f;
 	public float glidingTime = 15f;
+	public float balloonTime = 7f;
 
 	public Color superJumpColor;
 	public Color spiderBallColor;
 	public Color glidingColor;
+	public Color balloonColor=Color.white;
 	public Transform particlePrefab;
 	private Transform particleObj;
 
@@ -62,6 +64,12 @@ public class PowerupManager : MonoBehaviour {
 			powerupTime = glidingTime;
 			particleColor = glidingColor;
 			break;
+
+		case PowerupType.Balloon:
+			this.GetComponent<Ballonist>().enabled = true;
+			powerupTime = balloonTime;
+			particleColor = balloonColor;
+			break;
 		}
 		particleObj = Instantiate (particlePrefab, transform.position, Quaternion.identity) as Transform;
 		particleObj.particleSystem.startColor = particleColor;
@@ -79,8 +87,6 @@ public class PowerupManager : MonoBehaviour {
 			if (timeObj != null) {
 				timeObj.GetComponent<PowerUpTime>().timer = powerupTimer;
 			}
-			//	timeObj.GetComponent<GUIText>().text = 
-			//		("Time: " + string.Format("{0:0.##}", powerupTime - powerupTimer));
 
 			if (powerupTimer >= powerupTime)
 			{
@@ -108,15 +114,17 @@ public class PowerupManager : MonoBehaviour {
 			this.GetComponent<Parachuter>().enabled = false;
 			//player.rigidbody2D.gravityScale = 1f;
 			break;
+		case PowerupType.Balloon:
+			this.GetComponent<Ballonist>().ForceQuit();
+			this.GetComponent<Ballonist>().enabled = false;
+			break;
 		}
 		currentPowerup = PowerupType.Normal;
 
 		if (timeObj != null) {
 			timeObj.GetComponent<PowerUpTime>().timer = 0f;
-			//timeObj.GetComponent<GUIText>().text = "";
 		}
 		if (particleObj != null) {
-			//let the old dust die out before killing the object
 			particleObj.particleSystem.emissionRate = 0f;
 			particleObj.GetComponent<SelfRemove>().enabled = true;
 		}

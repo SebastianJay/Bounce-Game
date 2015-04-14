@@ -11,6 +11,7 @@ public class Interactable : MonoBehaviour {
 	public AudioClip talkNoise;
 	public float talkVolume = 1f;
 	public float cameraOrthoThreshold = 8f;
+	public Color npcBoxColor = Color.white;
 
 	private string npcName;
 	private bool inTrigger = false;
@@ -101,6 +102,7 @@ public class Interactable : MonoBehaviour {
 			}
 			else
 				changedCamConfig = false;
+			dSystem.GetComponent<DialogueSystem>().npcBgColor = npcBoxColor;
 		}
 		if (inConversation)
 		{

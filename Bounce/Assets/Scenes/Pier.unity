@@ -521,6 +521,7 @@ MonoBehaviour:
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
   cameraOrthoThreshold: 8
+  npcBoxColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &51906565
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -648,6 +649,7 @@ MonoBehaviour:
   talkNoise: {fileID: 0}
   talkVolume: 1
   cameraOrthoThreshold: 99
+  npcBoxColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!61 &68172379
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7220,11 +7222,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 21200002, guid: bc2a72d4131504e4e895b7d4d5513b1d, type: 2}
       propertyPath: m_Color.r
-      value: 0
+      value: .737931132
       objectReference: {fileID: 0}
     - target: {fileID: 21200002, guid: bc2a72d4131504e4e895b7d4d5513b1d, type: 2}
       propertyPath: m_Color.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 21200002, guid: bc2a72d4131504e4e895b7d4d5513b1d, type: 2}
       propertyPath: m_Color.b
@@ -7232,11 +7234,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 21200000, guid: bc2a72d4131504e4e895b7d4d5513b1d, type: 2}
       propertyPath: m_Color.r
-      value: 0
+      value: .737931132
       objectReference: {fileID: 0}
     - target: {fileID: 21200000, guid: bc2a72d4131504e4e895b7d4d5513b1d, type: 2}
       propertyPath: m_Color.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 21200000, guid: bc2a72d4131504e4e895b7d4d5513b1d, type: 2}
       propertyPath: m_Color.b
@@ -7846,7 +7848,7 @@ SpriteRenderer:
   m_SortingLayerID: 1714758929
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e084baae026663a4f9a39f76782db434, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: .737931132, g: 1, b: 0, a: 1}
 --- !u!4 &738158588
 Transform:
   m_ObjectHideFlags: 0
@@ -11540,6 +11542,7 @@ MonoBehaviour:
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
   cameraOrthoThreshold: 8
+  npcBoxColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &1002635438
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13756,6 +13759,7 @@ MonoBehaviour:
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
   cameraOrthoThreshold: 8
+  npcBoxColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &1241391788
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14552,7 +14556,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 439144, guid: bb027425f47443940ba765af2ceaf671, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 4.19999981
+      value: -28.7000008
       objectReference: {fileID: 0}
     - target: {fileID: 439144, guid: bb027425f47443940ba765af2ceaf671, type: 2}
       propertyPath: m_LocalPosition.y
@@ -14633,6 +14637,14 @@ Prefab:
     - target: {fileID: 435760, guid: 8ada2a994384b9e4584d45a1dc61ebf2, type: 2}
       propertyPath: m_RootOrder
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 11435758, guid: 8ada2a994384b9e4584d45a1dc61ebf2, type: 2}
+      propertyPath: npcBoxColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11435758, guid: 8ada2a994384b9e4584d45a1dc61ebf2, type: 2}
+      propertyPath: npcBoxColor.b
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8ada2a994384b9e4584d45a1dc61ebf2, type: 2}
@@ -14761,6 +14773,7 @@ MonoBehaviour:
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
   cameraOrthoThreshold: 8
+  npcBoxColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &1417795713
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15707,6 +15720,10 @@ Prefab:
     - target: {fileID: 400002, guid: ef5d36ba5a960214a8fc17fb7c3626dc, type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8201658, guid: ef5d36ba5a960214a8fc17fb7c3626dc, type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef5d36ba5a960214a8fc17fb7c3626dc, type: 2}
@@ -18681,6 +18698,7 @@ MonoBehaviour:
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
   cameraOrthoThreshold: 8
+  npcBoxColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &1733264581
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19039,7 +19057,7 @@ SpriteRenderer:
   m_SortingLayerID: 1714758929
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 86edd183a15329349bcc65eb79315dd9, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: .737931132, g: 1, b: 0, a: 1}
 --- !u!1 &1775773214
 GameObject:
   m_ObjectHideFlags: 0
@@ -19955,9 +19973,11 @@ MonoBehaviour:
   superJumpTime: 10
   spiderballTime: 5
   glidingTime: 7
+  balloonTime: 7
   superJumpColor: {r: .986206889, g: 1, b: 0, a: 1}
   spiderBallColor: {r: 1, g: .600000024, b: 0, a: 1}
   glidingColor: {r: .406896591, g: 1, b: 0, a: 1}
+  balloonColor: {r: 1, g: 1, b: 1, a: 1}
   particlePrefab: {fileID: 484718, guid: df05215a6cef2ed42b5c2dab33229e62, type: 2}
   powerupTimer: 0
   powerupTime: 1
@@ -22887,7 +22907,7 @@ Transform:
   m_PrefabInternal: {fileID: 1375608325}
   m_GameObject: {fileID: 2040889762}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.19999981, y: 10, z: 0}
+  m_LocalPosition: {x: -28.7000008, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 243418774}
@@ -23733,6 +23753,7 @@ MonoBehaviour:
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
   cameraOrthoThreshold: 8
+  npcBoxColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &2108902803
 SpriteRenderer:
   m_ObjectHideFlags: 0
