@@ -16,6 +16,7 @@ public class MovingPlatform : MonoBehaviour {
 	public float moveTime = 5.0f;	//in seconds, from start to end
 	public float pauseTime = 2.0f;	//in seconds, time at endpoints
 	public bool moveParent = true;	// if this collider is a "dummy child" to the larger platform
+	public bool flipOnTurn = false;	// whether object should rotate (to flip sprite) when changing direction
 
 	protected float moveTimer = 0.0f;
 	private float pauseTimer = 0.0f;
@@ -49,6 +50,21 @@ public class MovingPlatform : MonoBehaviour {
 			pauseTimer += Time.deltaTime;
 			if (pauseTimer >= pauseTime)
 			{
+				if (flipOnTurn) {
+					if (moveParent) {
+						//if player is attached to this platform we don't want him to rotate suddenly
+						Transform playerContainer=null;
+						if (transform.parent.childCount > 1) {
+							playerContainer = transform.parent.GetChild(1);
+							playerContainer.parent = null;
+						}
+						transform.parent.RotateAround(transform.parent.position, new Vector3(0f, 1f, 0f), 180f);
+						if (playerContainer != null)
+							playerContainer.parent = transform.parent;
+					}
+					else
+						transform.RotateAround(transform.position, new Vector3(0f, 1f, 0f), 180f);
+				}
 				pauseTimer = 0.0f;
 				paused = false;
 			}

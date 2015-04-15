@@ -45,7 +45,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 166494}
-  m_LocalRotation: {x: -.112078369, y: .69816792, z: .112078369, w: .69816792}
+  m_LocalRotation: {x: .700730979, y: -.0947424993, z: -.700730979, w: -.0947424993}
   m_LocalPosition: {x: -2, y: .649999976, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -57,9 +57,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 166496}
-  m_LocalRotation: {x: 0, y: 0, z: .258819044, w: .965925813}
-  m_LocalPosition: {x: 40.1800003, y: -5.6500001, z: 0}
-  m_LocalScale: {x: -2.354182, y: 2.32727695, z: 2.32727695}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -43.5499992, y: -19.7600002, z: 0}
+  m_LocalScale: {x: 2.29999995, y: 2.29999995, z: 2.32727695}
   m_Children:
   - {fileID: 466494}
   m_Father: {fileID: 0}
@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cannonForce: 20000
-  levelToTeleportTo: City
+  levelToTeleportTo: Jungle
   targetID: 0
 --- !u!114 &11494912
 MonoBehaviour:
