@@ -11,6 +11,7 @@ public class Interactable : MonoBehaviour {
 	public AudioClip talkNoise;
 	public float talkVolume = 1f;
 	public float cameraOrthoThreshold = 8f;
+	public Color npcBoxColor = Color.white;
 
 	private string npcName;
 	private bool inTrigger = false;
@@ -70,6 +71,7 @@ public class Interactable : MonoBehaviour {
 			flag = bScript.inConversation;
 			if (!flag) {
 				bScript.inConversation = true;
+				bScript.npcTalker = transform;
 				bScript.playerLock = true;
 			}
 		} else if (playerObj.GetComponent<PlayerBodyControl>() != null) {
@@ -77,6 +79,7 @@ public class Interactable : MonoBehaviour {
 			flag = bScript.inConversation;
 			if (!flag) {
 				bScript.inConversation = true;
+				bScript.npcTalker = transform;
 				bScript.playerLock = true;
 			}
 		}
@@ -99,6 +102,7 @@ public class Interactable : MonoBehaviour {
 			}
 			else
 				changedCamConfig = false;
+			dSystem.GetComponent<DialogueSystem>().npcBgColor = npcBoxColor;
 		}
 		if (inConversation)
 		{
@@ -141,6 +145,27 @@ public class Interactable : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+	public void ForceQuitConvo() {
+		dSystem.GetComponent<DialogueSystem>().EndConversation();
+		this.inConversation = false;
+		if (playerObj.GetComponent<PlayerBallControl>() != null) {
+			PlayerBallControl bScript = playerObj.GetComponent<PlayerBallControl>();
+			bScript.inConversation = false;
+			bScript.npcTalker = null;
+			bScript.playerLock = false;
+		} else if (playerObj.GetComponent<PlayerBodyControl>() != null) {
+			PlayerBodyControl bScript = playerObj.GetComponent<PlayerBodyControl>();
+			bScript.inConversation = false;
+			bScript.npcTalker = null;
+			bScript.playerLock = false;
+		}
+		endedTalkFrame = Time.frameCount;
+		if (talkBubble != null)
+			talkBubble.gameObject.SetActive(true);
+		if (changedCamConfig)
+			cam.GetComponent<CameraFollow>().LoadConfig(lastConfig, false);
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {

@@ -19,10 +19,32 @@ public class PlayerBodyControl : MonoBehaviour {
 	[HideInInspector]
 	public Transform npcTalker;
 	public bool playerLock = false;
-	
+
+	//moving platform detection vars
+	private bool onMovingPlatform = false;
+	private Transform platformParent;
+
 	// Use this for initialization
 	void Start () {
 		
+	}
+
+	void OnTriggerEnter2D(Collider2D col)
+	{
+		if (col.GetComponent<MovingPlatform>() != null) 
+		{
+			onMovingPlatform = true;
+			platformParent = col.transform.parent;
+			//Debug.Log ("Player entered");
+		}
+	}
+	void OnTriggerExit2D(Collider2D col)
+	{
+		if (col.GetComponent<MovingPlatform>() != null) 
+		{
+			onMovingPlatform = false;
+			//Debug.Log ("Player exited");
+		}
 	}
 
 	void OnCollisionEnter2D(Collision2D collision) {
@@ -48,6 +70,12 @@ public class PlayerBodyControl : MonoBehaviour {
 		}
 	}
 
+	void OnCollisionExit2D(Collision2D collision) {
+		if (!onMovingPlatform
+		    && transform.parent.parent != null)
+			transform.parent.parent = null;	//get off the platform
+	}
+
 	// Update is called once per frame
 	void FixedUpdate () {
 		if (!playerLock) {
@@ -61,6 +89,15 @@ public class PlayerBodyControl : MonoBehaviour {
 				jumpTimer = 0f;
 			}
 		}
+
+		if (onMovingPlatform && transform.parent.parent == null)
+			transform.parent.parent = platformParent;
+		else if (!onMovingPlatform && platformParent != null)
+		{
+			transform.parent.parent = null;
+			platformParent = null;
+		}
+
 
 		jumpTimer += Time.deltaTime;
 		grounded = false;

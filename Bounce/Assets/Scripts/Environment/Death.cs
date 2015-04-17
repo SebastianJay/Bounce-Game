@@ -19,6 +19,8 @@ public class Death : MonoBehaviour {
 	private GameObject player;
 	private GameObject escort;
 
+	private Resettable[] resettables;
+
 	void Awake()
 	{
 		if (deathNoise != null) {
@@ -34,6 +36,7 @@ public class Death : MonoBehaviour {
 		camObj = GameObject.FindGameObjectWithTag ("MainCamera");
 		player = GameObject.FindGameObjectWithTag ("Player");
 		escort = GameObject.FindGameObjectWithTag ("MotherFollower");
+		resettables = FindObjectsOfType (typeof(Resettable)) as Resettable[];
 	}
 
 	void OnCollisionEnter2D(Collision2D collision)
@@ -73,12 +76,25 @@ public class Death : MonoBehaviour {
 			player = GameObject.FindGameObjectWithTag ("Player");
 		if (player.GetComponent<PowerupManager>() != null)
 			player.GetComponent<PowerupManager>().EndPowerup();
-		if (player.GetComponent<PlayerBallControl>() != null)
+		if (player.GetComponent<PlayerBallControl>() != null) {
 			player.GetComponent<PlayerBallControl>().ForceUndoDeformation ();
+			if (player.GetComponent<PlayerBallControl>().npcTalker != null) {
+				player.GetComponent<PlayerBallControl>().npcTalker.GetComponent<Interactable>().ForceQuitConvo();
+			}
+		}
+		if (player.GetComponent<PlayerBodyControl>() != null) {
+			if (player.GetComponent<PlayerBodyControl>().npcTalker != null) {
+				player.GetComponent<PlayerBodyControl>().npcTalker.GetComponent<Interactable>().ForceQuitConvo();
+			}
+		}
 		player.transform.position = respawn;
 		player.rigidbody2D.velocity = Vector2.zero;
 		player.rigidbody2D.angularVelocity = 0f;
 		// do other possible resets!
+
+		foreach (Resettable r in resettables) {
+			r.Reset ();
+		}
 
 		if (escort != null && escort.GetComponent<FollowAI>().enabled)
 		{

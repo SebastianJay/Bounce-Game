@@ -21,4 +21,12 @@ public class NotificationManager : MonoBehaviour {
 		}
 		messages.Add (obj);
 	}
+
+	/*
+	void Update() {
+		if (Input.GetKeyDown(KeyCode.P)) {
+			PushMessage("Test Message. Hello!", 4f);
+		}
+	}
+	*/
 }

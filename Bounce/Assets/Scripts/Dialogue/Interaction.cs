@@ -100,6 +100,13 @@ public class Interaction
 	        {
 	            string conditional = line.Substring("if ".Length);
 				InteractionControlPath ic = new InteractionControlPath();
+				if (conditional.IndexOf("choose ") != -1) {
+					string chooseStr = conditional.Substring(conditional.IndexOf("choose "));
+					string[] chooseParams = chooseStr.Substring("choose ".Length).Split(',');
+					ic.randomStart = Int32.Parse(chooseParams[0]);
+					ic.randomEnd = Int32.Parse(chooseParams[1]);
+					conditional = conditional.Substring(0, conditional.Length - chooseStr.Length);
+				}
 				ic.statement = conditional;
 				ic.lineNumber = lineCounter;
 	            controlList.Add(ic);
@@ -217,15 +224,18 @@ public class Interaction
 	
 	private int GetStartingLine()
 	{
+		for (int i = controlList.Count - 1; i >= 0; i--)	//we look in reverse order in the file
+		{
+			if (ConditionalParser.EvaluateStatement(controlList[i].statement)) {
+				if (controlList[i].randomStart != -1 && controlList[i].randomEnd != -1)
+					return rand.Next(controlList[i].randomStart, controlList[i].randomEnd + 1) - 1;
+				return controlList[i].lineNumber - 1;
+			}
+		}
 		if (chooseStatement != null)
 		{
 			return rand.Next(chooseStatement.randomStart, chooseStatement.randomEnd + 1) - 1;
 		}
-		for (int i = controlList.Count - 1; i >= 0; i--)	//we look in reverse order in the file
-	    {
-	        if (ConditionalParser.EvaluateStatement(controlList[i].statement))
-	        	return controlList[i].lineNumber - 1;
-	    }
 	    return 0;
 	}
 

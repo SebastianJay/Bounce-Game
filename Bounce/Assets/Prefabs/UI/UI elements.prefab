@@ -297,7 +297,7 @@ AudioSource:
   m_GameObject: {fileID: 101656}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 0cbe2e63b79a55b4999f9d3e80696119, type: 3}
+  m_audioClip: {fileID: 8300000, guid: cd48ee5ed29f2a34ba8a934eafcbed27, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -406,7 +406,7 @@ MonoBehaviour:
   currentTab: 0
   showMenu: 0
   menuWidth: 500
-  menuHeight: 510
+  menuHeight: 500
   tabButtonWidth: 150
   tabButtonHeight: 50
   scrollViewWidth: 480
@@ -425,7 +425,7 @@ MonoBehaviour:
   teleportVolume: 1
   itemVolume: 1
   switchPanelVolume: 1
-  skin: {fileID: 0}
+  skin: {fileID: 11400000, guid: e325a78011ef6dd4eb30c506f6b18a42, type: 2}
 --- !u!114 &11455722
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -105,13 +105,13 @@ public static class ImmutableData {
 		levelMapping = new Dictionary<string, List<int> > ();
 
 		//Hub checkpoints
-		InitCheck (1, "The Big Ship", 150f, 13.5f, 150f, 13.5f, -1000f, 1000f, -1000f, 1000f, 11f);
+		InitCheck (1, "The Big Ship", 157f, 13.5f, 150f, 13.5f, -1000f, 1000f, -1000f, 1000f, 11f);
 
 		//City checkpoints
 		InitCheck (100, "The Chimney", -20f, 51f, -12f, 51f, -15f, 300f, -5f, 50f, 7f);
 		InitCheck (101, "Picnic Spot", 235f, 1.4f, 235f, 5.5f, 217f, 248f, 5.5f, 6.5f, 7f);	
 		InitCheck (102, "Break Room", 460f, 1.6f, 462f, 6.5f, 407f, 462f, 6.5f, 12f, 8f);	
-		InitCheck (103, "Tower Top", 487f, 151f, 488f, 154f, 488f, 488f, 7f, 200f, 8f);	
+		InitCheck (103, "Tower Top", 495f, 151f, 488f, 154f, 488f, 488f, 7f, 200f, 8f);	
 
 		//Jungle checkpoints
 		InitCheck (200, "Treetop Village", -20f, 49f, -20f, 50f, -35f, -20f, 28f, 50f, 8f);
@@ -124,7 +124,7 @@ public static class ImmutableData {
 
 		//Items!
 		//InitItem (ItemType.Item1, "Accessories/sample_glasses", "Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);
-		InitItem (ItemType.CyborgEye, "Accessories/Glasses", "Cyborg Eye", "A nondescript pair of glasses", 0f, 0f, 0f);
+		InitItem (ItemType.CyborgEye, "Accessories/Glasses", "Cyborg Eye", "I spy with my little eye…something red.", 0f, 0f, 0f);
 		InitItem (ItemType.YellowSki, "Accessories/Glasses1", "Yellow Ski Goggles", "Life is more extreme with these on.", 0f, 0f, 0f);
 		InitItem (ItemType.DarkShades, "Accessories/Glasses2", "Dark Shades", "Sadly, you won't look as cool as the special agents that wear these.", 0f, 0f, 0f);
 		InitItem (ItemType.LabGoggles, "Accessories/Glasses3", "Lab Goggles", "Safety first!", 0f, 0f, 0f);
@@ -133,19 +133,19 @@ public static class ImmutableData {
 		InitItem (ItemType.BlueShades, "Accessories/Glasses6", "Blue Shades", "You'll go blind if you stare at the sun too long without these.", 0f, 0f, 0f);
 		InitItem (ItemType.Visor, "Accessories/Glasses7", "Visor", "Essential for maintaining proper control of your optic beams.", 0f, 0f, 0f);
 		InitItem (ItemType.Oculus, "Accessories/Glasses8", "Oculus Rift", "3D virtual reality has never looked this amazing. This isn't even the final form.", 0f, 0f, 0f);
-		InitItem (ItemType.Aviator, "Accessories/Glasses9", "Aviator Shades", "Classic and timeless shades that blend together form and function.", 0f, 0f, 0f);
+		InitItem (ItemType.Aviator, "Accessories/Glasses9", "Aviator Shades", "Classic and timeless shades that blends together form and function. You can't help but scream \"YEAAAAAAAAAAAAAAH!!!!!!!!\" every time you put these on.", 0f, 0f, 0f);
 		InitItem (ItemType.GreenShutter, "Accessories/Glasses10", "Green Shutter Shades", "You'll make a spectacle of yourself if you go out wearing these.  Seriously, the tan lines are not worth wearing these.", 0f, 0f, 0f);
 		InitItem (ItemType.Heart, "Accessories/Glasses11", "Heart Shades", "Contrary to popular belief, pink can be a manly color.", 0f, 0f, 0f);
 		InitItem (ItemType.Future, "Accessories/Glasses12", "Future Goggles", "These may not look impressive, but they somehow protect you from the vortices and light speeds that you will encounter while time traveling.", 0f, 0f, 0f);
 		InitItem (ItemType.Monocole, "Accessories/Glasses13", "Monocle and Stache", "A proper gentleman never leaves the house without an elegant monocle and a neatly trimmed beard.", 0f, 0f, 0f);
-		InitItem (ItemType.Tiny, "Accessories/Glasses14", "Tiny Spectacles", "A nondescript pair of glasses", 0f, 0f, 0f);
-		InitItem (ItemType.DarkFuture, "Accessories/Glasses15", "Dark Future Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);
-		InitItem (ItemType.CrazyEyes, "Accessories/Glasses16", "Crazy Eyes", "A nondescript pair of glasses", 0f, 0f, 0f);
-		InitItem (ItemType.EightBit1, "Accessories/Glasses17", "8-bit Glasses #1", "A nondescript pair of glasses", 0f, 0f, 0f);
-		InitItem (ItemType.EightBit2, "Accessories/Glasses18", "8-bit Glasses #2", "A nondescript pair of glasses", 0f, 0f, 0f);
-		InitItem (ItemType.PurpleVisor, "Accessories/Glasses19", "Purple Visor", "A nondescript pair of glasses", 0f, 0f, 0f);
-		InitItem (ItemType.BlueGreenSki, "Accessories/Glasses20", "Blue-Green Ski Goggles", "A nondescript pair of glasses", 0f, 0f, 0f);
-		InitItem (ItemType.Movie3D, "Accessories/Glasses21", "3D Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);
+		InitItem (ItemType.Tiny, "Accessories/Glasses14", "Tiny Spectacles", "We're not sure if the it's the glasses that help you see better or the squinting that these glasses make you do that helps you see better.", 0f, 0f, 0f);
+		InitItem (ItemType.DarkFuture, "Accessories/Glasses15", "Dark Future Glasses", "Your future is bright. Protect your eyes while time traveling by wearing these.", 0f, 0f, 0f);
+		InitItem (ItemType.CrazyEyes, "Accessories/Glasses16", "Crazy Eyes", "Take pride in being called a \"four-eyes\" with these outrageous glasses.", 0f, 0f, 0f);
+		InitItem (ItemType.EightBit1, "Accessories/Glasses17", "8-bit Glasses #1", "These are actually prescription sunglasses. Even though we don't need glasses, we would probably wear them all the time too, just because they look so cool.", 0f, 0f, 0f);
+		InitItem (ItemType.EightBit2, "Accessories/Glasses18", "8-bit Glasses #2", "You can't enter Emerald City without these.", 0f, 0f, 0f);
+		InitItem (ItemType.PurpleVisor, "Accessories/Glasses19", "Purple Visor", "The color of royalty. The perfect way to let everyone know that you're the king of awesomeness.", 0f, 0f, 0f);
+		InitItem (ItemType.BlueGreenSki, "Accessories/Glasses20", "Blue-Green Ski Goggles", "These are cool, but uninspiring. I honestly wish I had had something witty to say about these, but I honestly have nothing for these.", 0f, 0f, 0f);
+		InitItem (ItemType.Movie3D, "Accessories/Glasses21", "3D Glasses", "Add some dimension to your life by wearing these.", 0f, 0f, 0f);
 		InitItem (ItemType.ClownNose, "Accessories/clown nose skin", "Clown Nose", "I'm serious: don't even think about doing any kind of funny business.", 0f, 0f, 0f);
 		InitItem (ItemType.AngryBob, "Accessories/angry bob skin", "Angry Bob!", "You wouldn't like me when I'm angry.", 0f, 0f, 0f);
 

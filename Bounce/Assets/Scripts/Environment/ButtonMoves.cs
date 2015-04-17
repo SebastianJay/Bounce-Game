@@ -76,7 +76,7 @@ public class ButtonMoves : MonoBehaviour {
 						moveObj.GetComponent<AnimatedMover>().MoveRelative(
 							new Vector3(xOffset, yOffset, 0f), moveTime);
 						if (animateChainToo)
-							chainObj.GetComponent<AnimatedChain>().Animate();
+							chainObj.GetComponent<AnimatedChain>().Animate(moveTime);
 						if (setConstant)
 							DialogueConstantParser.SetConstant(constantName);
 					}
@@ -87,7 +87,7 @@ public class ButtonMoves : MonoBehaviour {
 					moveObj.GetComponent<AnimatedMover>().MoveRelative(
 						new Vector3(xOffset, yOffset, 0f), moveTime);
 					if (animateChainToo)
-						chainObj.GetComponent<AnimatedChain>().Animate();
+						chainObj.GetComponent<AnimatedChain>().Animate(moveTime);
 					if (setConstant)
 						DialogueConstantParser.SetConstant(constantName);
 				}
