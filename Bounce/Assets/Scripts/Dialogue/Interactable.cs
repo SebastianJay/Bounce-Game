@@ -90,6 +90,10 @@ public class Interactable : MonoBehaviour {
 				talkSrc.Play();
 			if (talkBubble != null)
 				talkBubble.gameObject.SetActive(false);
+			if (playerObj.GetComponent<PowerupManager>() != null && 
+			    playerObj.GetComponent<PowerupManager>().currentPowerup == PowerupType.Balloon) {
+				playerObj.GetComponent<PowerupManager>().EndPowerup();
+			}
 			if (cam.GetComponent<Camera>().orthographicSize > cameraOrthoThreshold) {
 				lastConfig = cam.GetComponent<CameraFollow>().GetConfig();
 				CameraFollowConfig camConfig = new CameraFollowConfig();

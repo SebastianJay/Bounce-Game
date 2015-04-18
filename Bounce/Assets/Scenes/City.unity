@@ -185,6 +185,7 @@ MonoBehaviour:
   moveTime: 1000
   pauseTime: 1000
   moveParent: 0
+  flipOnTurn: 0
 --- !u!61 &1633707
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1056,7 +1057,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 26
+  orthographic size: 29
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -1075,7 +1076,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 40813306}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 24, z: -10.1000004}
+  m_LocalPosition: {x: 5, y: 23.3999996, z: -10.1000004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2148,6 +2149,7 @@ MonoBehaviour:
   talkNoise: {fileID: 0}
   talkVolume: 1
   cameraOrthoThreshold: 8
+  npcBoxColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!61 &64773122
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4169,6 +4171,7 @@ MonoBehaviour:
   moveTime: 1
   pauseTime: 2
   moveParent: 1
+  flipOnTurn: 0
 --- !u!61 &144006402
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4498,6 +4501,7 @@ MonoBehaviour:
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
   cameraOrthoThreshold: 8
+  npcBoxColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &150045827
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4672,6 +4676,7 @@ MonoBehaviour:
   moveTime: 2.5
   pauseTime: 2
   moveParent: 1
+  flipOnTurn: 0
 --- !u!61 &155957349
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4779,6 +4784,7 @@ MonoBehaviour:
   moveTime: 2
   pauseTime: .25
   moveParent: 1
+  flipOnTurn: 0
 --- !u!61 &170407824
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5662,6 +5668,7 @@ MonoBehaviour:
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
   cameraOrthoThreshold: 8
+  npcBoxColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &196909756
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5732,6 +5739,7 @@ MonoBehaviour:
   moveTime: 2
   pauseTime: 1
   moveParent: 1
+  flipOnTurn: 0
 --- !u!61 &197939095
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5942,6 +5950,7 @@ MonoBehaviour:
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
   cameraOrthoThreshold: 8
+  npcBoxColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &207261896
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7982,7 +7991,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTarget: {x: 5, y: 24}
-  cameraOrthoSize: 26
+  cameraOrthoSize: 30
 --- !u!61 &306347084
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8427,6 +8436,7 @@ MonoBehaviour:
   moveTime: 1
   pauseTime: .5
   moveParent: 1
+  flipOnTurn: 0
 --- !u!61 &329994178
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9619,6 +9629,7 @@ MonoBehaviour:
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
   cameraOrthoThreshold: 8
+  npcBoxColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &359993560
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9702,6 +9713,7 @@ MonoBehaviour:
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
   cameraOrthoThreshold: 8
+  npcBoxColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &363651400
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13589,6 +13601,7 @@ MonoBehaviour:
   moveTime: 2
   pauseTime: 2
   moveParent: 1
+  flipOnTurn: 0
 --- !u!61 &473521335
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13887,6 +13900,7 @@ MonoBehaviour:
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
   cameraOrthoThreshold: 8
+  npcBoxColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &482322984
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16852,6 +16866,7 @@ MonoBehaviour:
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
   cameraOrthoThreshold: 8
+  npcBoxColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &576609340
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17766,6 +17781,7 @@ MonoBehaviour:
   moveTime: 2.5
   pauseTime: 1.5
   moveParent: 1
+  flipOnTurn: 0
 --- !u!61 &608117877
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19462,6 +19478,7 @@ MonoBehaviour:
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
   cameraOrthoThreshold: 8
+  npcBoxColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &663755632
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20256,9 +20273,11 @@ MonoBehaviour:
   superJumpTime: 10
   spiderballTime: 5
   glidingTime: 7
+  balloonTime: 7
   superJumpColor: {r: .986206889, g: 1, b: 0, a: 1}
   spiderBallColor: {r: 1, g: .600000024, b: 0, a: 1}
   glidingColor: {r: .406896591, g: 1, b: 0, a: 1}
+  balloonColor: {r: 1, g: 1, b: 1, a: 1}
   particlePrefab: {fileID: 484718, guid: df05215a6cef2ed42b5c2dab33229e62, type: 2}
   powerupTimer: 0
   powerupTime: 1
@@ -22330,6 +22349,7 @@ MonoBehaviour:
   moveTime: 1
   pauseTime: .400000006
   moveParent: 1
+  flipOnTurn: 0
 --- !u!61 &761567060
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22408,7 +22428,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 64b12b15baf9644af9f0651e6705f0ef, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 75
+      value: 75.0999985
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 64b12b15baf9644af9f0651e6705f0ef, type: 2}
       propertyPath: m_LocalPosition.z
@@ -22604,6 +22624,7 @@ MonoBehaviour:
   moveTime: 1.5
   pauseTime: 2
   moveParent: 1
+  flipOnTurn: 0
 --- !u!61 &779455781
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -23723,6 +23744,7 @@ MonoBehaviour:
   moveTime: 1.5
   pauseTime: 1.5
   moveParent: 1
+  flipOnTurn: 0
 --- !u!61 &831132214
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -24922,6 +24944,7 @@ MonoBehaviour:
   moveTime: .75
   pauseTime: .200000003
   moveParent: 1
+  flipOnTurn: 0
 --- !u!61 &875334661
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -25313,6 +25336,7 @@ MonoBehaviour:
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
   cameraOrthoThreshold: 8
+  npcBoxColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &884519110
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -26058,8 +26082,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 914536969}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.2000008, y: -10.2799997, z: 0}
-  m_LocalScale: {x: 68, y: 2, z: 1}
+  m_LocalPosition: {x: -16.7700005, y: -9.40999985, z: 0}
+  m_LocalScale: {x: 70, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 765620937}
   m_RootOrder: 0
@@ -26074,11 +26098,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0212e8ea2c609f42b67f050ef788780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileX: 1
+  tileX: 14
   tileY: 1
-  scaleX: 1
-  scaleY: 1
-  useScaleAsTile: 1
+  scaleX: 5
+  scaleY: 5
+  useScaleAsTile: 0
   zrot: 0
 --- !u!212 &914536972
 SpriteRenderer:
@@ -27448,6 +27472,7 @@ MonoBehaviour:
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
   cameraOrthoThreshold: 8
+  npcBoxColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &999387492
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -28609,6 +28634,7 @@ MonoBehaviour:
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
   cameraOrthoThreshold: 8
+  npcBoxColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &1040344729
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -28742,6 +28768,7 @@ MonoBehaviour:
   moveTime: 2
   pauseTime: 2
   moveParent: 1
+  flipOnTurn: 0
 --- !u!61 &1045629931
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -30288,6 +30315,7 @@ MonoBehaviour:
   moveTime: 2
   pauseTime: 2
   moveParent: 1
+  flipOnTurn: 0
 --- !u!61 &1113855394
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -30697,6 +30725,7 @@ MonoBehaviour:
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
   cameraOrthoThreshold: 8
+  npcBoxColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &1129632981
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -31946,6 +31975,7 @@ MonoBehaviour:
   talkNoise: {fileID: 8300000, guid: b58daab098d8eec408a4ecc41e61f527, type: 3}
   talkVolume: 1
   cameraOrthoThreshold: 8
+  npcBoxColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &1171290179
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -32224,6 +32254,7 @@ MonoBehaviour:
   talkNoise: {fileID: 8300000, guid: cbe97fd68db457a4a956b593a6c7518f, type: 3}
   talkVolume: 1
   cameraOrthoThreshold: 8
+  npcBoxColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!61 &1177413244
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -34428,6 +34459,7 @@ MonoBehaviour:
   moveTime: 4
   pauseTime: .100000001
   moveParent: 0
+  flipOnTurn: 0
 --- !u!61 &1268515771
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -36469,6 +36501,7 @@ MonoBehaviour:
   moveTime: 3.5
   pauseTime: .100000001
   moveParent: 0
+  flipOnTurn: 0
 --- !u!61 &1325332017
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -37186,7 +37219,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 313851b45d626164094e1d528a443474, type: 2}
       propertyPath: cameraOrthoSize
-      value: 26
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 313851b45d626164094e1d528a443474, type: 2}
@@ -37301,7 +37334,7 @@ Transform:
   m_PrefabInternal: {fileID: 764960347}
   m_GameObject: {fileID: 1359291898}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.2999992, y: 75, z: -10}
+  m_LocalPosition: {x: -20.2999992, y: 75.0999985, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -38208,6 +38241,7 @@ MonoBehaviour:
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
   cameraOrthoThreshold: 8
+  npcBoxColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &1390811522
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -45236,6 +45270,7 @@ MonoBehaviour:
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
   cameraOrthoThreshold: 8
+  npcBoxColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &1705855481
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -46803,6 +46838,7 @@ MonoBehaviour:
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
   cameraOrthoThreshold: 8
+  npcBoxColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &1760162376
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -47346,6 +47382,7 @@ MonoBehaviour:
   talkNoise: {fileID: 8300000, guid: 38699be7eb455644e88f4e8283d71e7b, type: 3}
   talkVolume: 1
   cameraOrthoThreshold: 8
+  npcBoxColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &1777553244
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -52247,6 +52284,7 @@ MonoBehaviour:
   moveTime: .600000024
   pauseTime: .150000006
   moveParent: 1
+  flipOnTurn: 0
 --- !u!61 &1993253491
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -52883,6 +52921,7 @@ MonoBehaviour:
   moveTime: 2
   pauseTime: 2
   moveParent: 1
+  flipOnTurn: 0
 --- !u!61 &2006332509
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -55764,6 +55803,7 @@ MonoBehaviour:
   moveTime: 2.5
   pauseTime: .100000001
   moveParent: 0
+  flipOnTurn: 0
 --- !u!61 &2106511494
 BoxCollider2D:
   m_ObjectHideFlags: 0

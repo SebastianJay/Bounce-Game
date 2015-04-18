@@ -64,6 +64,7 @@ public class PlayerBallControl : MonoBehaviour {
 	private Transform platformParent;
 
 	public bool spiderball = false;
+	public bool balloonActive = false;
 
 	// Use this for initialization
 	void Awake () {
@@ -223,7 +224,7 @@ public class PlayerBallControl : MonoBehaviour {
 	}
 
 	private void ListenForJump() {
-		if (Input.GetButton("Jump") && grounded && jumpTimer >= jumpDelay && !spiderball 
+		if (Input.GetButton("Jump") && grounded && jumpTimer >= jumpDelay && !spiderball && !balloonActive
 		    && Time.frameCount - springFrame > Spring.springJumpFrameThreshold)
 		{
 			//Debug.Log ("Jump");
@@ -299,7 +300,7 @@ public class PlayerBallControl : MonoBehaviour {
 			{
 				//recordButtonDelay();
 				//translational movement
-				if (!spiderball) {
+				if (!spiderball && !balloonActive) {
 					if(Mathf.Sign(h) != Mathf.Sign (this.rigidbody2D.velocity.x))
 					{
 						this.rigidbody2D.AddForce(Vector2.right * h * moveForce * translationStoppingMultiplier);
