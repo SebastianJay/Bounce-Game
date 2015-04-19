@@ -29,6 +29,12 @@ public class InitialStateConfig : MonoBehaviour {
 		//1 - pier
 		if (level == 1)
 		{
+			if (DialogueConstantParser.EvaluateConstant("BobBodyGone")) {
+				GameObject obj = GameObject.FindGameObjectWithTag("PierObjBody");
+				obj.transform.GetChild(0).gameObject.SetActive(false);
+				obj = GameObject.FindGameObjectWithTag("PierObjBall");
+				obj.transform.GetChild(0).gameObject.SetActive(true);	//need child since finding inactive gameobject not possible
+			}
 		}
 		//2 - city
 		if (level == 2)
