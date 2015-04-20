@@ -61,6 +61,8 @@ public class PlayerBallControl : MonoBehaviour {
 
 	//moving platform detection vars
 	private bool onMovingPlatform = false;
+	[HideInInspector]
+	public bool spiderOnMovingPlatform = false;
 	private Transform platformParent;
 
 	public bool spiderball = false;
@@ -109,6 +111,15 @@ public class PlayerBallControl : MonoBehaviour {
 			if (collision.gameObject.GetComponent<Death>() != null)
 				return;
 
+			//more hacky code to get spiderball with moving platform working
+			if (spiderball && (collision.collider.GetComponent<MovingPlatform>() != null ||
+			                   (collision.collider.transform.childCount > 0 && 
+			 				    collision.collider.transform.GetChild(0).GetComponent<MovingPlatform>() != null)))
+			{
+				spiderOnMovingPlatform = true;
+				platformParent = collision.collider.transform;
+			}
+
 			if (Mathf.Abs(Vector2.Angle(Vector2.up, contact.normal)) < groundedThresholdAngle)
 				grounded = true;
 
@@ -132,11 +143,13 @@ public class PlayerBallControl : MonoBehaviour {
 
 				scaleObject.transform.position = contact.point;//Center the scaleObject at the contact point so that the ball scales from one end
 	
+				//Debug.Log ("deforming");
 				//deforming onto a moving platform logic - in this case, the scale object should be child of platform
 				//if (collision.gameObject.GetComponent<MovingPlatform>() != null)
 				//	scaleObject.transform.parent = collision.gameObject.transform;
-				if (onMovingPlatform && Vector2.Angle(contact.normal, Vector2.up) <= 5f)	//odd angles cause screwiness
+				if ((onMovingPlatform && Vector2.Angle(contact.normal, Vector2.up) <= 5f) || spiderOnMovingPlatform)	//odd angles cause screwiness
 				{
+					//Debug.Log ("reparenting scale object");
 					scaleObject.transform.parent = platformParent;
 				}
 				else if (collision.gameObject.transform.childCount > 0
@@ -214,9 +227,8 @@ public class PlayerBallControl : MonoBehaviour {
 
 	void OnCollisionExit2D(Collision2D collision) {
 		hasContact = false;
-		//if (collision.gameObject.GetComponent<MovingPlatform>() != null
-		//    && dState == DeformationState.Normal)
-		//	transform.parent.parent = null;	//get off the platform
+		//if (spiderball && spiderOnMovingPlatform)
+		//	spiderOnMovingPlatform = false;
 		if (!onMovingPlatform
 		    && dState == DeformationState.Normal
 		    && transform.parent.parent != null)
@@ -399,17 +411,13 @@ public class PlayerBallControl : MonoBehaviour {
 			dState = DeformationState.Normal;
 		}
 
-		if (onMovingPlatform && transform.parent.parent == null)
+		if (!spiderball && spiderOnMovingPlatform)
+		{
+			spiderOnMovingPlatform = false;
+		}
+		if ((onMovingPlatform || spiderOnMovingPlatform) && transform.parent.parent == null)
 			transform.parent.parent = platformParent;
-		//else if (onMovingPlatform && scaleObject != null && transform.parent.parent == scaleObject.transform
-		//         && transform.parent.parent.parent == null)
-		//{
-		//	scaleObject.transform.parent = platformParent;
-		//	Debug.Log ("moving scale object");
-			//originalScale = new Vector3(scaleObject.transform.localScale.x * 
-			//originalScale = scaleObject.transform.localScale;
-		//}
-		else if (!onMovingPlatform && platformParent != null)
+		else if (!onMovingPlatform && !spiderOnMovingPlatform && platformParent != null)
 		{
 			transform.parent.parent = null;
 			platformParent = null;

@@ -69,6 +69,7 @@ public class Spiderball : MonoBehaviour {
 			jumpTimer = 0.0f;
 
 			this.rigidbody2D.AddForce(lastCollision.contacts[0].normal.normalized * pbc.jumpForce);
+			GetComponent<PlayerBallControl>().spiderOnMovingPlatform = false;
 			GetComponent<PlayerSoundManager>().PlaySound("SpiderJump");
 		}
 
@@ -114,6 +115,7 @@ public class Spiderball : MonoBehaviour {
 
 	void SpiderCollisionCheck(Collision2D collision)
 	{
+		bool movingPlatformFlag = false;
 		if (collision.gameObject.GetComponent<OneWay>() != null
 		    || collision.gameObject.GetComponent<Spring>() != null)
 		{	//avoids the weird behavior of certain objects by ignoring them
@@ -121,6 +123,13 @@ public class Spiderball : MonoBehaviour {
 			ForceQuit();
 			return;
 		}
+		if (collision.collider.GetComponent<MovingPlatform>() != null ||
+		    (collision.collider.transform.childCount > 0 && 
+		 	 collision.collider.transform.GetChild(0).GetComponent<MovingPlatform>() != null))
+		{
+			movingPlatformFlag = true;
+		}
+
 		collisionInst++;
 		float h = Input.GetAxis("Horizontal");
 		if (collisionInst == 1 || shouldShiftJoint(h, collision.contacts[0], otherCollide))
@@ -131,22 +140,49 @@ public class Spiderball : MonoBehaviour {
 			lastCollision = collision;
 			if (joint == null && !isConnected) {
 				joint = gameObject.AddComponent("SpringJoint2D") as SpringJoint2D;
+
 				isConnected = true;
 				framesSinceDisconnected = 0;
 
-				joint.distance = jointDistance;
-
 				joint.anchor = new Vector2(0f,0f);
-				joint.connectedAnchor = collision.contacts[0].point;
 				joint.collideConnected = true;
 				joint.dampingRatio = dampingRatio;
 				joint.frequency = stickiness;
 
+				if (movingPlatformFlag)
+				{
+					joint.connectedBody = collision.rigidbody;
+					joint.connectedAnchor = collision.collider.transform.InverseTransformPoint(
+						collision.contacts[0].point);
+					joint.distance = (collision.contacts[0].point - new Vector2(transform.position.x, transform.position.y)).magnitude;
+				}
+				else
+				{
+					joint.connectedBody = null;
+					joint.connectedAnchor = collision.contacts[0].point;
+					joint.distance = jointDistance;
+					GetComponent<PlayerBallControl>().spiderOnMovingPlatform = false;
+				}
+
 			} else if (joint != null) {
 				joint.enabled = true;
 				joint.anchor = new Vector2(0f,0f);
-				joint.connectedAnchor = collision.contacts[0].point;
+
 				framesSinceDisconnected = 0;
+
+				if (movingPlatformFlag)
+				{
+					joint.connectedBody = collision.rigidbody;
+					joint.connectedAnchor = collision.collider.transform.InverseTransformPoint(
+						collision.contacts[0].point);
+					joint.distance = (collision.contacts[0].point - new Vector2(transform.position.x, transform.position.y)).magnitude;
+				}
+				else
+				{
+					joint.connectedBody = null;
+					joint.connectedAnchor = collision.contacts[0].point;
+					GetComponent<PlayerBallControl>().spiderOnMovingPlatform = false;
+				}
 			}
 		}
 		if (joint != null)
