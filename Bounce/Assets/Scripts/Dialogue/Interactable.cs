@@ -11,6 +11,7 @@ public class Interactable : MonoBehaviour {
 	public AudioClip talkNoise;
 	public float talkVolume = 1f;
 	public float cameraOrthoThreshold = 8f;
+	public Color npcBoxColor = Color.white;
 
 	private string npcName;
 	private bool inTrigger = false;
@@ -89,6 +90,10 @@ public class Interactable : MonoBehaviour {
 				talkSrc.Play();
 			if (talkBubble != null)
 				talkBubble.gameObject.SetActive(false);
+			if (playerObj.GetComponent<PowerupManager>() != null && 
+			    playerObj.GetComponent<PowerupManager>().currentPowerup == PowerupType.Balloon) {
+				playerObj.GetComponent<PowerupManager>().EndPowerup();
+			}
 			if (cam.GetComponent<Camera>().orthographicSize > cameraOrthoThreshold) {
 				lastConfig = cam.GetComponent<CameraFollow>().GetConfig();
 				CameraFollowConfig camConfig = new CameraFollowConfig();
@@ -101,6 +106,7 @@ public class Interactable : MonoBehaviour {
 			}
 			else
 				changedCamConfig = false;
+			dSystem.GetComponent<DialogueSystem>().npcBgColor = npcBoxColor;
 		}
 		if (inConversation)
 		{

@@ -31,6 +31,7 @@ GameObject:
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400008}
   - 114: {fileID: 11495496}
+  - 114: {fileID: 11428868}
   - 114: {fileID: 11400006}
   - 114: {fileID: 11486938}
   m_Layer: 9
@@ -128,6 +129,7 @@ MonoBehaviour:
   inConversation: 0
   npcTalker: {fileID: 0}
   spiderball: 0
+  balloonActive: 0
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -158,9 +160,11 @@ MonoBehaviour:
   superJumpTime: 10
   spiderballTime: 5
   glidingTime: 7
+  balloonTime: 7
   superJumpColor: {r: .986206889, g: 1, b: 0, a: 1}
   spiderBallColor: {r: 1, g: .600000024, b: 0, a: 1}
   glidingColor: {r: .406896591, g: 1, b: 0, a: 1}
+  balloonColor: {r: 1, g: .375, b: .375, a: 1}
   particlePrefab: {fileID: 484718, guid: df05215a6cef2ed42b5c2dab33229e62, type: 2}
   powerupTimer: 0
   powerupTime: 1
@@ -203,6 +207,26 @@ MonoBehaviour:
   dampingRatio: 1
   jointDistance: .100000001
   jumpDelay: .300000012
+--- !u!114 &11428868
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b123c5fc1c3990b40bcdbef8545abe1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  balloonPrefab: {fileID: 491408, guid: 02d08df25241e7c43810a675327e2ec4, type: 2}
+  moveForce: 55
+  maxBalloonVelocity: 5.5
+  balloonUpForce: 5
+  detachDistance: 4.5
+  maxDistance: 3
+  jointForceConst: 315
+  jointForceLin: 70
+  jointForceQuad: 30
 --- !u!114 &11486938
 MonoBehaviour:
   m_ObjectHideFlags: 1
