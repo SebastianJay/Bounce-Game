@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12001, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: GUISkin
+  m_Name: ScrollbarSkin
   m_EditorClassIdentifier: 
   m_Font: {fileID: 12800000, guid: db492050954ca314da6a17998bcd2f64, type: 3}
   m_box:
@@ -900,7 +900,7 @@ MonoBehaviour:
   m_verticalScrollbar:
     m_Name: verticalscrollbar
     m_Normal:
-      m_Background: {fileID: 10906, guid: 0000000000000000f000000000000000, type: 0}
+      m_Background: {fileID: 2800000, guid: be23e02ad8027a1408679d9358d1b750, type: 3}
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
     m_Hover:
       m_Background: {fileID: 0}
@@ -959,7 +959,7 @@ MonoBehaviour:
   m_verticalScrollbarThumb:
     m_Name: verticalscrollbarthumb
     m_Normal:
-      m_Background: {fileID: 10904, guid: 0000000000000000f000000000000000, type: 0}
+      m_Background: {fileID: 2800000, guid: 3ffdcdfc7f852224fbb9563a07084d29, type: 3}
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
     m_Hover:
       m_Background: {fileID: 0}
@@ -1014,7 +1014,7 @@ MonoBehaviour:
     m_FixedWidth: 15
     m_FixedHeight: 0
     m_StretchWidth: 0
-    m_StretchHeight: 1
+    m_StretchHeight: 0
   m_verticalScrollbarUpButton:
     m_Name: verticalscrollbarupbutton
     m_Normal:

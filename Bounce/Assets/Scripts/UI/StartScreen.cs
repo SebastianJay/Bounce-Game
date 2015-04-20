@@ -7,7 +7,18 @@ public class StartScreen : MonoBehaviour {
 
 	public AudioSource navigateSrc;
 	public AudioSource loadSrc;
-	public GUIStyle style;
+
+	public Texture2D cursorTexture;
+	public CursorMode cursorMode = CursorMode.Auto;
+	public Vector2 hotSpot = Vector2.zero;
+
+	public GUIStyle panelStyle;
+	public GUIStyle labelStyle;
+	public GUIStyle button120x50Style;
+	public GUIStyle button320x90Style;
+	public GUIStyle button1280x90Style;
+
+	public GUISkin scrollbarSkin;
 
 	//public Texture backgroundTexture;
 	private GameObject screenFadeObj;
@@ -23,6 +34,14 @@ public class StartScreen : MonoBehaviour {
 		screenFadeObj = GameObject.FindGameObjectWithTag ("ScreenFader");
 	}
 
+	void OnMouseEnter() {
+		Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+	}
+	
+	void OnMouseExit() {
+		Cursor.SetCursor(null, Vector2.zero, cursorMode);
+	}
+
 	void OnGUI() {
 		//GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height), backgroundTexture);
 		GUI.depth = 0;
@@ -35,7 +54,7 @@ public class StartScreen : MonoBehaviour {
 
 	void DrawMainPanel() {
 		bool fading = screenFadeObj != null && screenFadeObj.GetComponent<ScreenFading> ().IsTransitioning();
-		if (GUI.Button (new Rect (Screen.width * 0.1f, Screen.height * 0.8f, Screen.width * 0.2f, Screen.height * 0.1f), "New Game") && !fading) {
+		if (GUI.Button (new Rect (Screen.width * 0.1f, Screen.height * 0.8f, Screen.width * 0.2f, Screen.height * 0.1f), "New Game", button320x90Style) && !fading) {
 			if (loadSrc != null)
 				loadSrc.Play();
 			if (screenFadeObj != null)
@@ -43,7 +62,7 @@ public class StartScreen : MonoBehaviour {
 			else
 				StartTransition();
 		}
-		if (GUI.Button (new Rect (Screen.width * 0.4f, Screen.height * 0.8f, Screen.width * 0.2f, Screen.height * 0.1f), "Load Game") && !fading) {
+		if (GUI.Button (new Rect (Screen.width * 0.4f, Screen.height * 0.8f, Screen.width * 0.2f, Screen.height * 0.1f), "Load Game", button320x90Style) && !fading) {
 			if (navigateSrc != null)
 				navigateSrc.Play();
 			if (screenFadeObj != null)
@@ -51,7 +70,7 @@ public class StartScreen : MonoBehaviour {
 			else
 				ShowLoadPanelTransition();
 		}
-		if (GUI.Button (new Rect (Screen.width * 0.7f, Screen.height * 0.8f, Screen.width * 0.2f, Screen.height * 0.1f), "Credits") && !fading) {
+		if (GUI.Button (new Rect (Screen.width * 0.7f, Screen.height * 0.8f, Screen.width * 0.2f, Screen.height * 0.1f), "Credits", button320x90Style) && !fading) {
 			if (navigateSrc != null)
 				navigateSrc.Play();
 			// go to credits scene
@@ -60,17 +79,19 @@ public class StartScreen : MonoBehaviour {
 
 	void DrawLoadPanel() {
 		bool fading = screenFadeObj != null && screenFadeObj.GetComponent<ScreenFading> ().IsTransitioning();
-		GUI.Box (new Rect (0.1f * Screen.width, 0.1f * Screen.height, 0.8f * Screen.width, 0.7f * Screen.height), "");
+		GUI.Box (new Rect (0.1f * Screen.width, 0.1f * Screen.height, 0.8f * Screen.width, 0.7f * Screen.height), "", panelStyle);
 
+		GUI.skin = scrollbarSkin;
 		scrollPosition = GUI.BeginScrollView (new Rect (0.1f * Screen.width, 0.1f * Screen.height, 0.8f * Screen.width, 0.8f * Screen.height),
 		                                      scrollPosition, new Rect (0, 0, Screen.width * 0.75f, saveFileList.Count*50f+10f));
+		GUI.skin = null;
 
 		// A list of all our save files
 		for(int i = 0; i < saveFileList.Count; i++)
 		{
 			int saveFileIndex = i;
-			GUI.Label (new Rect (10, i*70+10, Screen.width * 0.75f-10, 50),"File "+saveFileIndex);
-			if(GUI.Button (new Rect(170,i*60+10,120,50),"Load") && !fading)
+			GUI.Label (new Rect (10, i*60+10, Screen.width * 0.75f-10, 50),"File "+saveFileIndex,labelStyle);
+			if(GUI.Button (new Rect(170,i*60+10,120,50),"Load",button120x50Style) && !fading)
 			{
 				if (loadSrc != null)
 					loadSrc.Play();
@@ -84,7 +105,7 @@ public class StartScreen : MonoBehaviour {
 			}
 		}
 		GUI.EndScrollView ();
-		if (GUI.Button (new Rect (0.1f * Screen.width, 0.8f * Screen.height, 0.8f * Screen.width, 0.1f * Screen.height), "Back") && !fading) {
+		if (GUI.Button (new Rect (0.1f * Screen.width, 0.8f * Screen.height, 0.8f * Screen.width, 0.1f * Screen.height), "Back", button1280x90Style) && !fading) {
 			if (navigateSrc != null)
 				navigateSrc.Play();
 			if (screenFadeObj != null)
