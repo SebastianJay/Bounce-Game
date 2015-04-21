@@ -14,6 +14,7 @@ public class MainMenu : MonoBehaviour
 	};
 
 	public const float EPSILON = 1e-11f;
+	public const float MOUSE_EPSILON = 1e-5f;
 	public MenuTab currentTab = MenuTab.Save;
 	public bool showMenu = false;
 	
@@ -57,7 +58,26 @@ public class MainMenu : MonoBehaviour
 	private GameObject screenFadeObj;
 	List<string> saveFileList = new List<string>();
 
-	public GUISkin skin;
+	public Texture2D cursorTexture;
+	public CursorMode cursorMode = CursorMode.Auto;
+	public Vector2 hotSpot = Vector2.zero;
+	public float cursorShowTime = 3.0f;
+	private float cursorShowTimer = 0.0f;
+	private Vector3 cursorLastPosition;
+
+	// the right way to do this is to define a skin
+	// however, since we have different size buttons we'll do it the bad way (many styles)
+	//	(this version of GUI is deprecated anyway, so..) 
+	public GUIStyle panelStyle;
+	public GUIStyle labelStyle;
+	//public GUIStyle scrollbarStyle;
+	public GUIStyle button50x50Style;
+	public GUIStyle button120x50Style;
+	public GUIStyle button150x50Style;
+	public GUIStyle button240x50Style;
+
+	//and for some reason scrollbars don't have a well defined style..
+	public GUISkin scrollbarSkin;
 
 	// Use this for initialization
 	void Start ()
@@ -102,6 +122,14 @@ public class MainMenu : MonoBehaviour
 		}
 	}
 
+	void OnMouseEnter() {
+		Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+	}
+
+	void OnMouseExit() {
+		Cursor.SetCursor(null, Vector2.zero, cursorMode);
+	}
+
 	// Update is called once per frame
 	void Update ()
 	{
@@ -121,6 +149,20 @@ public class MainMenu : MonoBehaviour
 				closeMenuSrc.Play();
 			showMenu = !showMenu;
 		}
+		if (!showMenu) {
+			if ((Input.mousePosition - cursorLastPosition).magnitude < MOUSE_EPSILON) {
+				cursorShowTimer += Time.deltaTime;
+				if (cursorShowTimer >= cursorShowTime) {
+					Screen.showCursor = false;
+				}
+			} else {
+				cursorShowTimer = 0f;
+				Screen.showCursor = true;
+			}
+			cursorLastPosition = Input.mousePosition;
+		} else {
+			Screen.showCursor = true;
+		}
 	}
 
 	void OnGUI ()
@@ -128,32 +170,30 @@ public class MainMenu : MonoBehaviour
 		if (showMenu) {
 			bool fadingOut = screenFadeObj != null && screenFadeObj.GetComponent<ScreenFading>().IsTransitioning();
 
-			GUI.skin = skin;
-			
 			//Freeze the game if the menu is active
 			Time.timeScale = EPSILON;
 
 			//Main menu frame
-			GUI.Box (new Rect (Screen.width / 2 - menuWidth / 2, Screen.height / 2 - menuHeight / 2, menuWidth, menuHeight), "");
+			GUI.Box (new Rect (Screen.width / 2 - menuWidth / 2, Screen.height / 2 - menuHeight / 2, menuWidth, menuHeight), "", panelStyle);
 
 			//Buttons for the three tabs
 			if (GUI.Button (new Rect (Screen.width / 2 - menuWidth / 2 + 10, 
 			                          Screen.height / 2 - menuHeight / 2 + 10, 
-			                          tabButtonWidth, tabButtonHeight), "Saves")) {
+			                          tabButtonWidth, tabButtonHeight), "Saves", button150x50Style)) {
 				if (currentTab != MenuTab.Save && switchPanelSrc != null)
 					switchPanelSrc.Play ();
 				currentTab = MenuTab.Save;
 			}
 			if (GUI.Button (new Rect (Screen.width / 2 - tabButtonWidth / 2, 
 			                          Screen.height / 2 - menuHeight / 2 + 10, 
-			                          tabButtonWidth, tabButtonHeight), "Collection")) {
+			                          tabButtonWidth, tabButtonHeight), "Collection", button150x50Style)) {
 				if (currentTab != MenuTab.Inventory && switchPanelSrc != null)
 					switchPanelSrc.Play ();
 				currentTab = MenuTab.Inventory;
 			}
 			if (GUI.Button (new Rect (Screen.width / 2 + menuWidth / 2 - 10 - tabButtonWidth, 
 			                          Screen.height / 2 - menuHeight / 2 + 10, 
-			                          tabButtonWidth, tabButtonHeight), "Map")) {
+			                          tabButtonWidth, tabButtonHeight), "Map", button150x50Style)) {
 				if (currentTab != MenuTab.Map && switchPanelSrc != null)
 					switchPanelSrc.Play ();
 				currentTab = MenuTab.Map;
@@ -169,13 +209,15 @@ public class MainMenu : MonoBehaviour
 					UpdateSaveFileList();
 				}
 
+				GUI.skin = scrollbarSkin;
 				scrollPosition = GUI.BeginScrollView (new Rect (Screen.width / 2 - menuWidth / 2 + 10, 
 				                                                Screen.height / 2 - menuHeight / 2 + 15 + tabButtonHeight, 
 				                                                scrollViewWidth, scrollViewHeight), scrollPosition, 
 				                                      new Rect (0, 0, scrollViewWidth - 20, saveFileList.Count*50+10));
+				GUI.skin = null;
 
 				// A button for creating a new save file
-				if(GUI.Button (new Rect(0,10,240,tabButtonHeight),"Save to New File") && !fadingOut)
+				if(GUI.Button (new Rect(0,10,240,tabButtonHeight),"Save to New File", button240x50Style) && !fadingOut)
 				{
 					if (saveSrc != null)
 						saveSrc.Play();
@@ -185,7 +227,7 @@ public class MainMenu : MonoBehaviour
 				}
 				if (XmlSerialzer.currentSaveFile >= 0 && saveFileList.Count > 0) {
 					// A button for creating a new save file
-					if(GUI.Button (new Rect(240,10,240,tabButtonHeight),"Overwrite current data (" + XmlSerialzer.currentSaveFile + ")") && !fadingOut)
+					if(GUI.Button (new Rect(240,10,240,tabButtonHeight),"Overwrite current data (" + XmlSerialzer.currentSaveFile + ")", button240x50Style) && !fadingOut)
 					{
 						if (saveSrc != null)
 							saveSrc.Play();
@@ -208,8 +250,8 @@ public class MainMenu : MonoBehaviour
 				{
 					//string s = saveFileList[i-1];
 					int saveFileIndex = i-1;
-					GUI.Label (new Rect (10, i*70+10, scrollViewWidth-10, 50),"File "+saveFileIndex);
-					if(GUI.Button (new Rect(50,i*60+10,120,50),"Overwrite") && !fadingOut)
+					GUI.Label (new Rect (10, i*60+10, scrollViewWidth-10, 50),"File "+saveFileIndex, labelStyle);
+					if(GUI.Button (new Rect(50,i*60+10,120,50),"Overwrite", button120x50Style) && !fadingOut)
 					{
 						if (saveSrc != null)
 							saveSrc.Play();
@@ -217,7 +259,7 @@ public class MainMenu : MonoBehaviour
 						PlayerDataManager.SaveCurrent();
 						UpdateSaveFileList();
 					}
-					if(GUI.Button (new Rect(170,i*60+10,120,50),"Load") && !fadingOut)
+					if(GUI.Button (new Rect(170,i*60+10,120,50),"Load", button120x50Style) && !fadingOut)
 					{
 						if (loadSrc != null)
 							loadSrc.Play();
@@ -236,7 +278,11 @@ public class MainMenu : MonoBehaviour
 			//Inventory tab layout - grid of items
 			//hovering over an item yields its name and description
 			if (currentTab == MenuTab.Inventory) {
-				scrollPositionI = GUI.BeginScrollView (new Rect (Screen.width / 2 - menuWidth / 2 + 10, Screen.height / 2 - menuHeight / 2 + 15 + tabButtonHeight, scrollViewWidth, scrollViewHeight), scrollPositionI, new Rect (0, 0, scrollViewWidth - 20, scrollViewHeight * 4));
+
+				GUI.skin = scrollbarSkin;
+				scrollPositionI = GUI.BeginScrollView (new Rect (Screen.width / 2 - menuWidth / 2 + 10, Screen.height / 2 - menuHeight / 2 + 15 + tabButtonHeight, scrollViewWidth, scrollViewHeight), 
+				                                       scrollPositionI, new Rect (0, 0, scrollViewWidth - 20, scrollViewHeight * 4));
+				GUI.skin = null;
 				//Inventory inventory = player.GetComponent<PlayerDataManager>().inventory;
 				/*
 				Inventory inventory = PlayerDataManager.inventory;
@@ -264,9 +310,9 @@ public class MainMenu : MonoBehaviour
 									nameStr = iter.Current.Value.name;
 									infoStr = iter.Current.Value.description;
 								}
-								GUI.Label(new Rect(10, 10, 420, 30), nameStr);
-								GUI.Label(new Rect(10, 40, 420, 80), infoStr);
-								if (GUI.Button(buttonBoundingBox, iter.Current.Value.image.texture) && !fadingOut) {
+								GUI.Label(new Rect(10, 10, 420, 30), nameStr, labelStyle);
+								GUI.Label(new Rect(10, 40, 420, 80), infoStr, labelStyle);
+								if (GUI.Button(buttonBoundingBox, iter.Current.Value.image.texture, button50x50Style) && !fadingOut) {
 									if (player.GetComponent<AccessoryManager>() != null) {
 										if (itemSrc != null)
 											itemSrc.Play();
@@ -278,7 +324,7 @@ public class MainMenu : MonoBehaviour
 								}
 							} else {
 								//blank button
-								GUI.Button(buttonBoundingBox, "");
+								GUI.Button(buttonBoundingBox, "", button50x50Style);
 							}
 							if (!iter.MoveNext()) {
 								iterdone = true;
@@ -298,7 +344,10 @@ public class MainMenu : MonoBehaviour
 			//You can teleport instantly to any checkpoint you have visited from here
 			if (currentTab == MenuTab.Map) {
 
-				scrollPosition2 = GUI.BeginScrollView (new Rect (Screen.width / 2 - menuWidth / 2 + 10, Screen.height / 2 - menuHeight / 2 + 15 + tabButtonHeight, scrollViewWidth, scrollViewHeight), scrollPosition2, new Rect (0, 0, scrollViewWidth - 20, scrollViewHeight * 4));
+				GUI.skin = scrollbarSkin;
+				scrollPosition2 = GUI.BeginScrollView (new Rect (Screen.width / 2 - menuWidth / 2 + 10, Screen.height / 2 - menuHeight / 2 + 15 + tabButtonHeight, scrollViewWidth, scrollViewHeight), 
+				                                       scrollPosition2, new Rect (0, 0, scrollViewWidth - 20, scrollViewHeight * 4));
+				GUI.skin = null;
 				//Dictionary<int, List<int> > previousCheckpoints = player.GetComponent<PlayerDataManager>().previousCheckpoints;
 				//Dictionary<int, List<int> > previousCheckpoints = PlayerDataManager.previousCheckpoints;
 				//HashSet<int> previousCheckpoints = PlayerDataManager.previousCheckpoints;
@@ -318,16 +367,16 @@ public class MainMenu : MonoBehaviour
 					if (!flag)
 						continue;
 
-					GUI.Label (new Rect (10, i*50+10, scrollViewWidth-10, 50), entry.Key);
+					GUI.Label (new Rect (10, i*50+10, scrollViewWidth-10, 50), entry.Key, labelStyle);
 					for(int j = 1; j < entry.Value.Count+1; j++)
 					{
 						if (!PlayerDataManager.previousCheckpoints.Contains (entry.Value[j-1]))
 							continue;
 						i++;
 						//GUI.Label (new Rect (10, i*50+j*50+10, scrollViewWidth-10, 50),"Checkpoint "+entry.Value[j-1]);
-						GUI.Label (new Rect (10, i*50+10, scrollViewWidth-10, 50),ImmutableData.GetCheckpointData()[entry.Value[j-1]].name);
+						GUI.Label (new Rect (10, i*50+10, scrollViewWidth-10, 50),ImmutableData.GetCheckpointData()[entry.Value[j-1]].name, labelStyle);
 
-						if(GUI.Button (new Rect(250,i*50+10,100,50),"Teleport") && !fadingOut)
+						if(GUI.Button (new Rect(250,i*50+10,120,50),"Teleport", button120x50Style) && !fadingOut)
 						{
 							if (teleportSrc != null)
 								teleportSrc.Play();

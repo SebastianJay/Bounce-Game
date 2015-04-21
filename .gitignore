@@ -62,5 +62,4 @@ monodroid*.msi
 Bounce/BounceSaveData*
 Bounce/Save_Data/BounceSaveData*
 Builds/*/Save_Data/BounceSaveData*
-
-
+Builds/LOCAL_BUILD
