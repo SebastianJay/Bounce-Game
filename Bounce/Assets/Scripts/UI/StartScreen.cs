@@ -126,10 +126,11 @@ public class StartScreen : MonoBehaviour {
 		GUI.Box (new Rect (0.1f * Screen.width, 0.1f * Screen.height, 0.8f * Screen.width, 0.7f * Screen.height), "", panelStyle);
 
 
-		GUI.skin = scrollbarSkin;
-		scrollPosition = GUI.BeginScrollView (new Rect (0.1f * Screen.width, 0.1f * Screen.height, 0.8f * Screen.width, 0.8f * Screen.height),
-		                                      scrollPosition, new Rect (0, 0, Screen.width * 0.75f, saveFileList.Count*50f+10f));
-		GUI.skin = null;
+		//GUI.skin = scrollbarSkin;
+		//scrollPosition = GUI.BeginScrollView (new Rect (0.1f * Screen.width, 0.1f * Screen.height, 0.8f * Screen.width, 0.8f * Screen.height),
+		//                                      scrollPosition, new Rect (0, 0, Screen.width * 0.75f, Screen.height * 0.65f));
+		//GUI.skin = null;
+		GUI.BeginGroup(new Rect (0.1f * Screen.width, 0.1f * Screen.height, 0.8f * Screen.width, 0.8f * Screen.height));
 
 		//we'll hardcode the literals
 		string header = "Bounce was created by student game developers at the University of Virginia.\n" +
@@ -147,7 +148,9 @@ public class StartScreen : MonoBehaviour {
 			GUI.Label (new Rect (20+(i/8)*180, 110+(i%8)*20, 200, 15), contributors[i], labelStyle);
 		}
 		GUI.Label (new Rect(20, 270, Screen.width * 0.75f-20, 15), footer, labelStyle);
-		GUI.EndScrollView ();
+		//GUI.EndScrollView ();
+		GUI.EndGroup();
+
 		if (GUI.Button (new Rect (0.1f * Screen.width, 0.8f * Screen.height, 0.8f * Screen.width, 0.1f * Screen.height), "Back", button1280x90Style) && !fading) {
 			if (navigateSrc != null)
 				navigateSrc.Play();
