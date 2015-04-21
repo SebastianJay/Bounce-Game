@@ -25,7 +25,7 @@ public class StartScreen : MonoBehaviour {
 	private List<string> saveFileList = new List<string>();
 
 	private bool loadPanelVisible = false;
-	private bool savePanelVisible = false;
+	private bool creditsPanelVisible = false;
 	Vector2 scrollPosition = Vector2.zero;
 
 	void Start()
@@ -47,6 +47,8 @@ public class StartScreen : MonoBehaviour {
 		GUI.depth = 0;
 		if (loadPanelVisible) {
 			DrawLoadPanel();
+		} else if (creditsPanelVisible) {
+			DrawCreditsPanel();
 		} else {
 			DrawMainPanel();
 		}
@@ -73,6 +75,10 @@ public class StartScreen : MonoBehaviour {
 		if (GUI.Button (new Rect (Screen.width * 0.7f, Screen.height * 0.8f, Screen.width * 0.2f, Screen.height * 0.1f), "Credits", button320x90Style) && !fading) {
 			if (navigateSrc != null)
 				navigateSrc.Play();
+			if (screenFadeObj != null)
+				screenFadeObj.GetComponent<ScreenFading>().Transition(ShowCreditsPanelTransition, false);
+			else
+				ShowCreditsPanelTransition();
 			// go to credits scene
 		}
 	}
@@ -115,6 +121,43 @@ public class StartScreen : MonoBehaviour {
 		}
 	}
 
+	void DrawCreditsPanel() {
+		bool fading = screenFadeObj != null && screenFadeObj.GetComponent<ScreenFading> ().IsTransitioning();
+		GUI.Box (new Rect (0.1f * Screen.width, 0.1f * Screen.height, 0.8f * Screen.width, 0.7f * Screen.height), "", panelStyle);
+
+
+		GUI.skin = scrollbarSkin;
+		scrollPosition = GUI.BeginScrollView (new Rect (0.1f * Screen.width, 0.1f * Screen.height, 0.8f * Screen.width, 0.8f * Screen.height),
+		                                      scrollPosition, new Rect (0, 0, Screen.width * 0.75f, saveFileList.Count*50f+10f));
+		GUI.skin = null;
+
+		//we'll hardcode the literals
+		string header = "Bounce was created by student game developers at the University of Virginia.\n" +
+			"All assets are original, with the exception of sound effects and fonts, which were freely provided by nice people on the Internet. Thank you people!\n" +
+			"A list of people who contributed to this project in some form or fashion is provided below, in no particular order:";
+		string[] contributors = {"Jay Sebastian", "Julian McClinton", "Raymond Zhao", "Carter Hall",
+								 "Ronak Dhaddha", "Rob Shimshock", "Reid Bixler", "Joseph Baik",
+								 "Tyler Anderson", "Casey Horton", "Stephen Dwyer", "Brandon Bright",
+								 "Anny Wang", "Scott Kirkpatrick", "Emily Costigan", "Brian Team",
+								 "Nathan Chatham", "Lane Spangler", "Jess Platter", "David Wert",
+								 "Trad Groover", "Madelyn Luansing", "Isaac Tessler"};
+		string footer = "You can check out the project at https://github.com/SebastianJay/Bounce-Game";
+		GUI.Label (new Rect (20, 10, Screen.width * 0.75f - 20, 30), header, labelStyle);
+		for (int i = 0; i < contributors.Length; i++) {
+			GUI.Label (new Rect (20+(i/8)*180, 110+(i%8)*20, 200, 15), contributors[i], labelStyle);
+		}
+		GUI.Label (new Rect(20, 270, Screen.width * 0.75f-20, 15), footer, labelStyle);
+		GUI.EndScrollView ();
+		if (GUI.Button (new Rect (0.1f * Screen.width, 0.8f * Screen.height, 0.8f * Screen.width, 0.1f * Screen.height), "Back", button1280x90Style) && !fading) {
+			if (navigateSrc != null)
+				navigateSrc.Play();
+			if (screenFadeObj != null)
+				screenFadeObj.GetComponent<ScreenFading>().Transition(ShowCreditsPanelTransition, false);
+			else
+				ShowCreditsPanelTransition();
+		}
+	}
+
 	void UpdateSaveFileList()
 	{
 		if (!Directory.Exists(XmlSerialzer.saveDirectory)) {
@@ -139,6 +182,10 @@ public class StartScreen : MonoBehaviour {
 	
 	void ShowLoadPanelTransition() {
 		loadPanelVisible = !loadPanelVisible;
+	}
+
+	void ShowCreditsPanelTransition() {
+		creditsPanelVisible = !creditsPanelVisible;
 	}
 
 	private int loadDataIndex=0;
