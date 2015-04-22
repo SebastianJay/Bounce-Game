@@ -22,7 +22,7 @@ public class Checkpoint : MonoBehaviour {
 					if (audio != null)
 						audio.Play ();
 					notifyObj.GetComponent<NotificationManager>().PushMessage(
-						"Added the landmark \"" + ImmutableData.GetCheckpointData()[checkPointID].name +"\" to the Map");
+						"Added landmark \"" + ImmutableData.GetCheckpointData()[checkPointID].name +"\" to Map");
 				}
 				PlayerDataManager.previousCheckpoints.Add(checkPointID);
 				PlayerDataManager.lastCheckpoint = checkPointID;

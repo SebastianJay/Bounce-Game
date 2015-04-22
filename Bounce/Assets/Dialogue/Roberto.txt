@@ -13,7 +13,7 @@
 [Pero, es difícil to use my tools with no hands. {Line 8}]
 [It's all because of that diablo, Rob! {Line 9}]
 [But what about you, amigo? What brings you to esta torre? {}][I'm trying to stop Rob. {Line 10}][I'm lost and hungry. {Line 14}]
-[Excellente! I will help you! Here, try this: {Line 11}]
+[Excellente! I will help you! Here, try this-- {Line 11}]
 [Do you see that peach over there? {Line 12}]
 [It is so sticky, I bet you could stick to walls if you ate it. {Line 13}]
 [Buena suerte, amigo! Take care!{End, set TalkedToRoberto}]

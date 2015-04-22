@@ -279,10 +279,12 @@ public class MainMenu : MonoBehaviour
 			//hovering over an item yields its name and description
 			if (currentTab == MenuTab.Inventory) {
 
-				GUI.skin = scrollbarSkin;
-				scrollPositionI = GUI.BeginScrollView (new Rect (Screen.width / 2 - menuWidth / 2 + 10, Screen.height / 2 - menuHeight / 2 + 15 + tabButtonHeight, scrollViewWidth, scrollViewHeight), 
-				                                       scrollPositionI, new Rect (0, 0, scrollViewWidth - 20, scrollViewHeight * 4));
-				GUI.skin = null;
+				//GUI.skin = scrollbarSkin;
+				//scrollPositionI = GUI.BeginScrollView (new Rect (Screen.width / 2 - menuWidth / 2 + 10, Screen.height / 2 - menuHeight / 2 + 15 + tabButtonHeight, scrollViewWidth, scrollViewHeight), 
+				//                                       scrollPositionI, new Rect (0, 0, scrollViewWidth - 20, scrollViewHeight * 4));
+				//GUI.skin = null;
+				GUI.BeginGroup(new Rect(Screen.width/2 - menuWidth/2 + 10, Screen.height/2-menuHeight/2 + 15 + tabButtonHeight, scrollViewWidth, scrollViewHeight));
+
 				//Inventory inventory = player.GetComponent<PlayerDataManager>().inventory;
 				/*
 				Inventory inventory = PlayerDataManager.inventory;
@@ -337,7 +339,7 @@ public class MainMenu : MonoBehaviour
 				}
 
 				//selectedItem = GUI.SelectionGrid(new Rect (Screen.width / 2 - menuWidth / 2 + 10, Screen.height / 2 - menuHeight / 2 + 15 + tabButtonHeight, scrollViewWidth, gridHeight), selectedItem, itemNames, inventoryGridX);				 
-				GUI.EndScrollView ();
+				GUI.EndGroup ();
 			}
 
 			//Map layout - scrollable list of locations across levels
@@ -346,7 +348,7 @@ public class MainMenu : MonoBehaviour
 
 				GUI.skin = scrollbarSkin;
 				scrollPosition2 = GUI.BeginScrollView (new Rect (Screen.width / 2 - menuWidth / 2 + 10, Screen.height / 2 - menuHeight / 2 + 15 + tabButtonHeight, scrollViewWidth, scrollViewHeight), 
-				                                       scrollPosition2, new Rect (0, 0, scrollViewWidth - 20, scrollViewHeight * 4));
+				                                       scrollPosition2, new Rect (0, 0, scrollViewWidth - 20, scrollViewHeight*2));
 				GUI.skin = null;
 				//Dictionary<int, List<int> > previousCheckpoints = player.GetComponent<PlayerDataManager>().previousCheckpoints;
 				//Dictionary<int, List<int> > previousCheckpoints = PlayerDataManager.previousCheckpoints;
@@ -445,6 +447,7 @@ public class MainMenu : MonoBehaviour
 		List<string> FullFileList = Directory.GetFiles (XmlSerialzer.saveDirectory, 
 		                                                XmlSerialzer.savePrefix + "*" + XmlSerialzer.saveSuffix, 
 		                                                SearchOption.TopDirectoryOnly).ToList();
+
 		saveFileList.Clear ();
 		saveFileList.AddRange (FullFileList);
 		saveFileList.Sort ();

@@ -9448,7 +9448,7 @@ MonoBehaviour:
       m_Background: {fileID: 2800000, guid: 91f6894897e5a9745807b76a9677e522, type: 3}
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
     m_Hover:
-      m_Background: {fileID: 0}
+      m_Background: {fileID: 2800000, guid: 588c7981972a0464798d3d2afc559b7b, type: 3}
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
     m_Active:
       m_Background: {fileID: 2800000, guid: 24ba22b4a317b8a44a21d969d394723f, type: 3}
@@ -9507,7 +9507,7 @@ MonoBehaviour:
       m_Background: {fileID: 2800000, guid: 1b4697e91e1810040a4b306093461e5b, type: 3}
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
     m_Hover:
-      m_Background: {fileID: 0}
+      m_Background: {fileID: 2800000, guid: a548c0054e59eb749b5debb2224b3107, type: 3}
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
     m_Active:
       m_Background: {fileID: 2800000, guid: 79d65f2f763380c499a3ab007e278f4f, type: 3}
@@ -9566,7 +9566,7 @@ MonoBehaviour:
       m_Background: {fileID: 2800000, guid: 6295687793eecd84893a6de34d0005dd, type: 3}
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
     m_Hover:
-      m_Background: {fileID: 0}
+      m_Background: {fileID: 2800000, guid: f35b1b3f34179cc4baf4204518e8bb8b, type: 3}
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
     m_Active:
       m_Background: {fileID: 2800000, guid: e28cee0f4a79b9b4fadc59eccdc61a99, type: 3}
@@ -9625,7 +9625,7 @@ MonoBehaviour:
       m_Background: {fileID: 2800000, guid: 09a3ba47ecfd4af49a4d34db616b4d3b, type: 3}
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
     m_Hover:
-      m_Background: {fileID: 0}
+      m_Background: {fileID: 2800000, guid: 094bf32f1f2ff734981c77caaaa933d9, type: 3}
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
     m_Active:
       m_Background: {fileID: 2800000, guid: 6729fe907515fb243acd4525a7de98f5, type: 3}
@@ -15563,7 +15563,7 @@ GUITexture:
   m_PrefabInternal: {fileID: 1532564831}
   m_GameObject: {fileID: 1572116158}
   m_Enabled: 1
-  m_Texture: {fileID: 2800000, guid: 8c18085145a8f394a844753060d24dc7, type: 3}
+  m_Texture: {fileID: 2800000, guid: 277bd96e18a6d2c4b9abdb2b83a1b9c3, type: 3}
   m_Color: {r: .5, g: .5, b: .5, a: .5}
   m_PixelInset:
     serializedVersion: 2
@@ -22959,13 +22959,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef791b29f7aed4a4293d1e4543ccc437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 0
-  time: 1
-  barHorizontalLength: .5
-  barVerticalLength: .100000001
-  frameOffsetFactor: 0
+  barPosStart: {x: .200000003, y: .949999988}
+  barDimensions: {x: .400000006, y: .0700000003}
+  foregroundDimensions: {x: .89151901, y: .469999999}
   pbbackground: {fileID: 1572116160}
-  powerbar: {fileID: 2119603179}
+  pbforeground: {fileID: 2119603179}
 --- !u!1001 &2099143576
 Prefab:
   m_ObjectHideFlags: 0
@@ -23351,7 +23349,7 @@ GUITexture:
   m_PrefabInternal: {fileID: 1532564831}
   m_GameObject: {fileID: 2119603178}
   m_Enabled: 1
-  m_Texture: {fileID: 2800000, guid: 1fa15e81f599b4d66952d946578740c3, type: 3}
+  m_Texture: {fileID: 2800000, guid: 8c18085145a8f394a844753060d24dc7, type: 3}
   m_Color: {r: .5, g: .5, b: .5, a: .5}
   m_PixelInset:
     serializedVersion: 2
@@ -23370,7 +23368,7 @@ Transform:
   m_PrefabInternal: {fileID: 1532564831}
   m_GameObject: {fileID: 2119603178}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.61999989, y: .5, z: 0}
+  m_LocalPosition: {x: -3.61999989, y: .5, z: 1}
   m_LocalScale: {x: 0, y: 0, z: 1}
   m_Children: []
   m_Father: {fileID: 823293469}

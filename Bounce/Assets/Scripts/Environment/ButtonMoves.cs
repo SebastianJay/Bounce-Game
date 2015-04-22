@@ -9,6 +9,8 @@ public class ButtonMoves : MonoBehaviour {
 
 	public Transform moveObj;
 	public Transform buttonObj;
+	public Sprite unpressedSprite;
+	public Sprite pressedSprite;
 	public float xOffset;
 	public float yOffset;
 	public float moveTime = 5.0f;
@@ -23,8 +25,8 @@ public class ButtonMoves : MonoBehaviour {
 
 	private bool depressed = false;	//whether player is on button
 	private bool activated = false;	//whether the button event happened
-	private Vector3 originalScale;
-	private Vector3 pressOffset;
+	//private Vector3 originalScale;
+	//private Vector3 pressOffset;
 	private float pressTimer = 0.0f;
 	private Transform pressPerson;
 	private AudioSource pressSrc;
@@ -39,9 +41,9 @@ public class ButtonMoves : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		originalScale = buttonObj.localScale;
+		//originalScale = buttonObj.localScale;
+		//pressOffset = new Vector3 (0f, -height / 2, 0f);
 		float height = buttonObj.GetComponent<SpriteRenderer>().sprite.bounds.size.y;	//?
-		pressOffset = new Vector3 (0f, -height / 2, 0f);
 		if (setConstant && DialogueConstantParser.EvaluateConstant (constantName))
 			activated = true;	//already activated previously
 	}
@@ -101,10 +103,11 @@ public class ButtonMoves : MonoBehaviour {
 		{
 			if (!depressed)
 			{
-				buttonObj.localScale = new Vector3(originalScale.x,
-				                                   originalScale.y / 2,
-				                                   originalScale.z);
-				buttonObj.position += pressOffset;
+				//buttonObj.localScale = new Vector3(originalScale.x,
+				//                                   originalScale.y / 2,
+				//                                   originalScale.z);
+				//buttonObj.position += pressOffset;
+				buttonObj.GetComponent<SpriteRenderer>().sprite = pressedSprite;
 				if (pressSrc != null)
 					pressSrc.Play();
 			}
@@ -120,8 +123,9 @@ public class ButtonMoves : MonoBehaviour {
 		{
 			if (depressed)
 			{
-				buttonObj.localScale = originalScale;
-				buttonObj.position -= pressOffset;
+				//buttonObj.localScale = originalScale;
+				//buttonObj.position -= pressOffset;
+				buttonObj.GetComponent<SpriteRenderer>().sprite = unpressedSprite;
 			}
 			depressed = false;
 			if (!activated)

@@ -395,7 +395,7 @@ public class PlayerBallControl : MonoBehaviour {
 					jumpDepressed = false;
 					outVelocity = outVelocity.normalized*originalMagnitude*depressedBounciness;
 				}
-				if (spiderball)
+				if (GetComponent<Spiderball>().enabled)
 				{
 					outVelocity = Vector2.zero;	//super sticky!
 				}

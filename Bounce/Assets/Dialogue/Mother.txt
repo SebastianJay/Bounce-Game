@@ -14,7 +14,7 @@ if TalkedToMother and not MotherIsFollowing
 [Hey! What happened?{Line 9}]
 [We need to get going and find my little Bobby!{Event MotherFollows, End}]
 
-if MotherIsFollowing choose 8, 10
+if MotherIsFollowing choose 10, 12
 [Oh my, would you look at that!{End}]
 [Hmm... I wonder how we'll get through here?{End}]
 [I hope little Bobby is alright...{End}]

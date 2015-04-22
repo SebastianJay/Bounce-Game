@@ -75,7 +75,7 @@ public class PowerupManager : MonoBehaviour {
 		particleObj.particleSystem.startColor = particleColor;
 		powerupTimer = 0f;
 		if (timeObj != null) {
-			timeObj.GetComponent<PowerUpTime>().time = powerupTime;
+			timeObj.GetComponent<PowerUpTime>().StartTimer(powerupTime, particleColor);
 		}
 	}
 
@@ -85,7 +85,7 @@ public class PowerupManager : MonoBehaviour {
 		{
 			powerupTimer += Time.deltaTime;
 			if (timeObj != null) {
-				timeObj.GetComponent<PowerUpTime>().timer = powerupTimer;
+				timeObj.GetComponent<PowerUpTime>().UpdateTimer(powerupTimer);
 			}
 
 			if (powerupTimer >= powerupTime)
@@ -122,7 +122,7 @@ public class PowerupManager : MonoBehaviour {
 		currentPowerup = PowerupType.Normal;
 
 		if (timeObj != null) {
-			timeObj.GetComponent<PowerUpTime>().timer = 0f;
+			timeObj.GetComponent<PowerUpTime>().EndTimer();
 		}
 		if (particleObj != null) {
 			particleObj.particleSystem.emissionRate = 0f;

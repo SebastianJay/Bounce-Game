@@ -2,7 +2,7 @@
 #---
 #For use on the roof of the tower in the city world
 
-[You, sir! You look like a smart felloW! {Line 2}]
+[You, sir! You look like a smart fellow! {Line 2}]
 [There must be a lot of brains in that big head of yours. {Line 3}]
 [So clearly, you understand that we must be on the forefront of technology! {}][What are you talking about? {Line 4}][How did you get up here? {Line 8}]
 [Teleportation, my dear head! Teleportation! {Line 5}]
@@ -15,7 +15,9 @@
 [And it just so happens that YOU arrived right as I needed one! {Line 12}]
 [So of course, YOU'LL be the one to test it, yes? {}][Yes. {Line 16}][No! {Line 19}]
 [Eh, I took the elevator up. {Line 14}]
-[Now, about your gracious volunteering...{}]
+[Now, about your gracious volunteering...{Set TalkedToScientistOnce}]
+
+if TalkedToScientistOnce
 [I'll just need you to step into this teleporter for me. {}][Okay.{Line 16}][No way!{Line 19}]
 [Excellent! Now, this won't hurt a bit. {Line 17}]
 [Although you may be a bit... discombobulated. {Line 18}]
