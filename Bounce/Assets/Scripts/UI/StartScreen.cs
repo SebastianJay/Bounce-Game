@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 
 public class StartScreen : MonoBehaviour {
 
@@ -22,7 +23,7 @@ public class StartScreen : MonoBehaviour {
 
 	//public Texture backgroundTexture;
 	private GameObject screenFadeObj;
-	private List<string> saveFileList = new List<string>();
+	private List<BounceFileMetaData> saveFileList = new List<BounceFileMetaData>();
 
 	private bool loadPanelVisible = false;
 	private bool creditsPanelVisible = false;
@@ -30,8 +31,8 @@ public class StartScreen : MonoBehaviour {
 
 	void Start()
 	{
-		UpdateSaveFileList();
 		screenFadeObj = GameObject.FindGameObjectWithTag ("ScreenFader");
+		saveFileList = BounceXmlSerializer.RetrieveMetaData ();
 	}
 
 	void OnMouseEnter() {
@@ -96,8 +97,14 @@ public class StartScreen : MonoBehaviour {
 		for(int i = 0; i < saveFileList.Count; i++)
 		{
 			int saveFileIndex = i;
-			GUI.Label (new Rect (10, i*60+10, Screen.width * 0.75f-10, 50),"File "+saveFileIndex,labelStyle);
-			if(GUI.Button (new Rect(170,i*60+10,120,50),"Load",button120x50Style) && !fading)
+			BounceFileMetaData metadata = saveFileList[saveFileIndex];
+			long minutes = (metadata.numberSeconds/60)%60;
+			long hours = metadata.numberSeconds/3600;
+			GUI.Label (new Rect (10, i*60+10, 200, 20), ImmutableData.GetCheckpointData()[metadata.lastCheckpoint].name, labelStyle);
+			GUI.Label (new Rect (10, i*60+30, 200, 20), string.Format("Playtime: {0:D2}:{1:D2}", hours, minutes), labelStyle);
+			GUI.Label (new Rect (210, i*60+10, 200, 20), string.Format("Collectibles: {0}", metadata.numberCollectibles), labelStyle);
+			GUI.Label (new Rect (210, i*60+30, 200, 20), string.Format("Deaths: {0}", metadata.numberDeaths), labelStyle);
+			if(GUI.Button (new Rect(Screen.width * 0.8f - 200f,i*60+10,120,50),"Load",button120x50Style) && !fading)
 			{
 				if (loadSrc != null)
 					loadSrc.Play();
@@ -161,28 +168,6 @@ public class StartScreen : MonoBehaviour {
 		}
 	}
 
-	void UpdateSaveFileList()
-	{
-		if (!Directory.Exists(XmlSerialzer.saveDirectory)) {
-			saveFileList.Clear();
-			return;
-		}
-		
-		//string root = Path.GetDirectoryName (Application.dataPath);
-		List<string> FullFileList = Directory.GetFiles (XmlSerialzer.saveDirectory, 
-		                                                XmlSerialzer.savePrefix + "*" + XmlSerialzer.saveSuffix, 
-		                                                SearchOption.TopDirectoryOnly).ToList();
-		saveFileList.Clear ();
-		saveFileList.AddRange (FullFileList);
-		saveFileList.Sort ();
-	}
-
-	void StartTransition()
-	{
-		ImmutableData.Init();
-		Application.LoadLevel("Pier");
-	}
-	
 	void ShowLoadPanelTransition() {
 		loadPanelVisible = !loadPanelVisible;
 	}
@@ -191,11 +176,18 @@ public class StartScreen : MonoBehaviour {
 		creditsPanelVisible = !creditsPanelVisible;
 	}
 
+	void StartTransition()
+	{
+		ImmutableData.Init();
+		PlayerDataManager.timeSinceSave = DateTime.Now;
+		Application.LoadLevel("Pier");
+	}
+
 	private int loadDataIndex=0;
 	void LoadTransition() {
 		ImmutableData.Init();
 		PlayerDataManager.loadedLevel = false;
-		XmlSerialzer.currentSaveFile = loadDataIndex;
+		BounceXmlSerializer.currentSaveFile = loadDataIndex;
 		PlayerDataManager.LoadCurrentSave();
 	}
 }

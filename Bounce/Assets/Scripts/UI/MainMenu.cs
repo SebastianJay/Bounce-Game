@@ -56,7 +56,7 @@ public class MainMenu : MonoBehaviour
 	private bool menuWasOpen = false;		//represents the first "tick" of active menu
 	private GameObject player;
 	private GameObject screenFadeObj;
-	List<string> saveFileList = new List<string>();
+	List<BounceFileMetaData> saveFileList = new List<BounceFileMetaData>();
 
 	public Texture2D cursorTexture;
 	public CursorMode cursorMode = CursorMode.Auto;
@@ -120,8 +120,9 @@ public class MainMenu : MonoBehaviour
 			switchPanelSrc.clip = switchPanelSound;
 			switchPanelSrc.volume = switchPanelVolume;
 		}
+		saveFileList = BounceXmlSerializer.RetrieveMetaData();
 	}
-
+	
 	void OnMouseEnter() {
 		Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
 	}
@@ -162,6 +163,11 @@ public class MainMenu : MonoBehaviour
 			cursorLastPosition = Input.mousePosition;
 		} else {
 			Screen.showCursor = true;
+		}
+
+		if (Input.GetKeyDown(KeyCode.A))
+		{
+			BounceXmlSerializer.RetrieveMetaData();
 		}
 	}
 
@@ -204,11 +210,6 @@ public class MainMenu : MonoBehaviour
 			//from which you can save, load, or create a new save
 			if (currentTab == MenuTab.Save) {
 
-				if(!menuWasOpen)
-				{
-					UpdateSaveFileList();
-				}
-
 				GUI.skin = scrollbarSkin;
 				scrollPosition = GUI.BeginScrollView (new Rect (Screen.width / 2 - menuWidth / 2 + 10, 
 				                                                Screen.height / 2 - menuHeight / 2 + 15 + tabButtonHeight, 
@@ -221,45 +222,43 @@ public class MainMenu : MonoBehaviour
 				{
 					if (saveSrc != null)
 						saveSrc.Play();
-					XmlSerialzer.currentSaveFile = saveFileList.Count;
+					BounceXmlSerializer.currentSaveFile = saveFileList.Count;
 					PlayerDataManager.SaveCurrent();
-					UpdateSaveFileList();
+					saveFileList = BounceXmlSerializer.RetrieveMetaData();
 				}
-				if (XmlSerialzer.currentSaveFile >= 0 && saveFileList.Count > 0) {
+				if (BounceXmlSerializer.currentSaveFile >= 0 && saveFileList.Count > 0) {
 					// A button for creating a new save file
-					if(GUI.Button (new Rect(240,10,240,tabButtonHeight),"Overwrite current data (" + XmlSerialzer.currentSaveFile + ")", button240x50Style) && !fadingOut)
+					if(GUI.Button (new Rect(240,10,240,tabButtonHeight),"Overwrite current data (" + BounceXmlSerializer.currentSaveFile + ")", button240x50Style) && !fadingOut)
 					{
 						if (saveSrc != null)
 							saveSrc.Play();
 						PlayerDataManager.SaveCurrent();
-						UpdateSaveFileList();
+						saveFileList = BounceXmlSerializer.RetrieveMetaData();
 					}
 				}
-
-				/*
-				if(GUI.Button (new Rect(10,10,200,50),"Save to New File") && !fadingOut)
-				{
-					XmlSerialzer.currentSaveFile = saveFileList.Count;
-					player.GetComponent<PlayerDataManager>().SaveCurrent();
-					UpdateSaveFileList();
-				}
-				*/
-
+				
 				// A list of all our save files
 				for(int i = 1; i < saveFileList.Count+1; i++)
 				{
 					//string s = saveFileList[i-1];
 					int saveFileIndex = i-1;
-					GUI.Label (new Rect (10, i*60+10, scrollViewWidth-10, 50),"File "+saveFileIndex, labelStyle);
-					if(GUI.Button (new Rect(50,i*60+10,120,50),"Overwrite", button120x50Style) && !fadingOut)
+					//GUI.Label (new Rect (10, i*60+10, scrollViewWidth-10, 50),"File "+saveFileIndex, labelStyle);
+					BounceFileMetaData metadata = saveFileList[saveFileIndex];
+					long minutes = (metadata.numberSeconds/60)%60;
+					long hours = metadata.numberSeconds/3600;
+					GUI.Label (new Rect (10, i*60+10, 110, 20), ImmutableData.GetCheckpointData()[metadata.lastCheckpoint].name, labelStyle);
+					GUI.Label (new Rect (10, i*60+30, 110, 20), string.Format("Playtime: {0:D2}:{1:D2}", hours, minutes), labelStyle);
+					GUI.Label (new Rect (120, i*60+10, 110, 20), string.Format("Collectibles: {0}", metadata.numberCollectibles), labelStyle);
+					GUI.Label (new Rect (120, i*60+30, 110, 20), string.Format("Deaths: {0}", metadata.numberDeaths), labelStyle);
+					if(GUI.Button (new Rect(240,i*60+10,120,50),"Overwrite", button120x50Style) && !fadingOut)
 					{
 						if (saveSrc != null)
 							saveSrc.Play();
-						XmlSerialzer.currentSaveFile = saveFileIndex;
+						BounceXmlSerializer.currentSaveFile = saveFileIndex;
 						PlayerDataManager.SaveCurrent();
-						UpdateSaveFileList();
+						saveFileList = BounceXmlSerializer.RetrieveMetaData();
 					}
-					if(GUI.Button (new Rect(170,i*60+10,120,50),"Load", button120x50Style) && !fadingOut)
+					if(GUI.Button (new Rect(360,i*60+10,120,50),"Load", button120x50Style) && !fadingOut)
 					{
 						if (loadSrc != null)
 							loadSrc.Play();
@@ -424,7 +423,7 @@ public class MainMenu : MonoBehaviour
 	private int loadDataIndex=0;
 	void LoadTransition() {
 		PlayerDataManager.loadedLevel = false;
-		XmlSerialzer.currentSaveFile = loadDataIndex;
+		BounceXmlSerializer.currentSaveFile = loadDataIndex;
 		PlayerDataManager.LoadCurrentSave();
 	}
 	
@@ -434,22 +433,5 @@ public class MainMenu : MonoBehaviour
 		PlayerDataManager.loadedLevel = true;
 		PlayerDataManager.lastCheckpoint = teleportData.Value[teleportDataIndex];
 		Application.LoadLevel(teleportData.Key);
-	}
-	
-	void UpdateSaveFileList()
-	{
-		if (!Directory.Exists(XmlSerialzer.saveDirectory)) {
-			saveFileList.Clear();
-			return;
-		}
-
-		//string root = Path.GetDirectoryName (Application.dataPath);
-		List<string> FullFileList = Directory.GetFiles (XmlSerialzer.saveDirectory, 
-		                                                XmlSerialzer.savePrefix + "*" + XmlSerialzer.saveSuffix, 
-		                                                SearchOption.TopDirectoryOnly).ToList();
-
-		saveFileList.Clear ();
-		saveFileList.AddRange (FullFileList);
-		saveFileList.Sort ();
 	}
 }

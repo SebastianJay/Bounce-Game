@@ -11,6 +11,7 @@ public class Inventory {
 
 	//public int[] items = new int[NUM_ITEMS];
 	public int[] items = new int[50];	//makes it easy to expand the enum w/o messing up save file
+	private int numUniqueItems = 0;
 
 	public bool HasItem(ItemType type)
 	{
@@ -34,6 +35,11 @@ public class Inventory {
 
 	public void ShiftItemCount(ItemType type, int num)
 	{
+		if (items[(int)type]==0 && num > 0)
+			numUniqueItems++;
+		else if (items[(int)type] > 0 && items[(int)type] + num <= 0)
+			numUniqueItems--;
+
 		items[(int)type] += num;
 		if (items[(int)type] < 0)
 			items[(int)type] = 0;
@@ -41,6 +47,11 @@ public class Inventory {
 
 	public void SetItemCount(ItemType type, int num)
 	{
+		if (items[(int)type] == 0 && num > 0)
+			numUniqueItems++;
+		else if (items[(int)type] > 0 && num == 0)
+			numUniqueItems--;
+
 		if (num >= 0)
 			items[(int)type] = num;
 	}
@@ -53,5 +64,14 @@ public class Inventory {
 	public void Load(List<int> list)
 	{
 		items = list.ToArray();
+		foreach (int i in items) {
+			if (i > 0)
+				numUniqueItems++;
+		}
+	}
+
+	public int GetNumUniqueItems()
+	{
+		return numUniqueItems;
 	}
 }

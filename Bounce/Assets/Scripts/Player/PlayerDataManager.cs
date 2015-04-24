@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class PlayerDataManager : MonoBehaviour {
 
@@ -13,7 +14,13 @@ public class PlayerDataManager : MonoBehaviour {
 	public static Inventory inventory = new Inventory();
 	public static HashSet<int> previousCheckpoints = new HashSet<int>();
 
+	public static long secondsSinceSave = 0;
+	public static DateTime timeSinceSave;
+	public static long numberDeaths = 0;
+	public static int numberUniqueItems = 0;
+
 	public static bool loadedLevel = false;		//if true, player teleported or loaded using menu
+
 	//public static int checkpointID = 0;
 	//public static int initialLevel = 0;
 
@@ -60,7 +67,7 @@ public class PlayerDataManager : MonoBehaviour {
 
 	public static void LoadCurrentSave()
 	{
-		myData = XmlSerialzer.Load ();
+		myData = BounceXmlSerializer.Load ();
 		if(myData != null && !loadedLevel)
 		{
 			lastLevel = myData.lastLevel;
@@ -71,6 +78,10 @@ public class PlayerDataManager : MonoBehaviour {
 			previousCheckpoints.Clear ();
 			previousCheckpoints.UnionWith(myData.previousCheckpoints);
 			itemEquipped = myData.itemEquipped;
+			numberDeaths = myData.numberDeaths;
+			timeSinceSave = DateTime.Now;
+			secondsSinceSave = myData.numberSeconds;
+			numberUniqueItems = inventory.GetNumUniqueItems();
 
 			Application.LoadLevel(myData.lastLevel);
 			loadedLevel = true;
@@ -88,6 +99,10 @@ public class PlayerDataManager : MonoBehaviour {
 		myData.lastLevel = lastLevel;
 		myData.constants = DialogueConstantParser.constantSet;
 		myData.itemEquipped = itemEquipped;
-		XmlSerialzer.Save (myData);
+		myData.numberSeconds = secondsSinceSave + (long)((DateTime.Now - timeSinceSave).TotalSeconds);
+		myData.numberDeaths = numberDeaths;
+		myData.numberCollectibles = inventory.GetNumUniqueItems();
+		BounceXmlSerializer.Save (myData);
+		timeSinceSave = DateTime.Now;
 	}
 }

@@ -114,6 +114,7 @@ public class Death : MonoBehaviour {
 		                                         Mathf.Clamp (player.transform.position.y, camConfig.minXAndY.y, camConfig.maxXAndY.y),
 		                                         -10f);
 
+		PlayerDataManager.numberDeaths++;
 		locked = false;
 	}
 }
