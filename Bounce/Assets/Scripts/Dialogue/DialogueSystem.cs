@@ -22,6 +22,7 @@ public class DialogueSystem : MonoBehaviour {
 	public int wordWrapCharCount = 25;
 	public float animateSpeed = 0.03f;	//seconds per character for NPC text scrolling
 	public float responseSpeed = 0.5f;	//time between NPC line and player response appearing
+	public float punctPauseMargin = 0.02f;	//additional pause for punctuation marks
 
 	//animation
 	private int cursor;
@@ -31,6 +32,8 @@ public class DialogueSystem : MonoBehaviour {
 	private bool waitingForResponse = false;
 	private int animateIndex = 0;
 	private float animateTimer = 0f;
+	private const string puncString = ".,!?:;";
+	private float originalAnimateSpeed;
 	//npc vars
 	private GameObject npcContainer;
 	private Transform npcTextObj;
@@ -43,6 +46,10 @@ public class DialogueSystem : MonoBehaviour {
 	private string playerText;
 	private List<Transform> playerTextObjLst = new List<Transform>();
 
+	void Start() {
+		originalAnimateSpeed = animateSpeed;
+	}
+
 	// Update is called once per frame
 	void Update () {
 		if (animating)
@@ -54,12 +61,16 @@ public class DialogueSystem : MonoBehaviour {
 				{
 					animateIndex++;
 					animateTimer -= animateSpeed;
+					if (puncString.Contains(""+npcText[animateIndex-1]))
+						animateSpeed = originalAnimateSpeed + punctPauseMargin;
+					else
+						animateSpeed = originalAnimateSpeed;
 					if (animateIndex <= npcText.Length)
 						npcTextObj.GetComponent<TextMesh>().text = npcName + ":\n" + npcText.Substring(0, animateIndex);
 					else
 						npcTextObj.GetComponent<TextMesh>().text = npcName + ":\n" + npcText;
 				}
-				if (animateIndex > npcText.Length)
+				if (animateIndex >= npcText.Length)
 				{
 					settingUpNPCText = false;
 					if (playerContainer != null) {
@@ -73,6 +84,7 @@ public class DialogueSystem : MonoBehaviour {
 						animating = false;
 					animateTimer = 0f;
 					animateIndex = 0;
+					animateSpeed = originalAnimateSpeed;
 				}
 			}
 			else if (settingUpPlayerText) 
@@ -86,17 +98,23 @@ public class DialogueSystem : MonoBehaviour {
 				{
 					animateIndex++;
 					animateTimer -= animateSpeed;
+					if (puncString.Contains(""+playerText[animateIndex-1]))
+						animateSpeed = originalAnimateSpeed + punctPauseMargin;
+					else
+						animateSpeed = originalAnimateSpeed;
+
 					if (animateIndex <= playerText.Length)
 						playerTextObj.GetComponent<TextMesh>().text = playerText.Substring(0, animateIndex);
 					else
 						playerTextObj.GetComponent<TextMesh>().text = playerText;
 				}
-				if (animateIndex > playerText.Length)
+				if (animateIndex >= playerText.Length)
 				{
 					settingUpPlayerText = false;
 					animating = false;
 					//waitingForResponse = true;
 					animateTimer = 0f;
+					animateSpeed = originalAnimateSpeed;
 				}
 
 			}

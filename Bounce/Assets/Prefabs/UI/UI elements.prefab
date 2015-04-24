@@ -374,6 +374,7 @@ MonoBehaviour:
   wordWrapCharCount: 25
   animateSpeed: .0299999993
   responseSpeed: 999999
+  punctPauseMargin: .0500000007
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
