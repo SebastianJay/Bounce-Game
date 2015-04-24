@@ -16,6 +16,7 @@ public class MovingPlatform : MonoBehaviour {
 	public float moveTime = 5.0f;	//in seconds, from start to end
 	public float pauseTime = 2.0f;	//in seconds, time at endpoints
 	public bool moveParent = true;	// if this collider is a "dummy child" to the larger platform
+	public bool reparentPlayer = true;	//indicates whether player should be reparented to move with the platform 
 	public bool flipOnTurn = false;	// whether object should rotate (to flip sprite) when changing direction
 
 	protected float moveTimer = 0.0f;

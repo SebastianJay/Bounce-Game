@@ -17,7 +17,8 @@ public class Spawner : MonoBehaviour {
 		if (spawnImmediately)
 		{
 			GameObject clone = Instantiate(obj, transform.position, transform.rotation) as GameObject;
-			clone.GetComponent<PowerupPickUp>().respawnTime = frequency;
+			if (clone.GetComponent<PowerupPickUp>() != null)
+				clone.GetComponent<PowerupPickUp>().respawnTime = frequency;
 			clone.transform.parent = transform;
 		}
 	}

@@ -78,11 +78,11 @@ public class PlayerBallControl : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D col)
 	{
-		if (col.GetComponent<MovingPlatform>() != null) 
+		if (col.GetComponent<MovingPlatform>() != null
+		    && col.GetComponent<MovingPlatform>().reparentPlayer) 
 		{
 			onMovingPlatform = true;
 			platformParent = col.transform.parent;
-			//Debug.Log ("Player entered");
 		}
 	}
 	void OnTriggerExit2D(Collider2D col)
@@ -90,7 +90,6 @@ public class PlayerBallControl : MonoBehaviour {
 		if (col.GetComponent<MovingPlatform>() != null) 
 		{
 			onMovingPlatform = false;
-			//Debug.Log ("Player exited");
 		}
 	}
 
@@ -120,7 +119,7 @@ public class PlayerBallControl : MonoBehaviour {
 				platformParent = collision.collider.transform;
 			}
 
-			if (Mathf.Abs(Vector2.Angle(Vector2.up, contact.normal)) < groundedThresholdAngle)
+			if (Mathf.Abs(Vector2.Angle(-Physics2D.gravity, contact.normal)) < groundedThresholdAngle)
 				grounded = true;
 
 			//Determine if ball should deform
@@ -128,7 +127,7 @@ public class PlayerBallControl : MonoBehaviour {
 			if(wasGrounded)
 				velocityToCheck += groundedThresholdBonus;
 
-			if(Mathf.Abs(Vector2.Angle(contact.normal,Vector2.up)) <= boostThresholdAngle
+			if(Mathf.Abs(Vector2.Angle(contact.normal,-Physics2D.gravity)) <= boostThresholdAngle
 			   && Mathf.Abs (Vector2.Dot (collision.relativeVelocity,contact.normal)) > velocityToCheck
 			   && dState == DeformationState.Normal)
 			{
@@ -147,14 +146,14 @@ public class PlayerBallControl : MonoBehaviour {
 				//deforming onto a moving platform logic - in this case, the scale object should be child of platform
 				//if (collision.gameObject.GetComponent<MovingPlatform>() != null)
 				//	scaleObject.transform.parent = collision.gameObject.transform;
-				if ((onMovingPlatform && Vector2.Angle(contact.normal, Vector2.up) <= 5f) || spiderOnMovingPlatform)	//odd angles cause screwiness
+				if ((onMovingPlatform && Vector2.Angle(contact.normal, -Physics2D.gravity) <= 5f) || spiderOnMovingPlatform)	//odd angles cause screwiness
 				{
 					//Debug.Log ("reparenting scale object");
 					scaleObject.transform.parent = platformParent;
 				}
 				else if (collision.gameObject.transform.childCount > 0
 				         && collision.gameObject.transform.GetChild(0).GetComponent<MovingPlatform>() != null
-						   && Vector2.Angle(contact.normal, Vector2.up) <= 2f)	//super-hard-coding
+						   && Vector2.Angle(contact.normal, -Physics2D.gravity) <= 2f)	//super-hard-coding
 				{
 					//this is cheating a bit - relying on a straight collision with a horizontal platform
 					//we probably won't have any exeptional cases in the game, though, so it should be fine..(?)
@@ -200,7 +199,7 @@ public class PlayerBallControl : MonoBehaviour {
 			Debug.DrawRay (contact.point, contact.normal, Color.yellow);
 		foreach (ContactPoint2D contact in collision.contacts)
 		{
-			if (Mathf.Abs(Vector2.Angle(Vector2.up, contact.normal)) < groundedThresholdAngle)
+			if (Mathf.Abs(Vector2.Angle(- Physics2D.gravity, contact.normal)) < groundedThresholdAngle)
 				grounded = true;
 		}
 
@@ -244,7 +243,7 @@ public class PlayerBallControl : MonoBehaviour {
 			//DEBUG
 			rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0f);	//gets rid of the "extra high jump"
 			//
-			this.rigidbody2D.AddForce(Vector2.up * jumpForce);
+			this.rigidbody2D.AddForce(-Physics2D.gravity.normalized * jumpForce);
 			jumpTimer = 0.0f;
 			hasContact = false;
 			jumpFrame = Time.frameCount;
@@ -313,13 +312,14 @@ public class PlayerBallControl : MonoBehaviour {
 				//recordButtonDelay();
 				//translational movement
 				if (!spiderball && !balloonActive) {
+					Vector2 relativeRight = new Vector2(-Physics2D.gravity.y, Physics2D.gravity.x).normalized;
 					if(Mathf.Sign(h) != Mathf.Sign (this.rigidbody2D.velocity.x))
 					{
-						this.rigidbody2D.AddForce(Vector2.right * h * moveForce * translationStoppingMultiplier);
+						this.rigidbody2D.AddForce(relativeRight * h * moveForce * translationStoppingMultiplier);
 					}
 					else if (Mathf.Abs(this.rigidbody2D.velocity.x) < maxPlayerGeneratedSpeed)
 					{
-						this.rigidbody2D.AddForce(Vector2.right * h * moveForce);
+						this.rigidbody2D.AddForce(relativeRight * h * moveForce);
 					}
 				}
 				//rotational movement
