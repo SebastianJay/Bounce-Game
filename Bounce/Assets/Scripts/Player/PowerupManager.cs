@@ -11,7 +11,7 @@ public class PowerupManager : MonoBehaviour {
 	public float spiderballTime = 100f;	
 	//public float glidingScale = .02f;
 	public float glidingTime = 15f;
-	public float balloonTime = 7f;
+	public float balloonTime = 12f;
 
 	public Color superJumpColor;
 	public Color spiderBallColor;
