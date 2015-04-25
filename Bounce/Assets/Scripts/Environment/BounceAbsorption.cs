@@ -2,14 +2,6 @@
 using System.Collections;
 
 public class BounceAbsorption : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	//If 1, all bounce is absorbed, if 0, none is
+	public float absorptionFactor = 0.5f;	
 }

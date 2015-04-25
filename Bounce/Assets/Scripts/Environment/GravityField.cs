@@ -12,15 +12,25 @@ public class GravityField : MonoBehaviour {
 	public float appliedDrag = 2f;
 
 	public static Transform dominantField;
+	private GameObject playerObj;
 
 	// Use this for initialization
 	void Start () {
-
+		playerObj = GameObject.FindGameObjectWithTag("Player");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
+		if (dominantField == transform) {
+			if (!directional) {
+				Vector2 diff = new Vector2(transform.position.x - playerObj.transform.position.x,
+				                           transform.position.y - playerObj.transform.position.y);
+				Physics2D.gravity = diff.normalized * gravityStrength;
+				playerObj.rigidbody2D.AddForce(Physics2D.gravity.normalized * additionalForce * diff.sqrMagnitude);
+			} else {
+				playerObj.rigidbody2D.AddForce(direction.normalized * additionalForce);
+			}
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D col)
@@ -38,18 +48,10 @@ public class GravityField : MonoBehaviour {
 		}
 	}
 
+	/*
 	void OnTriggerStay2D(Collider2D col)
 	{
-		if (col.tag == "Player" && dominantField == transform) {
-			if (!directional) {
-				Vector2 diff = new Vector2(transform.position.x - col.transform.position.x,
-				                           transform.position.y - col.transform.position.y);
-				Physics2D.gravity = diff.normalized * gravityStrength;
-				col.rigidbody2D.AddForce(Physics2D.gravity.normalized * additionalForce * diff.sqrMagnitude);
-			} else {
-				col.rigidbody2D.AddForce(direction.normalized * additionalForce);
-			}
-		}
 	}
+	*/
 
 }

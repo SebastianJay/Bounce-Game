@@ -1846,6 +1846,7 @@ MonoBehaviour:
   moveTime: 2
   pauseTime: .5
   moveParent: 1
+  reparentPlayer: 1
   flipOnTurn: 0
 --- !u!1 &148770700
 GameObject:
@@ -5520,6 +5521,7 @@ MonoBehaviour:
   moveTime: 5
   pauseTime: 2
   moveParent: 1
+  reparentPlayer: 1
   flipOnTurn: 0
 --- !u!61 &486781462
 BoxCollider2D:
@@ -6713,7 +6715,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d0e4ee8ea85aa3b4dbfc1d91fa06947b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 601e9d4678682c043a9b5fb22bb56b13, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &633514345
 GameObject:
@@ -6969,6 +6971,7 @@ MonoBehaviour:
   moveTime: 2
   pauseTime: .25
   moveParent: 1
+  reparentPlayer: 1
   flipOnTurn: 0
 --- !u!114 &666452994
 MonoBehaviour:
@@ -9204,6 +9207,7 @@ MonoBehaviour:
   moveTime: 4
   pauseTime: 0
   moveParent: 1
+  reparentPlayer: 1
   flipOnTurn: 0
 --- !u!61 &859111976
 BoxCollider2D:
@@ -11568,7 +11572,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1049360917}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 45.3061676, y: -28.5350552, z: 0}
+  m_LocalPosition: {x: 53.3289413, y: -29.988678, z: 0}
   m_LocalScale: {x: 16.4232731, y: 16.4587383, z: 1}
   m_Children: []
   m_Father: {fileID: 1275751891}
@@ -11735,8 +11739,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1078718179}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.0339203589, y: -7.59464359, z: 0}
-  m_LocalScale: {x: .500036597, y: .500036955, z: 1}
+  m_LocalPosition: {x: -.0145159373, y: -7.86414146, z: 0}
+  m_LocalScale: {x: 1.0219965, y: .763513625, z: 1}
   m_Children: []
   m_Father: {fileID: 1740423726}
   m_RootOrder: 2
@@ -11760,7 +11764,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d06facb41173c454d89d13a0be12fcad, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 184177b2a38c11b4886504ed8e732d2c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1082226290
 GameObject:
@@ -13609,7 +13613,7 @@ Camera:
   m_GameObject: {fileID: 1187082560}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 3
   m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -15562,6 +15566,7 @@ MonoBehaviour:
   moveTime: 6
   pauseTime: 3
   moveParent: 1
+  reparentPlayer: 1
   flipOnTurn: 0
 --- !u!61 &1318366201
 BoxCollider2D:
@@ -16355,6 +16360,7 @@ MonoBehaviour:
   moveTime: 3
   pauseTime: 1
   moveParent: 1
+  reparentPlayer: 1
   flipOnTurn: 0
 --- !u!114 &1406147560
 MonoBehaviour:
@@ -18046,6 +18052,7 @@ MonoBehaviour:
   moveTime: 5
   pauseTime: 0
   moveParent: 1
+  reparentPlayer: 1
   flipOnTurn: 0
 --- !u!114 &1540369145
 MonoBehaviour:
@@ -18280,6 +18287,7 @@ MonoBehaviour:
   moveTime: 4
   pauseTime: 1
   moveParent: 1
+  reparentPlayer: 1
   flipOnTurn: 0
 --- !u!61 &1617651702
 BoxCollider2D:
@@ -20272,7 +20280,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 3477195907
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4791fe67ddd626c4d82d4579a3b53045, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4c0dfe8d203b69442aa97e704d697e43, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1740423726
 Transform:
@@ -21034,6 +21042,7 @@ MonoBehaviour:
   moveTime: 25
   pauseTime: 2
   moveParent: 1
+  reparentPlayer: 1
   flipOnTurn: 1
 --- !u!61 &1808606604
 BoxCollider2D:
@@ -23713,6 +23722,7 @@ MonoBehaviour:
   moveTime: 7
   pauseTime: 4
   moveParent: 1
+  reparentPlayer: 1
   flipOnTurn: 0
 --- !u!61 &1990424922
 BoxCollider2D:
@@ -23822,6 +23832,7 @@ MonoBehaviour:
   moveTime: 1
   pauseTime: 2
   moveParent: 1
+  reparentPlayer: 1
   flipOnTurn: 0
 --- !u!114 &2010018264
 MonoBehaviour:
@@ -24144,6 +24155,7 @@ MonoBehaviour:
   moveTime: 7
   pauseTime: 4
   moveParent: 1
+  reparentPlayer: 1
   flipOnTurn: 0
 --- !u!61 &2024093591
 BoxCollider2D:

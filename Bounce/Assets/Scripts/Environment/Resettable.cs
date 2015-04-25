@@ -43,6 +43,12 @@ public class Resettable : MonoBehaviour {
 		ResetHingeJoint ();
 		ResetCollider ();
 		ResetRigidbody ();
+		if (GetComponent<MovingPlatform>() != null){
+			GetComponent<MovingPlatform>().Reset();
+		}
+		else if (transform.childCount > 0 && transform.GetChild(0).GetComponent<MovingPlatform>() != null){
+			transform.GetChild(0).GetComponent<MovingPlatform>().Reset();
+		}
 	}
 
 	void ResetPosition () {
@@ -69,6 +75,7 @@ public class Resettable : MonoBehaviour {
 	}
 
 	void ResetRigidbody () {
-		this.gameObject.rigidbody2D.fixedAngle = true;
+		if (rigidbody2D != null)
+			this.gameObject.rigidbody2D.fixedAngle = true;
 	}
 }
