@@ -1,0 +1,4 @@
+#Giant Mutant Rat 3
+#The third freakishly huge rat. Seriously, what do they put into the water? Right next to the exit ladder.
+
+[Hey buddy, got any cheese you can spare? I promise I won't hurt you, I just want some cheese. {End}]
