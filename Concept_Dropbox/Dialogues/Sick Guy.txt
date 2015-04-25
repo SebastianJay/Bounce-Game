@@ -1,0 +1,13 @@
+#Sick guy - Refuses to admit that he's sick. "Just allergies", according to him. He could at least blow his nose…
+
+[Hey man *sniffle* got any tissues? {Line 2}][*sniff* {Line 3}] [*cough* {Line 4}] [*cough* {Line 5}] [*wheeze* {Line 6}] [*gag* {Line 7}] [*pant* {Line 8}] 
+[*gasp*]
+[Holy Cow! Have you should see a doctor about that cold!{Line 9}]
+
+[Heck no, *sniffle* haven’t you seen that weirdo quack doc yet? {Line 10}] [*sniffle* {Line 11}] [Besides, {Line 12}] [*wheeze* {Line 13}] [it’s only allergies. {Line 14}][*Coughs up blood*]
+[You should still probably get that checked out, but it’s your call… {End, set TalkedToSickGuy}]
+
+IfTalkedToSickGuy
+[]
+[Are you REALLY sure you’re okay? {Line 15}]
+[Never {Line 16}] [*wheeze* {Line 17}] [been better. {Line 17}] [*sniffle* {End}]

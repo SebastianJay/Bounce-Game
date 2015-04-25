@@ -1,0 +1,6 @@
+#Giant Mutant Rat 1 - The first freakishly huge rat. Helps on the first jump in the sewer. Seriously, what do they put into the water?
+
+[If I were you, I would avoid the water. Just the other day, Biggles slipped and fell in, and since then, I haven’t seen him around.  You see those pipes down there? If you don’t jump far enough by using the W or Up keys, you’ll end up just like Biggles. Don’t end up like Biggles.]
+[Geez! Why do you even live here? This place is a death trap! {Line 2}]
+
+[Well, we only live here because it’s convenient to travel through town through these sewers. Oh, and also because people usually scream and try to hurt us if we go out above ground. The entrance you just came in from the shady side of town where most of the weirdos live, and over there in the top right is the path to get to the ship. {End}]

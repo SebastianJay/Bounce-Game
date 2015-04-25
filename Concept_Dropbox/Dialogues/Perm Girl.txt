@@ -1,0 +1,13 @@
+#Perm Girl - Deathly afraid of water. Is she a relative of the Wicked Witch?
+
+[Stop! Don’t get any closer! {}] 
+[*Slightly edge in* {Line 2}]
+[What’s wrong? {Line 3}]
+[C'mon, I really need to get to the other side of the city. {Line 4}]
+
+[EEEK!!! {End, set TalkedToPG}]
+[You’re dripping wet! If you get any closer to me, you’ll ruin my perm! {End, set TalkedToPG}]
+[You’re dripping wet! I’ll let you pass by if you dry off first.{End, set TalkedToPG}]
+
+IfTalkedtoPG
+[Well, I guess it’s alright for you to pass by now that you’re dry. I just didn’t want some random blockhead ruining my perm. Seriously, I just spent $100 at the salon for this look. I can’t get my hair wet for the next two days. {End}]

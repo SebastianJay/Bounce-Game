@@ -1,0 +1,21 @@
+#Speedo guy- A former believer in swim trunks. Now that he's converted, he won't stop praising the aerodynamic properties of Speedos.
+
+[Every man deserves a satisfyingly springy pair of Speedos.{}]
+[I don’t think I have the body for that kind of thing… {Line 2}]
+[Eww, gross. Nobody looks good in Speedos. Period. {Line 2}]
+[Spandex is a privilege, not a right. {Line 2}]
+
+[You poor, poor, soul.] [Yeah, it’s tough being a head. {Line 3}]
+
+[ How will you ever live life to the fullest when you can’t even experience the satisfaction of gliding through the water, effortlessly as the water slides over the taut spandex of your Speedo?]
+[Actually, I’ve always been more of a swim trunks kind of guy. {Line 4}]
+
+[I pity you even more! To be so young and to never be able to enjoy the pleasures of the spandex is surely a most terrible tragedy!]
+[No, I’m definitely getting my body back. {Line 5}]
+
+[Marvelous! Make sure to come back when you can! Now that I think about it, I did see something flying towards the right over there… {End}]
+
+IfTalkedtoSpeedoGuy 
+choose  7,8
+[Every man deserves a satisfyingly springy pair of Speedo.{End}]
+[You should probably head to the right to see what’s going on.{End}]
