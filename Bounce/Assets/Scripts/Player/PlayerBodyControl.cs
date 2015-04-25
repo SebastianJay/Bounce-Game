@@ -5,6 +5,9 @@ public class PlayerBodyControl : MonoBehaviour {
 
 	public float moveVelocity = 15f;
 	public float jumpForce = 5000f;
+	public float jumpForceLarge = 1000f;
+	public float jumpForceSmall = 15f;
+	public float jumpKeyTime = 1f;
 	public float jumpDelay = 0.4f;
 	public float groundedThresholdAngle = 45f;
 	public float wallHugThresholdAngle = 30f;
@@ -12,6 +15,8 @@ public class PlayerBodyControl : MonoBehaviour {
 	private bool grounded = false;
 	private float wallHug = 0f;
 	private float jumpTimer = 0f;
+	private float jumpKeyTimer = 0f;
+	public bool jumpKeyDown = false;
 
 	//Talking, speech vars
 	[HideInInspector]
@@ -83,11 +88,19 @@ public class PlayerBodyControl : MonoBehaviour {
 			if (wallHug == 0f || Mathf.Sign(h) == wallHug)
 				rigidbody2D.velocity = new Vector2 (moveVelocity * h, rigidbody2D.velocity.y);
 
-			if (Input.GetButton("Jump") && grounded && jumpTimer >= jumpDelay) {
-				rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0f);
-				rigidbody2D.AddForce(new Vector2(0f, jumpForce));
-				jumpTimer = 0f;
+			if(Input.GetButton("Jump") && jumpKeyDown && jumpKeyTimer < jumpKeyTime)
+			{
+				rigidbody2D.AddForce(-Physics2D.gravity.normalized * Mathf.Lerp (jumpForceLarge,jumpForceSmall,jumpKeyTimer/jumpKeyTime));
+				jumpKeyTimer += Time.deltaTime;
 			}
+			else if (Input.GetButton("Jump") && grounded && jumpTimer >= jumpDelay) {
+				jumpKeyDown = true;
+				jumpKeyTimer = 0f;
+				jumpTimer = 0f;
+				//rigidbody2D.AddForce(-Physics2D.gravity.normalized * jumpForceSmall);
+			}
+			if (Input.GetButtonUp("Jump"))
+				jumpKeyDown = false;
 		}
 
 		if (onMovingPlatform && transform.parent.parent == null)
