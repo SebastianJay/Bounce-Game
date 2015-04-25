@@ -7669,11 +7669,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0212e8ea2c609f42b67f050ef788780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileX: 3
+  tileX: 6
   tileY: 1
   scaleX: 2
   scaleY: 5
-  useScaleAsTile: 1
+  useScaleAsTile: 0
   zrot: 0
 --- !u!1 &296929101
 GameObject:
@@ -36781,7 +36781,7 @@ GameObject:
   - 4: {fileID: 1319632202}
   - 212: {fileID: 1319632201}
   m_Layer: 0
-  m_Name: Navy Blue Sky
+  m_Name: LightBlueSky
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36808,7 +36808,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 1535931219
   m_SortingOrder: -10
-  m_Sprite: {fileID: 21300000, guid: 1d4d10710d2966841942003e8cae15db, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f6a610146abd6ae4990277627ffadd67, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1319632202
 Transform:
@@ -37406,6 +37406,15 @@ Prefab:
       propertyPath: m_Volume
       value: .699999988
       objectReference: {fileID: 0}
+    - target: {fileID: 153740, guid: ef5d36ba5a960214a8fc17fb7c3626dc, type: 2}
+      propertyPath: m_Name
+      value: LightBlueSky
+      objectReference: {fileID: 0}
+    - target: {fileID: 21253738, guid: ef5d36ba5a960214a8fc17fb7c3626dc, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f6a610146abd6ae4990277627ffadd67,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef5d36ba5a960214a8fc17fb7c3626dc, type: 2}
   m_RootGameObject: {fileID: 19075050}

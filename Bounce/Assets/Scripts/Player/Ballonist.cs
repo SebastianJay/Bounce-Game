@@ -59,9 +59,18 @@ public class Ballonist : MonoBehaviour {
 
 		if (balloonInst != null) {
 			balloonInst.rigidbody2D.AddForce (new Vector2 (0f, balloonUpForce));
-		}
-		//balloonInst.transform.position = balloonInst.transform.position + new Vector3 (0f, 0.01f, 0f);
 
+			Transform balloonString = balloonInst.GetChild (0);
+			balloonString.transform.position = (balloonInst.transform.position + this.transform.position) / 2;
+			balloonString.rotation = Quaternion.identity;
+			balloonString.Rotate (new Vector3 (0f, 0f, Vector2.Angle (Vector2.right, balloonInst.transform.position - this.transform.position) + 90f));
+			float mag = (balloonInst.transform.position - this.transform.position).magnitude;
+			float ypix = balloonString.GetComponent<SpriteRenderer>().sprite.bounds.size.y;
+			balloonString.localScale = new Vector3(1f, 1f, 1f);
+		}
+
+		//balloonInst.transform.position = balloonInst.transform.position + new Vector3 (0f, 0.01f, 0f);
+		
 		/*
 		if (Mathf.Abs(balloonInst.transform.position.x - transform.position.x) > maxHorizDistance) {
 			//transform.rigidbody2D.AddForce(new Vector2(0f, moveForce * Mathf.Sign(balloonInst.transform.position.x - transform.position.x)));
