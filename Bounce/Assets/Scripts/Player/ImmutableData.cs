@@ -114,8 +114,8 @@ public static class ImmutableData {
 		InitCheck (103, "Tower Top", 495f, 151f, 488f, 154f, 488f, 488f, 7f, 200f, 8f);	
 
 		//Jungle checkpoints
-		InitCheck (200, "Treetop Village", -20f, 49f, -20f, 50f, -35f, -20f, 28f, 50f, 8f);
-		InitCheck (201, "Treebottom Town", 28f, -74f, 27f, -71f, 12f, 35f, -71f, -70f, 7f);	
+		InitCheck (200, "Treetops", -20f, 49f, -20f, 50f, -35f, -20f, 28f, 50f, 8f);
+		InitCheck (201, "Treebottoms", 28f, -74f, 27f, -71f, 12f, 35f, -71f, -70f, 7f);	
 
 		//level mappings
 		InitLevel ("Pier", 1);
@@ -124,7 +124,7 @@ public static class ImmutableData {
 
 		//Items!
 		//InitItem (ItemType.Item1, "Accessories/sample_glasses", "Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);
-		InitItem (ItemType.CyborgEye, "Accessories/Glasses", "Cyborg Eye", "I spy with my little eye…something red.", 0f, 0f, 0f);
+		InitItem (ItemType.CyborgEye, "Accessories/Glasses", "Cyborg Eye", "I spy with my little eye...something red.", 0f, 0f, 0f);
 		InitItem (ItemType.YellowSki, "Accessories/Glasses1", "Yellow Ski Goggles", "Life is more extreme with these on.", 0f, 0f, 0f);
 		InitItem (ItemType.DarkShades, "Accessories/Glasses2", "Dark Shades", "Sadly, you won't look as cool as the special agents that wear these.", 0f, 0f, 0f);
 		InitItem (ItemType.LabGoggles, "Accessories/Glasses3", "Lab Goggles", "Safety first!", 0f, 0f, 0f);

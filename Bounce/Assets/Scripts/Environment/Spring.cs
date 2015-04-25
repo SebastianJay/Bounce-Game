@@ -42,8 +42,8 @@ public class Spring : MonoBehaviour {
 	*/
 
 	public void SpringCollide(GameObject player) {
-		
-		if (Time.frameCount - player.GetComponent<PlayerBallControl>().jumpFrame > springJumpFrameThreshold)
+		if (Time.frameCount - player.GetComponent<PlayerBallControl>().jumpFrame > springJumpFrameThreshold
+		    && Time.frameCount - player.GetComponent<PlayerBallControl>().springFrame > springJumpFrameThreshold)
 		{
 			player.rigidbody2D.AddForce (springForce * direction.normalized);
 			player.GetComponent<PlayerBallControl>().springFrame = Time.frameCount;

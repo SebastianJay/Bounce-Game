@@ -58,6 +58,7 @@ public class PlayerBallControl : MonoBehaviour {
 	private float outAngularVelocity;
 	private GameObject scaleObject;
 	private bool wasGrounded;
+	private float absorptionFactor;
 
 	//moving platform detection vars
 	private bool onMovingPlatform = false;
@@ -109,6 +110,10 @@ public class PlayerBallControl : MonoBehaviour {
 				return;
 			if (collision.gameObject.GetComponent<Death>() != null)
 				return;
+			if (collision.gameObject.GetComponent<BounceAbsorption>() != null)
+				absorptionFactor = collision.gameObject.GetComponent<BounceAbsorption>().absorptionFactor;
+			else
+				absorptionFactor = 0f;
 
 			//more hacky code to get spiderball with moving platform working
 			if (spiderball && (collision.collider.GetComponent<MovingPlatform>() != null ||
@@ -174,7 +179,7 @@ public class PlayerBallControl : MonoBehaviour {
 				
 				//Set the rigidbody velocity to the reflection vector and modify it to make the collision inelastic
 				//outVelocity = reflection + bounceModifier/bounciness;
-				outVelocity = reflection * bounciness;
+				outVelocity = reflection * bounciness * (1f-absorptionFactor);
 
 				//Decrease/Reverse the angular velocity based on whether the ball changed direction on the x axis
 				float angleMod = 0.5f*Mathf.Sign(-originalVelocity.x)*Mathf.Sign (outVelocity.x);
@@ -381,7 +386,7 @@ public class PlayerBallControl : MonoBehaviour {
 					//timeSinceLeft = boostForgiveness;
 					//timeSinceRight = boostForgiveness;
 					//Debug.Log ("Boosted bounce");
-					outVelocity = outVelocity.normalized*originalMagnitude*boostedBounciness;
+					outVelocity = outVelocity.normalized * originalMagnitude * boostedBounciness * (1f-absorptionFactor);
 
 					if(outVelocity.magnitude < (jumpForce/this.rigidbody2D.mass)*Time.fixedDeltaTime)
 					{
@@ -393,7 +398,7 @@ public class PlayerBallControl : MonoBehaviour {
 				if(jumpDepressed)
 				{
 					jumpDepressed = false;
-					outVelocity = outVelocity.normalized*originalMagnitude*depressedBounciness;
+					outVelocity = outVelocity.normalized*originalMagnitude*depressedBounciness * (1f-absorptionFactor);
 				}
 				if (GetComponent<Spiderball>().enabled)
 				{

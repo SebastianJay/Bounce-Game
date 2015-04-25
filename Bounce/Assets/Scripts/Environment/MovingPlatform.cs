@@ -20,8 +20,8 @@ public class MovingPlatform : MonoBehaviour {
 	public bool flipOnTurn = false;	// whether object should rotate (to flip sprite) when changing direction
 
 	protected float moveTimer = 0.0f;
-	private float pauseTimer = 0.0f;
-	private bool paused = false;
+	protected float pauseTimer = 0.0f;
+	protected bool paused = false;
 	private Vector2 mFrom;
 	private Vector2 mTo;
 
@@ -89,5 +89,9 @@ public class MovingPlatform : MonoBehaviour {
 			else
 				transform.position = new Vector3(lerp.x,lerp.y,0f);
 		}
+	}
+
+	public virtual void Reset()
+	{
 	}
 }
