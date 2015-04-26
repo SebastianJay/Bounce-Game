@@ -754,6 +754,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messagePrefab: {fileID: 477728, guid: db147998591bdc44198a54fde1b7ef06, type: 2}
   newMessageOffset: .0500000007
+  defaultColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &424183701
 GameObject:
   m_ObjectHideFlags: 0
@@ -3265,7 +3266,7 @@ Transform:
   m_PrefabInternal: {fileID: 2024773285}
   m_GameObject: {fileID: 1090316712}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 192.899994, y: -56.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 913597089}
@@ -3370,7 +3371,7 @@ MonoBehaviour:
   frameThickness: .300000012
   bgMargin: .349999994
   npcOffset: {x: -4, y: 4}
-  playerOffset: {x: -4, y: 4}
+  playerOffset: {x: -4, y: 2}
   wordWrapCharCount: 25
   animateSpeed: .0299999993
   responseSpeed: 999999
@@ -4438,8 +4439,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveHorizontally: 1
   moveVertically: 1
-  horizontalFactor: .00499999989
-  verticalFactor: .100000001
+  horizontalFactor: 4.99999987e-05
+  verticalFactor: .00100000005
 --- !u!1 &1548592338
 GameObject:
   m_ObjectHideFlags: 0
@@ -6404,11 +6405,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: c7cd5143fa8f15744957923e63b980d5, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 192.899994
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: c7cd5143fa8f15744957923e63b980d5, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -56.5
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c7cd5143fa8f15744957923e63b980d5, type: 2}
