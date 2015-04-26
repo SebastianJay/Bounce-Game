@@ -287,6 +287,12 @@ public class DialogueSystem : MonoBehaviour {
 		if (npcContainer != null)
 			Destroy (npcContainer);
 		playerTextObjLst.Clear();
+		animating = false;
+		animateTimer = 0f;
+		animateIndex = 0;
+		settingUpNPCText = false;
+		settingUpPlayerText = false;
+		waitingForResponse = false;
 	}
 
 	private GameObject CreateTextBox(Vector3 textPosition, Vector2 textDimensions, Color color)

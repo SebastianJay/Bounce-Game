@@ -1,26 +1,27 @@
 #Captain - a seasoned expert of the sea. Super salty.
 
-[Yarrr lad, ye best be on your way if ye wants to sail the high seas. We’re just about ready to set sail. {End, set TalkedToCaptainWithBody}]
+[Yarrr lad, ye best be on your way if ye wants to sail the high seas. We're just about ready to set sail. {End, set TalkedToCaptainWithBody}]
 
 if TalkedToCaptainWithBody choose 2,4
-[Hurry, lad! I’ve seen glaciers move faster than you!{End}]
+[Hurry, lad! I've seen glaciers move faster than you!{End}]
 [Run, Forest, run! {}] [...my name is Bob. {End}]
-[If ye were on my crew, I’d flog ye fer not picking up the pace. {End}]
+[If ye were on me crew, I'd flog ye fer not picking up the pace. {End}]
 
+if BobBodyGone
+[Yarrr lad, what's wrong? Yer lookin' kinda down to me. Whyarrrren't you on the ship? {}] [I'm getting there. I just ran into some...complications. {Line 6}] [I've been Rob'd! {Line 7}]
+[Yarrgh, lad. Yer slower than tha' molasses flood from the days when I was still green. What kind of complications? {Line 11}] [Rob -- He was really strange and...really sadistic!{Line 8}]
+[Yarrgh, back in my youth, they'd keelhaul yer fer being such a weakling. What happened? Where'd the robber go? {Line 11}] [Rob -- he was really strange and...really sadistic!{Line 8}]
+[] [I was minding own business, trying to get to my room, when next thing I know, POOF! He got my body! {Line 9}]
+[] [The last thing I remember is seeing random parts fly towards the jungle, and the rest flying towards the city! {Line 10}]
 
-if Transformed and TalkedToCaptainWithBody
-[Yarrr lad, what’s wrong? Yer lookin’ kinda down to me. Whyarrrren’t you on the ship? {}] [I’m getting there. I just ran into some...complications. {Line 6}] [I’ve been Rob’d! {Line 7}]
-[Yarrgh, lad. Yer slower than tha’ molasses flood from the days when I was still green. What kind of complications? {Line 11}] [He was really strange and really sadistic! I was minding own business, trying to get to my room, when next thing I know, POOF! He got my body! The last thing I remember is seeing random parts fly towards the jungle, and the rest flying towards the city! {Line 8}]
-[Yarrgh, back in my youth, they’d keelhaul yer fer being such a weakling. What happened? Where’d the robber go? {Line 11}] [He was really strange and really sadistic! I was minding own business, trying to get to my room, when next thing I know, POOF! He got my body! The last thing I remember is seeing random parts fly towards the jungle, and the rest flying towards the city! {Line 8}]
-
-[Yarrgh, I have a soft spot fer helpless landlubbers.  I’ll instruct me crew to point the chase guns towards the jungle and the city and to wait until yer all fixed up. You’ll get there quicker if we shoot yer there. Make sure to use the cannon on the stern to get to the jungle, and the cannon on the bow to get to the city. {End, set CaptainAgreesToHelp}]
+[Yarrgh, I have a soft spot fer helpless landlubbers. I'll instruct me crew to point the chase guns towards the jungle and the city and to wait until yer all fixed up.{Line 11}]
+[You'll get there quicker if we shoot yer there. Make sure to use the cannon on the stern to get to the jungle, and the cannon on the bow to get to the city. {End, set CaptainAgreesToHelp}]
 
 if CaptainAgreesToHelp
-[] [Bow?{Line 10}] [Stern?{Line 11}] [Is this even safe?{Line 12}] [Thanks, Captain!{Line 13}] [Tell me a joke!{Line 14}]
- 
-[That’s the front of the ship for yer, landlubber. {End}]
-[That’s the back of the ship for yer, landlubber. {End}]
-[Bilgewater! It’s safe as a babe in its mother’s arrrrrrms! {End}]
-[Yarrgh, it’s my pleas-yarrgh! {End}]
-[What’s a pirate’s favorite letter of the alphabet? {Line 15}]
-[Arrrgh! (But his first love was C!) {End}]
+[...What's wrong, lad?] [Bow?{Line 13}] [Stern?{Line 14}] [Is this plan even safe?{Line 15}] [Thanks for your help, Captain!{Line 16}] [Tell me a joke!{Line 17}] 
+[That's the front of the ship for yer, landlubber. {End}]
+[That's the back of the ship for yer, landlubber. {End}]
+[Bilgewater! It's safe as a babe in its mother's arrrrrrms! {End}]
+[Yarrgh, it's me pleas-yarrgh! {End}]
+[What's a pirate's favorite letter of the alphabet? {Line 18}]
+[Arrrgh! (But his first love was the C!) {End}]

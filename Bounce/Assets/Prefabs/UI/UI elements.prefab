@@ -477,7 +477,7 @@ MonoBehaviour:
   frameThickness: .300000012
   bgMargin: .349999994
   npcOffset: {x: -4, y: 4}
-  playerOffset: {x: -4, y: 4}
+  playerOffset: {x: -4, y: 2}
   wordWrapCharCount: 25
   animateSpeed: .0299999993
   responseSpeed: 999999
@@ -991,6 +991,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messagePrefab: {fileID: 477728, guid: db147998591bdc44198a54fde1b7ef06, type: 2}
   newMessageOffset: .0500000007
+  defaultColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!124 &12453738
 Behaviour:
   m_ObjectHideFlags: 1

@@ -76,7 +76,8 @@ public static class DialogueConstantParser
 			obj = GameObject.FindGameObjectWithTag("MainCamera");
 			if (obj != null) {
 				obj.GetComponent<CameraFollow>().isLocked = true;
-				obj.GetComponent<CameraFollow>().lockedOrthoSize = obj.GetComponent<Camera>().orthographicSize;
+				//obj.GetComponent<CameraFollow>().lockedOrthoSize = obj.GetComponent<Camera>().orthographicSize;
+				obj.GetComponent<CameraFollow>().lockedOrthoSize = 11f;
 				obj.GetComponent<CameraFollow>().lockedPosition = obj.transform.position;
 				//queue reload of level
 				//...probably shouldn't do it this way (grabbing a random component and calling coroutine)
@@ -99,8 +100,43 @@ public static class DialogueConstantParser
 				obj.GetComponent<PlayerBodyControl>().playerLock = false;
 			eventLock = false;
 			break;
+		case "DoMonologue":
+			if (!EvaluateConstant("MonologueDone")) {
+				obj = GameObject.FindGameObjectWithTag("Monologue");
+				obj.transform.GetComponent<Interactable>().StepConvo();
+				obj.transform.GetComponent<Interactable>().StartCoroutine(GiveTalkProceedInstructions());
+			}
+			break;
+		case "GiveTalkInstructions":
+			if (!EvaluateConstant("TalkInstructionsDone")) {
+				obj = GameObject.FindGameObjectWithTag("NoteManager");
+				obj.transform.GetComponent<NotificationManager>().PushMessage("Use 'W'/'S' (or Up/Down) to choose responses.", 10f);
+				obj.transform.GetComponent<NotificationManager>().PushMessage("Press 'E' (or 'R Ctrl') to talk.", 10f);
+				SetConstant("TalkInstructionsDone");
+			}
+			break;
+		case "GiveWalkInstructions":
+			if (!EvaluateConstant("WalkInstructionsDone")) {
+				obj = GameObject.FindGameObjectWithTag("NoteManager");
+				obj.transform.GetComponent<NotificationManager>().PushMessage("Press 'A'/'D' (or Left/Right) to walk.", 10f);
+				SetConstant("WalkInstructionsDone");
+			}
+			break;
+		case "GiveJumpInstructions":
+			if (!EvaluateConstant("JumpInstructionsDone")) {
+				obj = GameObject.FindGameObjectWithTag("NoteManager");
+				obj.transform.GetComponent<NotificationManager>().PushMessage("Press 'W' (or Up) to jump.", 10f);
+				SetConstant("JumpInstructionsDone");
+			}
+			break;
+		case "GiveMenuOpenInstructions":
+			if (!EvaluateConstant("MenuOpenInstructionsDone")) {
+				obj = GameObject.FindGameObjectWithTag("NoteManager");
+				obj.transform.GetComponent<NotificationManager>().PushMessage("Press 'Q' (or R Shift) to toggle the menu.", 10f);
+				SetConstant("MenuOpenInstructionsDone");
+			}
+			break;
 		}
-
 	}
 
 	/// <summary>
@@ -159,5 +195,11 @@ public static class DialogueConstantParser
 		DialogueConstantParser.SetConstant("BobBodyGone");
 		eventLock = false;
 		Application.LoadLevel("Pier");
+	}
+
+	static IEnumerator GiveTalkProceedInstructions() {
+		yield return new WaitForSeconds (1.5f);
+		GameObject obj = GameObject.FindGameObjectWithTag("NoteManager");
+		obj.GetComponent<NotificationManager>().PushMessage ("Press 'E' (or 'R Ctrl') to continue talking.", 10f);
 	}
 }

@@ -281,8 +281,8 @@ InputManager:
     m_Name: Action
     descriptiveName: Talk/Action/Confirm
     descriptiveNegativeName: 
-    negativeButton: z
-    positiveButton: z
+    negativeButton: right ctrl
+    positiveButton: right ctrl
     altNegativeButton: e
     altPositiveButton: e
     gravity: 1000
@@ -345,8 +345,8 @@ InputManager:
     m_Name: Menu
     descriptiveName: For calling the in-game menu
     descriptiveNegativeName: 
-    negativeButton: space
-    positiveButton: space
+    negativeButton: right shift
+    positiveButton: right shift
     altNegativeButton: q
     altPositiveButton: q
     gravity: 1000

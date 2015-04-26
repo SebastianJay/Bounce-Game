@@ -117,10 +117,15 @@ public static class ImmutableData {
 		InitCheck (200, "Treetops", -20f, 49f, -20f, 50f, -35f, -20f, 28f, 50f, 8f);
 		InitCheck (201, "Treebottoms", 28f, -74f, 27f, -71f, 12f, 35f, -71f, -70f, 7f);	
 
+		//Beach checkpoints
+		InitCheck (300, "Sand Castles", -77f, 4f, -77f, 4f, -1000f, 1000f, -1000f, 1000f, 11f);	
+		InitCheck (301, "Dunes", 205f, -48f, 205f, -48f, -1000f, 1000f, -1000f, 1000f, 11f);
+		
 		//level mappings
 		InitLevel ("Pier", 1);
 		InitLevel ("City", 100, 101, 102, 103);
 		InitLevel ("Jungle", 200, 201);
+		InitLevel ("Beach", 300, 301);
 
 		//Items!
 		//InitItem (ItemType.Item1, "Accessories/sample_glasses", "Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);

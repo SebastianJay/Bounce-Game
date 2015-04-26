@@ -13,7 +13,14 @@
 [The eminent exalt of excellence. The dauntless dominator of all crates. Haven't you ever heard of me before?] [Nope.{Line 9}] [I think I might have once or twice...{Line 9}]
 
 [Anyways, would you mind doing this old chap a favor? You look like a fairly young and springy kind of fellow.{Line 10}]
-[Let this old soul know that the Redoubtable Crate of Great Robustness can be conquered!{End}]
+[Let this old soul know that the Redoubtable Crate of Great Robustness can be conquered!{End, Set TalkedToCrateConquerer}]
 
 [How dare you question the noble artistically refined sport of crate conquering!{Line 12}]
-[I will not accept your worth as a person unless you can somehow demonstrate that you can surpass this crate! Farewell!{End}]
+[I will not accept your worth as a person unless you can somehow demonstrate that you can surpass this crate! Farewell!{End, Set TalkedToCrateConquerer}]
+
+if TalkedToCrateConquerer
+[Apply your efforts! Focus your energies! Conquerering this crate will test the limits of your will! {End}]
+
+if CrateConquered
+[You did it, my boy! I can finally live my life to the fullest knowing that there is no crate that can't be conquered. {Line 15}]
+[To you, I bestow my title of Crate Conqueror.{End}]

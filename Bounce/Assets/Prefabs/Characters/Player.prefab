@@ -128,6 +128,7 @@ MonoBehaviour:
   deformTime: .150000006
   inConversation: 0
   npcTalker: {fileID: 0}
+  spiderOnMovingPlatform: 0
   spiderball: 0
   balloonActive: 0
 --- !u!114 &11400002
@@ -143,7 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugNoLoad: 1
   debugInitRespawn: 1
-  debugInitCamera: 1
+  debugInitCamera: 0
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1

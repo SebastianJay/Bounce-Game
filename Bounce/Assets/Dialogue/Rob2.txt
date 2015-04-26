@@ -16,4 +16,4 @@
 
 [You’re dumberer.] [You’re crazy! There must be something wrong with your head! I’m not Rob! {Line 9}]
 
-[Silence, infidel! I’ll fix your head! Rippity Robbity Roo! {End}]
+[Silence, infidel! I’ll fix your head! Rippity Robbity Roo! {End, Event BobSeparated}]

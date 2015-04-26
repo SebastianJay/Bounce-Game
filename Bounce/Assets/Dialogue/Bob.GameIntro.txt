@@ -1,8 +1,8 @@
 #A monologue when the game opens up
 
-[][Ah, what a lovely day for adventure! The birds are chirping their morning songs, the waves are crashing against the beach, the sun is shining— {Line 2}]
+[][Ah, what a lovely day for adventure! The birds are chirping their morning songs, the waves are crashing against the beach, the sun is shining...{Line 2}]
 [][THE SUN IS SHINING!?!?!?! {Line 3}]
-[][Man, oh man, I hope I don’t miss the ship. Hey wait, this looks like a good shortcut. {End}]
+[][Man, oh man, I hope I don't miss the ship. Hey wait, this looks like a good shortcut over to the right. {End, Set MonologueDone, Event GiveWalkInstructions}]
 
 if CaptainAgreesToHelp
 [][Well, here goes… FIRE IN THE HOLE!!! {End, Event CannonLaunch}]

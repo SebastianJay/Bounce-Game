@@ -29,8 +29,7 @@ public class Spawner : MonoBehaviour {
 			timer += Time.deltaTime;
 			if (timer >= frequency)
 			{
-				GameObject clone = Instantiate(obj, transform.position, transform.rotation) as GameObject;
-				clone.transform.parent = transform;
+				DoSpawn();
 				timer = 0f;
 			}
 		}
@@ -46,6 +45,11 @@ public class Spawner : MonoBehaviour {
 				timer = 0f;
 			}
 		}
+	}
+
+	public virtual void DoSpawn() {
+		GameObject clone = Instantiate(obj, transform.position, transform.rotation) as GameObject;
+		clone.transform.parent = transform;
 	}
 
 	public void SpawnAfterTime(float time)
