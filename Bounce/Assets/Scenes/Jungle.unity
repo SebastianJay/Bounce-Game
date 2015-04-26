@@ -10145,7 +10145,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &335268915
 Transform:
   m_ObjectHideFlags: 0
@@ -10174,7 +10174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveHorizontally: 1
   moveVertically: 0
-  horizontalFactor: .200000003
+  horizontalFactor: .600000024
   verticalFactor: 1
 --- !u!1001 &343999134
 Prefab:
@@ -16409,6 +16409,7 @@ GameObject:
   - 4: {fileID: 564015379}
   - 212: {fileID: 564015381}
   - 114: {fileID: 564015380}
+  - 114: {fileID: 564015382}
   m_Layer: 0
   m_Name: Jungle_canopy_back
   m_TagString: Untagged
@@ -16469,6 +16470,21 @@ SpriteRenderer:
   m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: 283998c38f62ec742ae7620184ff9681, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &564015382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 564015378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01a2d4c0af48f114f979d9059d585f09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveHorizontally: 0
+  moveVertically: 1
+  horizontalFactor: 1
+  verticalFactor: -.100000001
 --- !u!1001 &565175087
 Prefab:
   m_ObjectHideFlags: 0
@@ -26674,7 +26690,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveHorizontally: 1
   moveVertically: 0
-  horizontalFactor: .150000006
+  horizontalFactor: .5
   verticalFactor: 1
 --- !u!1 &953822621
 GameObject:
@@ -27403,7 +27419,7 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayerID: 1535931219
-  m_SortingOrder: -2
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 308239627430cc4489ee4a11e133c262, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &978780132
@@ -31209,14 +31225,14 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 2138114351}
   m_GameObject: {fileID: 1108913567}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01a2d4c0af48f114f979d9059d585f09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveHorizontally: 1
   moveVertically: 0
-  horizontalFactor: .100000001
+  horizontalFactor: .5
   verticalFactor: 1
 --- !u!1 &1109700150
 GameObject:
@@ -31494,7 +31510,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileX: 20
   tileY: 1
-  scaleX: 2
+  scaleX: 6
   scaleY: 2
   useScaleAsTile: 0
   zrot: 0
@@ -31518,9 +31534,9 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayerID: 1535931219
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 06ecf0391460d404d861e11f6b464229, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: .75686276, g: .75686276, b: .75686276, a: 1}
 --- !u!4 &1115510463
 Transform:
   m_ObjectHideFlags: 0
@@ -48783,7 +48799,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileX: 20
   tileY: 20
-  scaleX: 2
+  scaleX: 6
   scaleY: 2
   useScaleAsTile: 0
   zrot: 0
@@ -48809,7 +48825,7 @@ SpriteRenderer:
   m_SortingLayerID: 1535931219
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 308239627430cc4489ee4a11e133c262, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: .75686276, g: .75686276, b: .75686276, a: 1}
 --- !u!1 &1707089985
 GameObject:
   m_ObjectHideFlags: 0
@@ -61692,7 +61708,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400012, guid: b234030754b510c4bb1aa63948de54b3, type: 2}
       propertyPath: horizontalFactor
-      value: .150000006
+      value: .5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b234030754b510c4bb1aa63948de54b3, type: 2}
       propertyPath: m_LocalPosition.x
@@ -61736,11 +61752,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400018, guid: b234030754b510c4bb1aa63948de54b3, type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 21200016, guid: b234030754b510c4bb1aa63948de54b3, type: 2}
       propertyPath: m_SortingOrder
-      value: -2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 21200002, guid: b234030754b510c4bb1aa63948de54b3, type: 2}
       propertyPath: m_SortingOrder
@@ -61793,6 +61809,54 @@ Prefab:
     - target: {fileID: 400002, guid: b234030754b510c4bb1aa63948de54b3, type: 2}
       propertyPath: m_LocalRotation.w
       value: -4.37113883e-08
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: b234030754b510c4bb1aa63948de54b3, type: 2}
+      propertyPath: horizontalFactor
+      value: .600000024
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: b234030754b510c4bb1aa63948de54b3, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400018, guid: b234030754b510c4bb1aa63948de54b3, type: 2}
+      propertyPath: horizontalFactor
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 21200014, guid: b234030754b510c4bb1aa63948de54b3, type: 2}
+      propertyPath: m_Color.r
+      value: .75686276
+      objectReference: {fileID: 0}
+    - target: {fileID: 21200014, guid: b234030754b510c4bb1aa63948de54b3, type: 2}
+      propertyPath: m_Color.g
+      value: .75686276
+      objectReference: {fileID: 0}
+    - target: {fileID: 21200014, guid: b234030754b510c4bb1aa63948de54b3, type: 2}
+      propertyPath: m_Color.b
+      value: .75686276
+      objectReference: {fileID: 0}
+    - target: {fileID: 21200012, guid: b234030754b510c4bb1aa63948de54b3, type: 2}
+      propertyPath: m_Color.r
+      value: .75686276
+      objectReference: {fileID: 0}
+    - target: {fileID: 21200012, guid: b234030754b510c4bb1aa63948de54b3, type: 2}
+      propertyPath: m_Color.g
+      value: .75686276
+      objectReference: {fileID: 0}
+    - target: {fileID: 21200012, guid: b234030754b510c4bb1aa63948de54b3, type: 2}
+      propertyPath: m_Color.b
+      value: .75686276
+      objectReference: {fileID: 0}
+    - target: {fileID: 21200012, guid: b234030754b510c4bb1aa63948de54b3, type: 2}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400016, guid: b234030754b510c4bb1aa63948de54b3, type: 2}
+      propertyPath: scaleX
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: b234030754b510c4bb1aa63948de54b3, type: 2}
+      propertyPath: scaleX
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b234030754b510c4bb1aa63948de54b3, type: 2}
