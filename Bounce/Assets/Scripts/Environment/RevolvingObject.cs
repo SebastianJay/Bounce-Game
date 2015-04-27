@@ -3,7 +3,7 @@ using System.Collections;
 
 public class RevolvingObject : MonoBehaviour {
 
-	public float rotationalVelocity = 10f;
+	public float rotationalVelocity = 1f;
 	public GameObject center;
 
 	// Use this for initialization
