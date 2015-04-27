@@ -6,6 +6,7 @@ public class TeleportPoint : MonoBehaviour {
 	//set from inspector
 	public TeleportPoint otherPoint;
 	public bool teleportedTo;
+	public bool killVelocity;
 
 	// Use this for initialization
 	void Start () {
@@ -22,6 +23,12 @@ public class TeleportPoint : MonoBehaviour {
 			col.transform.position = otherPoint.transform.position;
 			otherPoint.teleportedTo = true;
 			teleportedTo = false;
+
+			if (killVelocity)
+			{
+				col.rigidbody2D.velocity = Vector2.zero;
+			}
+
 			if (transform.audio != null)
 			{
 				transform.audio.Play ();
