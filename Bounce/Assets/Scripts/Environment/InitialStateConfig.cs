@@ -66,6 +66,12 @@ public class InitialStateConfig : MonoBehaviour {
 				if (obj != null)
 					obj.transform.position = new Vector3(451f, 1.8f, 0f);
 			}
+			if (DialogueConstantParser.EvaluateConstant("TeleporterOn")) {
+				GameObject obj = GameObject.FindGameObjectWithTag("TeleportMachine");
+				obj.transform.GetChild(0).gameObject.SetActive(true);
+				obj.transform.GetChild(1).gameObject.SetActive(true);
+			}
+
 		}
 	}
 }

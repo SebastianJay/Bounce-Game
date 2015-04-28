@@ -1,0 +1,22 @@
+﻿#King Robert- Father of Rob. Wise, but useless.
+
+[Ah, hello there! I see my dear son Rob has been up to his antics again. Do tell me, what was the reason for this time?] [I don't even know, he was spouting some nonsense about blobs and pelicans. {Line 2}]
+
+[Hmm...well last time this happened, the poor sap had to go across time and space to get his body back. {Line 3}]
+[I particularly remember the incident that occurred when he tried to get his arm back from a prehistoric squirrel. Not pretty. {Line 4}]
+[Squirrels are evil. {Line 5}]
+[Anyways, after that incident, I had a serious conversation with my dear little Rob because blasting people's body parts across the realm of infinite time and space is rude and lacking in manners. {Line 6}] 
+[It looks like this time, he managed to keep everything within this dimension. Did I mention that squirrels are evil? {}] [Who are you people? {Line 7}] [Wait, does this mean you can actually help me? {Line 8}] [Yeah, squirrels are pretty terrible. {Line 9}]
+
+[I am King Robert. The person responsible for your current state is my dear son Rob.] [King of what? {Line 10}]
+[Well, yes...and no.][What do you mean? {Line 11}]
+[Finally! Somebody who understands! Just for that, I'll tell you something good. If you head back to the ship, the Captain will help you get your body back.{Line 13}]
+
+[By the power divested in me by this awesome pointy crown, I am clearly the Awesome King of all Cosmos. Also, I declare that squirrels are malicious, conniving beasts. Anyhow...{Line 12}]
+[Well, I can tell you what is going on, but that does not necessarily mean that I have the means or willpower to do anything about it.] [Got any tips? {Line 12}]
+
+if FinishedKingPierTalk
+[Your body parts are scattered throughout the land. Your best bet is to catch the ship so that you can get to your body parts before anybody (or anything) gets to them. Like squirrels. Those lousy rodents are a terrible blight upon the world. {End, Set FinishedKingPierTalk}]
+
+#This line comes after one of the above options, but didn't want to mess with line numbering so I stuck it at the bottom
+[Be careful though, you will find that you will have to use your head to gain access to places that you previously could get to with ease. {End}]

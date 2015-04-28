@@ -1462,7 +1462,7 @@ AudioSource:
   m_GameObject: {fileID: 561416703}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: aaea5a8e32cf30b45814cb7016796d6e, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 93a96e3f4c6d89a41b1affad766077ab, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1676,6 +1676,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   otherPoint: {fileID: 1819837083}
   teleportedTo: 0
+  killVelocity: 0
 --- !u!4 &575327369
 Transform:
   m_ObjectHideFlags: 0
@@ -2946,6 +2947,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   otherPoint: {fileID: 1696029282}
   teleportedTo: 0
+  killVelocity: 0
 --- !u!58 &1033617087
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3423,7 +3425,7 @@ Prefab:
     - target: {fileID: 8201658, guid: ef5d36ba5a960214a8fc17fb7c3626dc, type: 2}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: aaea5a8e32cf30b45814cb7016796d6e, type: 3}
+      objectReference: {fileID: 8300000, guid: 93a96e3f4c6d89a41b1affad766077ab, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef5d36ba5a960214a8fc17fb7c3626dc, type: 2}
   m_RootGameObject: {fileID: 1576598996}
@@ -4559,6 +4561,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   otherPoint: {fileID: 1819837083}
   teleportedTo: 0
+  killVelocity: 0
 --- !u!58 &1548592343
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5059,6 +5062,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   otherPoint: {fileID: 1033617086}
   teleportedTo: 0
+  killVelocity: 0
 --- !u!58 &1696029283
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5622,6 +5626,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   otherPoint: {fileID: 575327368}
   teleportedTo: 0
+  killVelocity: 0
 --- !u!58 &1819837084
 CircleCollider2D:
   m_ObjectHideFlags: 0

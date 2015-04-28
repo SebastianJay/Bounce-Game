@@ -107,6 +107,21 @@ public static class DialogueConstantParser
 				obj.transform.GetComponent<Interactable>().StartCoroutine(GiveTalkProceedInstructions());
 			}
 			break;
+		case "ActivateTeleporter":
+			obj = GameObject.FindGameObjectWithTag("TeleportMachine");
+			obj.transform.GetChild(0).gameObject.SetActive(true);
+			obj.transform.GetChild(1).gameObject.SetActive(true);
+			SetConstant("TeleporterActive");
+			break;
+		case "TeleportAnimation":
+			obj = GameObject.FindGameObjectWithTag("Player");
+			DialogueConstantParser.eventLock = true;
+			obj.GetComponent<PlayerBallControl>().playerLock = true;
+			obj.rigidbody2D.velocity = Vector2.zero;
+			obj.rigidbody2D.angularVelocity = 0f;
+			obj = GameObject.FindGameObjectWithTag("ScreenFader");
+			obj.GetComponent<ScreenFading>().StartCoroutine(AnimateTeleporter());
+			break;
 		case "GiveTalkInstructions":
 			if (!EvaluateConstant("TalkInstructionsDone")) {
 				obj = GameObject.FindGameObjectWithTag("NoteManager");
@@ -202,4 +217,29 @@ public static class DialogueConstantParser
 		GameObject obj = GameObject.FindGameObjectWithTag("NoteManager");
 		obj.GetComponent<NotificationManager>().PushMessage ("Press 'E' (or 'R Ctrl') to continue talking.", 10f);
 	}
+
+	static IEnumerator AnimateTeleporter() {
+		GameObject obj = GameObject.FindGameObjectWithTag("TeleportMachine");
+		Transform particleObj = obj.transform.GetChild (1);
+		for (int i = 0; i < 40; i++)
+		{
+			particleObj.particleSystem.emissionRate += 2f;
+			yield return new WaitForSeconds(0.05f);
+		}
+		particleObj.particleSystem.emissionRate = 0f;
+		Transform particleObj2 = obj.transform.GetChild (2);
+		particleObj2.gameObject.SetActive (true);
+		obj.audio.Play();
+		GameObject playerObj = GameObject.FindGameObjectWithTag ("Player");
+		playerObj.SetActive (false);	//?
+		yield return new WaitForSeconds(1f);
+		GameObject faderObj = GameObject.FindGameObjectWithTag ("ScreenFader");
+		faderObj.GetComponent<ScreenFading>().fadeSpeed = 1f;	//to temporarily make the fade longer
+		faderObj.GetComponent<ScreenFading> ().Transition(delegate {
+			DialogueConstantParser.eventLock = false;
+			PlayerDataManager.loadedLevel = false;
+			Application.LoadLevel("Space");
+		}, true);
+	}
+
 }
