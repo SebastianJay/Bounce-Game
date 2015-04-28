@@ -10,13 +10,14 @@
 
 [I am King Robert. The person responsible for your current state is my dear son Rob.] [King of what? {Line 10}]
 [Well, yes...and no.][What do you mean? {Line 11}]
-[Finally! Somebody who understands! Just for that, I'll tell you something good. If you head back to the ship, the Captain will help you get your body back.{Line 13}]
+[Finally! Somebody who understands! Just for that, I'll tell you something good. If you head back to the ship, the Captain will help you get your body back.{Line 14}]
 
 [By the power divested in me by this awesome pointy crown, I am clearly the Awesome King of all Cosmos. Also, I declare that squirrels are malicious, conniving beasts. Anyhow...{Line 12}]
 [Well, I can tell you what is going on, but that does not necessarily mean that I have the means or willpower to do anything about it.] [Got any tips? {Line 12}]
 
 if FinishedKingPierTalk
-[Your body parts are scattered throughout the land. Your best bet is to catch the ship so that you can get to your body parts before anybody (or anything) gets to them. Like squirrels. Those lousy rodents are a terrible blight upon the world. {End, Set FinishedKingPierTalk}]
+[Your body parts are scattered throughout the land. Your best bet is to catch the ship so that you can get to your body parts before anybody (or anything) gets to them.{Line 13}]
+[Like squirrels. Those lousy rodents are a terrible blight upon the world. {End, Set FinishedKingPierTalk}]
 
 #This line comes after one of the above options, but didn't want to mess with line numbering so I stuck it at the bottom
-[Be careful though, you will find that you will have to use your head to gain access to places that you previously could get to with ease. {End}]
+[Be careful though, you will find that you will have to use your head to gain access to places that you previously could get to with ease. {End, Set FinishedKingPierTalk}]

@@ -17,7 +17,6 @@ public class InitialStateConfig : MonoBehaviour {
 				GameObject obj = GameObject.FindGameObjectWithTag("Player");
 				if (obj != null) {
 					Destroy(obj.transform.parent.gameObject);
-					//Todo: determine starting position
 					Instantiate(playerBallPrefab);
 				}
 			}
@@ -34,6 +33,12 @@ public class InitialStateConfig : MonoBehaviour {
 				obj.transform.GetChild(0).gameObject.SetActive(false);
 				obj = GameObject.FindGameObjectWithTag("PierObjBall");
 				obj.transform.GetChild(0).gameObject.SetActive(true);	//need child since finding inactive gameobject not possible
+			}
+			if (DialogueConstantParser.EvaluateConstant("BobBodyGone") && !DialogueConstantParser.EvaluateConstant("FinishedKingPierTalk")) {
+				//at part where Bob respawns w/o body
+				//GameObject obj = GameObject.FindGameObjectWithTag("Player");
+				//Debug.Log (obj.transform.position);
+				DialogueConstantParser.ExecuteEvent("BobRespawnsAndTalksToKing");
 			}
 		}
 		//2 - city

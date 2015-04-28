@@ -15,6 +15,7 @@ public static class DialogueConstantParser
 		//We hard-code every possible dialogue event here!
 		//Typically we accomplish this by picking out GameObjects using tags
 		//	and modifying, enabling, or invoking a method in some component of theirs
+		//hopefully not a great performance cost doing it this way..
 		switch(eventName)
 		{
 		case "MotherFollows":
@@ -107,6 +108,28 @@ public static class DialogueConstantParser
 				obj.transform.GetComponent<Interactable>().StartCoroutine(GiveTalkProceedInstructions());
 			}
 			break;
+		case "TalkToCaptain":
+			bool talkFlag = false;
+			if (!EvaluateConstant("FirstCaptainTalkDone")) {
+				SetConstant("InitialCaptainTalkDone");
+				talkFlag = true;
+			}
+			else if (EvaluateConstant("BobBodyGone") && !EvaluateConstant("SecondCaptainTalkDone")) {
+				SetConstant("SecondCaptainTalkDone");
+				talkFlag = true;
+			}
+			if (talkFlag) {
+				obj = GameObject.FindGameObjectWithTag("Captain");
+				obj.transform.GetComponent<Interactable>().StepConvo();
+			}
+			break;
+		case "BobRespawnsAndTalksToKing":
+			// REALLY BROKEN.. considering refactoring later
+			obj = GameObject.FindGameObjectWithTag("ScreenFader");
+			//obj.GetComponent<PlayerBallControl>().playerLock = true;
+			//obj.GetComponent<PlayerBallControl>().StartCoroutine(BobTalksToKingAnimation());
+			obj.GetComponent<ScreenFading>().StartCoroutine(BobTalksToKingAnimation());
+			break;
 		case "ActivateTeleporter":
 			obj = GameObject.FindGameObjectWithTag("TeleportMachine");
 			obj.transform.GetChild(0).gameObject.SetActive(true);
@@ -149,6 +172,20 @@ public static class DialogueConstantParser
 				obj = GameObject.FindGameObjectWithTag("NoteManager");
 				obj.transform.GetComponent<NotificationManager>().PushMessage("Press 'Q' (or R Shift) to toggle the menu.", 10f);
 				SetConstant("MenuOpenInstructionsDone");
+			}
+			break;
+		case "GiveBounceBoostInstructions":
+			if (!EvaluateConstant("BounceBoostInstructionsDone")) {
+				obj = GameObject.FindGameObjectWithTag("NoteManager");
+				obj.transform.GetComponent<NotificationManager>().PushMessage("Hold 'W' (or Up) when hitting the ground to boost back up.", 10f);
+				SetConstant("BounceBoostInstructionsDone");
+			}
+			break;
+		case "GiveBounceDepressInstructions":
+			if (!EvaluateConstant("BounceDepressInstructionsDone")) {
+				obj = GameObject.FindGameObjectWithTag("NoteManager");
+				obj.transform.GetComponent<NotificationManager>().PushMessage("Hold 'S' (or Down) when hitting the ground to stop your bounce.", 10f);
+				SetConstant("BounceDepressInstructionsDone");
 			}
 			break;
 		}
@@ -218,6 +255,17 @@ public static class DialogueConstantParser
 		obj.GetComponent<NotificationManager>().PushMessage ("Press 'E' (or 'R Ctrl') to continue talking.", 10f);
 	}
 
+	static IEnumerator BobTalksToKingAnimation() {
+		yield return new WaitForSeconds(0.02f);
+		GameObject obj = GameObject.FindGameObjectWithTag("Player");
+		GameObject obj2 = GameObject.FindGameObjectWithTag("KingRobert");
+		obj.GetComponent<PlayerBallControl>().playerLock = true;
+		obj.rigidbody2D.AddForce (new Vector2 (-615f, 0f));
+		obj.rigidbody2D.AddTorque (200f);
+		yield return new WaitForSeconds (7.0f);
+		obj2.GetComponent<Interactable>().StepConvo ();
+	}
+
 	static IEnumerator AnimateTeleporter() {
 		GameObject obj = GameObject.FindGameObjectWithTag("TeleportMachine");
 		Transform particleObj = obj.transform.GetChild (1);
@@ -235,11 +283,10 @@ public static class DialogueConstantParser
 		yield return new WaitForSeconds(1f);
 		GameObject faderObj = GameObject.FindGameObjectWithTag ("ScreenFader");
 		faderObj.GetComponent<ScreenFading>().fadeSpeed = 1f;	//to temporarily make the fade longer
-		faderObj.GetComponent<ScreenFading> ().Transition(delegate {
+		faderObj.GetComponent<ScreenFading>().Transition(delegate {
 			DialogueConstantParser.eventLock = false;
 			PlayerDataManager.loadedLevel = false;
 			Application.LoadLevel("Space");
 		}, true);
 	}
-
 }

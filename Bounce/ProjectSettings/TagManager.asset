@@ -19,6 +19,8 @@ TagManager:
   - PierObjBall
   - Monologue
   - TeleportMachine
+  - Captain
+  - KingRobert
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
