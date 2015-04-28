@@ -19,8 +19,6 @@ public class Checkpoint : MonoBehaviour {
 			if (other.gameObject.GetComponent<PlayerDataManager> () != null) 
 			{
 				if (!PlayerDataManager.previousCheckpoints.Contains(checkPointID) && notifyObj != null) {
-					if (audio != null)
-						audio.Play ();
 					notifyObj.GetComponent<NotificationManager>().PushMessage(
 						"Added landmark \"" + ImmutableData.GetCheckpointData()[checkPointID].name +"\" to Map");
 				}

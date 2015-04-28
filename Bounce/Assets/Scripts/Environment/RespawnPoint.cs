@@ -19,6 +19,8 @@ public class RespawnPoint : MonoBehaviour {
 			if (GetComponent<Checkpoint>() == null && notifyObj != null && lastCheckpoint != gameObject) {
 				notifyObj.GetComponent<NotificationManager>().PushMessage(
 					"Reached a checkpoint");
+				if (audio != null)
+					audio.Play ();
 			}
 			lastCheckpoint = gameObject;
 			Death.respawn = this.gameObject.transform.position;
