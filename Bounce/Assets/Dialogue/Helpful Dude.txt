@@ -1,0 +1,7 @@
+
+[Do you like balloons? I do. {Line 2}]
+[If you grab that flat one over there, you can inflate it! {Line 3}]
+[Since you're so light, it'll carry you through the air. {Line 4}]
+[Careful, though -- if you jerk the line too hard, it'll snap off. {Line 5}]
+[Also, the balloon will pop if it touches anything spiky. {Line 6}]
+[But that should be obvious, right?{End}]

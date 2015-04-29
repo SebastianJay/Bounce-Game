@@ -1,11 +1,15 @@
 #Doctor - Convinces patients that they are going to die unless they buy the medication. What a bargain!
 
-[Woah, dude, what happened to you? That looks pretty ugly.] [I got Rob’d...{Line 2}]
+[Woah, dude, what happened to you? That looks pretty ugly.] [I got Rob'd...{Line 2}]
 
-[Well, you’re not going to like to hear this, but I’m gonna tell it to you anyways. You probably don’t have long to live. Seriously, rolling around and bouncing all over the place? I’m surprised you don’t have a concussion from all the bouncing that you’re doing. Trust me, I’m a doctor. I know these kinds of things. Anyways, you probably won’t live much longer without...] [Without what? Just tell me already! I’m dying to know how to fix this! {Line 3}]
+[Well, you're not going to like to hear this, but I'm gonna tell it to you anyways. You probably don't have long to live. {Line 3}]
+[Seriously, rolling around and bouncing all over the place? I'm surprised you don't have a concussion from all the bouncing that you're doing. {Line 4}] 
+[Trust me, I'm a doctor. I know these kinds of things. Anyways, you probably won't live much longer without...] [Without what? Just tell me already! I'm dying to know how to fix this! {Line 5}]
 
-[You need this tincture; I call it Doc’s Super Fantastic One-Shot Cure-All. For the low, low price of $19.99 (in 26 installments), you can cure just about any ailment with one shot of this stuff! Paper cut? Take a shot. Cobra bite? Take a shot. Injured while fending off bears with bicycle chains? A shot will fix that as well. What a deal! {}] [Wait...how is this a deal? {Line 4}] [I’ll take it! {Line 5}] [I need more time to think about this... {Line 6}]
+[You need this tincture; I call it Doc's Super Fantastic One-Shot Cure-All. {Line 6}]
+[For the low, low price of $19.99 (in 26 installments), you can cure just about any ailment with one shot of this stuff! {Line 7}] 
+[Paper cut? Take a shot. Cobra bite? Take a shot. Injured while fending off bears with bicycle chains? A shot will fix that as well. What a deal! {}] [Wait...how is this a deal? {Line 8}] [I'll take it! {Line 9}] [I need more time to think about this... {Line 10}]
 
 [You get to live! What a bargain! {End}]
 [Sold! {End}]
-[But wait! There’s more! Order now and I’ll even throw in this handy laptop steering wheel desk, ABSOLUTELY FREE! Supplies are limited, so order now while I’m still in stock! {End}]
+[But wait! There's more! Order now and I'll even throw in this handy laptop steering wheel desk, ABSOLUTELY FREE! Supplies are limited, so order now while it's still in stock! {End}]

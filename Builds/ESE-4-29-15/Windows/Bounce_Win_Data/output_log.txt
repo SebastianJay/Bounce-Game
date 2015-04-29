@@ -1,0 +1,45 @@
+Initialize engine version: 4.6.1f1 (d1db7a1b5196)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 9.0c [igdumd32.dll 9.17.10.2843]
+    Renderer: Intel(R) HD Graphics 4000
+    Vendor:   Intel
+    VRAM:     880 MB (via DXGI)
+    Caps:     Shader=30 DepthRT=1 NativeDepth=1 NativeShadow=1 DF16=1 INTZ=1 RAWZ=0 NULL=1 RESZ=1 SlowINTZ=0
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Student\Documents\GitHub\Bounce-Game\Builds\ESE-4-29-15\Windows\Bounce_Win_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Student\Documents\GitHub\Bounce-Game\Builds\ESE-4-29-15\Windows\Bounce_Win_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Student\Documents\GitHub\Bounce-Game\Builds\ESE-4-29-15\Windows\Bounce_Win_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Student\Documents\GitHub\Bounce-Game\Builds\ESE-4-29-15\Windows\Bounce_Win_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Student\Documents\GitHub\Bounce-Game\Builds\ESE-4-29-15\Windows\Bounce_Win_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Student\Documents\GitHub\Bounce-Game\Builds\ESE-4-29-15\Windows\Bounce_Win_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  0.047 seconds
+desktop: 1600x900 50Hz; virtual: 1600x900 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+Platform assembly: C:\Users\Student\Documents\GitHub\Bounce-Game\Builds\ESE-4-29-15\Windows\Bounce_Win_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Student\Documents\GitHub\Bounce-Game\Builds\ESE-4-29-15\Windows\Bounce_Win_Data\Managed\System.Xml.dll (this message is harmless)
+Platform assembly: C:\Users\Student\Documents\GitHub\Bounce-Game\Builds\ESE-4-29-15\Windows\Bounce_Win_Data\Managed\System.dll (this message is harmless)
+UnloadTime: 0.375390 ms
+System memory in use before: 46.3 MB.
+Unloading 8 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+System memory in use after: 27.2 MB.
+
+Unloading 11 unused Assets to reduce memory usage. Loaded Objects now: 9115.
+Total: 3.550227 ms (FindLiveObjects: 0.380917 ms CreateObjectMapping: 0.036710 ms MarkObjects: 1.131699 ms  DeleteObjects: 1.349986 ms)
+
+DirectoryNotFoundException: Directory '../Concept_Dropbox/Screenshots' not found.
+  at System.IO.Directory.GetFileSystemEntries (System.String path, System.String searchPattern, FileAttributes mask, FileAttributes attrs) [0x00166] in /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.IO/Directory.cs:528 
+  at System.IO.Directory.GetFiles (System.String path, System.String searchPattern) [0x00000] in /Users/builduser/buildslave/mono-runtime-and-classlibs/build/mcs/class/corlib/System.IO/Directory.cs:308 
+  at ScreenshotTaker.Start () [0x00000] in C:\Users\Student\Documents\GitHub\Bounce-Game\Bounce\Assets\Scripts\ScreenshotTaker.cs:15 
+ 
+(Filename: C Line: 0)
+
+UnloadTime: 17.882187 ms
+System memory in use before: 69.2 MB.
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+System memory in use after: 62.2 MB.
+
+Unloading 182 unused Assets to reduce memory usage. Loaded Objects now: 1905.
+Total: 2.062084 ms (FindLiveObjects: 0.084867 ms CreateObjectMapping: 0.026447 ms MarkObjects: 0.486310 ms  DeleteObjects: 0.905122 ms)
+
