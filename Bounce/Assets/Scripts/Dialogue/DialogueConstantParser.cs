@@ -132,6 +132,24 @@ public static class DialogueConstantParser
 				obj.GetComponent<ScreenFading>().musicObj.audio.Stop();
 			}
 			break;
+		case "BobbityGivesBobGlasses":
+			if(!EvaluateConstant ("GivenGlassesFromBobbity")){
+				SetConstant ("GivenGlassesFromBobbity");
+
+				GameObject notifyObj = GameObject.FindGameObjectWithTag ("NoteManager");
+				obj = GameObject.FindGameObjectWithTag("Parrot");
+				obj.audio.Play ();
+				ItemType type = ItemType.Aviator;
+				PlayerDataManager.inventory.AddItem(type);
+				if (notifyObj != null) {
+					notifyObj.GetComponent<NotificationManager>().PushMessage(
+						"Added the item \"" + ImmutableData.GetItemData()[type].name + "\" to Inventory");
+				}
+			}
+			break;
+		case "BobbitySqauwk":
+			//play parrot sqauwk
+			break;
 		case "BobRespawnsAndTalksToKing":
 			// REALLY BROKEN.. considering refactoring later
 			obj = GameObject.FindGameObjectWithTag("ScreenFader");
