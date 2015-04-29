@@ -111,7 +111,7 @@ public static class DialogueConstantParser
 		case "TalkToCaptain":
 			bool talkFlag = false;
 			if (!EvaluateConstant("FirstCaptainTalkDone")) {
-				SetConstant("InitialCaptainTalkDone");
+				SetConstant("FirstCaptainTalkDone");
 				talkFlag = true;
 			}
 			else if (EvaluateConstant("BobBodyGone") && !EvaluateConstant("SecondCaptainTalkDone")) {
@@ -121,6 +121,15 @@ public static class DialogueConstantParser
 			if (talkFlag) {
 				obj = GameObject.FindGameObjectWithTag("Captain");
 				obj.transform.GetComponent<Interactable>().StepConvo();
+			}
+			break;
+		case "TalkToRob":
+			if (!EvaluateConstant("BobBodyGone")) {
+				obj = GameObject.FindGameObjectWithTag("Villain");
+				obj.transform.GetComponent<Interactable>().StepConvo();
+				obj.transform.GetChild(4).audio.Play ();
+				obj = GameObject.FindGameObjectWithTag("ScreenFader");
+				obj.GetComponent<ScreenFading>().musicObj.audio.Stop();
 			}
 			break;
 		case "BobRespawnsAndTalksToKing":
@@ -237,7 +246,7 @@ public static class DialogueConstantParser
 		obj2.GetComponent<CameraFollow>().lockedPosition = new Vector2(obj.transform.position.x, obj.transform.position.y);
 		
 		GameObject obj3 = GameObject.FindGameObjectWithTag ("ScreenFader");
-		obj3.GetComponent<ScreenFading>().fadeSpeed = 1f;	//to temporarily make the fade longer
+		obj3.GetComponent<ScreenFading>().fadeSpeed = 0.5f;	//to temporarily make the fade longer
 		obj3.GetComponent<ScreenFading>().Transition (RobSceneReload, true);
 	}
 	/*
@@ -269,14 +278,18 @@ public static class DialogueConstantParser
 	static IEnumerator AnimateTeleporter() {
 		GameObject obj = GameObject.FindGameObjectWithTag("TeleportMachine");
 		Transform particleObj = obj.transform.GetChild (1);
-		for (int i = 0; i < 40; i++)
+		particleObj.audio.Play ();
+		for (int i = 0; i < 60; i++)
 		{
 			particleObj.particleSystem.emissionRate += 2f;
+			if (i <= 50)
+				particleObj.audio.pitch += 0.05f;
 			yield return new WaitForSeconds(0.05f);
 		}
 		particleObj.particleSystem.emissionRate = 0f;
 		Transform particleObj2 = obj.transform.GetChild (2);
 		particleObj2.gameObject.SetActive (true);
+		particleObj.audio.Stop ();
 		obj.audio.Play();
 		GameObject playerObj = GameObject.FindGameObjectWithTag ("Player");
 		playerObj.SetActive (false);	//?

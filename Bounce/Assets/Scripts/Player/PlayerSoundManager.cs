@@ -8,12 +8,16 @@ public class PlayerSoundManager : MonoBehaviour {
 	public AudioClip superJumpSound;
 	public AudioClip spiderJumpSound;
 	public AudioClip spiderStickSound;
+	public AudioClip balloonPopSound;
+	public AudioClip balloonSnapSound;
 
 	public float jumpVolume = 1f;
 	public float bounceVolume = 1f;
 	public float superJumpVolume = 1f;
 	public float spiderJumpVolume = 1f;
 	public float spiderStickVolume = 1f;
+	public float balloonPopVolume = 1f;
+	public float balloonSnapVolume = 1f;
 
 	private Dictionary<string, AudioSource> mappings;
 	private GameObject screenFadeObj;
@@ -51,6 +55,18 @@ public class PlayerSoundManager : MonoBehaviour {
 			sStickSrc.clip = spiderStickSound;
 			sStickSrc.volume = spiderStickVolume;
 			mappings.Add("SpiderStick", sStickSrc);
+		}
+		if (balloonPopSound != null) {
+			AudioSource bPopSrc = gameObject.AddComponent<AudioSource>();
+			bPopSrc.clip = balloonPopSound;
+			bPopSrc.volume = balloonPopVolume;
+			mappings.Add("BalloonPop", bPopSrc);
+		}
+		if (balloonSnapSound != null) {
+			AudioSource bSnapSrc = gameObject.AddComponent<AudioSource>();
+			bSnapSrc.clip = balloonSnapSound;
+			bSnapSrc.volume = balloonSnapVolume;
+			mappings.Add("BalloonSnap", bSnapSrc);
 		}
 		screenFadeObj = GameObject.FindGameObjectWithTag ("ScreenFader");
 	}

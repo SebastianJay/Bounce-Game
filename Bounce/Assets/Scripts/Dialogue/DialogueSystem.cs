@@ -136,9 +136,10 @@ public class DialogueSystem : MonoBehaviour {
 		//destroy the existing dialogue box
 		if (npcContainer != null)
 			Destroy(npcContainer);
-		if (text.Length == 0)
+		if (text.Length == 0) {
+			npcTextBounds = new Rect(0f, 1e11f, 0f, 0f);	//hack to get the player text to be placed high
 			return;	//don't do anything for empty string
-
+		}
 		//Draw the text
 		npcName = name;
 		npcText = text;

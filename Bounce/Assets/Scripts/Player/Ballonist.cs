@@ -15,6 +15,8 @@ public class Ballonist : MonoBehaviour {
 	public float jointForceConst = 300f;
 	public float jointForceLin = 30f;
 	public float jointForceQuad = 3f;
+	[HideInInspector]
+	public int exitCode = 0;
 
 	private Transform balloonInst;
 
@@ -47,6 +49,7 @@ public class Ballonist : MonoBehaviour {
 
 		if ((balloonInst.transform.position - this.transform.position).magnitude > detachDistance) {
 			//probably could use snapping noise here
+			exitCode = 2;
 			GetComponent<PowerupManager>().EndPowerup();
 		}
 		else if ((balloonInst.transform.position - this.transform.position).magnitude > maxDistance) {
@@ -66,7 +69,8 @@ public class Ballonist : MonoBehaviour {
 			balloonString.Rotate (new Vector3 (0f, 0f, Vector2.Angle (Vector2.right, balloonInst.transform.position - this.transform.position) + 90f));
 			float mag = (balloonInst.transform.position - this.transform.position).magnitude;
 			float ypix = balloonString.GetComponent<SpriteRenderer>().sprite.bounds.size.y;
-			balloonString.localScale = new Vector3(1f, 1f, 1f);
+			balloonString.localScale = new Vector3(mag / ypix, mag / ypix, 1f);
+			//Debug.Log (ypix + " " + mag);
 		}
 
 		//balloonInst.transform.position = balloonInst.transform.position + new Vector3 (0f, 0.01f, 0f);
@@ -98,6 +102,10 @@ public class Ballonist : MonoBehaviour {
 		}
 		balloonInst = null;
 		GetComponent<PlayerBallControl>().balloonActive = false;
+		if (exitCode == 1)
+			GetComponent<PlayerSoundManager>().PlaySound("BalloonPop");
+		if (exitCode == 2)
+			GetComponent<PlayerSoundManager>().PlaySound("BalloonSnap");
 		//rigidbody2D.angularVelocity = 0f;
 		//rigidbody2D.velocity = Vector2.zero;
 	}

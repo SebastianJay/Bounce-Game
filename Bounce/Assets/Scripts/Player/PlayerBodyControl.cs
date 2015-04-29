@@ -97,6 +97,7 @@ public class PlayerBodyControl : MonoBehaviour {
 				jumpKeyDown = true;
 				jumpKeyTimer = 0f;
 				jumpTimer = 0f;
+				GetComponent<PlayerSoundManager>().PlaySound("Jump");
 				//rigidbody2D.AddForce(-Physics2D.gravity.normalized * jumpForceSmall);
 			}
 			if (Input.GetButtonUp("Jump"))

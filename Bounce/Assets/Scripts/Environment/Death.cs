@@ -69,6 +69,7 @@ public class Death : MonoBehaviour {
 		}
 		if (col.gameObject.layer == 10) {
 			//the balloon layer -- hardcoded as 10
+			player.GetComponent<Ballonist>().exitCode = 1;
 			player.GetComponent<PowerupManager>().EndPowerup();
 			Destroy (col.gameObject);
 			//probably could use popping noise here

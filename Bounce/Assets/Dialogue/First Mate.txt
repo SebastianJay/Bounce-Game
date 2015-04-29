@@ -1,0 +1,17 @@
+#First mate - dude on the ship
+
+[Ahoy! We're headed off to sea quite soon!{Line 2}]
+[Once you're done prancing about the deck, head over to your cabin.{End, SetTalkedToFirstMate}]
+
+if TalkedToFirstMate
+[Some of the crew here enjoy jumping about the masts for sport{Line 4}]
+[You can do the same as long as you don't break any limbs.{Line 5}]
+[Just be down here by the time the ship leaves the dock.{End}]
+
+if BobBodyGone
+[Ahoy! Captain told me that you're going to shoot yourself across the world in search of your body!{Line 7}]
+[Not a bad way to spend one's free time. I've loaded both cannons up so all you have to do is crawl in through the back.{Line 8}]
+
+if TalkedToFirstMateAgain
+[The cannon on the stern points toward the jungle, and the one on the bow points toward the city. {Line 9}]
+[Bon voyage!{End, Set TalkedToFirstMateAgain}]

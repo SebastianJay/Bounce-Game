@@ -105,7 +105,8 @@ public static class ImmutableData {
 		levelMapping = new Dictionary<string, List<int> > ();
 
 		//Hub checkpoints
-		InitCheck (1, "The Big Ship", 157f, 13.5f, 150f, 13.5f, -1000f, 1000f, -1000f, 1000f, 11f);
+		InitCheck (0, "Tiny Town", -42f, 9.5f, -42f, 15f, -65f, 177f, 15f, 15f, 9f);
+		InitCheck (1, "The Big Ship", 144f, 11f, 144f, 11f, 123f, 177f, 12f, 75f, 12f);
 
 		//City checkpoints
 		InitCheck (100, "The Chimney", -20f, 51f, -12f, 51f, -15f, 300f, -5f, 50f, 7f);
@@ -122,7 +123,7 @@ public static class ImmutableData {
 		InitCheck (301, "Dunes", 205f, -48f, 205f, -48f, -1000f, 1000f, -1000f, 1000f, 11f);
 		
 		//level mappings
-		InitLevel ("Pier", 1);
+		InitLevel ("Pier", 0, 1);
 		InitLevel ("City", 100, 101, 102, 103);
 		InitLevel ("Jungle", 200, 201);
 		InitLevel ("Beach", 300, 301);

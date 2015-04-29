@@ -183,13 +183,17 @@ MonoBehaviour:
   jumpSound: {fileID: 8300000, guid: 5d7db38825679984f9bbc8749ab6da0d, type: 3}
   bounceSound: {fileID: 8300000, guid: 2f59adb537a833f49ad1f3bc99e565ab, type: 3}
   superJumpSound: {fileID: 8300000, guid: a521db8b8a6197943985655afeab1f30, type: 3}
-  spiderJumpSound: {fileID: 0}
-  spiderStickSound: {fileID: 0}
+  spiderJumpSound: {fileID: 8300000, guid: 2d8a9504764503f4da876156630ffd5f, type: 3}
+  spiderStickSound: {fileID: 8300000, guid: b5bf03c84795863458df1a393d173a35, type: 3}
+  balloonPopSound: {fileID: 8300000, guid: c5faad0fe9b3f464ca0c9535d540bab5, type: 3}
+  balloonSnapSound: {fileID: 8300000, guid: d08f5c04e45ecf54481ef7b77bfc0095, type: 3}
   jumpVolume: 1
   bounceVolume: 1
   superJumpVolume: 1
   spiderJumpVolume: 1
   spiderStickVolume: 1
+  balloonPopVolume: 1
+  balloonSnapVolume: 1
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -228,6 +232,7 @@ MonoBehaviour:
   jointForceConst: 315
   jointForceLin: 70
   jointForceQuad: 30
+  exitCode: 0
 --- !u!114 &11486938
 MonoBehaviour:
   m_ObjectHideFlags: 1

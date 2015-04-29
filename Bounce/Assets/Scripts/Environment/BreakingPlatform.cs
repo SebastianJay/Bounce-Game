@@ -52,4 +52,10 @@ public class BreakingPlatform : MonoBehaviour {
 		}
 
 	}
+
+	public void Reset()
+	{
+		timer = 0;
+		timerStarted = false;
+	}
 }

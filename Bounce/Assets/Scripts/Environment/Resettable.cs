@@ -49,6 +49,9 @@ public class Resettable : MonoBehaviour {
 		else if (transform.childCount > 0 && transform.GetChild(0).GetComponent<MovingPlatform>() != null){
 			transform.GetChild(0).GetComponent<MovingPlatform>().Reset();
 		}
+		if (GetComponent<BreakingPlatform>() != null) {
+			GetComponent<BreakingPlatform>().Reset();
+		}
 	}
 
 	void ResetPosition () {

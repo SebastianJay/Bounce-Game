@@ -180,6 +180,9 @@ public class StartScreen : MonoBehaviour {
 	{
 		ImmutableData.Init();
 		PlayerDataManager.timeSinceSave = DateTime.Now;
+		PlayerDataManager.previousCheckpoints.Add (0);	//add the first checkpoint (for simplicity)
+		PlayerDataManager.lastCheckpoint = 0;
+		PlayerDataManager.lastLevel = 1;	//pier
 		Application.LoadLevel("Pier");
 	}
 
