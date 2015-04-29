@@ -1,0 +1,19 @@
+#Bobbity is parrot
+
+[][Sup.{Line 2}]
+[Bobbity wants a cracker!{}][Really?{Line 3}]
+[Bobbity has a cracker!{}][Do you now?{Line 4}]
+[...{Line 5}]
+[Bobbity has glasses!] [...{Line 6}]
+[][...say wut?{Line 7}]
+[Bob takes glasses!{}][Wait how do you kn-{End, Event BobbityGivesBobGlasses}]
+
+if GivenGlassesFromBobbity
+[][Hey...{Line 9}]
+[][Got any more of those glasses?{Line 10}]
+[Bob took glasses!{}][I did not.{Line 11}]
+[Bob took glasses!{}][Did not.{Line 12}]
+[Bob took glasses!{}][Come on man! Can't a guy have some style?{Line 13}]
+[...Bob took glasses!{Line 14, Event BobbitySqauwk}]
+[][...{Line 15}]
+[][I hate parrots.{End}]

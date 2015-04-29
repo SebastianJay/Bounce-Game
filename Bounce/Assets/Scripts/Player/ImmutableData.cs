@@ -117,16 +117,21 @@ public static class ImmutableData {
 		//Jungle checkpoints
 		InitCheck (200, "Treetops", -20f, 49f, -20f, 50f, -35f, -20f, 28f, 50f, 8f);
 		InitCheck (201, "Treebottoms", 28f, -74f, 27f, -71f, 12f, 35f, -71f, -70f, 7f);	
+		InitCheck (202, "Twin Huts", 401f, -142f, 401f, -142f, 232f, 410f, -174f, -65f, 11f);	
 
 		//Beach checkpoints
-		InitCheck (300, "Sand Castles", -77f, 4f, -77f, 4f, -1000f, 1000f, -1000f, 1000f, 11f);	
-		InitCheck (301, "Dunes", 205f, -48f, 205f, -48f, -1000f, 1000f, -1000f, 1000f, 11f);
-		
+		InitCheck (300, "Sand Castles", -77f, 4f, -77f, 4f, -81f, -40f, 5f, 20f, 11f);	
+		InitCheck (301, "Dunes", 205f, -48f, 205f, -48f, 175f, 300f, -45f, 30f, 8f);
+
+		//Space checkpoints
+		InitCheck (400, "Last Frontier", -258f, -7.66f, -258f, -8.5f, -300f, 300f, -300f, 300f, 11f);
+
 		//level mappings
 		InitLevel ("Pier", 0, 1);
 		InitLevel ("City", 100, 101, 102, 103);
-		InitLevel ("Jungle", 200, 201);
+		InitLevel ("Jungle", 200, 201, 202);
 		InitLevel ("Beach", 300, 301);
+		InitLevel ("Space", 400);
 
 		//Items!
 		//InitItem (ItemType.Item1, "Accessories/sample_glasses", "Glasses", "A nondescript pair of glasses", 0f, 0f, 0f);

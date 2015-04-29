@@ -16,7 +16,7 @@ public class GravityField : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		playerObj = GameObject.FindGameObjectWithTag("Player");
+		//playerObj = GameObject.FindGameObjectWithTag("Player");
 	}
 	
 	// Update is called once per frame
@@ -36,6 +36,7 @@ public class GravityField : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D col)
 	{
 		if (col.tag == "Player") {
+			playerObj = col.gameObject;
 			dominantField = transform;
 			if (!directional) {
 				Vector2 diff = new Vector2(transform.position.x - col.transform.position.x,

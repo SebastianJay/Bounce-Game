@@ -16,7 +16,7 @@ public class MainMenu : MonoBehaviour
 	public const float EPSILON = 1e-11f;
 	public const float MOUSE_EPSILON = 1e-5f;
 	public MenuTab currentTab = MenuTab.Save;
-	public bool showMenu = false;
+	public bool showMenu = false;	//fix later
 	
 	public float menuWidth = 500;
 	public float menuHeight = 510;
@@ -225,6 +225,8 @@ public class MainMenu : MonoBehaviour
 					BounceXmlSerializer.currentSaveFile = saveFileList.Count;
 					PlayerDataManager.SaveCurrent();
 					saveFileList = BounceXmlSerializer.RetrieveMetaData();
+					GameObject noteObj = GameObject.FindGameObjectWithTag("NoteManager");
+					noteObj.GetComponent<NotificationManager>().PushMessage("Saved game.");
 				}
 				if (BounceXmlSerializer.currentSaveFile >= 0 && saveFileList.Count > 0) {
 					// A button for creating a new save file
@@ -234,6 +236,8 @@ public class MainMenu : MonoBehaviour
 							saveSrc.Play();
 						PlayerDataManager.SaveCurrent();
 						saveFileList = BounceXmlSerializer.RetrieveMetaData();
+						GameObject noteObj = GameObject.FindGameObjectWithTag("NoteManager");
+						noteObj.GetComponent<NotificationManager>().PushMessage("Saved game.");
 					}
 				}
 				
@@ -254,15 +258,17 @@ public class MainMenu : MonoBehaviour
 					{
 						if (saveSrc != null)
 							saveSrc.Play();
-						BounceXmlSerializer.currentSaveFile = saveFileIndex;
+						BounceXmlSerializer.currentSaveFile = metadata.index;
 						PlayerDataManager.SaveCurrent();
 						saveFileList = BounceXmlSerializer.RetrieveMetaData();
+						GameObject noteObj = GameObject.FindGameObjectWithTag("NoteManager");
+						noteObj.GetComponent<NotificationManager>().PushMessage("Saved game.");
 					}
 					if(GUI.Button (new Rect(360,i*60+10,120,50),"Load", button120x50Style) && !fadingOut)
 					{
 						if (loadSrc != null)
 							loadSrc.Play();
-						loadDataIndex = saveFileIndex;
+						loadDataIndex = metadata.index;
 						if (screenFadeObj != null) {
 							screenFadeObj.GetComponent<ScreenFading>().fadeSpeed /= EPSILON;
 							screenFadeObj.GetComponent<ScreenFading>().Transition(LoadTransition, true);
@@ -347,7 +353,7 @@ public class MainMenu : MonoBehaviour
 
 				GUI.skin = scrollbarSkin;
 				scrollPosition2 = GUI.BeginScrollView (new Rect (Screen.width / 2 - menuWidth / 2 + 10, Screen.height / 2 - menuHeight / 2 + 15 + tabButtonHeight, scrollViewWidth, scrollViewHeight), 
-				                                       scrollPosition2, new Rect (0, 0, scrollViewWidth - 20, scrollViewHeight*2));
+				                                       scrollPosition2, new Rect (0, 0, scrollViewWidth - 20, scrollViewHeight*2.5f));
 				GUI.skin = null;
 				//Dictionary<int, List<int> > previousCheckpoints = player.GetComponent<PlayerDataManager>().previousCheckpoints;
 				//Dictionary<int, List<int> > previousCheckpoints = PlayerDataManager.previousCheckpoints;

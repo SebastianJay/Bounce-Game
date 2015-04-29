@@ -143,7 +143,7 @@ public static class DialogueConstantParser
 				PlayerDataManager.inventory.AddItem(type);
 				if (notifyObj != null) {
 					notifyObj.GetComponent<NotificationManager>().PushMessage(
-						"Added the item \"" + ImmutableData.GetItemData()[type].name + "\" to Inventory");
+						"Added item \"" + ImmutableData.GetItemData()[type].name + "\" to Collection");
 				}
 			}
 			break;
@@ -171,6 +171,13 @@ public static class DialogueConstantParser
 			obj.rigidbody2D.angularVelocity = 0f;
 			obj = GameObject.FindGameObjectWithTag("ScreenFader");
 			obj.GetComponent<ScreenFading>().StartCoroutine(AnimateTeleporter());
+			break;
+		case "LoadBeach":
+			obj = GameObject.FindGameObjectWithTag("ScreenFader");
+			obj.GetComponent<ScreenFading>().Transition(delegate {
+				PlayerDataManager.loadedLevel = false;
+				Application.LoadLevel("Beach");
+			}, true);
 			break;
 		case "GiveTalkInstructions":
 			if (!EvaluateConstant("TalkInstructionsDone")) {

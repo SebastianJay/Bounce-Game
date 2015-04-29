@@ -67,6 +67,12 @@ public static class BounceXmlSerializer {
 						metadata.numberSeconds = long.Parse(node.Attributes["playTime"].Value);
 					if (node.Attributes["lastCheckpoint"] != null)
 						metadata.lastCheckpoint = int.Parse(node.Attributes["lastCheckpoint"].Value);
+					//Debug.Log (filename);
+					string truncStr = filename.Substring((saveDirectory + savePrefix).Length);
+					//Debug.Log (truncStr);
+					truncStr = truncStr.Substring(0, truncStr.Length - saveSuffix.Length);
+					//Debug.Log (truncStr);
+					metadata.index = int.Parse(truncStr);
 					dataList.Add(metadata);
 				}
 			}
@@ -112,6 +118,7 @@ public class PlayerData
 
 public struct BounceFileMetaData
 {
+	public int index;
 	public int lastCheckpoint;
 	public long numberDeaths;
 	public int numberCollectibles;

@@ -50,7 +50,8 @@ public class Interactable : MonoBehaviour {
 		if (playerObj == null)
 			playerObj = GameObject.FindGameObjectWithTag ("Player");
 		if (Input.GetButtonDown ("Action") && (inTrigger || inConversation) 
-		    && Time.frameCount != endedTalkFrame && !DialogueConstantParser.eventLock)
+		    && Time.frameCount != endedTalkFrame && !DialogueConstantParser.eventLock
+		    && Time.timeScale >= 1f)	//FIX LATER
 		{
 			StepConvo();
 		}

@@ -1,7 +1,7 @@
 #First mate - dude on the ship
 
 [Ahoy! We're headed off to sea quite soon!{Line 2}]
-[Once you're done prancing about the deck, head over to your cabin.{End, SetTalkedToFirstMate}]
+[Once you're done prancing about the deck, head over to your cabin.{End, Set TalkedToFirstMate}]
 
 if TalkedToFirstMate
 [Some of the crew here enjoy jumping about the masts for sport{Line 4}]

@@ -23,5 +23,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Jungle.unity
   - enabled: 1
     path: Assets/Scenes/Beach.unity
+  - enabled: 0
+    path: Assets/Scenes/Space_OLD.unity
   - enabled: 1
     path: Assets/Scenes/Space.unity

@@ -15,7 +15,7 @@ public class PlayerDataManager : MonoBehaviour {
 	public static HashSet<int> previousCheckpoints = new HashSet<int>();
 
 	public static long secondsSinceSave = 0;
-	public static DateTime timeSinceSave;
+	public static DateTime timeSinceSave = DateTime.Now;
 	public static long numberDeaths = 0;
 	public static int numberUniqueItems = 0;
 

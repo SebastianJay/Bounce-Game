@@ -11,10 +11,15 @@ public class Ballonist : MonoBehaviour {
 	//public float maxVerticalDistance = 10f;
 	public float detachDistance = 4.5f;
 	public float maxDistance = 3.0f;
+	public Vector2 spawnOffset = new Vector2(0f, 1.3f);
 
 	public float jointForceConst = 300f;
 	public float jointForceLin = 30f;
 	public float jointForceQuad = 3f;
+
+	public Sprite wildcardSprite;
+	public float wildcardChance = 0.1f;
+
 	[HideInInspector]
 	public int exitCode = 0;
 
@@ -28,7 +33,10 @@ public class Ballonist : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (balloonInst == null) {
-			balloonInst = Instantiate(balloonPrefab, transform.position + new Vector3(0f, 0f, 0f), Quaternion.identity) as Transform;
+			balloonInst = Instantiate(balloonPrefab, transform.position + new Vector3(spawnOffset.x, spawnOffset.y, 0f), Quaternion.identity) as Transform;
+			if (Random.value < wildcardChance) {
+				balloonInst.GetComponent<SpriteRenderer>().sprite = wildcardSprite;
+			}
 			//balloonInst.GetComponent<SpringJoint2D>().connectedBody = transform.rigidbody2D;
 		}
 		GetComponent<PlayerBallControl> ().balloonActive = true;

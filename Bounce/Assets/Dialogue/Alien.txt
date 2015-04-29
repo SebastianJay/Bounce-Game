@@ -1,0 +1,4 @@
+
+[(O hai thar){Line 2}]
+[(This is the end of the road.){Line 3}]
+[(Thanks for playing!){End}]

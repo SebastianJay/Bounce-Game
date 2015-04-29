@@ -90,6 +90,8 @@ public class PowerupManager : MonoBehaviour {
 
 			if (powerupTimer >= powerupTime)
 			{
+				if (currentPowerup == PowerupType.Balloon)
+					this.GetComponent<Ballonist>().exitCode = 0;
 				EndPowerup();
 			}
 		}
@@ -115,7 +117,6 @@ public class PowerupManager : MonoBehaviour {
 			//player.rigidbody2D.gravityScale = 1f;
 			break;
 		case PowerupType.Balloon:
-			this.GetComponent<Ballonist>().exitCode = 0;
 			this.GetComponent<Ballonist>().ForceQuit();
 			this.GetComponent<Ballonist>().enabled = false;
 			break;

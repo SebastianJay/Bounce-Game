@@ -37,7 +37,7 @@ public class ItemPickUp : MonoBehaviour {
 			PlayerDataManager.inventory.AddItem(type);
 			if (notifyObj != null) {
 				notifyObj.GetComponent<NotificationManager>().PushMessage(
-					"Added the item \"" + ImmutableData.GetItemData()[type].name + "\" to Inventory");
+					"Added item \"" + ImmutableData.GetItemData()[type].name + "\" to Collection");
 			}
 
 			if (transform.childCount > 0 && transform.GetChild(0).particleSystem != null) {

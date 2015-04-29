@@ -3,7 +3,7 @@
 #For use in the Jungle Village of the Jungle-Beach-Water world
 
 
-[Feeling a bit discombobulated?  Welcome to the –{}] [Do you always have to make pun of me?{Line 2}]
+[Feeling a bit discombobulated?  Welcome to the –{}] [Do you have to make pun of me?{Line 2}]
 [Nice one!{}][I meant fun...where's your son heading?{Line 3}]
 [Ho, ho! You're on a roll today!{Line 4}]
 [But as I was saying, welcome to the Jungle.{Line 5}]

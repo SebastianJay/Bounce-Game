@@ -78,5 +78,9 @@ public class InitialStateConfig : MonoBehaviour {
 			}
 
 		}
+		if (level != 5)
+		{
+			Physics2D.gravity = new Vector2(0f, -30f);
+		}
 	}
 }
