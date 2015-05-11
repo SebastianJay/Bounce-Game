@@ -173,6 +173,7 @@ public class MainMenu : MonoBehaviour
 
 	void OnGUI ()
 	{
+		useGUILayout = false;
 		if (showMenu) {
 			bool fadingOut = screenFadeObj != null && screenFadeObj.GetComponent<ScreenFading>().IsTransitioning();
 

@@ -15,7 +15,7 @@ public class RevolvingObject : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		if (center != null) {
 						float dx = transform.position.x - center.transform.position.x;
 						float dy = transform.position.y - center.transform.position.y;

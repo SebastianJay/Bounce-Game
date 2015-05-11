@@ -28,7 +28,7 @@ public class KeyFrameMovingPlatform : MovingPlatform {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		if (paused) {
 			pauseTimer += Time.deltaTime;
 			if (pauseTimer >= pauseTime)
@@ -97,11 +97,10 @@ public class KeyFrameMovingPlatform : MovingPlatform {
 
 	public override void Reset()
 	{
+		base.Reset ();
 		keyIndex = 1;
 		reverseDir = false;
 		keyTime = (keyPoints [1] - keyPoints [0]).magnitude / keySpeed;
-		moveTimer = 0f;
-		pauseTimer = 0f;
 		moving = !moveOnContact;
 	}
 }

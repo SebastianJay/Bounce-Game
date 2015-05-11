@@ -20,7 +20,7 @@ public class GravityField : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		if (dominantField == transform) {
 			if (!directional) {
 				Vector2 diff = new Vector2(transform.position.x - playerObj.transform.position.x,

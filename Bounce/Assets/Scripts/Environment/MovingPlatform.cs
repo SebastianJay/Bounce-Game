@@ -26,26 +26,10 @@ public class MovingPlatform : MonoBehaviour {
 	private Vector2 mTo;
 
 	void Start() {
-		if (useCurrentStartPosition)
-		{
-			//initialPoint = rigidbody2D.position;
-			//Vector2 moveVector = endPoint-initialPoint;
-			if (moveParent)
-				mFrom = transform.parent.position;
-			else
-				mFrom = transform.position;
-			mTo = mFrom+endPoint;
-
-		}
-		else
-		{
-			transform.position = new Vector3(initialPoint.x, initialPoint.y, 0);
-			mFrom = initialPoint;
-			mTo = endPoint;
-		}
+		Reset ();
 	}
 
-	void Update () {
+	void FixedUpdate () {
 		if (paused)
 		{
 			pauseTimer += Time.deltaTime;
@@ -93,5 +77,22 @@ public class MovingPlatform : MonoBehaviour {
 
 	public virtual void Reset()
 	{
+		if (useCurrentStartPosition)
+		{
+			if (moveParent)
+				mFrom = transform.parent.position;
+			else
+				mFrom = transform.position;
+			mTo = mFrom+endPoint;			
+		}
+		else
+		{
+			transform.position = new Vector3(initialPoint.x, initialPoint.y, 0);
+			mFrom = initialPoint;
+			mTo = endPoint;
+		}
+		moveTimer = 0f;
+		pauseTimer = 0f;
+		paused = false;
 	}
 }

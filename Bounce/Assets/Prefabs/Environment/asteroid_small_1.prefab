@@ -13,6 +13,7 @@ GameObject:
   - 114: {fileID: 11406494}
   - 114: {fileID: 11406496}
   - 114: {fileID: 11406498}
+  - 50: {fileID: 5080624}
   m_Layer: 0
   m_Name: asteroid_small_1
   m_TagString: Untagged
@@ -32,6 +33,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!50 &5080624
+Rigidbody2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 106498}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 1
+  m_FixedAngle: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
 --- !u!60 &6006498
 PolygonCollider2D:
   m_ObjectHideFlags: 1
@@ -72,7 +88,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 106498}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 98c5f4de2deec0145b773f40f6e3ac7c, type: 3}
   m_Name: 

@@ -20,7 +20,7 @@ public class SinMovingPlatform : MovingPlatform {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		moveTimer += Time.deltaTime;
 		float xcomp;
 		float ycomp;
