@@ -10,9 +10,10 @@ GameObject:
   - 4: {fileID: 400000}
   - 212: {fileID: 21200000}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11469342}
   - 50: {fileID: 5000000}
   - 233: {fileID: 23300000}
-  - 60: {fileID: 6000000}
+  - 61: {fileID: 6169342}
   m_Layer: 0
   m_Name: breaking_platform_better
   m_TagString: Untagged
@@ -27,8 +28,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -34.0768394, y: 7.14868164, z: 0}
-  m_LocalScale: {x: 3.61155844, y: 6.05980539, z: 4.07679081}
+  m_LocalPosition: {x: -34.4700012, y: 5.96999979, z: 0}
+  m_LocalScale: {x: 2, y: 1, z: 4.07679081}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -47,8 +48,8 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
---- !u!60 &6000000
-PolygonCollider2D:
+--- !u!61 &6169342
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -56,12 +57,8 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Poly:
-    m_Paths:
-    - - {x: -.479999989, y: .0549999997}
-      - {x: -.479999989, y: -.0549999997}
-      - {x: .479999989, y: -.0549999997}
-      - {x: .479999989, y: .0549999997}
+  m_Size: {x: 2, y: 1}
+  m_Center: {x: 0, y: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -75,6 +72,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   breakTime: 50
   fallTime: 60
+--- !u!114 &11469342
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71ddc923ade84ad44990f4dd82c9f4cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -95,8 +103,8 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 3477195907
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: dd9a093a6bd5ce24aaa6cdd13f2464e1, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 29a71e966b365834bbb13321478ae2cb, type: 3}
+  m_Color: {r: 1, g: .477941155, b: .477941155, a: 1}
 --- !u!233 &23300000
 HingeJoint2D:
   m_ObjectHideFlags: 1
@@ -106,9 +114,9 @@ HingeJoint2D:
   m_Enabled: 1
   m_CollideConnected: 0
   m_ConnectedRigidBody: {fileID: 0}
-  m_Anchor: {x: .479999721, y: -3.05634103e-07}
-  m_ConnectedAnchor: {x: -12.2701035, y: 48.7513046}
-  m_UseMotor: 0
+  m_Anchor: {x: -1, y: 0}
+  m_ConnectedAnchor: {x: -2.72570801, y: -1.48750246}
+  m_UseMotor: 1
   m_Motor:
     m_MotorSpeed: 0
     m_MaximumMotorForce: 10000

@@ -6,10 +6,12 @@ public class RespawnPoint : MonoBehaviour {
 	private static GameObject lastCheckpoint;
 	private GameObject screenFadeObj;
 	private GameObject notifyObj;
+	private GameObject camObj;
 	void Start()
 	{
 		screenFadeObj = GameObject.FindGameObjectWithTag ("ScreenFader");
 		notifyObj = GameObject.FindGameObjectWithTag ("NoteManager");
+		camObj = GameObject.FindGameObjectWithTag ("MainCamera");
 	}
 
 	void OnTriggerEnter2D (Collider2D col){
@@ -24,8 +26,7 @@ public class RespawnPoint : MonoBehaviour {
 			}
 			lastCheckpoint = gameObject;
 			Death.respawn = this.gameObject.transform.position;
-			Death.camConfig = GameObject.FindGameObjectWithTag("MainCamera").
-				GetComponent<CameraFollow>().GetConfig();
+			Death.camConfig = camObj.GetComponent<CameraFollow>().GetConfig();
 		}
 	}
 }

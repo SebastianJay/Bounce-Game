@@ -59,6 +59,7 @@ public class TileSprite : MonoBehaviour {
 		float startY = transform.position.y - (sprite.bounds.size.y / 2) + (spriteSize.y * desiredScale.y) / 2;
 
 		childPrefab.transform.position = new Vector3(startX, startY, transform.position.z);
+		childPrefab.transform.rotation = transform.rotation;
 		childPrefab.transform.localScale = desiredScale;
 		//childPrefab.transform.localRotation = prevRot;
 		childSprite.sprite = sprite.sprite;

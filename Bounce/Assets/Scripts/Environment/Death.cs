@@ -111,9 +111,12 @@ public class Death : MonoBehaviour {
 		}
 
 		camObj.GetComponent<CameraFollow>().LoadConfig(camConfig);
-		camObj.transform.position = new Vector3 (Mathf.Clamp (player.transform.position.x, camConfig.minXAndY.x, camConfig.maxXAndY.x),
+		if (!camConfig.isLocked)
+			camObj.transform.position = new Vector3 (Mathf.Clamp (player.transform.position.x, camConfig.minXAndY.x, camConfig.maxXAndY.x),
 		                                         Mathf.Clamp (player.transform.position.y, camConfig.minXAndY.y, camConfig.maxXAndY.y),
 		                                         -10f);
+		else
+			camObj.transform.position = new Vector3(camConfig.lockedPosition.x, camConfig.lockedPosition.y, -10f);
 
 		PlayerDataManager.numberDeaths++;
 		locked = false;
