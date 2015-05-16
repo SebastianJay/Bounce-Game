@@ -30,19 +30,17 @@ public class Resettable : MonoBehaviour {
 
 		transformRef = this.gameObject.transform;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 	// calls 
 	public void Reset() {
 	
 		ResetPosition ();
-		ResetHingeJoint ();
-		ResetCollider ();
-		ResetRigidbody ();
+		if (GetComponent<HingeJoint2D>() != null)
+			ResetHingeJoint ();
+		if (GetComponent<Collider2D>() != null)
+			ResetCollider ();
+		if (rigidbody2D != null)
+			ResetRigidbody ();
 		if (GetComponent<MovingPlatform>() != null){
 			GetComponent<MovingPlatform>().Reset();
 		}
@@ -61,24 +59,14 @@ public class Resettable : MonoBehaviour {
 	}
 
 	void ResetCollider() {
-		try {
-			this.gameObject.GetComponent<Collider2D>().enabled = true;
-		} catch ( MissingComponentException ) {
-			Debug.Log ("Resettable: Missing component: Collider2D");
-
-		}
+		this.gameObject.GetComponent<Collider2D>().enabled = true;
 	}
 
 	void ResetHingeJoint () {
-		try {
-			this.gameObject.GetComponent<HingeJoint2D>().enabled = true;
-		} catch ( MissingComponentException ) {
-			Debug.Log ("Resettable: Missing component: HingeJoint2D");
-		}
+		this.gameObject.GetComponent<HingeJoint2D>().enabled = true;
 	}
 
 	void ResetRigidbody () {
-		if (rigidbody2D != null)
-			this.gameObject.rigidbody2D.fixedAngle = true;
+		this.gameObject.rigidbody2D.fixedAngle = true;
 	}
 }

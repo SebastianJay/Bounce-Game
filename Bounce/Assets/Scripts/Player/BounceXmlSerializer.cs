@@ -25,7 +25,16 @@ public static class BounceXmlSerializer {
 			serializer.Serialize(stream,p);
 		}
 	}
-	
+
+	public static void SaveAndDownload(PlayerData p)
+	{
+		var serializer = new XmlSerializer (typeof(PlayerData));
+		var writer = new StringWriter ();
+		serializer.Serialize (writer, p);
+		string fileText = writer.ToString ();
+		Application.ExternalCall ("PromptDownload", fileText);
+	}
+
 	public static PlayerData Load()
 	{
 		if (!Directory.Exists(saveDirectory))
@@ -43,11 +52,18 @@ public static class BounceXmlSerializer {
 		}
 	}
 
+	public static PlayerData LoadFromString(string str) {
+		var serializer = new XmlSerializer (typeof(PlayerData));
+		TextReader strreader = new StringReader(str);
+		return serializer.Deserialize(strreader) as PlayerData;
+	}
+
 	//doesn't use the serialization APIs, but just looks at attributes at the top level
 	public static List<BounceFileMetaData> RetrieveMetaData()
 	{
-		List<string> fullFileList = Directory.GetFiles (saveDirectory, savePrefix + "*" + saveSuffix, 
-		                                                SearchOption.TopDirectoryOnly).ToList();
+		//List<string> fullFileList = Directory.GetFiles (saveDirectory, savePrefix + "*" + saveSuffix, 
+		//                                                SearchOption.TopDirectoryOnly).ToList();
+		List<string> fullFileList = Directory.GetFiles (saveDirectory, savePrefix + "*" + saveSuffix).ToList ();
 		List<BounceFileMetaData> dataList = new List<BounceFileMetaData> ();
 		foreach (string filename in fullFileList)
 		{

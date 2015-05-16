@@ -22,6 +22,11 @@ public class PlayerBallControl : MonoBehaviour {
 	public int jumpFrame = 0;	//used so spiderball doesn't repeat jump
 	[HideInInspector]
 	public int springFrame = 0;
+	[HideInInspector]
+	public float jumpLastTime = 0.0f;
+	[HideInInspector]
+	public float springLastTime = 0.0f;
+
 	// bouncy vars
 	public float bounciness = 0.6f;
 	public float boostedBounciness = 0.85f;
@@ -82,8 +87,11 @@ public class PlayerBallControl : MonoBehaviour {
 		if (col.GetComponent<MovingPlatform>() != null
 		    && col.GetComponent<MovingPlatform>().reparentPlayer) 
 		{
-			onMovingPlatform = true;
-			platformParent = col.transform.parent;
+			if (!col.GetComponent<MovingPlatform>().hasOneWayParent 
+			    || col.transform.parent.gameObject.layer == OneWay.DEFAULT_LAYER) {
+				onMovingPlatform = true;
+				platformParent = col.transform.parent;
+			}
 		}
 	}
 	void OnTriggerExit2D(Collider2D col)
@@ -241,7 +249,7 @@ public class PlayerBallControl : MonoBehaviour {
 
 	private void ListenForJump() {
 		if (Input.GetButton("Jump") && grounded && jumpTimer >= jumpDelay && !spiderball && !balloonActive
-		    && Time.frameCount - springFrame > Spring.springJumpFrameThreshold)
+		    && Time.timeSinceLevelLoad - springLastTime > Spring.springJumpTimeThreshold)
 		{
 			//Debug.Log ("Jump");
 			//Debug.Log (rigidbody2D.velocity);
@@ -251,7 +259,7 @@ public class PlayerBallControl : MonoBehaviour {
 			this.rigidbody2D.AddForce(-Physics2D.gravity.normalized * jumpForce);
 			jumpTimer = 0.0f;
 			hasContact = false;
-			jumpFrame = Time.frameCount;
+			jumpLastTime = Time.timeSinceLevelLoad;
 			if (GetComponent<PowerupManager>().currentPowerup == PowerupType.SuperJump)
 				GetComponent<PlayerSoundManager>().PlaySound("SuperJump");
 			else
@@ -378,10 +386,11 @@ public class PlayerBallControl : MonoBehaviour {
 				this.transform.parent.localScale = Vector3.one;
 
 				this.rigidbody2D.isKinematic = false;//Re-enabled rigidbody physics
+				jumpLastTime = Time.timeSinceLevelLoad;
+
 				if(jumpBoosted)
 				{
 					jumpBoosted = false;
-					jumpFrame = Time.frameCount;
 					//timeSinceJump = boostForgiveness;
 					//timeSinceLeft = boostForgiveness;
 					//timeSinceRight = boostForgiveness;
@@ -432,6 +441,7 @@ public class PlayerBallControl : MonoBehaviour {
 		jumpTimer += Time.fixedDeltaTime;
 		prevVelocity = this.rigidbody2D.velocity;
 		prevAngularVelocity = this.rigidbody2D.angularVelocity;
+		//Debug.Log (rigidbody2D.velocity.y);
 	}
 
 	public void ForceUndoDeformation()

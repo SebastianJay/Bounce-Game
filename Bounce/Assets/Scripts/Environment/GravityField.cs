@@ -26,7 +26,7 @@ public class GravityField : MonoBehaviour {
 				Vector2 diff = new Vector2(transform.position.x - playerObj.transform.position.x,
 				                           transform.position.y - playerObj.transform.position.y);
 				Physics2D.gravity = diff.normalized * gravityStrength;
-				playerObj.rigidbody2D.AddForce(Physics2D.gravity.normalized * additionalForce * diff.sqrMagnitude);
+				playerObj.rigidbody2D.AddForce(Physics2D.gravity.normalized * additionalForce / diff.sqrMagnitude);
 			} else {
 				playerObj.rigidbody2D.AddForce(direction.normalized * additionalForce);
 			}

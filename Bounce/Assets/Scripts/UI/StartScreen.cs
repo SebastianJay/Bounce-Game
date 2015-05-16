@@ -33,6 +33,7 @@ public class StartScreen : MonoBehaviour {
 	{
 		screenFadeObj = GameObject.FindGameObjectWithTag ("ScreenFader");
 		saveFileList = BounceXmlSerializer.RetrieveMetaData ();
+		Application.targetFrameRate = 50;
 	}
 
 	void OnMouseEnter() {
@@ -68,10 +69,16 @@ public class StartScreen : MonoBehaviour {
 		if (GUI.Button (new Rect (Screen.width * 0.4f, Screen.height * 0.8f, Screen.width * 0.2f, Screen.height * 0.1f), "Load Game", button320x90Style) && !fading) {
 			if (navigateSrc != null)
 				navigateSrc.Play();
-			if (screenFadeObj != null)
-				screenFadeObj.GetComponent<ScreenFading>().Transition(ShowLoadPanelTransition, false);
-			else
-				ShowLoadPanelTransition();
+			if (Application.platform == RuntimePlatform.WindowsWebPlayer || Application.platform == RuntimePlatform.OSXWebPlayer)
+			{
+				Application.ExternalCall("RequestUpload", "");
+			}
+			else {
+				if (screenFadeObj != null)
+					screenFadeObj.GetComponent<ScreenFading>().Transition(ShowLoadPanelTransition, false);
+				else
+					ShowLoadPanelTransition();
+			}
 		}
 		if (GUI.Button (new Rect (Screen.width * 0.7f, Screen.height * 0.8f, Screen.width * 0.2f, Screen.height * 0.1f), "Credits", button320x90Style) && !fading) {
 			if (navigateSrc != null)
@@ -192,5 +199,19 @@ public class StartScreen : MonoBehaviour {
 		PlayerDataManager.loadedLevel = false;
 		BounceXmlSerializer.currentSaveFile = loadDataIndex;
 		PlayerDataManager.LoadCurrentSave();
+	}
+
+
+	public void WebLoadGame(string fileContents)
+	{
+		if (screenFadeObj != null) {
+			screenFadeObj.GetComponent<ScreenFading> ().Transition (delegate {
+				PlayerData mData = BounceXmlSerializer.LoadFromString (fileContents);
+				PlayerDataManager.UploadCurrent(mData);
+				}, true);
+		} else {
+			PlayerData mData = BounceXmlSerializer.LoadFromString (fileContents);
+			PlayerDataManager.UploadCurrent(mData);
+		}
 	}
 }

@@ -54,7 +54,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 165242}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
-  m_LocalPosition: {x: -19.1299992, y: -34.0600014, z: 0}
+  m_LocalPosition: {x: -49.8385468, y: 1.52612877, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 2}
   m_Children:
   - {fileID: 465240}
@@ -99,7 +99,9 @@ MonoBehaviour:
   moveTime: 1.5
   pauseTime: .200000003
   moveParent: 1
+  reparentPlayer: 1
   flipOnTurn: 1
+  hasOneWayParent: 0
 --- !u!114 &11465242
 MonoBehaviour:
   m_ObjectHideFlags: 1

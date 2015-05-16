@@ -11471,7 +11471,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1576598997}
-  m_RootOrder: 7
+  m_RootOrder: 8
 --- !u!114 &421731293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13723,6 +13723,7 @@ MonoBehaviour:
   moveParent: 0
   reparentPlayer: 0
   flipOnTurn: 0
+  hasOneWayParent: 0
   xAxis: 1
   yAxis: 0
   amplitude: 7
@@ -14611,7 +14612,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1576598997}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!114 &548744913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15262,7 +15263,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1576598997}
-  m_RootOrder: 6
+  m_RootOrder: 7
 --- !u!82 &561416705
 AudioSource:
   m_ObjectHideFlags: 0
@@ -17065,6 +17066,7 @@ MonoBehaviour:
   moveParent: 0
   reparentPlayer: 0
   flipOnTurn: 0
+  hasOneWayParent: 0
   xAxis: 1
   yAxis: 0
   amplitude: 4.69000006
@@ -18884,6 +18886,7 @@ MonoBehaviour:
   moveParent: 0
   reparentPlayer: 0
   flipOnTurn: 0
+  hasOneWayParent: 0
   xAxis: 1
   yAxis: 0
   amplitude: 8.98999977
@@ -18914,7 +18917,7 @@ MonoBehaviour:
   transVelMax: 7
   moveDelta: {x: 0, y: 58.0800018}
   useObjectPool: 1
-  poolSize: 7
+  poolSize: 5
 --- !u!50 &683413286
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -19138,6 +19141,7 @@ MonoBehaviour:
   moveParent: 0
   reparentPlayer: 0
   flipOnTurn: 0
+  hasOneWayParent: 0
   xAxis: 1
   yAxis: 0
   amplitude: 3
@@ -19363,6 +19367,7 @@ MonoBehaviour:
   moveParent: 0
   reparentPlayer: 0
   flipOnTurn: 0
+  hasOneWayParent: 0
   xAxis: 1
   yAxis: 0
   amplitude: 5
@@ -21802,6 +21807,7 @@ MonoBehaviour:
   moveParent: 0
   reparentPlayer: 0
   flipOnTurn: 0
+  hasOneWayParent: 0
   xAxis: 1
   yAxis: 0
   amplitude: 11.5900002
@@ -21832,7 +21838,7 @@ MonoBehaviour:
   transVelMax: 7
   moveDelta: {x: 0, y: 58.0800018}
   useObjectPool: 1
-  poolSize: 7
+  poolSize: 5
 --- !u!50 &806368638
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -23514,6 +23520,7 @@ MonoBehaviour:
   moveParent: 1
   reparentPlayer: 1
   flipOnTurn: 0
+  hasOneWayParent: 0
   xAxis: 1
   yAxis: 0
   amplitude: 55.7000008
@@ -23650,6 +23657,7 @@ MonoBehaviour:
   moveParent: 1
   reparentPlayer: 1
   flipOnTurn: 0
+  hasOneWayParent: 0
 --- !u!50 &838839282
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -25237,7 +25245,7 @@ Transform:
   m_PrefabInternal: {fileID: 2024773285}
   m_GameObject: {fileID: 913597088}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -245, y: 2.02999997, z: 0}
+  m_LocalPosition: {x: -259.100006, y: .899999976, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1090316721}
@@ -28342,6 +28350,7 @@ MonoBehaviour:
   moveParent: 0
   reparentPlayer: 0
   flipOnTurn: 0
+  hasOneWayParent: 0
   xAxis: 1
   yAxis: 0
   amplitude: 2.66000009
@@ -28372,7 +28381,7 @@ MonoBehaviour:
   transVelMax: 7
   moveDelta: {x: 0, y: 58.0800018}
   useObjectPool: 1
-  poolSize: 7
+  poolSize: 5
 --- !u!50 &1022742632
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -30344,6 +30353,8 @@ MonoBehaviour:
   jumpDelay: .400000006
   jumpFrame: 0
   springFrame: 0
+  jumpLastTime: 0
+  springLastTime: 0
   bounciness: .600000024
   boostedBounciness: .850000024
   depressedBounciness: .400000006
@@ -30384,9 +30395,9 @@ Rigidbody2D:
   m_GravityScale: 1
   m_FixedAngle: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!212 &1090316720
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -30417,7 +30428,7 @@ Transform:
   m_PrefabInternal: {fileID: 2024773285}
   m_GameObject: {fileID: 1090316712}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.7434692, y: -1.55142879, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 913597089}
@@ -36926,6 +36937,7 @@ MonoBehaviour:
   moveParent: 0
   reparentPlayer: 0
   flipOnTurn: 0
+  hasOneWayParent: 0
   xAxis: 1
   yAxis: 0
   amplitude: 5
@@ -41688,6 +41700,7 @@ MonoBehaviour:
   moveParent: 0
   reparentPlayer: 0
   flipOnTurn: 0
+  hasOneWayParent: 0
   xAxis: 1
   yAxis: 0
   amplitude: 3.70000005
@@ -41718,7 +41731,7 @@ MonoBehaviour:
   transVelMax: 7
   moveDelta: {x: 0, y: 58.0800018}
   useObjectPool: 1
-  poolSize: 7
+  poolSize: 5
 --- !u!50 &1497542891
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -44829,10 +44842,10 @@ Transform:
   - {fileID: 887446269}
   - {fileID: 1147291053}
   - {fileID: 1576491406}
+  - {fileID: 1929320823}
   - {fileID: 548744912}
   - {fileID: 561416704}
   - {fileID: 421731292}
-  - {fileID: 1929320823}
   - {fileID: 1199075191}
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -45288,6 +45301,7 @@ MonoBehaviour:
   moveParent: 0
   reparentPlayer: 0
   flipOnTurn: 0
+  hasOneWayParent: 0
   xAxis: 1
   yAxis: 0
   amplitude: 4.69000006
@@ -48658,6 +48672,7 @@ MonoBehaviour:
   moveParent: 0
   reparentPlayer: 0
   flipOnTurn: 0
+  hasOneWayParent: 0
   xAxis: 1
   yAxis: 0
   amplitude: 3
@@ -49113,6 +49128,7 @@ MonoBehaviour:
   moveParent: 0
   reparentPlayer: 0
   flipOnTurn: 0
+  hasOneWayParent: 0
   xAxis: 1
   yAxis: 0
   amplitude: 3
@@ -49861,6 +49877,7 @@ MonoBehaviour:
   moveParent: 0
   reparentPlayer: 0
   flipOnTurn: 0
+  hasOneWayParent: 0
   xAxis: 1
   yAxis: 0
   amplitude: 17.2999992
@@ -51652,6 +51669,7 @@ MonoBehaviour:
   moveParent: 0
   reparentPlayer: 0
   flipOnTurn: 0
+  hasOneWayParent: 0
   xAxis: 1
   yAxis: 0
   amplitude: 4.69000006
@@ -51875,6 +51893,7 @@ MonoBehaviour:
   moveParent: 0
   reparentPlayer: 0
   flipOnTurn: 0
+  hasOneWayParent: 0
   xAxis: 1
   yAxis: 0
   amplitude: 7
@@ -55701,7 +55720,7 @@ Transform:
   m_Children:
   - {fileID: 1537685033}
   m_Father: {fileID: 1576598997}
-  m_RootOrder: 8
+  m_RootOrder: 5
 --- !u!81 &1929320824
 AudioListener:
   m_ObjectHideFlags: 0
@@ -59091,6 +59110,7 @@ MonoBehaviour:
   moveParent: 0
   reparentPlayer: 0
   flipOnTurn: 0
+  hasOneWayParent: 0
   xAxis: 1
   yAxis: 0
   amplitude: 3
@@ -59554,11 +59574,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400002, guid: c7cd5143fa8f15744957923e63b980d5, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -245
+      value: -259.100006
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c7cd5143fa8f15744957923e63b980d5, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.02999997
+      value: .899999976
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c7cd5143fa8f15744957923e63b980d5, type: 2}
       propertyPath: m_LocalPosition.z
@@ -59594,11 +59614,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: c7cd5143fa8f15744957923e63b980d5, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -13.7434692
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: c7cd5143fa8f15744957923e63b980d5, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.55142879
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c7cd5143fa8f15744957923e63b980d5, type: 2}
@@ -61573,7 +61593,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Radius: 7.96000004
+  m_Radius: 12
   m_Center: {x: 0, y: 0}
 --- !u!114 &2108640213
 MonoBehaviour:
@@ -61590,7 +61610,7 @@ MonoBehaviour:
   directional: 0
   direction: {x: 0, y: 0}
   gravityStrength: 19.5
-  additionalForce: 3.80999994
+  additionalForce: 0
   appliedDrag: 2
 --- !u!212 &2108640214
 SpriteRenderer:

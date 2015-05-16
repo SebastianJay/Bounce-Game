@@ -2696,6 +2696,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 1
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1 &78439113
 GameObject:
   m_ObjectHideFlags: 0
@@ -2740,6 +2741,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 10
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1 &80331558
 GameObject:
   m_ObjectHideFlags: 0
@@ -3316,6 +3318,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 5
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1 &102717140
 GameObject:
   m_ObjectHideFlags: 0
@@ -5719,6 +5722,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 10
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1 &170407821
 GameObject:
   m_ObjectHideFlags: 0
@@ -10571,6 +10575,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 5
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1 &294625679
 GameObject:
   m_ObjectHideFlags: 0
@@ -11725,6 +11730,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 10
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1 &328785921
 GameObject:
   m_ObjectHideFlags: 0
@@ -14487,6 +14493,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 10
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1001 &369196008
 Prefab:
   m_ObjectHideFlags: 0
@@ -18995,6 +19002,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 10
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1 &524537122
 GameObject:
   m_ObjectHideFlags: 0
@@ -20676,6 +20684,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 10
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1 &554954941
 GameObject:
   m_ObjectHideFlags: 0
@@ -22822,6 +22831,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 10
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1001 &607680138
 Prefab:
   m_ObjectHideFlags: 0
@@ -26249,6 +26259,8 @@ MonoBehaviour:
   jumpDelay: .400000006
   jumpFrame: 0
   springFrame: 0
+  jumpLastTime: 0
+  springLastTime: 0
   bounciness: .600000024
   boostedBounciness: .850000024
   depressedBounciness: .400000006
@@ -26289,9 +26301,9 @@ Rigidbody2D:
   m_GravityScale: 1
   m_FixedAngle: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!212 &693582099
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -29048,6 +29060,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 10
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1001 &769604789
 Prefab:
   m_ObjectHideFlags: 0
@@ -31717,6 +31730,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 10
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1 &815964268
 GameObject:
   m_ObjectHideFlags: 0
@@ -33207,6 +33221,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 10
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!4 &859274224
 Transform:
   m_ObjectHideFlags: 0
@@ -35124,6 +35139,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 5
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1001 &914375586
 Prefab:
   m_ObjectHideFlags: 0
@@ -36532,6 +36548,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 10
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1 &969024425
 GameObject:
   m_ObjectHideFlags: 0
@@ -38062,6 +38079,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 5
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1 &1013835620
 GameObject:
   m_ObjectHideFlags: 0
@@ -39999,6 +40017,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 10
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1 &1075704298
 GameObject:
   m_ObjectHideFlags: 0
@@ -41656,6 +41675,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 10
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1 &1118180203
 GameObject:
   m_ObjectHideFlags: 0
@@ -44085,6 +44105,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 10
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1 &1168931404
 GameObject:
   m_ObjectHideFlags: 0
@@ -44129,6 +44150,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 10
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1 &1171290175
 GameObject:
   m_ObjectHideFlags: 0
@@ -45797,6 +45819,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 2.5
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1 &1202101040
 GameObject:
   m_ObjectHideFlags: 0
@@ -46235,6 +46258,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 10
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1 &1221977046
 GameObject:
   m_ObjectHideFlags: 0
@@ -47452,6 +47476,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 5
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1 &1268515768
 GameObject:
   m_ObjectHideFlags: 0
@@ -48097,6 +48122,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 10
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1 &1278451813
 GameObject:
   m_ObjectHideFlags: 0
@@ -50599,6 +50625,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 10
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1 &1330788998
 GameObject:
   m_ObjectHideFlags: 0
@@ -51908,6 +51935,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 10
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1 &1371351595
 GameObject:
   m_ObjectHideFlags: 0
@@ -52874,6 +52902,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 10
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1001 &1398220933
 Prefab:
   m_ObjectHideFlags: 0
@@ -53466,7 +53495,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c7cd5143fa8f15744957923e63b980d5, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: c7cd5143fa8f15744957923e63b980d5, type: 2}
       propertyPath: debugInitCamera
@@ -56722,6 +56751,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 5
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1 &1530298003
 GameObject:
   m_ObjectHideFlags: 0
@@ -60286,6 +60316,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 10
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1 &1629501429
 GameObject:
   m_ObjectHideFlags: 0
@@ -60330,6 +60361,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 10
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1 &1632176569
 GameObject:
   m_ObjectHideFlags: 0
@@ -61283,6 +61315,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 10
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1 &1656623247
 GameObject:
   m_ObjectHideFlags: 0
@@ -66866,6 +66899,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 10
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1 &1770225668
 GameObject:
   m_ObjectHideFlags: 0
@@ -67792,6 +67826,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 10
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1 &1798876119
 GameObject:
   m_ObjectHideFlags: 0
@@ -68459,6 +68494,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 5
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1001 &1819927088
 Prefab:
   m_ObjectHideFlags: 0
@@ -69637,6 +69673,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 5
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1 &1845511388
 GameObject:
   m_ObjectHideFlags: 0
@@ -73786,6 +73823,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 10
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1 &1943867595
 GameObject:
   m_ObjectHideFlags: 0
@@ -75391,6 +75429,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 10
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1 &1986206364
 GameObject:
   m_ObjectHideFlags: 0
@@ -75856,6 +75895,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 5
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1 &1993253488
 GameObject:
   m_ObjectHideFlags: 0
@@ -77439,6 +77479,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 1
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1 &2023629724
 GameObject:
   m_ObjectHideFlags: 0
@@ -79136,6 +79177,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 10
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1 &2086391635
 GameObject:
   m_ObjectHideFlags: 0
@@ -80113,6 +80155,7 @@ MonoBehaviour:
   constantFrequency: 0
   frequency: 5
   spawnImmediately: 1
+  spawnInTrigger: 0
 --- !u!1 &2098964718
 GameObject:
   m_ObjectHideFlags: 0

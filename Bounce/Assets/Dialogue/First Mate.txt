@@ -4,14 +4,19 @@
 [Once you're done prancing about the deck, head over to your cabin.{End, Set TalkedToFirstMate}]
 
 if TalkedToFirstMate
-[Some of the crew here enjoy jumping about the masts for sport{Line 4}]
+[Some of the crew here enjoy jumping about the masts for sport.{Line 4}]
 [You can do the same as long as you don't break any limbs.{Line 5}]
 [Just be down here by the time the ship leaves the dock.{End}]
 
 if BobBodyGone
 [Ahoy! Captain told me that you're going to shoot yourself across the world in search of your body!{Line 7}]
 [Not a bad way to spend one's free time. I've loaded both cannons up so all you have to do is crawl in through the back.{Line 8}]
-
-if TalkedToFirstMateAgain
 [The cannon on the stern points toward the jungle, and the one on the bow points toward the city. {Line 9}]
 [Bon voyage!{End, Set TalkedToFirstMateAgain}]
+
+if TalkedToFirstMateAgain
+[By the way... if you want to return to a place you've been to previously...{Line 11}]
+[Open the menu with Q (or R Shift) and select the "Maps" tab. All the landmarks you have seen will be listed.{Line 12}]
+[Simply select "Teleport" to get to where you want to go!{Line 13}]
+[Careful, though. There's no way to get back to the position you were at before you teleported.{Line 14}]
+[Now, isn't it time you got going?{End}]

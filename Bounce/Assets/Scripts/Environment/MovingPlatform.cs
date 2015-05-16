@@ -18,6 +18,8 @@ public class MovingPlatform : MonoBehaviour {
 	public bool moveParent = true;	// if this collider is a "dummy child" to the larger platform
 	public bool reparentPlayer = true;	//indicates whether player should be reparented to move with the platform 
 	public bool flipOnTurn = false;	// whether object should rotate (to flip sprite) when changing direction
+	[HideInInspector]
+	public bool hasOneWayParent = false;
 
 	protected float moveTimer = 0.0f;
 	protected float pauseTimer = 0.0f;
@@ -27,6 +29,8 @@ public class MovingPlatform : MonoBehaviour {
 
 	void Start() {
 		Reset ();
+		if (moveParent && transform.parent.GetComponent<OneWay>() != null)
+			hasOneWayParent = true;
 	}
 
 	void FixedUpdate () {

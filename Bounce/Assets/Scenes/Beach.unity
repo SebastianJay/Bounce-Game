@@ -2872,6 +2872,7 @@ MonoBehaviour:
   moveParent: 1
   reparentPlayer: 1
   flipOnTurn: 0
+  hasOneWayParent: 0
 --- !u!1 &148770700
 GameObject:
   m_ObjectHideFlags: 0
@@ -8164,14 +8165,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 11400004, guid: c7cd5143fa8f15744957923e63b980d5, type: 2}
-      propertyPath: balloonTime
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 11400002, guid: c7cd5143fa8f15744957923e63b980d5, type: 2}
-      propertyPath: debugInitCamera
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c7cd5143fa8f15744957923e63b980d5, type: 2}
   m_RootGameObject: {fileID: 1424776690}
@@ -10540,6 +10533,7 @@ MonoBehaviour:
   moveParent: 1
   reparentPlayer: 1
   flipOnTurn: 0
+  hasOneWayParent: 0
 --- !u!61 &486781462
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13448,6 +13442,7 @@ MonoBehaviour:
   moveParent: 1
   reparentPlayer: 1
   flipOnTurn: 0
+  hasOneWayParent: 0
 --- !u!114 &666452994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17545,6 +17540,7 @@ MonoBehaviour:
   moveParent: 1
   reparentPlayer: 1
   flipOnTurn: 0
+  hasOneWayParent: 0
 --- !u!61 &859111976
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19737,6 +19733,7 @@ MonoBehaviour:
   moveParent: 1
   reparentPlayer: 1
   flipOnTurn: 0
+  hasOneWayParent: 0
   keyPoints:
   - {x: 193, y: -103.5}
   - {x: 193, y: -112}
@@ -25692,7 +25689,7 @@ MonoBehaviour:
   superJumpTime: 10
   spiderballTime: 5
   glidingTime: 7
-  balloonTime: 12
+  balloonTime: 7
   superJumpColor: {r: .986206889, g: 1, b: 0, a: 1}
   spiderBallColor: {r: 1, g: .600000024, b: 0, a: 1}
   glidingColor: {r: .406896591, g: 1, b: 0, a: 1}
@@ -25740,6 +25737,8 @@ MonoBehaviour:
   jumpDelay: .400000006
   jumpFrame: 0
   springFrame: 0
+  jumpLastTime: 0
+  springLastTime: 0
   bounciness: .600000024
   boostedBounciness: .850000024
   depressedBounciness: .400000006
@@ -25780,9 +25779,9 @@ Rigidbody2D:
   m_GravityScale: 1
   m_FixedAngle: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!212 &1222268419
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -27578,6 +27577,7 @@ MonoBehaviour:
   moveParent: 1
   reparentPlayer: 1
   flipOnTurn: 0
+  hasOneWayParent: 0
 --- !u!61 &1318366201
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -29311,6 +29311,7 @@ MonoBehaviour:
   moveParent: 1
   reparentPlayer: 1
   flipOnTurn: 0
+  hasOneWayParent: 0
 --- !u!114 &1406147560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32227,6 +32228,7 @@ MonoBehaviour:
   moveParent: 1
   reparentPlayer: 1
   flipOnTurn: 0
+  hasOneWayParent: 0
 --- !u!114 &1540369145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33391,6 +33393,7 @@ MonoBehaviour:
   moveParent: 1
   reparentPlayer: 1
   flipOnTurn: 0
+  hasOneWayParent: 0
 --- !u!61 &1617651702
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -38695,7 +38698,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1799989959}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: -4.37113883e-08}
-  m_LocalPosition: {x: 3.00111413, y: -.970485687, z: 0}
+  m_LocalPosition: {x: 3, y: -.589999974, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1175336241}
@@ -38753,7 +38756,7 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayerID: 3477195907
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: fcdd2a960e3b1b148bbd5bdcecacffe7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1800352081
@@ -41632,7 +41635,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1903688855}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 2.0114212, y: -.970485687, z: 0}
+  m_LocalPosition: {x: 2.00999999, y: -.589999974, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1175336241}
@@ -41690,7 +41693,7 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayerID: 3477195907
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: fcdd2a960e3b1b148bbd5bdcecacffe7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1905282614
@@ -43986,6 +43989,7 @@ MonoBehaviour:
   moveParent: 1
   reparentPlayer: 1
   flipOnTurn: 0
+  hasOneWayParent: 0
 --- !u!61 &1990424922
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -44292,6 +44296,7 @@ MonoBehaviour:
   moveParent: 1
   reparentPlayer: 1
   flipOnTurn: 0
+  hasOneWayParent: 0
 --- !u!114 &2010018264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44579,6 +44584,7 @@ MonoBehaviour:
   moveParent: 1
   reparentPlayer: 1
   flipOnTurn: 0
+  hasOneWayParent: 0
   keyPoints:
   - {x: 167, y: -40}
   keySpeed: 3

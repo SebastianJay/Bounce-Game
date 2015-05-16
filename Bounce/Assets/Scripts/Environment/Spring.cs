@@ -7,6 +7,7 @@ public class Spring : MonoBehaviour {
 	public float noiseVolume = 1f;
 
 	public const int springJumpFrameThreshold = 10;
+	public const float springJumpTimeThreshold = 0.2f;
 
 	private float orientation;
 	private Vector2 direction;
@@ -42,11 +43,12 @@ public class Spring : MonoBehaviour {
 	*/
 
 	public void SpringCollide(GameObject player) {
-		if (Time.frameCount - player.GetComponent<PlayerBallControl>().jumpFrame > springJumpFrameThreshold
-		    && Time.frameCount - player.GetComponent<PlayerBallControl>().springFrame > springJumpFrameThreshold)
+		if (Time.timeSinceLevelLoad - player.GetComponent<PlayerBallControl>().jumpLastTime > springJumpTimeThreshold
+		    && Time.timeSinceLevelLoad - player.GetComponent<PlayerBallControl>().springLastTime > springJumpTimeThreshold)
 		{
+			
 			player.rigidbody2D.AddForce (springForce * direction.normalized);
-			player.GetComponent<PlayerBallControl>().springFrame = Time.frameCount;
+			player.GetComponent<PlayerBallControl>().springLastTime = Time.timeSinceLevelLoad;
 			//Debug.Log ("Spring bounce " + Time.frameCount);
 			if (noiseSrc != null && (screenFadeObj == null || !screenFadeObj.GetComponent<ScreenFading>().IsTransitioning()))
 				noiseSrc.Play();

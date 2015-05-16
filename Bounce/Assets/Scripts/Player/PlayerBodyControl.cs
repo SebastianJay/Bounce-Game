@@ -36,11 +36,14 @@ public class PlayerBodyControl : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D col)
 	{
-		if (col.GetComponent<MovingPlatform>() != null) 
+		if (col.GetComponent<MovingPlatform>() != null
+		    && col.GetComponent<MovingPlatform>().reparentPlayer) 
 		{
-			onMovingPlatform = true;
-			platformParent = col.transform.parent;
-			//Debug.Log ("Player entered");
+			if (!col.GetComponent<MovingPlatform>().hasOneWayParent 
+			    || col.transform.parent.gameObject.layer == OneWay.DEFAULT_LAYER) {
+				onMovingPlatform = true;
+				platformParent = col.transform.parent;
+			}
 		}
 	}
 	void OnTriggerExit2D(Collider2D col)
@@ -48,7 +51,6 @@ public class PlayerBodyControl : MonoBehaviour {
 		if (col.GetComponent<MovingPlatform>() != null) 
 		{
 			onMovingPlatform = false;
-			//Debug.Log ("Player exited");
 		}
 	}
 

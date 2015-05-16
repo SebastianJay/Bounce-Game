@@ -120,7 +120,9 @@ public class MainMenu : MonoBehaviour
 			switchPanelSrc.clip = switchPanelSound;
 			switchPanelSrc.volume = switchPanelVolume;
 		}
-		saveFileList = BounceXmlSerializer.RetrieveMetaData();
+
+		if (Application.platform != RuntimePlatform.WindowsWebPlayer && Application.platform != RuntimePlatform.WindowsWebPlayer)
+			saveFileList = BounceXmlSerializer.RetrieveMetaData();
 	}
 	
 	void OnMouseEnter() {
@@ -163,11 +165,6 @@ public class MainMenu : MonoBehaviour
 			cursorLastPosition = Input.mousePosition;
 		} else {
 			Screen.showCursor = true;
-		}
-
-		if (Input.GetKeyDown(KeyCode.A))
-		{
-			BounceXmlSerializer.RetrieveMetaData();
 		}
 	}
 
@@ -218,66 +215,80 @@ public class MainMenu : MonoBehaviour
 				                                      new Rect (0, 0, scrollViewWidth - 20, saveFileList.Count*50+10));
 				GUI.skin = null;
 
-				// A button for creating a new save file
-				if(GUI.Button (new Rect(0,10,240,tabButtonHeight),"Save to New File", button240x50Style) && !fadingOut)
+				if (Application.platform == RuntimePlatform.WindowsWebPlayer || Application.platform == RuntimePlatform.OSXWebPlayer)
 				{
-					if (saveSrc != null)
-						saveSrc.Play();
-					BounceXmlSerializer.currentSaveFile = saveFileList.Count;
-					PlayerDataManager.SaveCurrent();
-					saveFileList = BounceXmlSerializer.RetrieveMetaData();
-					GameObject noteObj = GameObject.FindGameObjectWithTag("NoteManager");
-					noteObj.GetComponent<NotificationManager>().PushMessage("Saved game.");
+					if (GUI.Button(new Rect(0, 10, 240, tabButtonHeight), "Download Save File", button240x50Style) && !fadingOut)
+					{
+						PlayerDataManager.DownloadCurrent();
+					}
+					else if (GUI.Button (new Rect(0, 70, 240, tabButtonHeight), "Upload Save File", button240x50Style) && !fadingOut)
+					{
+						Application.ExternalCall("RequestUpload", "");
+					}
 				}
-				if (BounceXmlSerializer.currentSaveFile >= 0 && saveFileList.Count > 0) {
+				else
+				{			
 					// A button for creating a new save file
-					if(GUI.Button (new Rect(240,10,240,tabButtonHeight),"Overwrite current data (" + BounceXmlSerializer.currentSaveFile + ")", button240x50Style) && !fadingOut)
+					if(GUI.Button (new Rect(0,10,240,tabButtonHeight),"Save to New File", button240x50Style) && !fadingOut)
 					{
 						if (saveSrc != null)
 							saveSrc.Play();
+						BounceXmlSerializer.currentSaveFile = saveFileList.Count;
 						PlayerDataManager.SaveCurrent();
 						saveFileList = BounceXmlSerializer.RetrieveMetaData();
 						GameObject noteObj = GameObject.FindGameObjectWithTag("NoteManager");
 						noteObj.GetComponent<NotificationManager>().PushMessage("Saved game.");
+					}
+					if (BounceXmlSerializer.currentSaveFile >= 0 && saveFileList.Count > 0) {
+						// A button for creating a new save file
+						if(GUI.Button (new Rect(240,10,240,tabButtonHeight),"Overwrite current data (" + BounceXmlSerializer.currentSaveFile + ")", button240x50Style) && !fadingOut)
+						{
+							if (saveSrc != null)
+								saveSrc.Play();
+							PlayerDataManager.SaveCurrent();
+							saveFileList = BounceXmlSerializer.RetrieveMetaData();
+							GameObject noteObj = GameObject.FindGameObjectWithTag("NoteManager");
+							noteObj.GetComponent<NotificationManager>().PushMessage("Saved game.");
+						}
+					}
+					
+					// A list of all our save files
+					for(int i = 1; i < saveFileList.Count+1; i++)
+					{
+						//string s = saveFileList[i-1];
+						int saveFileIndex = i-1;
+						//GUI.Label (new Rect (10, i*60+10, scrollViewWidth-10, 50),"File "+saveFileIndex, labelStyle);
+						BounceFileMetaData metadata = saveFileList[saveFileIndex];
+						long minutes = (metadata.numberSeconds/60)%60;
+						long hours = metadata.numberSeconds/3600;
+						GUI.Label (new Rect (10, i*60+10, 110, 20), ImmutableData.GetCheckpointData()[metadata.lastCheckpoint].name, labelStyle);
+						GUI.Label (new Rect (10, i*60+30, 110, 20), string.Format("Playtime: {0:D2}:{1:D2}", hours, minutes), labelStyle);
+						GUI.Label (new Rect (120, i*60+10, 110, 20), string.Format("Collectibles: {0}", metadata.numberCollectibles), labelStyle);
+						GUI.Label (new Rect (120, i*60+30, 110, 20), string.Format("Deaths: {0}", metadata.numberDeaths), labelStyle);
+						if(GUI.Button (new Rect(240,i*60+10,120,50),"Overwrite", button120x50Style) && !fadingOut)
+						{
+							if (saveSrc != null)
+								saveSrc.Play();
+							BounceXmlSerializer.currentSaveFile = metadata.index;
+							PlayerDataManager.SaveCurrent();
+							saveFileList = BounceXmlSerializer.RetrieveMetaData();
+							GameObject noteObj = GameObject.FindGameObjectWithTag("NoteManager");
+							noteObj.GetComponent<NotificationManager>().PushMessage("Saved game.");
+						}
+						if(GUI.Button (new Rect(360,i*60+10,120,50),"Load", button120x50Style) && !fadingOut)
+						{
+							if (loadSrc != null)
+								loadSrc.Play();
+							loadDataIndex = metadata.index;
+							if (screenFadeObj != null) {
+								screenFadeObj.GetComponent<ScreenFading>().fadeSpeed /= EPSILON;
+								screenFadeObj.GetComponent<ScreenFading>().Transition(LoadTransition, true);
+							} else
+								LoadTransition();
+
+						}
 					}
 				}
-				
-				// A list of all our save files
-				for(int i = 1; i < saveFileList.Count+1; i++)
-				{
-					//string s = saveFileList[i-1];
-					int saveFileIndex = i-1;
-					//GUI.Label (new Rect (10, i*60+10, scrollViewWidth-10, 50),"File "+saveFileIndex, labelStyle);
-					BounceFileMetaData metadata = saveFileList[saveFileIndex];
-					long minutes = (metadata.numberSeconds/60)%60;
-					long hours = metadata.numberSeconds/3600;
-					GUI.Label (new Rect (10, i*60+10, 110, 20), ImmutableData.GetCheckpointData()[metadata.lastCheckpoint].name, labelStyle);
-					GUI.Label (new Rect (10, i*60+30, 110, 20), string.Format("Playtime: {0:D2}:{1:D2}", hours, minutes), labelStyle);
-					GUI.Label (new Rect (120, i*60+10, 110, 20), string.Format("Collectibles: {0}", metadata.numberCollectibles), labelStyle);
-					GUI.Label (new Rect (120, i*60+30, 110, 20), string.Format("Deaths: {0}", metadata.numberDeaths), labelStyle);
-					if(GUI.Button (new Rect(240,i*60+10,120,50),"Overwrite", button120x50Style) && !fadingOut)
-					{
-						if (saveSrc != null)
-							saveSrc.Play();
-						BounceXmlSerializer.currentSaveFile = metadata.index;
-						PlayerDataManager.SaveCurrent();
-						saveFileList = BounceXmlSerializer.RetrieveMetaData();
-						GameObject noteObj = GameObject.FindGameObjectWithTag("NoteManager");
-						noteObj.GetComponent<NotificationManager>().PushMessage("Saved game.");
-					}
-					if(GUI.Button (new Rect(360,i*60+10,120,50),"Load", button120x50Style) && !fadingOut)
-					{
-						if (loadSrc != null)
-							loadSrc.Play();
-						loadDataIndex = metadata.index;
-						if (screenFadeObj != null) {
-							screenFadeObj.GetComponent<ScreenFading>().fadeSpeed /= EPSILON;
-							screenFadeObj.GetComponent<ScreenFading>().Transition(LoadTransition, true);
-						} else
-							LoadTransition();
-
-					}
-				}						
 				GUI.EndScrollView ();
 			}
 
@@ -290,18 +301,6 @@ public class MainMenu : MonoBehaviour
 				//                                       scrollPositionI, new Rect (0, 0, scrollViewWidth - 20, scrollViewHeight * 4));
 				//GUI.skin = null;
 				GUI.BeginGroup(new Rect(Screen.width/2 - menuWidth/2 + 10, Screen.height/2-menuHeight/2 + 15 + tabButtonHeight, scrollViewWidth, scrollViewHeight));
-
-				//Inventory inventory = player.GetComponent<PlayerDataManager>().inventory;
-				/*
-				Inventory inventory = PlayerDataManager.inventory;
-				int count = inventory.items.Length;
-				float gridHeight = (float)count/inventoryGridX;
-				gridHeight = Mathf.Ceil(gridHeight*100);
-				string[] itemNames = new string[inventory.ToList().Count];
-				for(int i=0; i < inventory.ToList().Count; i++){
-					itemNames[i] = inventory.items[i].ToString();
-				}
-				*/
 				Dictionary<ItemType, ImmutableData.ItemData>.Enumerator iter = ImmutableData.GetItemData().GetEnumerator();			
 				if (iter.MoveNext()) {
 					bool iterdone = false;
@@ -343,8 +342,6 @@ public class MainMenu : MonoBehaviour
 							break;
 					}
 				}
-
-				//selectedItem = GUI.SelectionGrid(new Rect (Screen.width / 2 - menuWidth / 2 + 10, Screen.height / 2 - menuHeight / 2 + 15 + tabButtonHeight, scrollViewWidth, gridHeight), selectedItem, itemNames, inventoryGridX);				 
 				GUI.EndGroup ();
 			}
 
@@ -356,12 +353,7 @@ public class MainMenu : MonoBehaviour
 				scrollPosition2 = GUI.BeginScrollView (new Rect (Screen.width / 2 - menuWidth / 2 + 10, Screen.height / 2 - menuHeight / 2 + 15 + tabButtonHeight, scrollViewWidth, scrollViewHeight), 
 				                                       scrollPosition2, new Rect (0, 0, scrollViewWidth - 20, scrollViewHeight*2.5f));
 				GUI.skin = null;
-				//Dictionary<int, List<int> > previousCheckpoints = player.GetComponent<PlayerDataManager>().previousCheckpoints;
-				//Dictionary<int, List<int> > previousCheckpoints = PlayerDataManager.previousCheckpoints;
-				//HashSet<int> previousCheckpoints = PlayerDataManager.previousCheckpoints;
-				//Debug.Log (previousCheckpoints.Count);
 				int i = 0;
-				//foreach(KeyValuePair<int, List<int>> entry in previousCheckpoints)
 				foreach (KeyValuePair<string, List<int> > entry in ImmutableData.GetLevelData())
 				{
 					bool flag = false;
@@ -395,25 +387,8 @@ public class MainMenu : MonoBehaviour
 								screenFadeObj.GetComponent<ScreenFading>().Transition(TeleportTransition, true);
 							} else
 								TeleportTransition();
-							/*
-							PlayerDataManager.loadedLevel = true;
-							PlayerDataManager.lastCheckpoint = entry.Value[j-1];
-
-							Application.LoadLevel(entry.Key);
-							*/
-							/*
-							player.transform.position = Checkpoint.posCheckTable[entry.Value[j-1]];
-							player.rigidbody2D.velocity = Vector2.zero;
-							player.rigidbody2D.angularVelocity = 0f;
-							if (Checkpoint.camCheckTable.ContainsKey(entry.Value[j-1]))
-							{
-								GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
-								cam.GetComponent<CameraFollow>().LoadConfig(Checkpoint.camCheckTable[entry.Value[j-1]]);
-							}
-							*/
 						}
 					}
-					//i+=entry.Value.Count;
 					i++;
 				}
 				GUI.EndScrollView ();
@@ -440,5 +415,19 @@ public class MainMenu : MonoBehaviour
 		PlayerDataManager.loadedLevel = true;
 		PlayerDataManager.lastCheckpoint = teleportData.Value[teleportDataIndex];
 		Application.LoadLevel(teleportData.Key);
+	}
+
+	public void WebLoadGame(string fileContents)
+	{
+		if (screenFadeObj != null) {
+			screenFadeObj.GetComponent<ScreenFading> ().fadeSpeed /= EPSILON;
+			screenFadeObj.GetComponent<ScreenFading> ().Transition (delegate {
+				PlayerData mData = BounceXmlSerializer.LoadFromString (fileContents);
+				PlayerDataManager.UploadCurrent(mData);
+			}, true);
+		} else {
+			PlayerData mData = BounceXmlSerializer.LoadFromString (fileContents);
+			PlayerDataManager.UploadCurrent(mData);
+		}
 	}
 }

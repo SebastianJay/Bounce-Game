@@ -105,4 +105,45 @@ public class PlayerDataManager : MonoBehaviour {
 		BounceXmlSerializer.Save (myData);
 		timeSinceSave = DateTime.Now;
 	}
+
+	public static void DownloadCurrent()
+	{
+		List<int> entries = new List<int>(previousCheckpoints);
+		myData = new PlayerData();
+		myData.previousCheckpoints = entries;
+		myData.inventory = inventory.ToList();
+		myData.lastCheckpoint = lastCheckpoint;
+		myData.lastLevel = lastLevel;
+		myData.constants = DialogueConstantParser.constantSet;
+		myData.itemEquipped = itemEquipped;
+		myData.numberSeconds = secondsSinceSave + (long)((DateTime.Now - timeSinceSave).TotalSeconds);
+		myData.numberDeaths = numberDeaths;
+		myData.numberCollectibles = inventory.GetNumUniqueItems();
+		BounceXmlSerializer.SaveAndDownload (myData);
+		timeSinceSave = DateTime.Now;
+	}
+
+	public static void UploadCurrent(PlayerData myData)
+	{
+		if(myData != null)
+		{
+			lastLevel = myData.lastLevel;
+			lastCheckpoint = myData.lastCheckpoint;
+			inventory.Load(myData.inventory);
+			DialogueConstantParser.constantSet.Clear();
+			DialogueConstantParser.constantSet.UnionWith(myData.constants);
+			previousCheckpoints.Clear ();
+			previousCheckpoints.UnionWith(myData.previousCheckpoints);
+			itemEquipped = myData.itemEquipped;
+			numberDeaths = myData.numberDeaths;
+			timeSinceSave = DateTime.Now;
+			secondsSinceSave = myData.numberSeconds;
+			numberUniqueItems = inventory.GetNumUniqueItems();
+			
+			Application.LoadLevel(myData.lastLevel);
+			loadedLevel = true;
+		} else {
+			Debug.LogError("Bad data file.");
+		}
+	}
 }
